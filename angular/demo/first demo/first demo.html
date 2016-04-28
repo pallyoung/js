@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+	<meta charset="UTF-8">
+	<title>first demo</title>
+	<script>
+	window.onpopstate=function(e){
+			var url=location.hash.slice(1);
+			console.log(url);
+			try{
+			var i=Number(url.slice(-1));
+				$stateProvider.state(url, {
+					url: url,
+					views: {
+						viewA: {
+							template: "<p>url is {{url}}</P><a href='#test" + (i == 10 ? 1 : i + 1) + "'>next</a>",
+							controller: "testCtrl" + i
+						}
+					}
+
+
+				});
+				console.log(i)
+			}catch(e){
+				console.log(e);
+			}
+		}
+		window.onhashchange=function(e){
+			var url=location.hash.slice(1);
+			console.log(url);
+			try{
+			var i=Number(url.slice(-1));
+			angular.module('myApp').config(function($stateProvider, $urlRouterProvider) {
+				$stateProvider.state(url, {
+					url: url,
+					views: {
+						viewA: {
+							template: "<p>url is {{url}}</P><a href='#test" + (i == 10 ? 1 : i + 1) + "'>next</a>",
+							controller: "testCtrl" + i
+						}
+					}
+
+
+				});
+				console.log(i)
+			})
+			}catch(e){
+				console.log(e);
+			}
+		}
+	</script>
+	<!----><script src="../angular.js"></script>
+	<script src="../angular-ui-router.js"></script>
+	<!--<script src="../ionic.bundle.js"></script>-->
+	<script src="demo.js"></script>
+</head>
+<body>
+	<div ng-controller="testCtrl1">
+		<input type="text" ng-model="name" placeholder="your name">
+		<h1>hello {{getName()}}</h1>
+		<h1>hello {{getAppName()}}</h1>
+		<a href="#test2">{{url}}</a>
+	</div>	
+	<div  ui-view="viewA"></div>
+	<script>
+		/**
+		*  Module
+		*
+		* Description
+		
+		angular.module('myApp', []).controller('test', function($scope){
+			$scope.getName=function () {
+				console.log("$digest");
+				return $scope.name;
+			}
+			$scope.getAppName=function () {
+				console.log("$digest appName");
+				return $scope.appName;
+			}
+		})*/
+	</script>
+</body>
+</html>

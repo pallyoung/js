@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+  <link rel="stylesheet" href="../css/base.css">
+	<link rel="stylesheet" href="../css/common.css">
+	<link rel="stylesheet" href="../css/login.css">
+	<script data-main="../js/util/main" src="../js/util/require.js"></script>
+	<title>登录</title>
+</head>
+<body id="login">
+	<header class="header">
+		<h1 class="heading">登录</h1>
+	</header>
+
+	<div class="wrapper">
+    <form onsubmit="return false;">
+      <div class="logo"><img src="../img/logo.png"></div>
+      <input name="userName" type="text" class="border border_color_or br_10 fts24" placeholder="请输入手机号" />
+      <input name="passWord" type="password" class="border border_color_or br_10 fts24" placeholder="请输入密码" />
+      <div class="login-options">
+        <span><input type="checkbox" class="" name="freeLogin"></span>
+        <span class="color_yellow fts24">自动登录</span>	
+        <span class="color_yellow fts24 fr"><a href="reset-password.html">忘记密码？</a></span>			
+      </div>
+      <button name="submit" class="button bg_or color_white br_10 fts30 ftwb">登  陆</button>
+      <span class="activation-link"><a href="identity-authentication.html" class="color_or fts24">激活账号</a></span>
+    </form>
+	</div>
+</body>
+</html>

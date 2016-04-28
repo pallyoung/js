@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> activeTab 权限 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/activeTab.html">https://crxdoc-zh.appspot.com/extensions/activeTab.html</a><br>
+<b>Title:</b> activeTab 权限 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 20510<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#example"
+         data-list-item
+         >例子</a>
+    </li>
+    <li >
+      <a href="#motivation"
+         data-list-item
+         >目的</a>
+    </li>
+    <li >
+      <a href="#what-activeTab-allows"
+         data-list-item
+         >activeTab 允许哪些操作</a>
+    </li>
+    <li >
+      <a href="#invoking-activeTab"
+         data-list-item
+         >调用 activeTab</a>
+    </li>
+  </ol>
+</div>
+
+<style>
+  #active-tab-images {
+    margin-top: 1em;
+  }
+  #active-tab-images tr {
+    vertical-align: top;
+  }
+  #active-tab-images .spacing {
+    width: 1em;
+  }
+  #active-tab-before {
+    width: 334px;
+  }
+  #active-tab-after {
+    width: 334px;
+  }
+</style>
+
+<h1><!--@The--> activeTab <!--@permission-->权限</h1>
+
+<p>
+<!--@The--> <code>activeTab</code> <!--@permission gives an extension temporary access to the currently active tab when the user <em>invokes</em> the extension - for example by clicking its <a href="browserAction.html">browser action</a>. Access to the tab lasts until the tab is navigated or closed.-->
+权限使扩展程序在用户<em>调用</em>扩展程序（例如单击<a
+href="browserAction.html">浏览器按钮</a>）时能够临时访问当前活动的标签页，对标签页的访问将一直持续到标签页导航或关闭。
+</p>
+
+<p>
+<!--@This serves as an alternative for many uses of <code>&lt;all_urls&gt;</code>, but displays <em>no warning message</em> during installation:-->
+在很多情况下，它可以代替 <code>&lt;all_urls&gt;</code>，在安装过程中<em>不显示警告消息</em>。
+</p>
+
+<table id="active-tab-images" class="simple">
+  <tr>
+    <th><!--@Without-->没有 activeTab 时</th>
+    <th class="spacing"></th>
+    <th><!--@With-->使用 activeTab 后</th>
+  </tr>
+  <tr>
+    <td><img id="active-tab-before" src="../../developer.chrome.com/static/images/active-tab-before.png"></td>
+    <td class="spacing"></td>
+    <td><img id="active-tab-after" src="../../developer.chrome.com/static/images/active-tab-after.png"></td>
+  </tr>
+</table>
+
+<h2 id="example"><!--@Example-->例子</h2>
+
+<p>
+<!--@See the <a href="https://crxdoc-zh.appspot.com/extensions/samples.html#page-redder">Page Redder</a> sample extension:-->
+参见 <a href="https://crxdoc-zh.appspot.com/extensions/samples.html#page-redder">Page Redder</a>
+示例扩展程序：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "Page Redder",
+  "version": "2.0",
+  <b>"permissions": [
+    "activeTab"
+  ],</b> 
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },  
+  "browser_action": {
+    "default_title": "Make this page red"
+  },  
+  "manifest_version": 2
+}
+</pre>
+
+<pre data-filename="background.js">
+// Called when the user clicks on the browser action.
+chrome.browserAction.onClicked.addListener(function(tab) {
+  // No tabs or host permissions needed!
+  console.log('Turning ' + tab.url + ' red!');
+  chrome.tabs.executeScript({
+    code: 'document.body.style.backgroundColor="red"'
+  }); 
+});
+</pre>
+
+<h2 id="motivation"><!--@Motivation-->目的</h2>
+
+<p>
+<!--@Consider a web clipping extension that has a <a href="browserAction.html">browser action</a> and <a href="contextMenus.html">context menu item</a>. This extension may only really need to access tabs when its browser action is clicked, or when its context menu item is executed.-->
+考虑一个包含<a href="browserAction.html">浏览器按钮</a>及<a
+href="contextMenus.html">右键菜单项</a>的网络剪辑扩展程序，该扩展程序只有在浏览器按钮单击或右键菜单项执行时才需要访问标签页。
+</p>
+
+<p>
+<!--@Without <code>activeTab</code>, this extension would need to request full, persistent access to every web site, just so that it could do its work if it happened to be called upon by the user. This is a lot of power to entrust to such a simple extension. And if the extension is ever compromised, the attacker gets access to everything the extension had.-->
+如果没有 <code>activeTab</code>，该扩展程序将需要请求对每一个网站完整、持续的访问，以便碰巧用户调用时完成它的工作。对于这样一个简单的扩展程序来说用户信任并提供了太多权限，如果该扩展程序遭到攻击，攻击者可以访问该扩展程序拥有的所有权限。
+</p>
+
+<p>
+<!--@In contrast, an extension with the <code>activeTab</code> permission only obtains access to a tab in response to an explicit user gesture. If the extension is compromised the attacker would need to wait for the user to invoke the extension before obtaining access. And that access only lasts until the tab is navigated or closed.-->
+相反，使用 <code>activeTab</code> 权限的扩展程序只需要在响应用户显式操作时才需要获得标签页的访问权限。如果扩展程序受到攻击，攻击者在获得访问之前需要等待用户调用扩展程序，并且访问权限仅持续至标签页导航或关闭前。
+</p>
+
+<h2 id="what-activeTab-allows"><!--@What activeTab allows-->activeTab 允许哪些操作</h2>
+
+<p>
+<!--@While the <code>activeTab</code> permission is enabled for a tab, an extension can:-->
+当 <code>activeTab</code> 权限为某个标签页启用时，扩展程序可以：
+<ul>
+  <li><!--@Call-->对该标签页调用 <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code> <!--@or-->或 <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-insertCSS">tabs.insertCSS</a></code><!--@on that tab.-->。
+  <li><!--@Get the URL, title, and favicon for that tab via an API that returns a-->通过返回 <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a></code> <!--@object (essentially,-->
+  对象的 API 获取该标签页的 URL、标题及收藏夹图标（本质上
+  <code>activeTab</code> <!--@grants the-->临时授予了 <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#manifest">tabs</a></code> <!--@permission temporarily).-->权限）。
+</ul>
+</p>
+
+<h2 id="invoking-activeTab"><!--@Invoking activeTab-->调用 activeTab</h2>
+
+<p>
+<!--@The following user gestures enable-->如下用户操作启用 <code>activeTab</code>:
+<ul>
+  <li><!--@Executing a -->执行<a href="browserAction.html"><!--@browser action-->浏览器按钮</a>
+  <li><!--@Executing a -->执行<a href="pageAction.html"><!--@page action-->页面按钮</a>
+  <li><!--Executing a -->执行<a href="contextMenus.html"><!--@context menu item-->右键菜单项</a>
+  <li><!--Executing a keyboard shortcut from the -->通过<a href="commands.html"><!--@commands-->命令 API</a> 执行键盘快捷键
+  <li><!--Accepting a suggestion from the -->通过<a href="omnibox.html"><!--@omnibox-->多功能框 API</a> 接受建议
+</ul>
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

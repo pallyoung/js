@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chrome 应用的生命周期 - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/app_lifecycle.html">https://crxdoc-zh.appspot.com/extensions/app_lifecycle.html</a><br>
+<b>Title:</b> Chrome 应用的生命周期 - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 28055<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="../apps/apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="../apps/samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="../apps/angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="../apps/sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4 toggled"></div>
+                </a>
+              <ul toggleable
+                  class="level4 ">
+              <li class="level5">
+                    <a href="../apps/app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a  class="level5 selected">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="../apps/offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="../apps/app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="../apps/cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="../apps/pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="../apps/gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="../apps/gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="../apps/storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="../apps/app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="../apps/app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="../apps/app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="../apps/google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="../apps/analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="../apps/tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="../apps/api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="../apps/manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="../apps/app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#lifecycle"
+         data-list-item
+         >生命周期的工作方式</a>
+    </li>
+    <li >
+      <a href="#eventpage"
+         data-list-item
+         >创建事件页面和窗口</a>
+      <ol>
+        <li >
+          <a href="#create_event_page"
+             data-list-item
+             >创建事件页面</a>
+        </li>
+        <li >
+          <a href="#create_windows"
+             data-list-item
+             >创建窗口</a>
+        </li>
+        <li >
+          <a href="#launch_data"
+             data-list-item
+             >包含执行数据</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#runtime"
+         data-list-item
+         >监听应用的运行时事件</a>
+      <ol>
+        <li >
+          <a href="#local_settings"
+             data-list-item
+             >储存本地设置</a>
+        </li>
+        <li >
+          <a href="#preventing_loss"
+             data-list-item
+             >防止数据丢失</a>
+        </li>
+        <li >
+          <a href="#clean-up"
+             data-list-item
+             >应用关闭前的清理</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<meta name="doc-family" content="apps">
+<h1>Chrome <!--@App Lifecycle-->应用的生命周期</h1>
+
+
+<p>
+<!--@The app runtime and event page are responsible
+for managing the app lifecycle.
+The app runtime manages app installation,
+controls the event page,
+and can shutdown the app at anytime.
+The event page listens out for events from the app runtime
+and manages what gets launched and how.-->
+应用运行时环境与事件页面用于管理应用的生命周期。应用运行时环境管理应用的安装，控制事件页面，并且能够在任何时候关闭应用。事件页面监听来自应用运行时环境的事件，并管理运行的内容与方式。
+</p>
+
+<h2 id="lifecycle"><!--@How the lifecycle works-->生命周期的工作方式</h2>
+
+<p>
+<!--@The app runtime loads the event page
+from a user's desktop and
+the <code>onLaunch()</code> event is fired.
+This event tells the event page what windows
+to launch and their dimensions.
+The lifecycle diagram here isn't the nicest to look at,
+but it's practical (and we will make it nicer soon).-->
+应用程序运行时环境从用户的桌面加载事件页面，并产生
+<code>onLaunched()</code>
+事件。该事件告诉事件页面要打开的窗口及其大小。生命周期示意图不太好看，但是很实际（我们很快就会让它变得更好看）。
+</p>
+
+<img src="../../developer.chrome.com/static/images/applifecycle.png"
+     width="444"
+     height="329"
+     alt="how app lifecycle works">
+
+<p>
+<!--@When the event page has no executing JavaScript,
+no pending callbacks, and no open windows,
+the runtime unloads the event page and closes the app.
+Before unloading the event page,
+the <code>onSuspend()</code> event is fired.
+This gives the event page opportunity
+to do simple clean-up tasks
+before the app is closed.-->
+当事件页面不执行
+JavaScript，没有未决的回调函数，也没有打开的窗口时，运行时环境会卸载事件页面，并关闭应用。在卸载事件页面之前，将产生
+<code>onSuspend()</code>
+事件，这样使事件页面有机会在应用关闭之前做一些简单的清理任务。
+</p>
+
+<h2 id="eventpage"><!--@Create event page and windows-->创建事件页面和窗口</h2>
+
+<p>
+<!--@All apps must have an event page.
+This page contains the top-level logic of the application
+with none of its own UI and is responsible
+for creating the windows for all other app pages.-->
+所有应用都必须有一个事件页面，该页面包含了应用的顶层逻辑，但没有任何自己的用户界面，用于为所有其他应用页面创建窗口。
+</p>
+
+<h3 id="create_event_page"><!--@Create event page-->创建事件页面</h3>
+
+<p>
+<!--@To create the event page,
+include the "background" field in the app manifest
+and include the <code>background.js</code> in the scripts array.
+Any library scripts used by the event page need to be added
+to the "background" field first:-->
+要创建事件页面，在应用程序的清单文件中包含 "background" 字段，并将
+<code>background.js</code>
+包含在脚本（"scripts"）数组中。事件页面使用的所有库脚本需要首先加入
+"backrgound" 字段：
+</p>
+
+<pre data-filename="manifest.json">
+"background": {
+  "scripts": [
+    "foo.js",
+    "background.js"
+  ]
+}
+</pre>
+
+<p>
+<!--@Your event page must include the <code>onLaunched()</code> function.
+This function is called
+when your application is launched in any way:-->
+您的事件页面必须包含 <code>onLaunched()</code>
+函数，当您的应用以任何方式执行时会调用该函数：
+</p>
+
+<pre data-filename="background.js">
+chrome.app.runtime.onLaunched.addListener(function() { 
+  // 告诉您的应用执行的内容与方式。
+});
+</pre>
+
+<h3 id="create_windows"><!--@Create windows-->创建窗口</h3>
+
+<p>
+<!--@An event page may create one or more windows at its discretion.
+By default, these windows are created with a script connection
+to the event page and are directly scriptable by the event page.-->
+事件页面可以创建一个或多个指定大小的窗口。默认情况下，这些创建的窗口与事件页面之间有脚本连接，并且可以直接由事件页面调用。
+</p>
+
+<p>
+<!--@Windows have an optional frame with title bar and size controls. They are
+not associated with any Chrome browser windows.-->
+窗口可以具有可选的框架，包含标题栏和大小控件，它们不和任何 Chrome
+浏览器窗口关联。
+</p>
+
+<p><!--@Here's a sample window created from <code>background.js</code>:-->
+如下是在 <code>backrgound.js</code> 中创建窗口的示例：
+</p>
+
+<pre data-filename="background.js">
+chrome.app.runtime.onLaunched.addListener(function() {
+  chrome.app.window.create('main.html', {
+    bounds: {
+      width: 800,
+      height: 600,
+      left: 100,
+      top: 100
+    },
+    minWidth: 800,
+    minHeight: 600
+  });
+});
+</pre>
+
+<h3 id="launch_data"><!--@Including Launch Data-->包含执行数据</h3>
+
+<p>
+<!--@Depending on how your app is launched,
+you may need to handle launch data
+in your event page.
+By default, there is no launch data
+when the app is started by the app launcher.
+For apps that have file handlers,
+you need to handle the
+<code>launchData.items</code> parameter to allow
+them to be launched with files.-->
+取决于您的应用的执行方式，您可能需要在事件页面中包含执行数据。默认情况下，应用启动器启动应用时没有执行数据。对于包含文件处理程序的应用，您需要处理
+<code>launchData.items</code> 参数允许它们与文件一起执行。
+</p>
+
+<h2 id="runtime"><!--@Listening for app runtime events-->监听应用的运行时事件</h2>
+
+<p>
+<!--@The app runtime controls the app installs, updates, and uninstalls.
+You don't need to do anything to set up the app runtime,
+but your event page can listen out for the <code>onInstalled()</code> event
+to store local settings and the
+<code>onSuspend()</code> event to do simple clean-up tasks
+before the event page is unloaded.-->
+应用运行时环境控制应用的安装、更新与卸载。您不需要做任何事情来设置应用运行时环境，但是您的事件页面可以监听
+<code>onInstalled()</code> 事件来储存本地设置，监听
+<code>onSuspend()</code> 事件在事件页面卸载前做一些简单的清理任务。
+</p>
+
+<h3 id="local_settings"><!--@Storing local settings-->储存本地设置</h3>
+
+<p>
+<!--@<code>chrome.runtime.onInstalled()</code>
+is called when your app has first been installed,
+or when it has been updated.
+Any time this function is called,
+the <code>onInstalled</code> event is fired.
+The event page can listen for this event and use the
+<a href="storage.html">Storage API</a>
+to store and update local settings
+(see also <a href="https://crxdoc-zh.appspot.com/extensions/app_storage.html#options">Storage options</a>).-->
+当您的应用程序首次安装或者更新时将调用
+<code>chrome.runtime.onInstalled()</code>，每次调用该函数时将产生
+<code>onInstalled</code>
+事件。事件页面可以监听该事件，并使用<a href="storage.html">存储 API</a>
+储存和更新本地设置（同时请参见<a href="https://crxdoc-zh.appspot.com/extensions/app_storage.html#options">存储选项</a>）。
+</p>
+
+<pre data-filename="background.js">
+chrome.runtime.onInstalled.addListener(function() { 
+  chrome.storage.local.set(object items, function callback);
+});
+</pre>
+
+<h3 id="preventing_loss"><!--@Preventing data loss-->防止数据丢失</h3>
+
+<p>
+<!--@Users can uninstall your app at any time.
+When uninstalled,
+no executing code or private data is left behind.
+This can lead to data loss
+since the users may be uninstalling an app
+that has locally edited, unsynchronized data.
+You should stash data to prevent data loss.-->
+用户可以在任何时候卸载您的应用，卸载后不会留下任何可执行代码或私有数据。这样可能会导致数据丢失，因为用户正在卸载的应用可能包含本地编辑过但尚未同步的数据，您应该储存数据以免数据丢失。
+</p>
+
+<p>
+<!--@At a minimum,
+you should store user settings
+so that if users reinstall your app,
+their information is still available for reuse.
+Using the Storage API
+(<a href="https://crxdoc-zh.appspot.com/extensions/storage.html#property-sync">storage.sync</a>),
+user data can be automatically synced
+with Chrome sync.-->
+至少，您应该存储用户设置，以便用户重新安装您的应用后，它们的信息仍然可以重新使用。使用存储
+API（<a href="https://crxdoc-zh.appspot.com/extensions/storage.html#property-sync">storage.sync</a>），用户数据可以自动通过 Chrome 浏览器的同步功能同步。
+</p>
+
+<h3 id="clean-up"><!--@Clean-up before app closes-->应用关闭前的清理</h3>
+
+<p>
+<!--@The app runtime sends the <code>onSuspend()</code>
+event to the event page before unloading it.
+Your event page can listen out for this event and
+do clean-up tasks before the app closes.-->
+应用运行时环境在卸载前会向事件页面发送 <code>onSuspend()</code>
+事件，您的事件页面可以监听该事件并在应用关闭前做清理任务。
+</p>
+
+<p>
+<!--@Once this event is fired,
+the app runtime starts the process of closing the app:
+all events stop firing and
+JavaScript execution is halted.
+Any asynchronous operations started
+while handling this event are not guaranteed to complete.
+Keep the clean-up tasks synchronous and simple.-->
+一旦产生了该事件，应用运行时环境就开始了应用关闭的过程。所有事件不再产生，JavaScript
+执行将停止。处理这一事件时开始的任何异步操作都不能保证完整。请保持清理任务同步而且简单：
+</p>
+
+<pre data-filename="background.js">
+chrome.runtime.onSuspend.addListener(function() { 
+  // 做一些简单的清理任务。
+});
+</pre>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

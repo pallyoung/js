@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>viewport test</title>
+	<script src="../viewport/viewport.js"></script>
+	<style>
+		#myViewport{
+			height: 100px;
+			overflow: auto;
+		}
+		.section{
+			height: 200px;
+		}
+	</style>
+</head>
+<body>
+	<div id="myViewport" class="viewport">
+		<div id="firstSection" class="section">
+			First section content goes here...
+		</div>
+
+		<div id="secondSection" class="section">
+			Second section content goes here...
+		</div>
+	</div>
+	
+	<script>
+		var myViewport = document.getElementById('myViewport');
+		var firstSection = document.getElementById('firstSection');
+
+		myViewport.addEventListener(
+			'scroll',
+			function() {
+				var location = firstSection.viewportTopLocation;
+				console.log(
+					'The viewport is at ' + location +
+					' relatively to the first section'
+					);
+			},
+			false
+			);
+	</script>
+</body>
+</html>

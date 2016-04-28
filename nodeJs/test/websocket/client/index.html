@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>基于websocket的聊天室</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing:border-box;
+		}
+		html,body{
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		#client{
+			height: 100%;
+			width: 100%;
+			overflow: hidden;
+		}
+		#client .window{
+			height: 80%;
+			width: 100%;
+			background:rgb(201,201,201);
+			border: solid 1px rgb(110,110,110);
+			padding: 0 1em;
+			line-height: 2em;
+			overflow-y:scroll 
+		}
+		.message{
+			height: 10%;
+			width: 100%;
+			background:rgb(221,221,221);
+		}
+		#client footer{
+			height: 10%;
+			width: 100%;
+
+		}
+		#client a{
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<section id="client">
+		<div class="window"></div>
+		<div class="message" contenteditable></div>
+		<footer>
+			<a href="javascript:void(0)">发送</a>
+		</footer>
+	</section>
+	<script>
+		var windowNode=document.querySelector(".window");
+		var messageNode=document.querySelector(".message")
+		var sendMessage=function(socket,message){
+			 socket.send(JSON.stringify({
+                "data": {
+                	"eventName":"message",
+                    "room": window.location.hash.slice(1),
+                    "message":message,
+                    "name":name
+                }
+            }));
+		}
+		var rand=function(min,max){
+			return parseInt(Math.random()*(max-min)+min)
+		}
+		var name=prompt("Please enter your name","");
+		var socket=new WebSocket("ws:"+ window.location.host);
+	
+		 socket.onopen = function() {
+            socket.send(JSON.stringify({
+                "data": {
+                	"eventName":"connect",
+                    "room": window.location.hash.slice(1),
+                    "name":name
+                }
+            }));
+        };
+        socket.onmessage = function(message) {
+        	console.log("receive message");
+        	var json = JSON.parse(message.data);
+            if (json.eventName==="sys_message") {
+            	windowNode.innerHTML+="<p style='color:rgb(123,11,22)'>系统 "+new Date().toLocaleString()+"</p>";
+            	windowNode.innerHTML+="<p style='color:rgb(123,11,22)'>"+json.message+"</p>";
+            }else if(json.name===name){
+            	windowNode.innerHTML+="<p style='color:rgb(12,122,22);text-align:right'>"+json.name+" "+new Date().toLocaleString()+"</p>";
+            	windowNode.innerHTML+="<p style='text-align:right'>"+json.message+"</p>";
+            }else{
+            	windowNode.innerHTML+="<p style='color:rgb(12,11,222)'>"+json.name+" "+new Date().toLocaleString()+"</p>";
+            	windowNode.innerHTML+="<p>"+json.message+"</p>";
+            }
+            windowNode.scrollTop=windowNode.scrollHeight;
+        };
+        document.querySelector("a").addEventListener("click",function(){
+        	sendMessage(socket,messageNode.innerHTML);
+        	messageNode.innerHTML='';
+        },false);
+        document.body.addEventListener("keypress",function(e){
+        	if(e.keyCode!==13){
+        		return;
+        	}	
+        	sendMessage(socket,messageNode.innerHTML);
+        	messageNode.innerHTML='';
+        },false);
+	</script>
+</body>
+</html>

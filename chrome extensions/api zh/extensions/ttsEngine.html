@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.ttsEngine - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/ttsEngine.html">https://crxdoc-zh.appspot.com/extensions/ttsEngine.html</a><br>
+<b>Title:</b> chrome.ttsEngine - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 42053<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.ttsEngine</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#overview"
+         data-list-item
+         >概述</a>
+    </li>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#handling_speech_events"
+         data-list-item
+         >处理语音事件</a>
+    </li>
+    <li class="separator">
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onSpeak"
+             data-list-item
+             >onSpeak</a>
+        </li>
+        <li >
+          <a href="#event-onStop"
+             data-list-item
+             >onStop</a>
+        </li>
+        <li >
+          <a href="#event-onPause"
+             data-list-item
+             >onPause</a>
+        </li>
+        <li >
+          <a href="#event-onResume"
+             data-list-item
+             >onResume</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.ttsEngine</code> API 用扩展程序实现文字语音转换（TTS）引擎。如果您的扩展程序注册了这一 API，当任何扩展程序或 Chrome 应用使用 <a href="tts.html">tts</a> 模块朗读时，它会收到事件，包含要朗读的内容以及其他参数。您的扩展程序可以使用任何可用的网络技术合成并输出语音，并向调用方发送事件报告状态。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 14<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "ttsEngine"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="overview"><!--@Overview-->概述</h2>
+
+<p><!--@An extension can register itself as a speech engine. By doing so, it
+can intercept some or all calls to functions such as
+<a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-speak">tts.speak</a> and
+<a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-stop">tts.stop</a>
+and provide an alternate implementation.
+Extensions are free to use any available web technology
+to provide speech, including streaming audio from a server, HTML5 audio,
+Native Client, or Flash. An extension could even do something different
+with the utterances, like display closed captions in a pop-up window or
+send them as log messages to a remote server.-->
+扩展程序可以将自己注册为语音引擎，这样，它就能处理部分或所有诸如
+<a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-speak">tts.speak</a> 和 <a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-stop">tts.stop</a>
+的函数调用，提供替代的实现。扩展程序可以自由地使用任何可用的网络技术提供语音，包括来自服务器的音频流、HTML5 音频、Native Client 或
+Flash。扩展程序甚至可以做一些除朗读之外的事，例如在弹出式窗口中显示内容或者向远程服务器发送日志消息。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p><!--@To implement a TTS engine, an extension must
+declare the "ttsEngine" permission and then declare all voices
+it provides in the extension manifest, like this:-->
+要实现 TTS 引擎，扩展程序必须在清单文件中声明 "ttsEngine"
+权限，并声明它提供的所有语音，如下所示：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的 TTS 引擎",
+  "version": "1.0",
+  <b>"permissions": ["ttsEngine"],
+  "tts_engine": {
+    "voices": [
+      {
+        "voice_name": "Alice",
+        "lang": "en-US",
+        "gender": "female",
+        "event_types": ["start", "marker", "end"]
+      },
+      {
+        "voice_name": "Pat",
+        "lang": "en-US",
+        "event_types": ["end"]
+      }
+    ]
+  },</b>
+  "background": {
+    "page": "background.html",
+    "persistent": false
+  }
+}
+</pre>
+
+<p><!--@An extension can specify any number of voices.-->
+扩展程序可以指定任意数量的语音。
+</p>
+
+<p><!--@The <code>voice_name</code> parameter is required. The name should be
+descriptive enough that it identifies the name of the voice and the
+engine used. In the unlikely event that two extensions register voices
+with the same name, a client can specify the ID of the extension that
+should do the synthesis.-->
+<code>voice_name</code>
+参数是必选的，名称应该具有充分的描述性，标识使用的语音和引擎的名称。如果两个扩展程序注册了相同名称的语音（这种情况不太可能发生），客户端可以指定应该进行合成的扩展程序标识符。
+</p>
+
+<p><!--@The <code>gender</code> parameter is optional. If your voice corresponds
+to a male or female voice, you can use this parameter to help clients
+choose the most appropriate voice for their application.-->
+<code>gender</code>
+参数可选。如果您的语音对应于男性（"male"）或女性（"female"）语音，您可以使用该参数帮助客户端为应用程序选择最合适的语音。
+</p>
+
+<p><!--@The <code>lang</code> parameter is optional, but highly recommended.
+Almost always, a voice can synthesize speech in just a single language.
+When an engine supports more than one language, it can easily register a
+separate voice for each language. Under rare circumstances where a single
+voice can handle more than one language, it's easiest to just list two
+separate voices and handle them using the same logic internally. However,
+if you want to create a voice that will handle utterances in any language,
+leave out the <code>lang</code> parameter from your extension's manifest.-->
+<code>lang</code>
+参数可选，但是强烈建议包含这一参数。大部分情况下语音只能进行一种语言的语音合成。如果引擎支持不止一种语言，它只要注册两个单独的语音，并在内部用相同的逻辑处理。然而，如果您想创建一个可以处理任何语言的语音，可以在扩展程序的清单文件中省略
+<code>lang</code>参数。
+</p>
+
+<p><!--@Finally, the <code>event_types</code> parameter is required if the engine can
+send events to update the client on the progress of speech synthesis.
+At a minimum, supporting the <code>'end'</code> event type to indicate
+when speech is finished is highly recommended, otherwise Chrome cannot
+schedule queued utterances.-->
+最后，如果引擎可以发送事件通知客户端语音合成的进度，则必须设置
+<code>event_types</code> 参数。强烈建议至少应该支持
+<code>'end'</code> 事件类型指示朗读何时完成，否则 Chrome
+浏览器无法调度队列中的朗读。
+</p>
+
+<p class="note">
+<strong><!--@Note:-->注意：</strong><!--@ If your TTS engine does not support
+the <code>'end'</code> event type, Chrome cannot queue utterances
+because it has no way of knowing when your utterance has finished. To
+help mitigate this, Chrome passes an additional boolean <code>enqueue</code>
+option to your engine's onSpeak handler, giving you the option of
+implementing your own queueing.  This is discouraged because then
+clients are unable to queue utterances that should get spoken by different
+speech engines.-->如果您的 TTS 引擎不支持 <code>'end'</code>
+事件类型，Chrome
+浏览器就无法将朗读放入队列，因为它无法知道您的朗读何时结束。为了缓解这一问题，Chrome
+浏览器将向您的引擎的 onSpeak 事件处理函数传递布尔类型的
+<code>enqueue</code>
+选项，让您选择实现自己的队列。但是不建议您这么做，因为客户端将无法将其他语音引擎朗读的内容放入队列。
+</p>
+
+<p><!--@The possible event types that you can send correspond to the event types
+that the <code>speak()</code> method receives:-->
+您可以发送的可能的事件类型对应于 <code>speak()</code> 可以接受的事件类型：
+</p>
+
+<ul>
+  <li><code>'start'</code><!--@: The engine has started speaking the utterance.-->：引擎开始朗读。
+  <li><code>'word'</code><!--@: A word boundary was reached. Use
+          <code>event.charIndex</code> to determine the current speech
+          position.-->：遇到单词边界。使用
+          <code>event.charIndex</code> 确定当前朗读位置。
+  <li><code>'sentence'</code><!--@: A sentence boundary was reached. Use
+          <code>event.charIndex</code> to determine the current speech
+          position.-->：遇到句子边界。使用
+          <code>event.charIndex</code> 确定当前朗读位置。
+  <li><code>'marker'</code><!--@: An SSML marker was reached. Use
+          <code>event.charIndex</code> to determine the current speech
+          position.-->：遇到 SSML 标记。使用
+          <code>event.charIndex</code> 确定当前朗读位置。
+  <li><code>'end'</code><!--@: The engine has finished speaking the utterance.-->：引擎已完成朗读。
+  <li><code>'error'</code><!--@: An engine-specific error occurred and
+          this utterance cannot be spoken.
+          Pass more information in <code>event.errorMessage</code>.-->：发生了引擎特定的错误，不能开始朗读。有关细节请检查
+          <code>event.errorMessage</code>。
+</ul>
+
+<p><!--@The <code>'interrupted'</code> and <code>'cancelled'</code> events are
+not sent by the speech engine; they are generated automatically by Chrome.-->
+<code>'interrupted'</code> 和 <code>'cancelled'</code>
+事件并不是由语音引擎发送，而是由 Chrome 浏览器自动生成。
+</p>
+
+<p><!--@Text-to-speech clients can get the voice information from your
+extension's manifest by calling
+<a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-getVoices">tts.getVoices</a>,
+assuming you've registered speech event listeners as described below.-->
+如果您已经处理了如下描述的语音事件的话，文本语音转换客户端可以通过调用
+<a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-getVoices">tts.getVoices</a> 从您的扩展程序的清单文件获取语音信息。
+</p>
+
+<h2 id="handling_speech_events"><!--@Handling speech events-->处理语音事件</h2>
+
+<p><!--@To generate speech at the request of clients, your extension must
+register listeners for both <code>onSpeak</code> and <code>onStop</code>,
+like this:-->
+要在收到客户端的请求后开始朗读，您的扩展程序必须同时处理
+<code>onSpeak</code> 和 <code>onStop</code> 事件，如下所示：
+</p>
+
+<pre>var speakListener = function(utterance, options, sendTtsEvent) {
+  sendTtsEvent({'event_type': 'start', 'charIndex': 0})
+
+  // （开始朗读）
+
+  sendTtsEvent({'event_type': 'end', 'charIndex': utterance.length})
+};
+
+var stopListener = function() {
+  // （停止所有朗读）
+};
+
+chrome.ttsEngine.onSpeak.addListener(speakListener);
+chrome.ttsEngine.onStop.addListener(stopListener);</pre>
+
+<p class="warning">
+<b><!--@Important:-->重要提示：</b><!--@
+If your extension does not register listeners for both
+<code>onSpeak</code> and <code>onStop</code>, it will not intercept any
+speech calls, regardless of what is in the manifest.-->如果您的扩展程序不同时处理
+<code>onSpeak</code> 和 <code>onStop</code>
+事件，它不会收到任何语音调用，无论清单文件中如何描述。
+</p>
+
+<p><!--@The decision of whether or not to send a given speech request to an
+extension is based solely on whether the extension supports the given voice
+parameters in its manifest and has registered listeners
+for <code>onSpeak</code> and <code>onStop</code>. In other words,
+there's no way for an extension to receive a speech request and
+dynamically decide whether to handle it.-->
+是否向扩展程序发送语音请求完全取决于扩展程序是否支持清单文件中指定的语音参数以及是否已经处理
+<code>onSpeak</code> 和 <code>onStop</code>
+事件。换句话说，没有办法使扩展程序先接收语音事件再动态地决定是否处理。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.ttsEngine <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onSpeak">onSpeak</h3>
+        <div class="description">
+      <p>
+            当用户发出 <a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-speak">tts.speak</a> 调用并且扩展程序的清单文件中的任何一种语音首先匹配 options 对象时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.ttsEngine.onSpeak.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onSpeak-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onSpeak-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(string utterance, object options, function sendTtsEvent) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onSpeak-utterance"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onSpeak-utterance" title="">
+                              utterance
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            要朗读的文本，既可以是纯文本，也可以是完整的、形式正确的 SSML 文档。如果您的引擎不支持 SSML，您应该忽略所有 XML 标签只朗读文本。这一参数的长度确保不超过 32 768 个字符。如果您的引擎不支持一次性朗读那么多内容，您应该将朗读分成一小段一小段，并放入内部队列，而不是返回错误。
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onSpeak-options"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onSpeak-options" title="">
+                              options
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-speak">tts.speak</a> 方法指定的选项。
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-options-voiceName"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-options-voiceName" title="">
+                                    voiceName
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  用来合成的语音名称。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-options-lang"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-options-lang" title="">
+                                    lang
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  用于合成的语言，以<em>语言</em>-<em>区域</em>的形式。例如：'zh-CN'、'en'、'en-US'、'en-GB'。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-options-gender"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-options-gender" title="">
+                                    gender
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        enum of <code>"male"</code>, or <code>"female"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  语音合成所使用的性别，"male" 表示男性，"female" 表示女性。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-options-rate"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-options-rate" title="">
+                                    rate
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  朗读速率，相对于这一语音的默认速率。1.0 表示默认速率，通常为每分钟 180 至 220 个单词。2.0 表示快一倍，而 0.5 是默认速率的一半。这一值确保在 0.1 和 10.0 之间（包括 0.1 和 10.0），如果语音不支持这一范围内的所有速率，不要返回错误，而是限制在语音支持范围内的速率。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-options-pitch"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-options-pitch" title="">
+                                    pitch
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  指定 0 到 2 之间（包括 0 和 2）的声调，0 表示最低，2 表示最高，1.0 对应于语音的默认声调。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-options-volume"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-options-volume" title="">
+                                    volume
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 到 1 之间（包括 0 和 1）的朗读音量，0 为最低，1 为最高，默认为 1.0。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                      <div>
+                        <a name="property-onSpeak-sendTtsEvent"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onSpeak-sendTtsEvent" title="">
+                              sendTtsEvent
+                              <span class="property">
+                                (
+                                  function
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            调用这一函数，发送语音合成过程中发生的事件。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onStop">onStop</h3>
+        <div class="description">
+      <p>
+            当发出 <a href="https://crxdoc-zh.appspot.com/extensions/tts.html#method-stop">tts.stop</a> 调用时发生，扩展程序可能正在朗读。如果扩展程序收到这一事件但是朗读已经结束，它应该什么都不做（而不是产生错误）。如果语音正处于暂停状态，它应该取消暂停状态。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.ttsEngine.onStop.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onStop-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onStop-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onPause">onPause</h3>
+        <div class="description">
+      <p>
+            可选：如果引擎支持暂停事件，它应该暂停正在朗读的内容（如果有的话），直到它接收到恢复或停止事件。注意停止事件还应该清除暂停状态。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.ttsEngine.onPause.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onPause-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onPause-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onResume">onResume</h3>
+        <div class="description">
+      <p>
+            可选：如果引擎支持暂停事件，它也应该支持恢复事件，继续当前朗读的内容（如果有的话）。注意停止事件还应该清除暂停状态。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.ttsEngine.onResume.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onResume-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onResume-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

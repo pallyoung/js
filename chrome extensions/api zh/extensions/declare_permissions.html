@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>声明权限 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html">https://crxdoc-zh.appspot.com/extensions/declare_permissions.html</a><br>
+<b>Title:</b> 声明权限 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 36523<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+  </ol>
+</div>
+
+<h1><!--@Declare Permissions-->声明权限</h1>
+
+<p>
+<!--@To use most chrome.* APIs,
+your extension or app must declare its intent in the
+"permissions" field of the
+<a href="manifest.html">manifest</a>.
+Each permission can be either one of a list of known strings
+(such as "geolocation")
+or a <a href="match_patterns.html">match pattern</a>
+that gives access to one or more hosts.
+Permissions help to limit damage
+if your extension or app is compromised by malware.
+Some permissions are also displayed to users before installation,
+as detailed in
+<a href="permission_warnings.html">Permission Warnings</a>.-->
+要使用大多数 chrome.* API，您的扩展程序或应用程序必须在<a href="manifest.html">清单文件</a>的
+"permissions"
+字段中声明它的意图。每一个权限既可以是已知字符串列表中的某一个（例如
+"geolocation"），也可以是授予访问一个或多个主机权限的<a href="match_patterns.html">匹配表达式</a>。权限可以帮助您在扩展程序或应用程序受到攻击时尽可能减小损失，某些权限也会在安装前向用户显示，这些将在<a href="permission_warnings.html">权限警告</a>中详细描述。
+</p>
+
+<p>
+<!--@If an API requires you to declare a permission in the manifest,
+then its documentation tells you how to do so.
+For example,
+the <a href="storage.html">Storage</a> page
+shows you how to
+declare the "storage" permission.-->
+如果某个 API
+需要您在清单文件中声明某个权限，它的文档会告诉你如何去做，例如<a
+href="storage.html">存储 API</a>
+网页会向您演示如何声明 "storage" 权限。
+</p>
+
+<p id="manifest">
+<!--@Here's an example of the permissions part of a manifest file:-->
+如下是一个清单文件中权限部分的例子：
+</p>
+
+<pre data-filename="manifest.json">
+"permissions": [
+  "tabs",
+  "bookmarks",
+  "http://www.blogger.com/",
+  "http://*.google.com/",
+  "unlimitedStorage"
+],
+
+</pre>
+
+<p>
+<!--@The following table lists the currently available permissions:-->
+下表列出了当前可用的权限。
+</p>
+
+<table>
+  <tr>
+    <th><!--@Permission-->权限</th>
+    <th><!--@Description-->描述</th>
+  </tr>
+  <tr id="host-permissions">
+    <td>
+      <code>"[scheme]:[host]/*"</code>
+    </td>
+    <td>
+      <!--@Specifies a <em>host permission</em>. Required if the extension or app wants to interact with the code running on pages. Many capabilities, such as <a href="xhr.html">cross-origin XMLHttpRequests</a>, <a href="https://crxdoc-zh.appspot.com/extensions/content_scripts.html#pi">programmatically injected content scripts</a>, and <a href="cookies.html">the extension's cookies API</a> require host permissions. For details on the syntax, see <a href="match_patterns.html">Match Patterns</a>. A path is allowed but treated as <code>/*</code>.-->
+      指定<em
+      >主机权限</em>。如果扩展程序或应用需要与页面上运行的代码交互则必须指定该权限。许多扩展程序的能力，例如<a
+      href="xhr.html">跨站 XMLHttpRequest</a>、<a href="https://crxdoc-zh.appspot.com/extensions/content_scripts.html#pi"
+      >以编程方式插入内容脚本</a>以及<a href="cookies.html">扩展程序的 Cookie
+      API</a> 都需要主机权限。有关语法上的详情，请参见<a
+      href="match_patterns.html">匹配表达式</a>。允许指定路行，但始终视为
+      <code>/*</code>。
+    </td>
+  </tr>
+  <tr id="activeTab">
+    <td>
+      <code>"activeTab"</code>
+    </td>
+    <td>
+      <!--@Requests that the extension be granted permissions according to the <a href="activeTab.html">activeTab</a> specification.-->
+      根据 <a href="activeTab.html">activeTab</a> 规范请求授予扩展程序权限。
+    </td>
+  </tr>
+  <tr id="alarms">
+    <td>
+      <code>"alarms"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="alarms.html">chrome.alarms</a> API.-->
+      使您的扩展程序能够访问 <a href="alarms.html">chrome.alarms</a> API。
+    </td>
+  </tr>
+  <tr id="background">
+    <td>
+      <code>"background"</code>
+    </td>
+    <td>
+      <p id="bg">
+      <!--@Makes Chrome start up early and and shut down late, so that apps and extensions can have a longer life.-->
+      让 Chrome 很早就启动很晚才退出，以便应用和扩展程序可以有更长的生命周期。
+      </p>
+      
+      <p>
+      <!--@When any installed hosted app, packaged app, or extension has "background" permission, Chrome runs (invisibly) as soon as the user logs into their computer&mdash;before the user launches Chrome. The "background" permission also makes Chrome continue running (even after its last window is closed) until the user explicitly quits Chrome.-->
+      如果已安装的任何托管应用、打包应用或扩展程序拥有 "background" 权限，Chrome
+      浏览器在用户登录计算机时就会（不可见地）运行，那时用户还没有亲自运行
+      Chrome 浏览器。"background" 权限也会使 Chrome
+      浏览器继续运行（即使在最后一个窗口已经关闭），直到用户主动退出 Chrome
+      浏览器。
+      </p>
+      
+      <p class="note">
+        <b><!--@Note:-->注意：</b><!--@ Disabled apps and extensions are treated as if they aren't installed.
+        -->已禁用的应用和扩展程序以未安装对待。
+      </p>
+      
+      <p>
+      <!--@You typically use the "background" permission with a <a href="background_pages.html">background page</a>, <a href="event_pages.html">event page</a> or (for hosted apps) a <a href="http://code.google.com/chrome/apps/docs/background.html">background window</a>.-->
+      通常您使用 "background" 权限时，同时也会使用<a href="background_pages.html"
+      >后台网页</a>、<a href="event_pages.html">事件页面</a>或（对于托管应用）<a
+      href="https://developers.google.com/chrome/apps/docs/background"
+      >后台窗口</a>。
+      </p>
+    </td>
+  </tr>
+  <tr id="bookmarks">
+    <td>
+      <code>"bookmarks"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="bookmarks.html">chrome.bookmarks</a> API.-->
+      使您的扩展程序能够访问 <a href="bookmarks.html">chrome.bookmarks</a> API。
+    </td>
+  </tr>
+  <tr id="browsingData">
+    <td>
+      <code>"browsingData"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="browsingData.html">chrome.browsingData</a> API.-->
+      使您的扩展程序能够访问 <a href="browsingData.html">chrome.browsingData</a> API。
+    </td>
+  </tr>
+  <tr id="clipboardRead">
+    <td>
+      <code>"clipboardRead"</code>
+    </td>
+    <td>
+      <!--@Required if the extension or app uses <code>document.execCommand('paste')</code>.-->
+      如果扩展程序或应用使用 <code>document.execCommand('paste')</code>
+      则必须指定。
+    </td>
+  </tr>
+  <tr id="clipboardWrite">
+    <td>
+      <code>"clipboardWrite"</code>
+    </td>
+    <td>
+      <!--@Indicates the extension or app uses <code>document.execCommand('copy')</code> or <code>document.execCommand('cut')</code>. This permission is <b>required for hosted apps</b>; it's recommended for extensions and packaged apps.-->
+      表示扩展程序或应用可以使用 <code>document.execCommand('copy')</code> 或
+      <code>document.execCommand('cut')</code>。<b
+      >托管应用必须</b>指定该权限，建议扩展程序和打包应用也指定该权限。
+          </td>
+  </tr>
+  <tr id="contentSettings">
+    <td>
+      <code>"contentSettings"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="contentSettings.html">chrome.contentSettings</a> API.-->
+      使您的扩展程序能够访问 <a href="contentSettings.html">chrome.contentSettings</a> API。
+    </td>
+  </tr>
+  <tr id="contextMenus">
+    <td>
+      <code>"contextMenus"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="contextMenus.html">chrome.contextMenus</a> API.-->
+      使您的扩展程序能够访问 <a href="contextMenus.html">chrome.contextMenus</a> API。
+    </td>
+  </tr>
+  <tr id="cookies">
+    <td>
+      <code>"cookies"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="cookies.html">chrome.cookies</a> API.-->
+      使您的扩展程序能够访问 <a href="cookies.html">chrome.cookies</a> API。
+    </td>
+  </tr>
+  <tr id="debugger">
+    <td>
+      <code>"debugger"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="debugger.html">chrome.debugger</a> API.-->
+      使您的扩展程序能够访问 <a href="debugger.html">chrome.debugger</a> API。
+    </td>
+  </tr>
+  <tr id="declarativeContent">
+    <td>
+      <code>"declarativeContent"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="declarativeContent.html">chrome.declarativeContent</a> API.-->
+      使您的扩展程序能够访问 <a href="declarativeContent.html">chrome.declarativeContent</a> API。
+    </td>
+  </tr>
+  <tr id="declarativeWebRequest">
+    <td>
+      <code>"declarativeWebRequest"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="declarativeWebRequest.html">chrome.declarativeWebRequest</a> API.-->
+      使您的扩展程序能够访问 <a href="declarativeWebRequest.html">chrome.declarativeWebRequest</a> API。
+    </td>
+  </tr>
+  <tr id="desktopCapture">
+    <td>
+      <code>"desktopCapture"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="desktopCapture.html">chrome.desktopCapture</a> API.-->
+      使您的扩展程序能够访问 <a href="desktopCapture.html">chrome.desktopCapture</a> API。
+    </td>
+  </tr>
+  <tr id="dns">
+    <td>
+      <code>"dns"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="dns.html">chrome.dns</a> API.-->
+      使您的扩展程序能够访问 <a href="dns.html">chrome.dns</a> API。
+    </td>
+  </tr>
+  <tr id="downloads">
+    <td>
+      <code>"downloads"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="downloads.html">chrome.downloads</a> API.-->
+      使您的扩展程序能够访问 <a href="downloads.html">chrome.downloads</a> API。
+    </td>
+  </tr>
+  <tr id="experimental">
+    <td>
+      <code>"experimental"</code>
+    </td>
+    <td>
+      <!--@Required if the extension or app uses any <a href="experimental.html">chrome.experimental.* APIs</a>.-->
+      如果扩展程序或应用使用 <a href="experimental.html">chrome.experimental.*
+      API</a> 则必须指定。
+    </td>
+  </tr>
+  <tr id="fileBrowserHandler">
+    <td>
+      <code>"fileBrowserHandler"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="fileBrowserHandler.html">chrome.fileBrowserHandler</a> API.-->
+      使您的扩展程序能够访问 <a href="fileBrowserHandler.html">chrome.fileBrowserHandler</a> API。
+    </td>
+  </tr>
+  <tr id="fontSettings">
+    <td>
+      <code>"fontSettings"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="fontSettings.html">chrome.fontSettings</a> API.-->
+      使您的扩展程序能够访问 <a href="fontSettings.html">chrome.fontSettings</a> API。
+    </td>
+  </tr>
+  <tr id="gcm">
+    <td>
+      <code>"gcm"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="gcm.html">chrome.gcm</a> API.-->
+      使您的扩展程序能够访问 <a href="gcm.html">chrome.gcm</a> API。
+    </td>
+  </tr>
+  <tr id="geolocation">
+    <td>
+      <code>"geolocation"</code>
+    </td>
+    <td>
+      <!--@Allows the extension or app to use the proposed HTML5 <a href="http://dev.w3.org/geo/api/spec-source.html">geolocation API</a> without prompting the user for permission.-->
+      允许扩展程序或应用使用提议的 HTML5 <a
+      href="http://dev.w3.org/geo/api/spec-source.html">地理定位
+      API</a> 而不需要提示用户权限。
+    </td>
+  </tr>
+  <tr id="history">
+    <td>
+      <code>"history"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="history.html">chrome.history</a> API.-->
+      使您的扩展程序能够访问 <a href="history.html">chrome.history</a> API。
+    </td>
+  </tr>
+  <tr id="identity">
+    <td>
+      <code>"identity"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="identity.html">chrome.identity</a> API.-->
+      使您的扩展程序能够访问 <a href="identity.html">chrome.identity</a> API。
+    </td>
+  </tr>
+  <tr id="idle">
+    <td>
+      <code>"idle"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="idle.html">chrome.idle</a> API.-->
+      使您的扩展程序能够访问 <a href="idle.html">chrome.idle</a> API。
+    </td>
+  </tr>
+  <tr id="idltest">
+    <td>
+      <code>"idltest"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="idltest.html">chrome.idltest</a> API.-->
+      使您的扩展程序能够访问 <a href="idltest.html">chrome.idltest</a> API。
+    </td>
+  </tr>
+  <tr id="infobars">
+    <td>
+      <code>"infobars"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="infobars.html">chrome.infobars</a> API.-->
+      使您的扩展程序能够访问 <a href="infobars.html">chrome.infobars</a> API。
+    </td>
+  </tr>
+  <tr id="location">
+    <td>
+      <code>"location"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="location.html">chrome.location</a> API.-->
+      使您的扩展程序能够访问 <a href="location.html">chrome.location</a> API。
+    </td>
+  </tr>
+  <tr id="management">
+    <td>
+      <code>"management"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="management.html">chrome.management</a> API.-->
+      使您的扩展程序能够访问 <a href="management.html">chrome.management</a> API。
+    </td>
+  </tr>
+  <tr id="notifications">
+    <td>
+      <code>"notifications"</code>
+    </td>
+    <td>
+      <!--@Allows the extension to use the proposed HTML5 <a href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">notification API</a> without calling permission methods (such as <code>checkPermission()</code>). For more information see <a href="desktop_notifications.html">Desktop Notifications</a>.-->
+      允许扩展程序使用提议的 HTML5 <a
+      href="http://www.chromium.org/developers/design-documents/desktop-notifications/api-specification">通知
+      API</a> 而不用调用权限方法（例如 <code
+      >checkPermission()</code>）。有关更多信息，请参见<a
+      href="desktop_notifications.html">桌面通知</a>。
+    </td>
+  </tr>
+  <tr id="pageCapture">
+    <td>
+      <code>"pageCapture"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="pageCapture.html">chrome.pageCapture</a> API.-->
+      使您的扩展程序能够访问 <a href="pageCapture.html">chrome.pageCapture</a> API。
+    </td>
+  </tr>
+  <tr id="power">
+    <td>
+      <code>"power"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="power.html">chrome.power</a> API.-->
+      使您的扩展程序能够访问 <a href="power.html">chrome.power</a> API。
+    </td>
+  </tr>
+  <tr id="privacy">
+    <td>
+      <code>"privacy"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="privacy.html">chrome.privacy</a> API.-->
+      使您的扩展程序能够访问 <a href="privacy.html">chrome.privacy</a> API。
+    </td>
+  </tr>
+  <tr id="processes">
+    <td>
+      <code>"processes"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="processes.html">chrome.processes</a> API.-->
+      使您的扩展程序能够访问 <a href="processes.html">chrome.processes</a> API。
+    </td>
+  </tr>
+  <tr id="proxy">
+    <td>
+      <code>"proxy"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="proxy.html">chrome.proxy</a> API.-->
+      使您的扩展程序能够访问 <a href="proxy.html">chrome.proxy</a> API。
+    </td>
+  </tr>
+  <tr id="pushMessaging">
+    <td>
+      <code>"pushMessaging"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="pushMessaging.html">chrome.pushMessaging</a> API.-->
+      使您的扩展程序能够访问 <a href="pushMessaging.html">chrome.pushMessaging</a> API。
+    </td>
+  </tr>
+  <tr id="sessions">
+    <td>
+      <code>"sessions"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="sessions.html">chrome.sessions</a> API.-->
+      使您的扩展程序能够访问 <a href="sessions.html">chrome.sessions</a> API。
+    </td>
+  </tr>
+  <tr id="signedInDevices">
+    <td>
+      <code>"signedInDevices"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="signedInDevices.html">chrome.signedInDevices</a> API.-->
+      使您的扩展程序能够访问 <a href="signedInDevices.html">chrome.signedInDevices</a> API。
+    </td>
+  </tr>
+  <tr id="storage">
+    <td>
+      <code>"storage"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="storage.html">chrome.storage</a> API.-->
+      使您的扩展程序能够访问 <a href="storage.html">chrome.storage</a> API。
+    </td>
+  </tr>
+  <tr id="system.cpu">
+    <td>
+      <code>"system.cpu"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="system.cpu.html">chrome.system.cpu</a> API.-->
+      使您的扩展程序能够访问 <a href="system.cpu.html">chrome.system.cpu</a> API。
+    </td>
+  </tr>
+  <tr id="system.display">
+    <td>
+      <code>"system.display"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="system.display.html">chrome.system.display</a> API.-->
+      使您的扩展程序能够访问 <a href="system.display.html">chrome.system.display</a> API。
+    </td>
+  </tr>
+  <tr id="system.memory">
+    <td>
+      <code>"system.memory"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="system.memory.html">chrome.system.memory</a> API.-->
+      使您的扩展程序能够访问 <a href="system.memory.html">chrome.system.memory</a> API。
+    </td>
+  </tr>
+  <tr id="system.storage">
+    <td>
+      <code>"system.storage"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="system.storage.html">chrome.system.storage</a> API.-->
+      使您的扩展程序能够访问 <a href="system.storage.html">chrome.system.storage</a> API。
+    </td>
+  </tr>
+  <tr id="tabCapture">
+    <td>
+      <code>"tabCapture"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="tabCapture.html">chrome.tabCapture</a> API.-->
+      使您的扩展程序能够访问 <a href="tabCapture.html">chrome.tabCapture</a> API。
+    </td>
+  </tr>
+  <tr id="tabs">
+    <td>
+      <code>"tabs"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to privileged fields of the <code>$ref:[tabs.Tab Tab]</code> objects used by several APIs including $ref:[tabs chrome.tabs] and $ref:[windows chrome.windows]. In many circumstances your extension will not need to declare the <code>"tabs"</code> permission to make use of these APIs.-->
+      使您的扩展程序能够访问 <code>$ref:[tabs.Tab Tab]</code>
+      对象的特权字段，包括 $ref:[tabs chrome.tabs] 和
+      $ref:[windows chrome.windows] 在内的多种 API 都使用 Tab
+      对象。在很多情况下，您的扩展程序不需要声明 <code>"tabs"</code>
+      权限就能使用这些 API。
+    </td>
+  </tr>
+  <tr id="topSites">
+    <td>
+      <code>"topSites"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="topSites.html">chrome.topSites</a> API.-->
+      使您的扩展程序能够访问 <a href="topSites.html">chrome.topSites</a> API。
+    </td>
+  </tr>
+  <tr id="tts">
+    <td>
+      <code>"tts"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="tts.html">chrome.tts</a> API.-->
+      使您的扩展程序能够访问 <a href="tts.html">chrome.tts</a> API。
+    </td>
+  </tr>
+  <tr id="ttsEngine">
+    <td>
+      <code>"ttsEngine"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="ttsEngine.html">chrome.ttsEngine</a> API.-->
+      使您的扩展程序能够访问 <a href="ttsEngine.html">chrome.ttsEngine</a> API。
+    </td>
+  </tr>
+  <tr id="unlimitedStorage">
+    <td>
+      <code>"unlimitedStorage"</code>
+    </td>
+    <td>
+      <!--@Provides an unlimited quota for storing HTML5 client-side data, such as databases and local storage files. Without this permission, the extension or app is limited to 5 MB of local storage.-->
+      提供无限的存储空间，保存 HTML5
+      客户端数据，例如数据库以及本地存储文件。如果没有这一权限，扩展程序或应用的本地存储将限制在
+      5 MB 以内。
+      
+      <p class="note">
+      <b><!--@Note:-->注意：</b><!--@ This permission applies only to Web SQL Database and application cache (see issue <a href="http://crbug.com/58985">58985</a>). Also, it doesn't currently work with wildcard subdomains such as <code>http://*.example.com</code>.
+      -->该权限仅应用于网络 SQL 数据库以及应用程序缓存（参见问题 <a
+      href="http://crbug.com/58985"
+      >58985</a>）。另外，当前还不能和包含通配符的子域名一起使用，例如
+      <code>http://*.example.com</code>。
+      
+      </p>
+    </td>
+  </tr>
+  <tr id="webNavigation">
+    <td>
+      <code>"webNavigation"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="webNavigation.html">chrome.webNavigation</a> API.-->
+      使您的扩展程序能够访问 <a href="webNavigation.html">chrome.webNavigation</a> API。
+    </td>
+  </tr>
+  <tr id="webRequest">
+    <td>
+      <code>"webRequest"</code>
+    </td>
+    <td>
+      <!--@Gives your extension access to the <a href="webRequest.html">chrome.webRequest</a> API.-->
+      使您的扩展程序能够访问 <a href="webRequest.html">chrome.webRequest</a> API。
+    </td>
+  </tr>
+  <tr id="webRequestBlocking">
+    <td>
+      <code>"webRequestBlocking"</code>
+    </td>
+    <td>
+      <!--@Required if the extension uses the <a href="webRequest.html">chrome.webRequest</a> API in a blocking fashion.-->
+      如果扩展程序以阻塞方式使用 <a href="webRequest.html">chrome.webRequest</a>
+      API 则必须指定。
+    </td>
+  </tr>
+</table>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

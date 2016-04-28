@@ -1,0 +1,3400 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>webview 标签 - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/tags/webview.html">https://crxdoc-zh.appspot.com/apps/tags/webview.html</a><br>
+<b>Title:</b> webview 标签 - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 126213<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="../apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="../samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="../app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="../app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="../app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="../app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="../app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="../app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="../app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="../app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="../angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="../sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="../app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="../offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="../app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="../cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="../pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="../gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="../gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="../storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="../app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="../app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="../app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="../google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="../analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a  class="level3 selected">Webview 标签</a>
+          </li><li class="level3">
+                <a href="../api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="../manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="../app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>&lt;webview&gt; 标签</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#usage"
+         data-list-item
+         >用法</a>
+    </li>
+    <li >
+      <a href="#example"
+         data-list-item
+         >例子</a>
+    </li>
+    <li >
+      <a href="#tag"
+         data-list-item
+         >标签属性</a>
+      <ol>
+        <li >
+          <a href="#src"
+             data-list-item
+             >src</a>
+        </li>
+        <li >
+          <a href="#partition"
+             data-list-item
+             >partition</a>
+        </li>
+        <li >
+          <a href="#autosize"
+             data-list-item
+             >autosize</a>
+        </li>
+        <li >
+          <a href="#name"
+             data-list-item
+             >name</a>
+        </li>
+      </ol>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-ClearDataOptions"
+             data-list-item
+             >ClearDataOptions</a>
+        </li>
+        <li >
+          <a href="#type-ClearDataTypeSet"
+             data-list-item
+             >ClearDataTypeSet</a>
+        </li>
+        <li >
+          <a href="#type-InjectDetails"
+             data-list-item
+             >InjectDetails</a>
+        </li>
+        <li >
+          <a href="#type-ContentWindow"
+             data-list-item
+             >ContentWindow</a>
+          <ol>
+            <li >
+              <a href="#method-ContentWindow-postMessage"
+                 data-list-item
+                 >postMessage                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-DialogController"
+             data-list-item
+             >DialogController</a>
+          <ol>
+            <li >
+              <a href="#method-DialogController-ok"
+                 data-list-item
+                 >ok                  </a>
+            </li>
+            <li >
+              <a href="#method-DialogController-cancel"
+                 data-list-item
+                 >cancel                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-NewWindow"
+             data-list-item
+             >NewWindow</a>
+          <ol>
+            <li >
+              <a href="#method-NewWindow-attach"
+                 data-list-item
+                 >attach                  </a>
+            </li>
+            <li >
+              <a href="#method-NewWindow-discard"
+                 data-list-item
+                 >discard                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-MediaPermissionRequest"
+             data-list-item
+             >MediaPermissionRequest</a>
+          <ol>
+            <li >
+              <a href="#method-MediaPermissionRequest-allow"
+                 data-list-item
+                 >allow                  </a>
+            </li>
+            <li >
+              <a href="#method-MediaPermissionRequest-deny"
+                 data-list-item
+                 >deny                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-GeolocationPermissionRequest"
+             data-list-item
+             >GeolocationPermissionRequest</a>
+          <ol>
+            <li >
+              <a href="#method-GeolocationPermissionRequest-allow"
+                 data-list-item
+                 >allow                  </a>
+            </li>
+            <li >
+              <a href="#method-GeolocationPermissionRequest-deny"
+                 data-list-item
+                 >deny                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-PointerLockPermissionRequest"
+             data-list-item
+             >PointerLockPermissionRequest</a>
+          <ol>
+            <li >
+              <a href="#method-PointerLockPermissionRequest-allow"
+                 data-list-item
+                 >allow                  </a>
+            </li>
+            <li >
+              <a href="#method-PointerLockPermissionRequest-deny"
+                 data-list-item
+                 >deny                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-DownloadPermissionRequest"
+             data-list-item
+             >DownloadPermissionRequest</a>
+          <ol>
+            <li >
+              <a href="#method-DownloadPermissionRequest-allow"
+                 data-list-item
+                 >allow                  </a>
+            </li>
+            <li >
+              <a href="#method-DownloadPermissionRequest-deny"
+                 data-list-item
+                 >deny                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-LoadPluginPermissionRequest"
+             data-list-item
+             >LoadPluginPermissionRequest</a>
+          <ol>
+            <li >
+              <a href="#method-LoadPluginPermissionRequest-allow"
+                 data-list-item
+                 >allow                  </a>
+            </li>
+            <li >
+              <a href="#method-LoadPluginPermissionRequest-deny"
+                 data-list-item
+                 >deny                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#type-WebRequestEventInteface"
+             data-list-item
+             >WebRequestEventInteface</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#properties"
+         data-list-item
+         >属性</a>
+      <ol>
+        <li >
+          <a href="#property-contentWindow"
+             data-list-item
+             >contentWindow</a>
+        </li>
+        <li >
+          <a href="#property-request"
+             data-list-item
+             >request</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-back"
+             data-list-item
+             >back        </a>
+        </li>
+        <li >
+          <a href="#method-canGoBack"
+             data-list-item
+             >canGoBack        </a>
+        </li>
+        <li >
+          <a href="#method-canGoForward"
+             data-list-item
+             >canGoForward        </a>
+        </li>
+        <li >
+          <a href="#method-clearData"
+             data-list-item
+             >clearData        </a>
+        </li>
+        <li >
+          <a href="#method-executeScript"
+             data-list-item
+             >executeScript        </a>
+        </li>
+        <li >
+          <a href="#method-forward"
+             data-list-item
+             >forward        </a>
+        </li>
+        <li >
+          <a href="#method-getProcessId"
+             data-list-item
+             >getProcessId        </a>
+        </li>
+        <li >
+          <a href="#method-getUserAgent"
+             data-list-item
+             >getUserAgent        </a>
+        </li>
+        <li >
+          <a href="#method-go"
+             data-list-item
+             >go        </a>
+        </li>
+        <li >
+          <a href="#method-insertCSS"
+             data-list-item
+             >insertCSS        </a>
+        </li>
+        <li >
+          <a href="#method-isUserAgentOverridden"
+             data-list-item
+             >isUserAgentOverridden        </a>
+        </li>
+        <li >
+          <a href="#method-reload"
+             data-list-item
+             >reload        </a>
+        </li>
+        <li >
+          <a href="#method-setUserAgentOverride"
+             data-list-item
+             >setUserAgentOverride        </a>
+        </li>
+        <li >
+          <a href="#method-stop"
+             data-list-item
+             >stop        </a>
+        </li>
+        <li >
+          <a href="#method-terminate"
+             data-list-item
+             >terminate        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#dom_events"
+         data-list-item
+         >DOM 事件</a>
+      <ol>
+        <li >
+          <a href="#event-close"
+             data-list-item
+             >close</a>
+        </li>
+        <li >
+          <a href="#event-consolemessage"
+             data-list-item
+             >consolemessage</a>
+          <ol>
+            <li >
+              <a href="#property-consolemessage-level"
+                 data-list-item
+                 >level</a>
+            </li>
+            <li >
+              <a href="#property-consolemessage-message"
+                 data-list-item
+                 >message</a>
+            </li>
+            <li >
+              <a href="#property-consolemessage-line"
+                 data-list-item
+                 >line</a>
+            </li>
+            <li >
+              <a href="#property-consolemessage-sourceId"
+                 data-list-item
+                 >sourceId</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-contentload"
+             data-list-item
+             >contentload</a>
+        </li>
+        <li >
+          <a href="#event-dialog"
+             data-list-item
+             >dialog</a>
+          <ol>
+            <li >
+              <a href="#property-dialog-messageType"
+                 data-list-item
+                 >messageType</a>
+            </li>
+            <li >
+              <a href="#property-dialog-messageText"
+                 data-list-item
+                 >messageText</a>
+            </li>
+            <li >
+              <a href="#property-dialog-dialog"
+                 data-list-item
+                 >dialog</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-exit"
+             data-list-item
+             >exit</a>
+          <ol>
+            <li >
+              <a href="#property-exit-processID"
+                 data-list-item
+                 >processID</a>
+            </li>
+            <li >
+              <a href="#property-exit-reason"
+                 data-list-item
+                 >reason</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-loadabort"
+             data-list-item
+             >loadabort</a>
+          <ol>
+            <li >
+              <a href="#property-loadabort-url"
+                 data-list-item
+                 >url</a>
+            </li>
+            <li >
+              <a href="#property-loadabort-isTopLevel"
+                 data-list-item
+                 >isTopLevel</a>
+            </li>
+            <li >
+              <a href="#property-loadabort-reason"
+                 data-list-item
+                 >reason</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-loadcommit"
+             data-list-item
+             >loadcommit</a>
+          <ol>
+            <li >
+              <a href="#property-loadcommit-url"
+                 data-list-item
+                 >url</a>
+            </li>
+            <li >
+              <a href="#property-loadcommit-isTopLevel"
+                 data-list-item
+                 >isTopLevel</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-loadredirect"
+             data-list-item
+             >loadredirect</a>
+          <ol>
+            <li >
+              <a href="#property-loadredirect-oldUrl"
+                 data-list-item
+                 >oldUrl</a>
+            </li>
+            <li >
+              <a href="#property-loadredirect-newUrl"
+                 data-list-item
+                 >newUrl</a>
+            </li>
+            <li >
+              <a href="#property-loadredirect-isTopLevel"
+                 data-list-item
+                 >isTopLevel</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-loadstart"
+             data-list-item
+             >loadstart</a>
+          <ol>
+            <li >
+              <a href="#property-loadstart-url"
+                 data-list-item
+                 >url</a>
+            </li>
+            <li >
+              <a href="#property-loadstart-isTopLevel"
+                 data-list-item
+                 >isTopLevel</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-loadstop"
+             data-list-item
+             >loadstop</a>
+        </li>
+        <li >
+          <a href="#event-newwindow"
+             data-list-item
+             >newwindow</a>
+          <ol>
+            <li >
+              <a href="#property-newwindow-window"
+                 data-list-item
+                 >window</a>
+            </li>
+            <li >
+              <a href="#property-newwindow-targetUrl"
+                 data-list-item
+                 >targetUrl</a>
+            </li>
+            <li >
+              <a href="#property-newwindow-initialWidth"
+                 data-list-item
+                 >initialWidth</a>
+            </li>
+            <li >
+              <a href="#property-newwindow-initialHeight"
+                 data-list-item
+                 >initialHeight</a>
+            </li>
+            <li >
+              <a href="#property-newwindow-name"
+                 data-list-item
+                 >name</a>
+            </li>
+            <li >
+              <a href="#property-newwindow-windowOpenDisposition"
+                 data-list-item
+                 >windowOpenDisposition</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-permissionrequest"
+             data-list-item
+             >permissionrequest</a>
+          <ol>
+            <li >
+              <a href="#property-permissionrequest-permission"
+                 data-list-item
+                 >permission</a>
+            </li>
+            <li >
+              <a href="#property-permissionrequest-requestId"
+                 data-list-item
+                 >requestId</a>
+            </li>
+            <li >
+              <a href="#property-permissionrequest-request"
+                 data-list-item
+                 >request</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-responsive"
+             data-list-item
+             >responsive</a>
+          <ol>
+            <li >
+              <a href="#property-responsive-processID"
+                 data-list-item
+                 >processID</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-sizechanged"
+             data-list-item
+             >sizechanged</a>
+          <ol>
+            <li >
+              <a href="#property-sizechanged-oldWidth"
+                 data-list-item
+                 >oldWidth</a>
+            </li>
+            <li >
+              <a href="#property-sizechanged-oldHeight"
+                 data-list-item
+                 >oldHeight</a>
+            </li>
+            <li >
+              <a href="#property-sizechanged-newWidth"
+                 data-list-item
+                 >newWidth</a>
+            </li>
+            <li >
+              <a href="#property-sizechanged-newHeight"
+                 data-list-item
+                 >newHeight</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-unresponsive"
+             data-list-item
+             >unresponsive</a>
+          <ol>
+            <li >
+              <a href="#property-unresponsive-processID"
+                 data-list-item
+                 >processID</a>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>webview</code> 标签主动通过网络加载网上的活动内容，并将它嵌入在您的 Chrome 应用中。您的应用可以控制 <code>webview</code> 的外观，与网上内容交互，在嵌入的网页中进行导航，响应其中发生的错误事件等等。（请参见<a href="#usage">用法</a>）。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 25<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "webview"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<p>
+<!--@Use the <code>webview</code> tag to embed 'guest' content
+(such as web pages) in your Chrome App.
+The guest content is contained within the <code>webview</code> container;
+an embedder page within your Chrome App controls
+how the guest content is laid out and rendered.-->
+使用 <code>webview</code>
+标签在您的 Chrome 应用中嵌入“来宾”内容（例如网页）。来宾内容包含在
+<code>webview</code>
+容器中，您的 Chrome 应用中的嵌入者网页控制来宾内容的布局和渲染方式。
+</p>
+
+<p>
+<!--@Different from the <code>iframe</code>,
+the <code>webview</code>
+runs in a separate process than your app;
+it doesn't have the same permissions as your app and
+all interactions between your app and embedded content will be asynchronous.
+This keeps your app safe from the embedded content.-->
+与 <code>iframe</code> 不同，<code>webview</code>
+在单独的进程中运行，而不是在您的应用中。它并不拥有您的应用具有的权限，而且您的应用和嵌入内容之间的交互都是异步的，这样可以确保您的应用的安全，不受嵌入内容的影响。
+</p>
+</p>
+
+<h2 id="example"><!--@Example-->例子</h2>
+
+<p>
+<!--@To embed a web page in your app,
+add the <code>webview</code> tag to your app's embedder page
+(this is the app page that will display the guest content).
+In its simplest form,
+the <code>webview</code> tag includes the <code>src</code> of the web page
+and css styles that control the appearance of the <code>webview</code> container:-->
+要想在您的应用中嵌入网页，请在您的应用的嵌入者页面（即显示来宾内容的应用页面）中添加
+<code>webview</code> 标签。<code>webview</code> 标签最简单的形式包括网页的
+<code>src</code>（来源）以及控制 <code>webview</code> 容器外观的 CSS 样式：
+</p>
+</p>
+
+<pre>&lt;webview id="foo" src="http://www.google.com/" style="width:640px; height:480px">&lt;/webview></pre>
+
+<p>
+<!--@If you want to control the guest content in any way,
+you can write JavaScript that listens for <a href="#events">webview events</a>
+and responds to those events using the <a href="#methods">webview methods</a>.
+Here's sample code in <code>app.js</code>
+with two event listeners:
+one that listens for the web page to start loading,
+the other for the web page to stop loading,
+and displays a "loading..." message during the load time:-->
+如果您希望以任何方式控制来宾内容，您可以编写 JavaScript，监听
+<a href="#events">webview 事件</a>，并使用
+<a href="#methods">webview 方法</a>响应这些事件。如下是 <code>app.js</code>
+中的示例代码，包含两个事件监听器：一个监听网页开始加载，另一个监听网页停止加载，并在加载的时候显示“正在加载...”消息：
+</p>
+
+<pre>
+onload = function() {
+  var webview = document.getElementById("foo");
+  var indicator = document.querySelector(".indicator");
+
+  var loadstart = function() {
+    indicator.innerText = "正在加载...";
+  }
+  var loadstop = function() {
+    indicator.innerText = "";
+  }
+  webview.addEventListener("loadstart", loadstart);
+  webview.addEventListener("loadstop", loadstop);
+}
+</pre>
+
+<h2 id="tag"><!--@Tag attributes-->标签属性</h2>
+
+<h3 id="src">src</h3>
+  <div class="summary">
+    <pre>&lt;webview id="foo" <strong>src="http://www.google.com/"</strong> style="width:640px; height:480px">&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@Returns the visible URL.
+    Mirrors the logic in the browser's omnibox:
+    either returning a pending new navigation if initiated by the embedder page,
+    or the last committed navigation.
+    Writing to this attribute initiates top-level navigation.-->
+    返回可见的 URL，与浏览器多功能框的逻辑类似：如果嵌入者网页产生新的待定的导航则返回它，否则返回最后提交的导航。写入该属性将产生顶层导航。
+    </p>
+    <p>
+    <!--@Assigning <code>src</code> its own value will reload the current page.-->
+    将 <code>src</code> 设置为它本身的值会重新加载当前网页。
+    </p>
+    <p>
+    <!--@The <code>src</code> attribute can also accept data URLs, such as -->
+    <code>src</code> 属性也可以接受数据 URL，例如
+    <code>"data:text/plain,Hello, world!"</code><!--@.-->。
+  </div>
+
+<h3 id="partition">partition</h3>
+  <div class="summary">
+    <pre>&lt;webview id="foo" src="http://www.google.com/" style="width:640px; height:480px" <strong>partition="persist:googlepluswidgets"</strong>>&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@Storage partition ID used by the <code>webview</code> tag.
+    If the storage partition ID starts with <code>persist:</code>
+    (<code>partition="persist:googlepluswidgets"</code>),
+    the <code>webview</code> will use a persistent storage partition
+    available to all guests in the app
+    with the same storage partition ID.
+    If the ID is unset or if there is no <code>'persist':</code> prefix,
+    the <code>webview</code> will use an in-memory storage partition.
+    This value can only be modified before the first navigation,
+    since the storage partition of an active renderer process cannot change.
+    Subsequent attempts to modify the value will fail with a DOM exception.
+    By assigning the same partition ID,
+    multiple webviews can share the same storage partition.-->
+    <code>webview</code> 标签使用的存储分区标识符。如果存储分区标识符以
+    <code>persist:</code>
+    开始（<code>partition="persist:googlepluswidgets"</code>），<code>webview</code>
+    将使用持久存储分区，对于应用中具有相同存储分区标识符的所有来宾都可用。如果没有设置标识符或者没有
+    <code>persist:</code> 前缀，<code>webview</code>
+    将使用内存中的存储分区。只有在第一次导航开始前才能修改该属性值，因为活动渲染器进程的存储分区不能更改。如果之后尝试修改这一值将会失败，并产生
+    DOM 异常。指定同一个分区标识符，多个 webview 可以共享同一个存储分区。
+    </p>
+    <p class="note">
+    <strong><!--@Exception thrown:-->可能产生的异常：</strong>
+    <!--@The partition attribute must be valid for navigation to proceed.
+    In the case of an invalid partition, such as <code>partition="persist:"</code>,
+    the <a href="#src">src attribute</a> cannot be set and an exception is thrown.-->
+    partition 属性必须有效，导航才能继续。如果指定了无效分区，例如
+    <code>partition="persist:"</code>，您就无法设置
+    <a href="#src">src 属性</a>，并且还会产生异常。
+    </p>
+  </div>
+
+<h3 id="autosize">autosize</h3>
+  <div class="summary">
+    <pre>&lt;webview id="foo" src="http://www.google.com/" style="width:640px; height:480px" <strong>autosize="on" minwidth="576" minheight="432"</strong>>&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@If "on", the <code>webview</code> will container will automatically resize within the bounds specified
+    by the attributes <code>minwidth</code>, <code>minheight</code>,
+    <code>maxwidth</code>, and <code>maxheight</code>.
+    These contraints do not impact the <code>webview</code> UNLESS <code>autosize</code> is enabled.
+    When autosize is enabled, the <code>webview</code> container size cannot be less than the minimum values
+    or greater than the maximum.-->
+    如果为 "on"，<code>webview</code> 容器会在 <code>minwidth</code>、<code
+    >minheight</code>、<code>maxwidth</code> 和 <code>maxheight</code>
+    属性指定的范围内自动调整大小，<b>只有</b>启用 <code>autosize</code>
+    时这些属性才会影响 <code>webview</code>。启用自动调整大小后，<code
+    >webview</code> 容器的大小不能小于最小值或大于最大值。
+    </p>
+  </div>
+
+<h3 id="name">name</h3>
+  <div class="summary">
+    <pre>&lt;webview src="https://www.google.com/" <strong>name="google-view"</strong>>&lt;/webview></pre>
+  </div>
+  <div class="description">
+    <p>
+    <!--@This sets the guest content's <code>window.name</code> object.-->
+    该属性设置来宾内容的 <code>window.name</code> 对象。
+    </p>
+  </div>
+</section>
+<section>
+<h2 id="api-reference-header" title="">&lt;webview&gt; <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-ClearDataOptions">ClearDataOptions</h3>
+        <div>
+          <dd>指定 <code>clearData</code> 应该清除哪些数据的选项。</dd>
+            <h3 id="ClearDataOptions-properties" class="capitalize" title="">
+              <a href="#type-ClearDataOptions">ClearDataOptions</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-ClearDataOptions-since"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataOptions-since" title="">
+                        since
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      清除指定日期及指定日期后积累的数据，表示为 1970 年 1 月 1 日以来所经过的毫秒数（可以通过 JavaScript <code>Date</code> 对象的 getTime 方法访问）。如果未指定，默认为 <code>0</code>（删除所有浏览数据）。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ClearDataTypeSet">ClearDataTypeSet</h3>
+        <div>
+          <dd>数据类型的集合，未指定的属性认为是 <code>false</code>。</dd>
+            <h3 id="ClearDataTypeSet-properties" class="capitalize" title="">
+              <a href="#type-ClearDataTypeSet">ClearDataTypeSet</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-ClearDataTypeSet-appcache"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-appcache" title="">
+                        appcache
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的应用程序缓存。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-cache"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-cache" title="">
+                        cache
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器缓存。注意：这会清除所有缓存内容，无论传递给 <code>clearData</code> 的时间是什么。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-cookies"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-cookies" title="">
+                        cookies
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      分区的 Cookie。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-downloads"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-downloads" title="">
+                        downloads
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      分区的下载项列表。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-fileSystems"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-fileSystems" title="">
+                        fileSystems
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的文件系统。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-formData"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-formData" title="">
+                        formData
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      分区存储的表单数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-history"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-history" title="">
+                        history
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      分区的历史记录。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-indexedDB"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-indexedDB" title="">
+                        indexedDB
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的 IndexedDB 数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-localStorage"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-localStorage" title="">
+                        localStorage
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的本地存储数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-serverBoundCertificates"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-serverBoundCertificates" title="">
+                        serverBoundCertificates
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      服务器绑定的证书。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-pluginData"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-pluginData" title="">
+                        pluginData
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      插件数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-passwords"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-passwords" title="">
+                        passwords
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      保存的密码。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ClearDataTypeSet-webSQL"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ClearDataTypeSet-webSQL" title="">
+                        webSQL
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的 WebSQL 数据。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-InjectDetails">InjectDetails</h3>
+        <div>
+          <dd>要插入的脚本或 CSS 的详情，必须设置 code 或 file 中的某一个属性，但是不能同时设置。</dd>
+            <h3 id="InjectDetails-properties" class="capitalize" title="">
+              <a href="#type-InjectDetails">InjectDetails</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-InjectDetails-code"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-InjectDetails-code" title="">
+                        code
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      要插入的 JavaScript 或 CSS 代码。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-InjectDetails-file"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-InjectDetails-file" title="">
+                        file
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      要插入的 JavaScript 或 CSS 文件。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ContentWindow">ContentWindow</h3>
+        <div>
+          <dd>来宾窗口的消息传递句柄。</dd>
+            <h3 id="ContentWindow-methods" class="capitalize" title="">
+              <a href="#type-ContentWindow">ContentWindow</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-ContentWindow-postMessage"
+                      >postMessage
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>ContentWindow.postMessage</span>(<span>any message</span>, <span>string targetOrigin</span>)
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      <p>只要嵌入内容显示的是来自目标来源的网页，就向嵌入的网页内容发送消息。网页加载完成后该方法才可用，您可以监听 <a href="#event-contentload">contentload</a> 事件并调用该方法。</p><p>来宾可以通过接收到的消息事件中的 <code>event.source</code> 向嵌入者发送回复。</p><p>该 API 与 <a href="https://developer.mozilla.org/en-US/docs/DOM/window.postMessage">HTML5 postMessage API</a> 等价，用于在网页间通信。嵌入者可以在自己的框架上添加 <code>message</code> 事件监听器来监听回复。</p>
+                    </p>
+                    <h4 title=""><!--@Parameters-->参数</h4>
+                    <dl>
+                        <div>
+                          <a name="property-postMessage-message"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-postMessage-message" title="">
+                                message
+                                <span class="property">
+                                  (
+                                    any
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              要发送至来宾的消息对象。
+                            </dd>
+                          </dl>
+                        </div>
+                        <div>
+                          <a name="property-postMessage-targetOrigin"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-postMessage-targetOrigin" title="">
+                                targetOrigin
+                                <span class="property">
+                                  (
+                                    string
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              指定来宾窗口的来源，来源一致才会分发事件。
+                            </dd>
+                          </dl>
+                        </div>
+                    </dl>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-DialogController">DialogController</h3>
+        <div>
+          <dd>附加到 <code>dialog</code> DOM 事件的接口。</dd>
+            <h3 id="DialogController-methods" class="capitalize" title="">
+              <a href="#type-DialogController">DialogController</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-DialogController-ok"
+                      >ok
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>DialogController.ok</span>(<span class="optional">string response</span>)
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      接受对话框，等价于在 <code>alert</code>、<code>confirm</code> 或 <code>prompt</code> 对话框中单击确定。
+                    </p>
+                    <h4 title=""><!--@Parameters-->参数</h4>
+                    <dl>
+                        <div>
+                          <a name="property-ok-response"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-ok-response" title="">
+                                response
+                                <span class="property">
+                                  (
+                                    <span class="optional">optional</span>
+                                    string
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              接受 <code>prompt</code> 对话框时的响应字符串。
+                            </dd>
+                          </dl>
+                        </div>
+                    </dl>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-DialogController-cancel"
+                      >cancel
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>DialogController.cancel</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      拒绝对话框，等价于在 <code>confirm</code> 或 <code>prompt</code> 对话框中单击取消。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-NewWindow">NewWindow</h3>
+        <div>
+          <dd>附加到 <code>newwindow</code> DOM 事件的接口。</dd>
+            <h3 id="NewWindow-methods" class="capitalize" title="">
+              <a href="#type-NewWindow">NewWindow</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-NewWindow-attach"
+                      >attach
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>NewWindow.attach</span>(<span>object webview</span>)
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      将请求的目标网页附加到现有的 <code>webview</code> 元素。
+                    </p>
+                    <h4 title=""><!--@Parameters-->参数</h4>
+                    <dl>
+                        <div>
+                          <a name="property-attach-webview"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-attach-webview" title="">
+                                webview
+                                <span class="property">
+                                  (
+                                    object
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              目标网页附加至哪一个 <code>webview</code> 元素。
+                            </dd>
+                          </dl>
+                        </div>
+                    </dl>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-NewWindow-discard"
+                      >discard
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>NewWindow.discard</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      取消打开新窗口的请求。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-MediaPermissionRequest">MediaPermissionRequest</h3>
+        <div>
+          <dd>code>media <a href="#event-permissionrequest">permissionrequest</a></code>（媒体权限请求）DOM 事件的 <code>request</code> 对象。</dd>
+            <h3 id="MediaPermissionRequest-properties" class="capitalize" title="">
+              <a href="#type-MediaPermissionRequest">MediaPermissionRequest</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-MediaPermissionRequest-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-MediaPermissionRequest-url" title="">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求访问用户媒体的框架 URL。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+            <h3 id="MediaPermissionRequest-methods" class="capitalize" title="">
+              <a href="#type-MediaPermissionRequest">MediaPermissionRequest</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-MediaPermissionRequest-allow"
+                      >allow
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>MediaPermissionRequest.allow</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      允许权限请求。
+                    </p>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-MediaPermissionRequest-deny"
+                      >deny
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>MediaPermissionRequest.deny</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-GeolocationPermissionRequest">GeolocationPermissionRequest</h3>
+        <div>
+          <dd><code>geolocation <a href="#event-permissionrequest">permissionrequest</a></code>（地理定位权限请求）DOM 事件的 <code>request</code> 对象。</dd>
+            <h3 id="GeolocationPermissionRequest-properties" class="capitalize" title="">
+              <a href="#type-GeolocationPermissionRequest">GeolocationPermissionRequest</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-GeolocationPermissionRequest-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-GeolocationPermissionRequest-url" title="">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求访问地理位置数据的框架 URL。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+            <h3 id="GeolocationPermissionRequest-methods" class="capitalize" title="">
+              <a href="#type-GeolocationPermissionRequest">GeolocationPermissionRequest</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-GeolocationPermissionRequest-allow"
+                      >allow
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>GeolocationPermissionRequest.allow</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      允许权限请求。
+                    </p>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-GeolocationPermissionRequest-deny"
+                      >deny
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>GeolocationPermissionRequest.deny</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-PointerLockPermissionRequest">PointerLockPermissionRequest</h3>
+        <div>
+          <dd><code>pointerLock <a href="#event-permissionrequest">permissionrequest</a></code>（指针锁定权限请求）DOM 事件的 <code>request</code> 对象。</dd>
+            <h3 id="PointerLockPermissionRequest-properties" class="capitalize" title="">
+              <a href="#type-PointerLockPermissionRequest">PointerLockPermissionRequest</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-PointerLockPermissionRequest-userGesture"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-PointerLockPermissionRequest-userGesture" title="">
+                        userGesture
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      指针锁定是否通过用户输入操作请求。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-PointerLockPermissionRequest-lastUnlockedBySelf"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-PointerLockPermissionRequest-lastUnlockedBySelf" title="">
+                        lastUnlockedBySelf
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求的框架是否是最近锁定指针的客户端。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-PointerLockPermissionRequest-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-PointerLockPermissionRequest-url" title="">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求指针锁定的框架 URL。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+            <h3 id="PointerLockPermissionRequest-methods" class="capitalize" title="">
+              <a href="#type-PointerLockPermissionRequest">PointerLockPermissionRequest</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-PointerLockPermissionRequest-allow"
+                      >allow
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>PointerLockPermissionRequest.allow</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      允许权限请求。
+                    </p>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-PointerLockPermissionRequest-deny"
+                      >deny
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>PointerLockPermissionRequest.deny</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-DownloadPermissionRequest">DownloadPermissionRequest</h3>
+        <div>
+          <dd><code>download <a href="#event-permissionrequest">permissionrequest</a></code>（下载权限请求）DOM 事件的 <code>request</code> 对象。</dd>
+            <h3 id="DownloadPermissionRequest-properties" class="capitalize" title="">
+              <a href="#type-DownloadPermissionRequest">DownloadPermissionRequest</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-DownloadPermissionRequest-requestMethod"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DownloadPermissionRequest-requestMethod" title="">
+                        requestMethod
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      与下载请求相关联的 HTTP 请求类型（例如 <code>GET</code>）。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DownloadPermissionRequest-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DownloadPermissionRequest-url" title="">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求的下载 URL。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+            <h3 id="DownloadPermissionRequest-methods" class="capitalize" title="">
+              <a href="#type-DownloadPermissionRequest">DownloadPermissionRequest</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-DownloadPermissionRequest-allow"
+                      >allow
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>DownloadPermissionRequest.allow</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      允许权限请求。
+                    </p>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-DownloadPermissionRequest-deny"
+                      >deny
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>DownloadPermissionRequest.deny</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      拒绝权限请求。如果没有调用 <code>allow</code>，这是默认行为。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-LoadPluginPermissionRequest">LoadPluginPermissionRequest</h3>
+        <div>
+          <dd><code>loadplugin <a href="#event-permissionrequest">permissionrequest</a></code>（下载权限请求）DOM 事件的 <code>request</code> 对象。</dd>
+            <h3 id="LoadPluginPermissionRequest-properties" class="capitalize" title="">
+              <a href="#type-LoadPluginPermissionRequest">LoadPluginPermissionRequest</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-LoadPluginPermissionRequest-identifier"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-LoadPluginPermissionRequest-identifier" title="">
+                        identifier
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      插件的标识符字符串。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-LoadPluginPermissionRequest-name"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-LoadPluginPermissionRequest-name" title="">
+                        name
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      插件的显示名称。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+            <h3 id="LoadPluginPermissionRequest-methods" class="capitalize" title="">
+              <a href="#type-LoadPluginPermissionRequest">LoadPluginPermissionRequest</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-LoadPluginPermissionRequest-allow"
+                      >allow
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>LoadPluginPermissionRequest.allow</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      允许权限请求。如果没有调用 <code>deny</code>，这是默认行为。
+                    </p>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-LoadPluginPermissionRequest-deny"
+                      >deny
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>LoadPluginPermissionRequest.deny</span>()
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      拒绝权限请求。
+                    </p>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-WebRequestEventInteface">WebRequestEventInteface</h3>
+        <div>
+          <dd>使您访问来宾网页上网络请求事件的接口，有关网络请求生命周期以及相关概念的详情，请参见 <a href="../../extensions/webRequest.html">chrome.webRequest</a> 扩展程序 API。<p>为了演示用法上与扩展程序网络请求 API 的区别，考虑以下例子，阻止来宾请求所有匹配 <code>*://www.evil.com/*</code> 的 URL：</p><pre>webview.request.onBeforeRequest.addListener(
+  function(details) { return {cancel: true}; },
+  {urls: ["*://www.evil.com/*"]},
+  ["blocking"]);</pre><p>此外，该接口的 <code>onRequest</code> 和 <code>onMessage</code> 事件还支持声明式网络请求事件，有关 API 详情请参见 <a href="../../extensions/declarativeWebRequest.html">declarativeWebRequest</a>。</p>注意：声明式 webview 网络请求的条件和操作应该由对应的 <code>chrome.webViewRequest.*</code> 对象构造，以下示例代码以声明式的方式阻止 <code>myWebView</code> 中所有发送给 <code>"example.com"</code> 的请求：</p><pre>var rule = {
+  conditions: [
+    new chrome.webViewRequest.RequestMatcher({ url: { hostSuffix: 'example.com' } })
+  ],
+  actions: [ new chrome.webViewRequest.CancelRequest() ]
+};
+myWebview.request.onRequest.addRules([rule]);</pre></dd>
+        </div>
+      </div>
+    <h2 id="properties"><!--@Properties-->属性</h2>
+      <div>
+        <h3 id="property-contentWindow">contentWindow</h3>
+        <div class="summary">
+          <div class="line">&lt;webview&gt;.contentWindow</div>
+        </div>
+        <div>
+          <dt><span class="property">contentWindow</span> <span class="type_name">  (  <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-ContentWindow">ContentWindow</a>  )</span></dt>
+      <dd>
+            可以用来向来宾网页发送消息的对象引用。
+          </dd>  </div>
+      </div>
+      <div>
+        <h3 id="property-request">request</h3>
+        <div class="summary">
+          <div class="line">&lt;webview&gt;.request</div>
+        </div>
+        <div>
+          <dt><span class="property">request</span> <span class="type_name">  (  <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-WebRequestEventInteface">WebRequestEventInteface</a>  )</span></dt>
+      <dd>
+            使您访问来宾网页上网络请求事件的接口。
+          </dd>  </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-back"
+            >back
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.back</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            如果可能的话，后退导航至历史记录中的前一项，等价于 <code>go(-1)</code>。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-canGoBack"
+            >canGoBack
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>boolean &lt;webview&gt;.canGoBack</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            表示能否后退导航历史记录。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-canGoForward"
+            >canGoForward
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>boolean &lt;webview&gt;.canGoForward</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            表示能否前进导航历史记录。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-clearData"
+            >clearData
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.clearData</span>(<span><a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-ClearDataOptions">ClearDataOptions</a> options</span>, <span><a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-ClearDataTypeSet">ClearDataTypeSet</a> types</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <p>清除 <code>webview</code> 分区中的浏览数据。</p>
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-clearData-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-clearData-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-ClearDataOptions">ClearDataOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    指定清除哪些数据的选项。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-clearData-types"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-clearData-types" title="">
+                      types
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-ClearDataTypeSet">ClearDataTypeSet</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要清除的数据类型。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-clearData-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-clearData-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    数据成功清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-executeScript"
+            >executeScript
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.executeScript</span>(<span><a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-InjectDetails">InjectDetails</a> details</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <p>向来宾网页插入 JavaScript 代码。</p><p>以下示例代码使用脚本插入的方式将来宾网页的背景颜色设置为红色：</p><pre>webview.executeScript({ code: "document.body.bgColor = 'red'" });</pre>
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-executeScript-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-executeScript-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-InjectDetails">InjectDetails</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要运行的脚本详情。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-executeScript-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-executeScript-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    所有 JavaScript 执行弯后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of any result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            array of any
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      插入的每一个框架中脚本的结果。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-forward"
+            >forward
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.forward</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            如果可能的话，前进导航至历史记录中的前一项，等价于 <code>go(1)</code>。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getProcessId"
+            >getProcessId
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>integer &lt;webview&gt;.getProcessId</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            返回来宾网页当前进程所对应的 Chrome 浏览器内部进程标识符，允许嵌入者了解终止该进程会影响多少来宾。只有两个来宾属于同一应用并且具有相同的<a href="#partition">存储分区标识符</a>时，它们才会共用同一个进程。该调用是同步的，返回嵌入者缓存中的当前进程标识符，这一进程标识符与操作系统的进程标识符不同。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getUserAgent"
+            >getUserAgent
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>string &lt;webview&gt;.getUserAgent</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            返回由 webview 来宾网页请求使用的用户代理字符串。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-go"
+            >go
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.go</span>(<span>integer relativeIndex</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            通过相对于当前导航的历史记录索引导航至历史记录中的某一项。如果请求的导航不可能完成，该方法没有任何效果。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-go-relativeIndex"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-go-relativeIndex" title="">
+                      relativeIndex
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    webview 应该导航至的相对历史记录索引。例如，<code>2</code> 会前进导航两个历史记录项（如果可能的话），<code>-3</code> 会后退导航三次。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-insertCSS"
+            >insertCSS
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.insertCSS</span>(<span><a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-InjectDetails">InjectDetails</a> details</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            在来宾网页中嵌入 CSS。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-insertCSS-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-insertCSS-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-InjectDetails">InjectDetails</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要嵌入的 CSS 详情。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-insertCSS-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-insertCSS-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    CSS 嵌入后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-isUserAgentOverridden"
+            >isUserAgentOverridden
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.isUserAgentOverridden</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            指示 webview 的用户代理字符串是否由 <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#method-setUserAgentOverride">setUserAgentOverride</a> 覆盖。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-reload"
+            >reload
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.reload</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            重新加载当前的顶层网页。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setUserAgentOverride"
+            >setUserAgentOverride
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.setUserAgentOverride</span>(<span>string userAgent</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            覆盖由 webview 来宾网页请求使用的用户代理字符串。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setUserAgentOverride-userAgent"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setUserAgentOverride-userAgent" title="">
+                      userAgent
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要使用的用户代理字符串。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-stop"
+            >stop
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.stop</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            停止加载当期 &lt;webview> 导航（如果正在进行的话）。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-terminate"
+            >terminate
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>&lt;webview&gt;.terminate</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            强制终止来宾网页的渲染进程，这样可能会影响当前应用中共享同一个进程的多个 <code>webview</code> 标签，但不会影响其他应用中的 <code>webview</code> 标签。
+          </p>
+        </div>
+      </div>
+    <h2 id="dom_events">DOM <!--@Events-->事件</h2>
+    <dd>
+      <!--@Listeners can be added for these events using the standard -->
+      这些事件可以使用标准
+      HTML
+      <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.addEventListener">addEventListener</a>
+      API<!--@. Listeners receive a custom <code>Event</code> object which can have
+      additional properties as listed with each event.-->
+      添加监听器，监听器接收一个自定义的 <code>Event</code>
+      对象，可以包含附加属性，它们会在每一个事件中列出来。
+    </dd>
+      <div>
+        <h3 id="event-close">close</h3>
+        <div class="description">
+      <p>
+            来宾窗口尝试将自己关闭时产生。<p>以下例子在来宾尝试关闭自己时将 webview 导航至 <code>about:blank</code>。</p><pre>webview.addEventListener('close', function() {
+  webview.src = 'about:blank';
+});</pre>
+          </p>  </div>
+      </div>
+      <div>
+        <h3 id="event-consolemessage">consolemessage</h3>
+        <div class="description">
+      <p>
+            来宾窗口记录控制台消息时产生。<p>以下例子将所有日志消息转发至嵌入者的控制台，忽略日志级别和其他属性。</p><pre>webview.addEventListener('consolemessage', function(e) {
+  console.log('来宾网页记录了一条消息：', e.message);
+});</pre>
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-consolemessage-level"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-consolemessage-level" title="level">
+                        level
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      日志消息的严重性级别，从 0 到 4。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-consolemessage-message"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-consolemessage-message" title="message">
+                        message
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      日志消息的内容。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-consolemessage-line"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-consolemessage-line" title="line">
+                        line
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      消息来源行号。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-consolemessage-sourceId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-consolemessage-sourceId" title="sourceId">
+                        sourceId
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示记录消息的资源的字符串。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-contentload">contentload</h3>
+        <div class="description">
+      <p>
+            来宾窗口产生 <code>load</code> 事件时产生。<p>以下例子在网页加载后修改来宾 <code>body</code> 元素的默认字体大小</p><pre>webview.addEventListener('contentload', function() {
+  webview.executeScript({ code: 'document.body.style.fontSize = "42px"' });
+});</pre>
+          </p>  </div>
+      </div>
+      <div>
+        <h3 id="event-dialog">dialog</h3>
+        <div class="description">
+      <p>
+            来宾窗口通过 <code>window.alert</code>、<code>window.confirm</code> 或 <code>window.prompt</code> 尝试打开有模式对话框时产生。<p>处理该事件时会阻塞来宾进程，直到每一个事件监听器都返回或 <code>dialog</code> 对象不可访问（如果调用了 <code>preventDefault()</code>）。</p><p>默认行为是取消对话框。</p>
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-dialog-messageType"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-dialog-messageType" title="messageType">
+                        messageType
+                        <span class="property">
+                          (
+                            enum of <code>"alert"</code>, <code>"confirm"</code>, or <code>"prompt"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      来宾请求的有模式对话框类型。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-dialog-messageText"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-dialog-messageText" title="messageText">
+                        messageText
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      来宾希望在有模式对话框中显示的字符串。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-dialog-dialog"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-dialog-dialog" title="dialog">
+                        dialog
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-DialogController">DialogController</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      用于响应来宾的有模式对话框请求的接口。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-exit">exit</h3>
+        <div class="description">
+      <p>
+            渲染来宾网页内容的进程退出时产生。<p>以下例子在来宾网页崩溃时显示告别消息：</p><pre>webview.addEventListener('exit', function(e) {
+  if (e.reason === 'crash') {
+    webview.src = 'data:text/plain,再见！';
+  }
+});</pre>
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-exit-processID"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-exit-processID" title="processID">
+                        processID
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      退出的进程对应的 Chrome 浏览器内部标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-exit-reason"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-exit-reason" title="reason">
+                        reason
+                        <span class="property">
+                          (
+                            enum of <code>"normal"</code>, <code>"abnormal"</code>, <code>"crash"</code>, or <code>"kill"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示退出原因的字符串。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-loadabort">loadabort</h3>
+        <div class="description">
+      <p>
+            顶层加载未提交就终止时产生。
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-loadabort-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadabort-url" title="url">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-loadabort-isTopLevel"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadabort-isTopLevel" title="isTopLevel">
+                        isTopLevel
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      本次加载是在顶层还是子框架中。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-loadabort-reason"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadabort-reason" title="reason">
+                        reason
+                        <span class="property">
+                          (
+                            enum of <code>"networkError"</code>, <code>"download"</code>, <code>"canceled"</code>, <code>"sslError"</code>, or <code>"safeBrowsingError"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示终止类型的字符串。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-loadcommit">loadcommit</h3>
+        <div class="description">
+      <p>
+            加载提交后产生
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-loadcommit-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadcommit-url" title="url">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      提交的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-loadcommit-isTopLevel"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadcommit-isTopLevel" title="isTopLevel">
+                        isTopLevel
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      本次加载是在顶层还是子框架中。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-loadredirect">loadredirect</h3>
+        <div class="description">
+      <p>
+            顶层加载请求重定向至另一个 URL 时产生。
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-loadredirect-oldUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadredirect-oldUrl" title="oldUrl">
+                        oldUrl
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      重定向前的请求 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-loadredirect-newUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadredirect-newUrl" title="newUrl">
+                        newUrl
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      重定向后的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-loadredirect-isTopLevel"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadredirect-isTopLevel" title="isTopLevel">
+                        isTopLevel
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      重定向是在顶层还是子框架中发生。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-loadstart">loadstart</h3>
+        <div class="description">
+      <p>
+            开始加载时产生。
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-loadstart-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadstart-url" title="url">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-loadstart-isTopLevel"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-loadstart-isTopLevel" title="isTopLevel">
+                        isTopLevel
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      本次加载是在顶层还是子框架中。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-loadstop">loadstop</h3>
+        <div class="description">
+      <p>
+            来宾网页中的所有加载操作（包括所有子框架）完成后产生，除此之外也会产生相关的 <code>loadcommit</code> 或 <code>loadabort</code> 事件，这些对每个框架都会产生。
+          </p>  </div>
+      </div>
+      <div>
+        <h3 id="event-newwindow">newwindow</h3>
+        <div class="description">
+      <p>
+            来宾网页尝试打开新的浏览器窗口时产生。<p>以下例子在嵌入者中为每一个请求的新窗口创建新的 <code>webview</code> 并开始导航：</p><pre>webview.addEventListener('newwindow', function(e) {
+  var newWebview = document.createElement('webview');
+  document.body.appendChild(newWebview);
+  e.window.attach(newWebview);
+});</pre>
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-newwindow-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-newwindow-window" title="window">
+                        window
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-NewWindow">NewWindow</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      可以用来将请求的目标网页附加至现有的 <code>webview</code> 元素或显式取消请求的接口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-newwindow-targetUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-newwindow-targetUrl" title="targetUrl">
+                        targetUrl
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求打开新窗口的目标 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-newwindow-initialWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-newwindow-initialWidth" title="initialWidth">
+                        initialWidth
+                        <span class="property">
+                          (
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求打开的新窗口的初始宽度。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-newwindow-initialHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-newwindow-initialHeight" title="initialHeight">
+                        initialHeight
+                        <span class="property">
+                          (
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求打开的新窗口的初始高度。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-newwindow-name"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-newwindow-name" title="name">
+                        name
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求打开的新窗口名称。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-newwindow-windowOpenDisposition"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-newwindow-windowOpenDisposition" title="windowOpenDisposition">
+                        windowOpenDisposition
+                        <span class="property">
+                          (
+                            enum of <code>"ignore"</code>, <code>"save_to_disk"</code>, <code>"current_tab"</code>, <code>"new_background_tab"</code>, <code>"new_foreground_tab"</code>, <code>"new_window"</code>, or <code>"new_popup"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求打开新窗口的方式。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-permissionrequest">permissionrequest</h3>
+        <div class="description">
+      <p>
+            来宾网页需要向嵌入者请求特殊权限时产生。<p>以下例子授予来宾网页访问 <code>webkitGetUserMedia</code> API 的权限。注意，使用该例子的应用本身必须指定 <code>audioCapture</code> 和/或 <code>videoCapture</code> 清单文件权限：</p><pre>webview.addEventListener('permissionrequest', function(e) {
+  if (e.permission === 'media') {
+    e.request.allow();
+  }
+});</pre>
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-permissionrequest-permission"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-permissionrequest-permission" title="permission">
+                        permission
+                        <span class="property">
+                          (
+                            enum of <code>"media"</code>, <code>"geolocation"</code>, <code>"pointerLock"</code>, <code>"download"</code>, or <code>"loadplugin"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求的权限类型。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-permissionrequest-requestId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-permissionrequest-requestId" title="requestId">
+                        requestId
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      标志来宾的这一请求的数。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-permissionrequest-request"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-permissionrequest-request" title="request">
+                        request
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含请求权限详情的对象，取决于请求的权限类型，可能为 <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-MediaPermissionRequest">MediaPermissionRequest</a>、<a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-GeolocationPermissionRequest">GeolocationPermissionRequest</a>、<a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-PointerLockPermissionRequest">PointerLockPermissionRequest</a>、<a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-DownloadPermissionRequest">DownloadPermissionRequest</a> 或 <a href="https://crxdoc-zh.appspot.com/apps/tags/webviewTag.html#type-LoadPluginPermissionRequest">LoadPluginPermissionRequest</a> 对象。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-responsive">responsive</h3>
+        <div class="description">
+      <p>
+            渲染来宾网页内容的进程失去响应后再恢复响应时产生。<p>以下例子在 <code>webview</code> 失去响应时淡出，恢复响应时淡入：</p><pre>webview.style.webkitTransition = 'opacity 250ms';
+webview.addEventListener('unresponsive', function() {
+  webview.style.opacity = '0.5';
+});
+webview.addEventListener('responsive', function() {
+  webview.style.opacity = '1';
+});</pre>
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-responsive-processID"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-responsive-processID" title="processID">
+                        processID
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      恢复响应的进程所对应的 Chrome 浏览器内部标识符。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-sizechanged">sizechanged</h3>
+        <div class="description">
+      <p>
+            嵌入的网页内容大小更改时产生，只有在启用 <code>autosize</code> 时才会产生。
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-sizechanged-oldWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-sizechanged-oldWidth" title="oldWidth">
+                        oldWidth
+                        <span class="property">
+                          (
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      嵌入的网页内容原来的宽度。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-sizechanged-oldHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-sizechanged-oldHeight" title="oldHeight">
+                        oldHeight
+                        <span class="property">
+                          (
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      嵌入的网页内容原来的高度。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-sizechanged-newWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-sizechanged-newWidth" title="newWidth">
+                        newWidth
+                        <span class="property">
+                          (
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      嵌入的网页内容的新宽度。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-sizechanged-newHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-sizechanged-newHeight" title="newHeight">
+                        newHeight
+                        <span class="property">
+                          (
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      嵌入的网页内容的新高度。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-unresponsive">unresponsive</h3>
+        <div class="description">
+      <p>
+            渲染来宾网页内容的进程失去响应时产生，如果来宾恢复响应，则会产生与之对应的 responsive 事件。
+          </p>      <dd>
+              <dl>
+                <div>
+                  <a name="property-unresponsive-processID"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-unresponsive-processID" title="processID">
+                        processID
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      失去响应的进程所对应的 Chrome 浏览器内部标识符。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.i18n - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="https://developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="https://developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/i18n.html">https://crxdoc-zh.appspot.com/extensions/i18n.html</a><br>
+<b>Title:</b> chrome.i18n - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 48409<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="/extensions/" title="Google Chrome 扩展程序" id="view-original">
+          <img src="https://developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="/extensions/samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="/extensions/getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="/extensions/overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="/extensions/whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="/extensions/devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="/extensions/contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="/extensions/desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="/extensions/omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="/extensions/options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="/extensions/override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="/extensions/pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="/extensions/cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="/extensions/devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="/extensions/events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="/extensions/history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="/extensions/management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="/extensions/tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="/extensions/windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="/extensions/a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="/extensions/event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="/extensions/contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="/extensions/content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="/extensions/xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">国际化支持</a>
+            </li><li class="level4">
+                  <a href="/extensions/messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="/extensions/permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="/extensions/npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="/extensions/external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="/extensions/tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/extensions/tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="/extensions/tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="/extensions/tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="/extensions/tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="/extensions/match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="/extensions/permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="/extensions/api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="/extensions/api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/extensions/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="/extensions/themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.i18n</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#l10"
+         data-list-item
+         >如何支持多种语言</a>
+    </li>
+    <li >
+      <a href="#overview-predefined"
+         data-list-item
+         >预定义消息</a>
+    </li>
+    <li >
+      <a href="#overview-locales"
+         data-list-item
+         >语言</a>
+      <ol>
+        <li >
+          <a href="#locales-supported"
+             data-list-item
+             >支持的语言</a>
+        </li>
+        <li >
+          <a href="#locales-usage"
+             data-list-item
+             >搜索消息</a>
+        </li>
+        <li >
+          <a href="#locales-testing"
+             data-list-item
+             >如何设置您的浏览器语言</a>
+          <ol>
+            <li >
+              <a href="#testing-win"
+                 data-list-item
+                 >Windows</a>
+            </li>
+            <li >
+              <a href="#testing-mac"
+                 data-list-item
+                 >Mac OS X</a>
+            </li>
+            <li >
+              <a href="#testing-linux"
+                 data-list-item
+                 >Linux</a>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#overview-examples"
+         data-list-item
+         >例子</a>
+      <ol>
+        <li >
+          <a href="#examples-getMessage"
+             data-list-item
+             >例子：getMessage</a>
+        </li>
+        <li >
+          <a href="#example-accept-languages"
+             data-list-item
+             >例子：getAcceptLanguages</a>
+        </li>
+      </ol>
+    </li>
+    <li class="separator">
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-getAcceptLanguages"
+             data-list-item
+             >getAcceptLanguages        </a>
+        </li>
+        <li >
+          <a href="#method-getMessage"
+             data-list-item
+             >getMessage        </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.i18n</code> 架构为您的整个应用或扩展程序实现国际化支持。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 5<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<!--
+[NOTEs for editors:
+ * Try to be consistent about string vs. message (it's probably not yet).
+-->
+
+<p>
+<!--@You need to put all of its user-visible strings into a file
+named <a href="i18n-messages.html"><code>messages.json</code></a>.
+Each time you add a new locale,
+you add a messages file
+under a directory
+named <code>_locales/<em>localeCode</em></code>,
+where <em>localeCode</em> is a code such as
+<code>en</code> for English.-->
+您需要把所有用户可见的字符串放在一个名为
+<a href="i18n-messages.html"><code>messages.json</code></a>
+的文件中。每一次您增加新的语言时，您只要在名为
+<code>_locales/<em>localeCode</em></code>
+的目录中添加一个消息文件，其中
+<em>localeCode</em>
+为语言代码，例如 <code>en</code>代表英语。
+</p>
+
+<p>
+<!--@Here's the file hierarchy
+for an internationalized extension that supports
+English (<code>en</code>),
+Spanish (<code>es</code>), and
+Korean (<code>ko</code>):-->
+如下是具有国际化支持的扩展程序的文件结构，它支持英语（<code>en</code>）、西班牙语（<code>es</code>）和韩语（<code>ko</code>）：
+</p>
+
+<img src="https://developer.chrome.com/static/images/i18n-hierarchy.gif"
+ alt='In the extension directory: manifest.json, *.html, *.js, _locales directory. In the _locales directory: en, es, and ko directories, each with a messages.json file.'
+ width="385" height="77" />
+
+
+<h2 id="l10"><!--@How to support multiple languages-->如何支持多种语言</h2>
+
+<p>
+<!--@Say you have an extension
+with the files shown in the following figure:-->
+假设您有一个扩展程序，包含下图所示的几个文件：
+</p>
+
+<img src="https://developer.chrome.com/static/images/i18n-before.gif"
+ alt='A manifest.json file and a file with JavaScript. The .json file has "name": "Hello World". The JavaScript file has title = "Hello World";'
+ width="323" height="148">
+
+<p>
+<!--@To internationalize this extension,
+you name each user-visible string
+and put it into a messages file.
+The extension's manifest,
+CSS files,
+and JavaScript code
+use each string's name to get its localized version.-->
+要想为这一扩展程序添加国际化支持，您需要为每一个用户可见的字符串命名，并将它们放在一个消息文件中。扩展程序的清单文件、CSS
+文件和 JavaScript 代码使用每一个字符串的名称来获得本地化的版本。
+</p>
+
+<p>
+<!--@Here's what the extension looks like when it's internationalized
+(note that it still has only English strings):-->
+如下是为扩展程序添加国际化支持后看上去的样子（注意它还仅包括英语的字符串）：
+</p>
+
+<img src="https://developer.chrome.com/static/images/i18n-after-1.gif"
+ alt='In the manifest.json file, "Hello World" has been changed to "__MSG_extName__", and a new "default_locale" item has the value "en". In the JavaScript file, "Hello World" has been changed to chrome.i18n.getMessage("extName"). A new file named _locales/en/messages.json defines "extName".'
+ width="782" height="228">
+
+<p class="note">
+<b><!--@Important:-->重要提示：</b><!--@
+If an extension has a <code>_locales</code> directory,
+the <a href="manifest.html">manifest</a>
+<b>must</b> define "default_locale".-->如果您的扩展程序包含
+<code>_locales</code>
+目录，<a href="manifest.html">清单文件</a>中<b>必须</b>定义
+"default_locale"。
+</p>
+
+<p>
+<!--@Some notes about internationalizing:-->
+添加国际化支持时要注意：
+</p>
+
+<ul>
+  <li><p>
+    <!--@You can use any of the <a href="#overview-locales">supported locales</a>.
+    If you use an unsupported locale,
+    Google Chrome ignores it.-->
+    您可以使用任何<a href="#overview-locales">支持的语言</a>。如果您使用了不支持的语言，Google Chrome
+    浏览器会忽略它。
+  </p></li>
+
+  <li>
+    <!--@In <code>manifest.json</code>
+    and CSS files,
+    refer to a string named <em>messagename</em> like this:-->
+    在 <code>manifest.json</code> 和
+    CSS 文件中，像这样引用名为 <em>messagename</em> 的字符串：
+    <pre>__MSG_<em>messagename</em>__</pre>
+  </li>
+
+  <li>
+    <!--@In your extension or app's JavaScript code,
+    refer to a string named <em>messagename</em>
+    like this:-->
+    在您的扩展程序或应用的
+    JavaScript 代码中，像这样引用名为
+    <em>messagename</em> 的字符串：
+    <pre>chrome.i18n.getMessage("<em>messagename</em>")</pre>
+
+  <li> <p>
+    <!--@In each call to <code>getMessage()</code>,
+    you can supply up to 9 strings
+    to be included in the message.
+    See <a href="#examples-getMessage">Examples: getMessage</a>
+    for details.-->
+    在每个 <code>getMessage()</code>
+    的调用中，您最多可以指定 9
+    个需要包含在消息中的字符串，有关详情请参见<a href="#examples-getMessage">例子：getMessage</a>。
+    </p>
+  </li>
+
+  <li><p>
+    <!--@Some messages, such as <code>@@bidi_dir</code> and <code>@@ui_locale</code>,
+    are provided by the internationalization system.
+    See the <a href="#overview-predefined">Predefined messages</a> section
+    for a full list of predefined message names.-->
+    一些消息，例如
+    <code>@@bidi_dir</code> 和
+    <code>@@ui_locale</code>
+    由国际化支持系统提供，有关预定义消息的名称的完整列表，请参见<a
+    href="#overview-predefined">预定义消息</a>部分。
+    </p>
+  </li>
+
+  <li>
+    <!--@In <code>messages.json</code>,
+    each user-visible string has a name, a "message" item,
+    and an optional "description" item.
+    The name is a key
+    such as "extName" or "search_string"
+    that identifies the string.
+    The "message" specifies
+    the value of the string in this locale.
+    The optional "description"
+    provides help to translators,
+    who might not be able to see how the string is used in your extension.
+    For example:-->
+    在 <code>messages.json</code>
+    中，每个用户可见的字符串有一个名称、一个
+    "message"（消息）项以及一个可选的
+    "description"（描述）项。名称是用来标识字符串的键，如
+    "extName" 或 "search_string"，"message"（消息）指定当前语言中字符串的值，可选的
+    "description"（描述）向翻译者提供帮助，因为翻译者不一定能看到该字符串是如何在您的扩展程序中使用的。例如：
+<pre data-filename="messages.json">
+{
+  "search_string": {
+    "message": "您好",
+    "description": "我们搜索的字符串"
+  },
+  ...
+}</pre>
+
+<p>
+<!--@For more information, see
+<a href="i18n-messages.html">Formats: Locale-Specific Messages</a>.-->
+有关更多信息，请参见<a href="i18n-messages.html">格式：区域特定的消息</a>。
+</p>
+  </li>
+</ul>
+
+<p>
+<!--@Once an extension or app is internationalized,
+translating it is simple.
+You copy <code>messages.json</code>,
+translate it,
+and put the copy into a new directory under <code>_locales</code>.
+For example, to support Spanish,
+just put a translated copy of <code>messages.json</code>
+under <code>_locales/es</code>.
+The following figure shows the previous extension
+with a new Spanish translation.-->
+一旦为扩展程序或应用添加国际化支持后，将它翻译成另一种语言是非常简单的。您可以复制
+<code>messages.json</code>，翻译它，然后将所得文件放在
+<code>_locales</code>
+下的新目录中。例如，要支持西班牙语，只要将一份已翻译的
+<code>messages.json</code> 的副本放在 <code>_locales/es</code>
+中即可。下图展示了具有新的西班牙语翻译的扩展程序。
+</p>
+
+<img src="https://developer.chrome.com/static/images/i18n-after-2.gif"
+ alt='This looks the same as the previous figure, but with a new file at _locales/es/messages.json that contains a Spanish translation of the messages.'
+ width="782" height="358">
+
+
+<h2 id="overview-predefined"><!--@Predefined messages-->预定义消息</h2>
+
+<p>
+<!--@The internationalization system provides a few predefined
+messages to help you localize.
+These include <code>@@ui_locale</code>,
+so you can detect the current UI locale,
+and a few <code>@@bidi_...</code> messages
+that let you detect the text direction.
+The latter messages have similar names to constants in the
+<a href="http://code.google.com/apis/gadgets/docs/i18n.html#BIDI">
+gadgets BIDI (bi-directional) API</a>.-->
+国际化支持系统提供了一些预定义消息，来帮助您本地化。这些消息包括
+<code>@@ui_locale</code>，让您检测当前用户界面的语言，还有一些
+<code>@@bidi_...</code>
+消息，让您检测文字方向，<code>@@bidi_...</code>
+消息的名称类似于<a
+href="https://developers.google.com/gadgets/docs/i18n?hl=zh-CN#BIDI">小工具
+BIDI（双向）API</a> 中的常量。
+</p>
+
+<p>
+<!--@The special message <code>@@extension_id</code>
+can be used in the CSS and JavaScript files,
+whether or not the extension or app is localized.
+This message doesn't work in manifest files.-->
+无论扩展程序或应用是否已经本地化，都可以在
+CSS 和 JavaScript 文件中使用特殊消息
+<code>@@extension_id</code>。 这一消息在清单文件中不起作用。
+</p>
+
+<p>
+<!--@The following table describes each predefined message.-->
+下表描述每一个预定义消息。
+</p>
+
+<table>
+<tr>
+  <th><!--@Message name-->消息名称</th> <th><!--@Description-->描述</th>
+</tr>
+<tr>
+  <td> <code>@@extension_id</code> </td>
+  <td><!--@The extension or app ID;
+    you might use this string to construct URLs
+    for resources inside the extension.
+    Even unlocalized extensions can use this message.-->
+    扩展程序或应用标识符，您可能需要这一字符串来构造
+    URL，用于扩展程序中的资源。即使没有本地化的扩展程序也能使用这一消息。
+    <br>
+    <b><!--@Note:-->注意：</b><!--@ You can't use this message in a manifest file.-->您不能在清单文件中使用这一消息。
+    </td>
+</tr>
+<tr>
+  <td> <code>@@ui_locale</code> </td>
+  <td><!--@The current locale;
+    you might use this string to construct locale-specific URLs. -->
+    当前语言，您可能需要这一字符串来构造区域特定的 URL。
+  </td>
+</tr>
+<tr>
+  <td> <code>@@bidi_dir</code> </td>
+  <td> <!--@The text direction for the current locale,
+       either "ltr" for left-to-right languages such as English
+       or "rtl" for right-to-left languages such as Japanese. -->
+       当前语言的文字方向，对于中文、英语等从左往右的语言为
+       "ltr"，对于日语等从右往左的语言为 "rtl"。 
+  </td>
+</tr>
+<tr>
+  <td> <code>@@bidi_reversed_dir</code> </td>
+  <td> <!--@If the-->如果 <code>@@bidi_dir</code> <!--@is-->是 "ltr"<!--@, then this is-->则该消息为 "rtl"<!--@;
+       otherwise, it's-->，否则为 "ltr"<!--@.-->。 </td>
+</tr>
+<tr>
+  <td> <code>@@bidi_start_edge</code> </td>
+  <td> <!--@If the-->如果 <code>@@bidi_dir</code> <!--@is-->是 "ltr"<!--@, then this is-->则该消息为 "left"<!--@;
+       otherwise, it's-->，否则为 "right"<!--@.-->。 </td>
+</tr>
+<tr>
+  <td> <code>@@bidi_end_edge</code> </td>
+  <td> <!--@If the-->如果 <code>@@bidi_dir</code> <!--@is-->是 "ltr"<!--@, then this is-->则该消息为 "right"<!--@;
+       otherwise, it's-->，否则为 "left"<!--@.-->。 </td>
+</tr>
+</table>
+
+<p>
+<!--@Here's an example of using <code>@@extension_id</code> in a CSS file
+to construct a URL:-->
+如下是一个在 CSS 文件中使用 <code>@@extension_id</code>
+构造 URL 的例子：
+</p>
+
+<pre>
+body {
+  <b>background-image:url('chrome-extension://__MSG_@@extension_id__/background.png');</b>
+}
+</pre>
+
+<p>
+<!--@If the extension ID is abcdefghijklmnopqrstuvwxyzabcdef,
+then the bold line in the previous code snippet becomes:-->
+如果扩展程序标识符为
+abcdefghijklmnopqrstuvwxyzabcdef，则上述代码片段中加粗部分为：
+</p>
+
+<pre>
+background-image:url('chrome-extension://abcdefghijklmnopqrstuvwxyzabcdef/background.png');
+</pre>
+
+<p>
+<!--@Here's an example of using <code>@@bidi_*</code> messages in a CSS file:-->
+如下是一个在 CSS 文件中使用
+<code>@@bidi_*</code> 消息的例子：
+</p>
+
+<pre>
+body {
+  <b>direction: __MSG_@@bidi_dir__;</b>
+}
+
+div#header {
+  margin-bottom: 1.05em;
+  overflow: hidden;
+  padding-bottom: 1.5em;
+  <b>padding-__MSG_@@bidi_start_edge__: 0;</b>
+  <b>padding-__MSG_@@bidi_end_edge__: 1.5em;</b>
+  position: relative;
+}
+</pre>
+
+<p>
+<!--@For left-to-right languages such as English,
+the bold lines become:-->
+对于从左往右的语言，例如中文和英语，加粗的几行将变为：
+</p>
+
+<pre>
+dir: ltr;
+padding-left: 0;
+padding-right: 1.5em;
+</pre>
+
+
+<h2 id="overview-locales"><!--@Locales-->语言</h2>
+
+<p>
+<!--@You can choose from many locales,
+including some (such as <code>en</code>)
+that let a single translation support multiple variations of a language
+(such as <code>en_GB</code> and <code>en_US</code>).-->
+您可以从许多语言中选择，包括一些（例如 <code>en</code>）使一种翻译支持多种变体（例如 <code>en_GB</code> 和 <code>en_US</code>）的语言。
+</p>
+
+
+<h3 id="locales-supported"><!--@Supported locales-->支持的语言</h3>
+
+<p>
+<!--@You can use any of the
+<a href="http://code.google.com/chrome/webstore/docs/i18n.html#localeTable">locales that the Chrome Web Store supports</a>.-->
+您可以使用
+<a href="https://developers.google.com/chrome/web-store/docs/i18n#localeTable">Chrome
+网上应用店支持的任何语言</a>。
+</p>
+
+
+<h3 id="locales-usage"><!--@Searching for messages-->搜索消息</h3>
+
+<p>
+<!--@You don't have to define every string for every supported locale.
+As long as the default locale's <code>messages.json</code> file
+has a value for every string,
+your extension or app will run no matter how sparse a translation is.
+Here's how the extension system searches for a message:-->
+您不需要为支持的每一种语言定义每一个字符串。只要默认语言的
+<code>messages.json</code>
+文件包含每一个字符串的值，无论一种翻译多么稀少您的扩展程序或应用都能运行。如下是扩展程序系统搜索消息的步骤：
+</p>
+
+<ol>
+  <li>
+     <!--@Search the messages file (if any)
+     for the user's preferred locale.
+     For example, when Google Chrome's locale is set to
+     British English (<code>en_GB</code>),
+     the system first looks for the message in
+     <code>_locales/en_GB/messages.json</code>.
+     If that file exists and the message is there,
+     the system looks no further.-->
+     搜索用户首选语言对应的消息文件（如果有的话）。例如，当
+     Google Chrome
+     浏览器的语言设置为英式英语（<code>en_GB</code>）时，系统首先在
+     <code>_locales/en_GB/messages.json</code>
+     中查找消息。如果文件存在并且找到相应的消息，则系统不再继续查找。
+  </li>
+  <li>
+     <!--@If the user's preferred locale has a region
+     (that is, the locale has an underscore: _),
+     search the locale without that region.
+     For example, if the <code>en_GB</code> messages file
+     doesn't exist or doesn't contain the message,
+     the system looks in the <code>en</code> messages file.
+     If that file exists and the message is there,
+     the system looks no further.-->
+     如果用户首选语言包含区域（即语言名称含有下划线：_），则继续搜索没有指定区域的语言。例如，如果
+     <code>en_GB</code> 消息文件不存在或者没有包含相应的消息，则系统在
+     <code>en</code>
+     的消息文件中查找。如果文件存在并且找到相应的消息，则系统不再继续查找。
+  </li>
+  <li>
+     <!--@Search the messages file for the default locale.
+     For example, if the extension's "default_locale" is set to "es",
+     and neither <code>_locales/en_GB/messages.json</code>
+     nor <code>_locales/en/messages.json</code> contains the message,
+     the extension uses the message from
+     <code>_locales/es/messages.json</code>.-->
+     搜索默认语言的消息文件。例如，如果扩展程序的
+     "default_locale" 设置为 "es"，并且
+     <code>_locales/en_GB/messages.json</code> 和
+     <code>_locales/en/messages.json</code>
+     都没有包含对应消息，则扩展程序使用来自
+     <code>_locales/es/messages.json</code> 的消息。
+  </li>
+</ol>
+
+<p>
+<!--@In the following figure,
+the message named "colores" is in all three locales
+that the extension supports,
+but "extName" is in only two of the locales.
+Wherever a user running Google Chrome in US English sees the label "Colors",
+a user of British English sees "Colours".
+Both US English and British English users
+see the extension name "Hello World".
+Because the default language is Spanish,
+users running Google Chrome in any non-English language
+see the label "Colores" and the extension name "Hola mundo".-->
+在下图中，名为 "colores"
+的消息在扩展程序支持的三种语言中都存在，但是
+"extName" 仅在其中两种语言中存在。用户以美式英语为首选语言运行
+Google Chrome 浏览器时看到 "Colors"
+标签，在以英式英语为首选语言运行
+Google Chrome 浏览器时看到
+"Colours"，而美式英语与英式英语的用户都能看到扩展程序名称
+"Hello World"。因为默认语言为西班牙语，用户在任何非英语语言中运行
+Google Chrome 浏览器都会看到 "Colores" 标签以及扩展名称
+"Hola mundo"。
+</p>
+
+<img src="https://developer.chrome.com/static/images/i18n-strings.gif"
+ alt='Four files: manifest.json and three messages.json files (for es, en, and en_GB).  The es and en files show entries for messages named "extName" and "colores"; the en_GB file has just one entry (for "colores").'
+ width="493" height="488" />
+
+<h3 id="locales-testing"><!--@How to set your browser's locale-->如何设置您的浏览器语言</h3>
+
+<p>
+<!--@To test translations, you might want to set your browser's locale.
+This section tells you how to set the locale in
+<a href="#testing-win">Windows</a>,
+<a href="#testing-mac">Mac OS X</a>, and
+<a href="#testing-linux">Linux</a>.-->
+为了测试翻译，您可能需要设置您的浏览器语言。这一部分告诉您如何在
+<a href="#testing-win">Windows</a>、<a
+href="#testing-mac">Mac OS X</a> 和
+<a href="#testing-linux">Linux</a>中设置语言。
+</p>
+
+<h4 id="testing-win">Windows</h4>
+
+<p>
+<!--@You can change the locale using either
+a locale-specific shortcut
+or the Google Chrome UI.
+The shortcut approach is quicker, once you've set it up,
+and it lets you use several languages at once.-->
+您可以使用语言特定的快捷方式或者通过
+Google Chrome
+浏览器用户界面来更改语言。一旦您设置完成，使用快捷方式将更加便捷，而且可以一次使用多种语言。
+</p>
+
+<h5 id="win-shortcut"><!--@Using a locale-specific shortcut-->使用语言特定的快捷方式</h5>
+
+<p>
+<!--@To create and use a shortcut that launches Google Chrome
+with a particular locale:-->要想创建和使用快捷方式，以某种语言运行
+Google Chrome 浏览器：
+</p>
+
+<ol>
+  <li>
+    <!--@Make a copy of the Google Chrome shortcut
+    that's already on your desktop.-->
+    将已经在您桌面上的 Google Chrome 浏览器的快捷方式复制一份。
+  </li>
+  <li>
+    <!--@Rename the new shortcut to match the new locale.-->
+    将新的快捷方式重命名，匹配新的语言。
+  </li>
+  <li>
+    <!--@Change the shortcut's properties
+    so that the Target field specifies the
+    <code>--lang</code> and
+    <code>--user-data-dir</code> flags.
+    The target should look something like this:-->
+    更改快捷方式的属性，使“目标”属性指定
+    <code>--lang</code> 和 <code>--user-data-dir</code>
+    参数。“目标”属性应该为这样的形式：
+
+<pre><em>path_to_chrome.exe</em> --lang=<em>locale</em> --user-data-dir=c:\<em>locale_profile_dir</em></pre>
+  </li>
+
+  <li>
+    <!--@Launch Google Chrome by double-clicking the shortcut.-->
+    双击快捷方式运行 Google Chrome 浏览器。
+  </li>
+</ol>
+
+<p>
+<!--@For example, to create a shortcut
+that launches Google Chrome in Spanish (<code>es</code>),
+you might create a shortcut named <code>chrome-es</code>
+that has the following target:-->
+例如，要创建一个的快捷方式，以西班牙语（<code>es</code>）运行
+Google Chrome 浏览器，您可以创建一个名为
+<code>chrome-es</code> 的快捷方式，目标如下：
+</p>
+
+<pre><em>path_to_chrome.exe</em> --lang=es --user-data-dir=c:\chrome-profile-es</pre>
+
+<p>
+<!--@You can create as many shortcuts as you like,
+making it easy to test in multiple languages.
+For example:-->
+您可以根据需要创建多个快捷方式，使您更加容易地在多种语言中测试。例如：
+</p>
+
+<pre><em>path_to_chrome.exe</em> --lang=en --user-data-dir=c:\chrome-profile-en
+<em>path_to_chrome.exe</em> --lang=en_GB --user-data-dir=c:\chrome-profile-en_GB
+<em>path_to_chrome.exe</em> --lang=ko --user-data-dir=c:\chrome-profile-ko</pre>
+
+<p class="note">
+<b><!--@Note:-->注意：</b><!--@
+Specifying <code>--user-data-dir</code> is optional but handy.
+Having one data directory per locale
+lets you run the browser
+in several languages at the same time.
+A disadvantage is that because the locales' data isn't shared,
+you have to install your extension multiple times &mdash; once per locale,
+which can be challenging when you don't speak the language.
+For more information, see
+<a href="http://www.chromium.org/developers/creating-and-using-profiles">Creating and Using Profiles</a>.--><code>--user-data-dir</code>
+参数是可选的，但是这样比较方便。每一种语言使用一个配置文件目录使您可以同时运行不同语言的浏览器，而缺点是由于不同语言的数据没有共享，您必须为每一种语言安装一次扩展程序，对于您不熟悉的语言可能有些困难。有关更多信息，请参见<a href="http://www.chromium.org/developers/creating-and-using-profiles">创建和使用个人资料</a>（英文）。
+</p>
+
+
+<h5 id="win-ui"><!--@Using the UI-->使用用户界面</h5>
+
+<p>
+<!--@Here's how to change the locale using the UI on Google Chrome for Windows:-->
+以下是在 Windows 版本的 Google Chrome
+浏览器中通过用户界面更改语言的方法：
+</p>
+
+<ol>
+  <li> <!--@Wrench icon > <b>Options</b>-->单击 Chrome 菜单 &gt; <b>选项(O)</b> </li>
+  <li> <!--@Choose the <b>Under the Hood</b> tab-->单击 <b>显示高级设置...</b> </li>
+  <li> <!--@Scroll down to <b>Web Content</b>-->向下滚动至<b>语言</b> </li>
+  <li> <!--@Click <b>Change font and language settings</b>-->单击<b>语言和拼写检查设置...</b> </li>
+  <li> <!--@Choose the <b>Languages</b> tab-->单击<b>添加</b> </li>
+  <li> <!--@Use the drop down to set the <b>Google Chrome language</b>-->在下拉列表中选择需要的语言，并单击<b>确定</b> </li>
+  <li> 单击<b>以这种语言显示 Google Chrome 浏览器</b>
+  <li> <!--@Restart Chrome-->重新启动 Chrome 浏览器 </li>
+</ol>
+
+
+<h4 id="testing-mac">Mac OS X</h4>
+
+<p>
+<!--@To change the locale on Mac,
+you use the system preferences.-->
+要想在 Mac 中更改语言，您可以使用系统偏好设置。
+</p>
+
+<ol>
+  <li> <!--@From the Apple menu, choose <b>System Preferences</b>-->从 <b>Apple</b> 菜单中，选择<b>系统偏好设置</b> </li>
+  <li> <!--@Under the <b>Personal</b> section, choose <b>International</b>-->在<b>个人</b>部分选择<b>多语言环境</b> </li>
+  <li> <!--@Choose your language and location-->选择您的语言与位置 </li>
+  <li> <!--@Restart Chrome-->重新启动 Chrome 浏览器 </li>
+</ol>
+
+
+<h4 id="testing-linux">Linux</h4>
+
+<p>
+<!--@To change the locale on Linux,
+first quit Google Chrome.
+Then, all in one line,
+set the LANGUAGE environment variable
+and launch Google Chrome.
+For example:-->
+要想更改 Linux 上的语言，首先退出 Google Chrome
+浏览器。然后使用一行命令设置 LANGUAGE
+环境变量，并运行 Google Chrome
+浏览器。例如：
+</p>
+
+<pre>
+LANGUAGE=es ./chrome
+</pre>
+
+
+<h2 id="overview-examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@You can find simple examples of internationalization in the-->
+您可以在
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/i18n/">examples/api/i18n</a>
+<!--@directory.
+For a complete example, see-->
+目录中找到国际化支持的简单例子。有关完整的例子，请参见
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/news/">examples/extensions/news</a><!--@.
+For other examples and for help in viewing the source code, see
+<a href="samples.html">Samples</a>.-->。有关更多例子以及查看源代码的帮助，请参见<a href="samples.html">示例</a>。
+</p>
+
+
+<h3 id="examples-getMessage"><!--@Examples: getMessage-->例子：getMessage</h3>
+
+<!--
+[PENDING: improve this section. it should probably start with a
+one-variable example that includes the messages.json code.]
+-->
+
+<p>
+<!--@The following code gets a localized message from the browser
+and displays it as a string.
+It replaces two placeholders within the message with the strings
+"string1" and "string2".-->
+以下代码从浏览器获取本地化的消息，并显示为字符串，其中还将消息中的两个占位符分别替换为 "string1" 和 "string2"。
+</p>
+
+<pre>
+function getMessage() {
+  var message = chrome.i18n.getMessage("click_here", ["string1", "string2"]);
+  document.getElementById("languageSpan").innerHTML = message;
+}
+</pre>
+
+<p>
+<!--@Here's how you'd supply and use a single string:-->
+如下代码演示如何提供并使用单个字符串：
+</p>
+
+<pre>
+<em>// 在 JavaScript 代码中</em>
+status.innerText = chrome.i18n.getMessage("error", errorDetails);
+</pre>
+<pre data-filename="messages.json">
+"error": {
+  "message": "错误：$details$",
+  "description": "通用错误模板，需要传递错误参数。",
+  "placeholders": {
+    "details": {
+      "content": "$1",
+      "example": "无法获取 RSS 供稿。"
+    }
+  }
+}
+</pre>
+
+<p>
+<!--@For more information about placeholders, see the
+<a href="i18n-messages.html">Locale-Specific Messages</a> page.
+For details on calling <code>getMessage()</code>, see the
+<a href="i18n.html#method-getMessage">API reference</a>.-->
+有关占位符的更多信息，请参见<a href="i18n-messages.html"
+>区域特定的消息</a>页面。有关调用
+<code>getMessage()</code>
+的细节，请参见 <a href="i18n.html#method-getMessage">API 参考</a>。
+</p>
+
+<h3 id="example-accept-languages"><!--@Example: -->例子：getAcceptLanguages</h3>
+<p>
+<!--@The following code gets accept-languages from the browser and displays them as a
+string by separating each accept-language with ','.-->
+以下代码从浏览器获取可接受的语言，并且将它们以逗号分开显示出来：
+</p>
+
+<pre>
+function getAcceptLanguages() {
+  chrome.i18n.getAcceptLanguages(function(languageList) {
+    var languages = languageList.join(",");
+    document.getElementById("languageSpan").innerHTML = languages;
+  })
+}
+</pre>
+
+<p>
+<!--@For details on calling <code>getAcceptLanguages()</code>, see the
+<a href="i18n.html#method-getAcceptLanguages">API reference</a>.-->
+有关调用 <code>getAcceptLanguages()</code>
+的细节，请参见
+<a href="i18n.html#method-getAcceptLanguages">API 参考</a>。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.i18n <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-getAcceptLanguages"
+            >getAcceptLanguages
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.i18n.getAcceptLanguages</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取浏览器可接受的语言。这和浏览器使用的语言不同，要获取这一语言，请使用 <code>window.navigator.language</code>。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getAcceptLanguages-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getAcceptLanguages-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of string languages) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-languages"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-languages" title="">
+                        languages
+                        <span class="property">
+                          (
+                            array of string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含浏览器可接受的所有语言的数组，例如en-US、en、zh-CN。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getMessage"
+            >getMessage
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>string chrome.i18n.getMessage</span>(<span>string messageName</span>, <span class="optional">any substitutions</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获得指定消息的本地化字符串。如果消息不存在，该方法返回空字符串（""）。如果 <code>getMessage()</code> 的调用格式不正确，例如，<em>messageName</em> 不是字符串或者 <em>substitutions</em> 数组为空或包含的元素超过 9 个，该方法返回 <code>undefined</code>。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getMessage-messageName"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getMessage-messageName" title="">
+                      messageName
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    消息的名称，与 <a href='i18n-messages.html'><code>messages.json</code></a> 文件中指定的一致。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getMessage-substitutions"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getMessage-substitutions" title="">
+                      substitutions
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          any
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    如果对应的消息需要的话，则包含最多 9 个替代字符串。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="https:////plus.google.com/112419687097816423998?prsrc=3" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="https://developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>选项 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/options.html">https://crxdoc-zh.appspot.com/extensions/options.html</a><br>
+<b>Title:</b> 选项 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 17372<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#step_1"
+         data-list-item
+         >第一步：在清单文件中声明您的选项页面</a>
+    </li>
+    <li >
+      <a href="#step_2"
+         data-list-item
+         >第二步：编写您的选项页面</a>
+    </li>
+    <li >
+      <a href="#important_notes"
+         data-list-item
+         >重要提示</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Options-->选项</h1>
+
+<p><!--@To allow users to customize the behavior of your extension, you may wish to provide an options page. If you do, a link to it will be provided from the extensions management page at chrome://extensions. Clicking the Options link opens a new tab pointing at your options page.-->
+为了让用户自定义您的扩展程序的行为，您可能会提供一个选项页面。如果这样做的话，选项页面的链接将会在扩展程序管理页面（chrome://extensions）中显示，单击“选项”链接打开一个新标签页，指向您的选项页面。
+
+<h2 id="step_1"><!--@Step 1: Declare your options page in the manifest-->第一步：在清单文件中声明您的选项页面</h2>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"options_page": "options.html"</b>,
+  ...
+}
+</pre>
+
+
+<h2 id="step_2"><!--@Step 2: Write your options page-->第二步：编写您的选项页面</h2>
+
+<!--@Here is an example options page:-->
+如下是一个选项页面的例子：
+
+<pre data-filename="options.html">
+&lt;html>
+&lt;head>&lt;title>我的测试扩展程序选项&lt;/title>&lt;/head>
+
+&lt;body>
+
+我最喜欢的颜色：
+&lt;select id="color">
+ &lt;option value="red">红&lt;/option>
+ &lt;option value="green">绿&lt;/option>
+ &lt;option value="blue">蓝&lt;/option>
+ &lt;option value="yellow">黄&lt;/option>
+&lt;/select>
+
+&lt;br>
+&lt;div id="status">&lt;/div>
+&lt;button id="save">保存&lt;/button>
+&lt;/body>
+
+&lt;script src="options.js">&lt;/script>
+
+&lt;/html>
+</pre>
+
+<pre data-filename="options.js">
+// 将选项保存在 localStorage 中。
+function save_options() {
+  var select = document.getElementById("color");
+  var color = select.children[select.selectedIndex].value;
+  localStorage["favorite_color"] = color;
+
+  // 更新状态，告诉用户选项已保存。
+  var status = document.getElementById("status");
+  status.innerHTML = "Options Saved.";
+  setTimeout(function() {
+    status.innerHTML = "";
+  }, 750);
+}
+
+// 从保存在 localStorage 中的值恢复选定的内容。
+function restore_options() {
+  var favorite = localStorage["favorite_color"];
+  if (!favorite) {
+    return;
+  }
+  var select = document.getElementById("color");
+  for (var i = 0; i &lt; select.children.length; i++) {
+    var child = select.children[i];
+    if (child.value == favorite) {
+      child.selected = "true";
+      break;
+    }
+  }
+}
+document.addEventListener('DOMContentLoaded', restore_options);
+document.querySelector('#save').addEventListener('click', save_options);
+</pre>
+
+<h2 id="important_notes"><!--@Important notes-->重要提示</h2>
+<ul>
+<li><!--@We plan on providing some default css styles to encourage a consistent look across different extensions' options pages. You can star <a href="http://crbug.com/25317">crbug.com/25317</a> to be notified of updates.-->
+我们计划提供一些缺省 CSS
+样式来鼓励不同扩展程序的选项页面使用一致的外观，您可以将
+<a href="http://crbug.com/25317">crbug.com/25317</a>（英文）加星关注更新。
+</li>
+</ul>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

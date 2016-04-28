@@ -1,0 +1,1402 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.syncFileSystem - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="https://developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="https://developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:39.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/syncFileSystem.html">https://crxdoc-zh.appspot.com/apps/syncFileSystem.html</a><br>
+<b>Title:</b> chrome.syncFileSystem - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 61050<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="/apps/" title="Google Chrome 应用" id="view-original">
+          <img src="https://developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="/apps/samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="/apps/angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="/apps/sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="/apps/app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="/apps/app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="/apps/pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="/apps/app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="/apps/app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="/apps/app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/apps/google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="/apps/analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="/apps/tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="/apps/api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="/apps/manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="/apps/app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.syncFileSystem</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-ServiceStatus"
+             data-list-item
+             >ServiceStatus</a>
+        </li>
+        <li >
+          <a href="#type-FileStatus"
+             data-list-item
+             >FileStatus</a>
+        </li>
+        <li >
+          <a href="#type-ConflictResolutionPolicy"
+             data-list-item
+             >ConflictResolutionPolicy</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-requestFileSystem"
+             data-list-item
+             >requestFileSystem        </a>
+        </li>
+        <li >
+          <a href="#method-setConflictResolutionPolicy"
+             data-list-item
+             >setConflictResolutionPolicy        </a>
+        </li>
+        <li >
+          <a href="#method-getConflictResolutionPolicy"
+             data-list-item
+             >getConflictResolutionPolicy        </a>
+        </li>
+        <li >
+          <a href="#method-getUsageAndQuota"
+             data-list-item
+             >getUsageAndQuota        </a>
+        </li>
+        <li >
+          <a href="#method-getFileStatus"
+             data-list-item
+             >getFileStatus        </a>
+        </li>
+        <li >
+          <a href="#method-getFileStatuses"
+             data-list-item
+             >getFileStatuses        </a>
+        </li>
+        <li >
+          <a href="#method-getServiceStatus"
+             data-list-item
+             >getServiceStatus        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onServiceStatusChanged"
+             data-list-item
+             >onServiceStatusChanged</a>
+        </li>
+        <li >
+          <a href="#event-onFileStatusChanged"
+             data-list-item
+             >onFileStatusChanged</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+         <!--@Use the <code>chrome.syncFileSystem</code> API to save and synchronize data
+         on Google Drive. This API is NOT for accessing arbitrary user docs stored in
+         Google Drive. It provides app-specific syncable storage for offline and
+         caching usage so that the same data can be available across different
+         clients. Read <a href="app_storage.html">Manage Data</a> for more on using
+         this API.-->
+         使用 <code>chrome.syncFileSystem</code> API 在 Google
+         云端硬盘上保存和同步数据。该 API
+         <em>并不是</em>用来访问存储在 Google
+         云端硬盘上的任何用户文档的，它提供了应用专用的可同步存储，用于离线和缓存用途，这样同样的数据就可以在不同的客户端间使用。有关使用该
+         API 的更多信息，请阅读<a href="app_storage.html">管理数据</a>。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 27<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "syncFileSystem"
+                </span>
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">了解更多<!--@:-->：</td>
+    <td>
+        <a href="app_storage.html">
+        管理数据
+                </a>
+        <br>
+        <a href="https://developers.google.com/live/shows/83992232-2001/">
+        Chrome 浏览器办公时间：同步文件系统
+                </a>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.syncFileSystem <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-ServiceStatus">ServiceStatus</h3>
+        <div>
+          <dd>enum of
+            <code>"initializing"</code>, 
+            <code>"running"</code>, 
+            <code>"authentication_required"</code>, 
+            <code>"temporary_unavailable"</code>, 
+            or <code>"disabled"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-FileStatus">FileStatus</h3>
+        <div>
+          <dd>enum of
+            <code>"synced"</code>, 
+            <code>"pending"</code>, 
+            or <code>"conflicting"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ConflictResolutionPolicy">ConflictResolutionPolicy</h3>
+        <div>
+          <dd>enum of
+            <code>"last_write_win"</code>, 
+            or <code>"manual"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-requestFileSystem"
+            >requestFileSystem
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.requestFileSystem</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns a syncable filesystem backed by Google Drive. The returned <code>DOMFileSystem</code> instance can be operated on in the same way as the Temporary and Persistant file systems (see <a href="http://www.w3.org/TR/file-system-api/">http://www.w3.org/TR/file-system-api/</a>), except that the filesystem object returned for Sync FileSystem does <b>NOT</b> support directory operations (yet). You can get a list of file entries by reading the root directory (by <a href="http://www.w3.org/TR/file-system-api/#widl-DirectoryEntry-createReader-DirectoryReader">creating a new DirectoryReader</a>), but cannot create a new directory in it.<br/><br/> Calling this multiple times from the same app will return the same handle to the same file system.--> 返回由 Google 云端硬盘支持的同步文件系统，返回的 <code>DOMFileSystem</code> 实例可以以类似于临时和持久文件系统（参见 <a href="http://www.w3.org/TR/file-system-api/">http://www.w3.org/TR/file-system-api/</a>）的方式操作，但是返回的文件系统对象目前<b >还不</b>支持目录操作。您可以读取根目录，获取文件项列表（<a href"http://www.w3.org/TR/file-system-api/#widl-DirectoryEntry-createReader-DirectoryReader" >创建新的 DirectoryReader</a>），但是不能在里面创建目录。在同一个应用中多次调用该方法会返回指向同一个文件系统的同一个句柄。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-requestFileSystem-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-requestFileSystem-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A callback type for requestFileSystem.--> 用于 requestFileSystem 的回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(domfilesystem fileSystem) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-fileSystem"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-fileSystem" title="">
+                        fileSystem
+                        <span class="property">
+                          (
+                            domfilesystem
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setConflictResolutionPolicy"
+            >setConflictResolutionPolicy
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.setConflictResolutionPolicy</span>(<span><a href="syncFileSystem.html#type-ConflictResolutionPolicy">ConflictResolutionPolicy</a> policy</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Sets the default conflict resolution policy for the <code>'syncable'</code> file storage for the app. By default it is set to <code>'last_write_win'</code>. When conflict resolution policy is set to <code>'last_write_win'</code> conflicts for existing files are automatically resolved next time the file is updated. |callback| can be optionally given to know if the request has succeeded or not.--> 为应用设置同步文件存储的默认冲突解决策略，默认情况下为 <code>'last_write_win'</code>（手动）。当冲突解决策略设置为 <code>'last_write_win'</code> 时，已有文件的冲突在文件下一次更新时会自动解决。可以指定可选的 <code>callback</code>，以便知道请求是否成功。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setConflictResolutionPolicy-policy"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setConflictResolutionPolicy-policy" title="">
+                      policy
+                      <span class="property">
+                        (
+                          <a href="syncFileSystem.html#type-ConflictResolutionPolicy">ConflictResolutionPolicy</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setConflictResolutionPolicy-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setConflictResolutionPolicy-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A generic result callback to indicate success or failure.--> 表示成功或失败的一般结果回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getConflictResolutionPolicy"
+            >getConflictResolutionPolicy
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.getConflictResolutionPolicy</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Gets the current conflict resolution policy.--> 获取当前的冲突解决策略。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getConflictResolutionPolicy-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getConflictResolutionPolicy-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A callback type for getConflictResolutionPolicy.--> 用于 getConflictResolutionPolicy 的回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="syncFileSystem.html#type-ConflictResolutionPolicy">ConflictResolutionPolicy</a> policy) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-policy"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-policy" title="">
+                        policy
+                        <span class="property">
+                          (
+                            <a href="syncFileSystem.html#type-ConflictResolutionPolicy">ConflictResolutionPolicy</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getUsageAndQuota"
+            >getUsageAndQuota
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.getUsageAndQuota</span>(<span>domfilesystem fileSystem</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns the current usage and quota in bytes for the <code>'syncable'</code> file storage for the app.--> 返回该应用同步文件存储的当前用量与配额，以字节为单位。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getUsageAndQuota-fileSystem"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getUsageAndQuota-fileSystem" title="">
+                      fileSystem
+                      <span class="property">
+                        (
+                          domfilesystem
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getUsageAndQuota-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getUsageAndQuota-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A callback type for getUsageAndQuota.--> 用于 getUsageAndQuota 的回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object info) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-info"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-info" title="">
+                        info
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-info-usageBytes"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-info-usageBytes" title="">
+                              usageBytes
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-info-quotaBytes"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-info-quotaBytes" title="">
+                              quotaBytes
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getFileStatus"
+            >getFileStatus
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.getFileStatus</span>(<span>entry fileEntry</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns the <a href="syncFileSystem.html#type-FileStatus">FileStatus</a> for the given <code>fileEntry</code>. The status value can be <code>'synced'</code>, <code>'pending'</code> or <code>'conflicting'</code>. Note that <code>'conflicting'</code> state only happens when the service's conflict resolution policy is set to <code>'manual'</code>.--> 返回指定 <code>fileEntry</code>（文件项）的 <a href="syncFileSystem.html#type-FileStatus">FileStatus</a> （文件状态），状态值可以为 <code>'synced'</code>（已同步）、<code>'pending'</code>（待定）或 <code>'conflicting'</code>（冲突）。注意，只有当服务的冲突解决策略设置为 <code>'manual'</code>（手动）时，才会发生 <code>'conflicting'</code>（冲突）状态。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getFileStatus-fileEntry"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getFileStatus-fileEntry" title="">
+                      fileEntry
+                      <span class="property">
+                        (
+                          entry
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getFileStatus-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getFileStatus-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A callback type for getFileStatus.--> 用于 getFileStatus 的回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="syncFileSystem.html#type-FileStatus">FileStatus</a> status) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-status"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-status" title="">
+                        status
+                        <span class="property">
+                          (
+                            <a href="syncFileSystem.html#type-FileStatus">FileStatus</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getFileStatuses"
+            >getFileStatuses
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.getFileStatuses</span>(<span>array of object fileEntries</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns each <a href="syncFileSystem.html#type-FileStatus">FileStatus</a> for the given <code>fileEntry</code> array. Typically called with the result from dirReader.readEntries().--> 返回指定 <code>fileEntry</code>（文件项）数组的每一个 <a href="syncFileSystem.html#type-FileStatus">FileStatus</a>（文件状态），调用时通常传递 dirReader.readEntries() 的结果。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getFileStatuses-fileEntries"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getFileStatuses-fileEntries" title="">
+                      fileEntries
+                      <span class="property">
+                        (
+                          array of object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <h4 title=""><!--@Properties of each object-->每一个对象的属性</h4>
+                    <dl>
+                      <div>
+                        <div>
+                        </div>
+                      </div>
+                    </dl>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getFileStatuses-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getFileStatuses-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A callback type for getFileStatuses.--> 用于 getFileStatuses 的回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of object status) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-status"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-status" title="">
+                        status
+                        <span class="property">
+                          (
+                            array of object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <h4 title=""><!--@Properties of each object-->每一个对象的属性</h4>
+                      <dl>
+                        <div>
+                          <div>
+                              <dd>
+                                <dl>
+                                  <div>
+                                    <a name="property-statusType-fileEntry"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-statusType-fileEntry" title="">
+                                          fileEntry
+                                          <span class="property">
+                                            (
+                                              entry
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@One of the Entry's originally given to getFileStatuses.--> 原来提供给 getFileStatuses 的某个 Entry（文件项）。
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-statusType-status"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-statusType-status" title="">
+                                          status
+                                          <span class="property">
+                                            (
+                                              <a href="syncFileSystem.html#type-FileStatus">FileStatus</a>
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@The status value can be <code>'synced'</code>, <code>'pending'</code> or <code>'conflicting'</code>.--> 状态值可以为 <code>'synced'</code>（已同步）、<code>'pending'</code>（待定）或 <code>'conflicting'</code>（冲突）。
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-statusType-error"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-statusType-error" title="">
+                                          error
+                                          <span class="property">
+                                            (
+                                              <span class="optional">optional</span>
+                                              string
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@Optional error that is only returned if there was a problem retrieving the FileStatus for the given file.--> 如果获取指定文件的文件状态时遇到问题则返回可选的错误。
+                                      </dd>
+                                    </dl>
+                                  </div>
+                                </dl>
+                              </dd>
+                          </div>
+                        </div>
+                      </dl>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getServiceStatus"
+            >getServiceStatus
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.syncFileSystem.getServiceStatus</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns the current sync backend status.--> 获取同步后端的当前状态。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getServiceStatus-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getServiceStatus-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@A callback type for getServiceStatus.--> 用于 getServiceStatus 的回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="syncFileSystem.html#type-ServiceStatus">ServiceStatus</a> status) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-status"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-status" title="">
+                        status
+                        <span class="property">
+                          (
+                            <a href="syncFileSystem.html#type-ServiceStatus">ServiceStatus</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onServiceStatusChanged">onServiceStatusChanged</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when an error or other status change has happened in the sync backend (for example, when the sync is temporarily disabled due to network or authentication error).--> 当同步后端发生错误或其他状态更改时产生（例如同步由于网络或认证错误而暂时不可用）。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.syncFileSystem.onServiceStatusChanged.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onServiceStatusChanged-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onServiceStatusChanged-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object detail) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onServiceStatusChanged-detail"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onServiceStatusChanged-detail" title="">
+                              detail
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-detail-state"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-detail-state" title="">
+                                    state
+                                    <span class="property">
+                                      (
+                                        <a href="syncFileSystem.html#type-ServiceStatus">ServiceStatus</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-detail-description"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-detail-description" title="">
+                                    description
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onFileStatusChanged">onFileStatusChanged</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when a file has been updated by the background sync service.--> 当文件由后台的同步服务更新时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.syncFileSystem.onFileStatusChanged.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onFileStatusChanged-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onFileStatusChanged-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object detail) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onFileStatusChanged-detail"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onFileStatusChanged-detail" title="">
+                              detail
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-detail-fileEntry"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-detail-fileEntry" title="">
+                                    fileEntry
+                                    <span class="property">
+                                      (
+                                        entry
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@<code>fileEntry</code> for the target file whose status has changed. Contains name and path information of synchronized file. On file deletion, <code>fileEntry</code> information will still be available but file will no longer exist.--> 状态更改的目标文件的 <code>fileEntry</code>（文件项），包含已同步文件的名称和路径信息。当文件删除时，<code>fileEntry</code> 信息仍然可用，但文件不再存在。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-detail-status"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-detail-status" title="">
+                                    status
+                                    <span class="property">
+                                      (
+                                        <a href="syncFileSystem.html#type-FileStatus">FileStatus</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@Resulting file status after <a href="syncFileSystem.html#event-onFileStatusChanged">onFileStatusChanged</a> event. The status value can be <code>'synced'</code>, <code>'pending'</code> or <code>'conflicting'</code>.--> <a href="syncFileSystem.html#event-onFileStatusChanged">onFileStatusChanged</a> 事件发生后的文件状态，状态值可以为 <code>'synced'</code>（已同步）、<code>'pending'</code>（待定）或 <code>'conflicting'</code>（冲突）。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-detail-action"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-detail-action" title="">
+                                    action
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        enum of <code>"added"</code>, <code>"updated"</code>, or <code>"deleted"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@Sync action taken to fire <a href="syncFileSystem.html#event-onFileStatusChanged">onFileStatusChanged</a> event. The action value can be <code>'added'</code>, <code>'updated'</code> or <code>'deleted'</code>. Only applies if status is <code>'synced'</code>.--> 产生 <a href="syncFileSystem.html#event-onFileStatusChanged">onFileStatusChanged</a> 事件时执行的同步操作，操作值可以为 <code>'added'</code>（添加）、<code>'updated'</code>（更新）或 <code>'deleted'</code>（删除）。只有当状态为 <code>'synced'</code>（已同步）时才适用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-detail-direction"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-detail-direction" title="">
+                                    direction
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        enum of <code>"local_to_remote"</code>, or <code>"remote_to_local"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@Sync direction for the <a href="syncFileSystem.html#event-onFileStatusChanged">onFileStatusChanged</a> event. Sync direction value can be <code>'local_to_remote'</code> or <code>'remote_to_local'</code>. Only applies if status is <code>'synced'</code>.--> 本次 <a href="syncFileSystem.html#event-onFileStatusChanged">onFileStatusChanged</a> 事件的方向，同步方向值可以为 <code>'local_to_remote'</code>（本地到远程）或  <code>'remote_to_local'</code>（远程到本地）。只有当状态为 <code>'synced'</code> 时才适用。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="https:////plus.google.com/112419687097816423998?prsrc=3" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="https://developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

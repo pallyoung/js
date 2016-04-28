@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.fileSystem - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/fileSystem.html">https://crxdoc-zh.appspot.com/apps/fileSystem.html</a><br>
+<b>Title:</b> chrome.fileSystem - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 52680<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.fileSystem</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-getDisplayPath"
+             data-list-item
+             >getDisplayPath        </a>
+        </li>
+        <li >
+          <a href="#method-getWritableEntry"
+             data-list-item
+             >getWritableEntry        </a>
+        </li>
+        <li >
+          <a href="#method-isWritableEntry"
+             data-list-item
+             >isWritableEntry        </a>
+        </li>
+        <li >
+          <a href="#method-chooseEntry"
+             data-list-item
+             >chooseEntry        </a>
+        </li>
+        <li >
+          <a href="#method-restoreEntry"
+             data-list-item
+             >restoreEntry        </a>
+        </li>
+        <li >
+          <a href="#method-isRestorable"
+             data-list-item
+             >isRestorable        </a>
+        </li>
+        <li >
+          <a href="#method-retainEntry"
+             data-list-item
+             >retainEntry        </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+         <!--@Use the <code>chrome.fileSystem</code> API to create, read, navigate,
+         and write to a sandboxed section of the user's local file system. With this
+         API, Chrome Apps can read and write to a user-selected location. For
+         example, a text editor app can use the API to read and write local documents.
+         All failures are notified via chrome.runtime.lastError.-->
+         使用 <code>chrome.fileSystem</code> API
+         创建、读取、浏览与写入用户本地文件系统中经过沙盒屏蔽的一个区域。使用该
+         API，Chrome 应用可以读取和写入用户选定的位置，例如文本编辑应用可以使用该
+         API 读取和写入本地文档。所有失败信息都通过 <a href="https://crxdoc-zh.appspot.com/apps/runtime.html#property-lastError">runtime.lastError</a> 通知。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 23<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "fileSystem"
+                </span>
+        <br>
+        <span class="code">
+        {"fileSystem": ["write"]}
+                </span>
+        <br>
+        <span class="code">
+        {"fileSystem": ["write", "retainEntries", "directory"]}
+                </span>
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">了解更多<!--@:-->：</td>
+    <td>
+        <a href="app_storage.html">
+        管理数据
+                </a>
+        <br>
+        <a href="angular_framework.html">
+        用 AngularJS 建立应用
+                </a>
+        <br>
+        <a href="https://developers.google.com/live/shows/7320022-1001/">
+        Chrome 应用办公时间：TextDrive 与 AngularJS
+                </a>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.fileSystem <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-getDisplayPath"
+            >getDisplayPath
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.fileSystem.getDisplayPath</span>(<span>entry entry</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Get the display path of an Entry object. The display path is based on the full path of the file or directory on the local file system, but may be made more readable for display purposes.--> 获取 <code>FileEntry</code> 对象的显示路径。显示路径基于文件在本地文件系统上的完整路径，但是可能会为了显示的目的而使可读性更好。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getDisplayPath-entry"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getDisplayPath-entry" title="">
+                      entry
+                      <span class="property">
+                        (
+                          entry
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getDisplayPath-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getDisplayPath-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(string displayPath) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-displayPath"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-displayPath" title="">
+                        displayPath
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getWritableEntry"
+            >getWritableEntry
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.fileSystem.getWritableEntry</span>(<span>entry entry</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Get a writable Entry from another Entry. This call will fail with a runtime error if the application does not have the 'write' permission under 'fileSystem'. If entry is a DirectoryEntry, this call will fail if the application does not have the 'directory' permission under 'fileSystem'.--> 从另一个 <code>Entry</code> 获取可写的 Entry。如果应用程序没有 'fileSystem' 下的 'write' 权限则该方法会失败，产生运行时错误。如果项目为 DirectoryEntry（目录项），应用程序必须拥有 "fileSystem" 之下的 "directory" 权限，否则调用会失败。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getWritableEntry-entry"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getWritableEntry-entry" title="">
+                      entry
+                      <span class="property">
+                        (
+                          entry
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getWritableEntry-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getWritableEntry-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(entry entry) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-entry"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-entry" title="">
+                        entry
+                        <span class="property">
+                          (
+                            entry
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-isWritableEntry"
+            >isWritableEntry
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.fileSystem.isWritableEntry</span>(<span>entry entry</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Gets whether this Entry is writable or not.--> 获取该 <code>Entry</code> 对象是否可以写入的信息。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-isWritableEntry-entry"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-isWritableEntry-entry" title="">
+                      entry
+                      <span class="property">
+                        (
+                          entry
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-isWritableEntry-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-isWritableEntry-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean isWritable) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-isWritable"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-isWritable" title="">
+                        isWritable
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-chooseEntry"
+            >chooseEntry
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.fileSystem.chooseEntry</span>(<span class="optional">object options</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Ask the user to choose a file or directory.--> 让用户选择文件或目录。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-chooseEntry-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-chooseEntry-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-options-type"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-type" title="">
+                            type
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                enum of <code>"openFile"</code>, <code>"openWritableFile"</code>, <code>"saveFile"</code>, or <code>"openDirectory"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Type of the prompt to show. The default is 'openFile'.--> 显示的提示类型，默认为 'openFile'（打开文件）。
+                            <dl>
+                              <dt>openFile</dt>
+                              <dd>
+                                <!--@Prompts the user to open an existing file and returns a FileEntry on success. From Chrome 31 onwards, the FileEntry will be writable if the application has the 'write' permission under 'fileSystem'; otherwise, the FileEntry will be read-only.--> 提示用户打开现有文件，并在成功后返回只读的 FileEntry（文件项）。从 Chrome 31 开始，如果应用程序拥有 "fileSystem" 之下的 "write" 权限，返回的 FileEntry 可写，否则只读。
+                              </dd>
+                            </dl>
+                            <dl>
+                              <dt>openWritableFile</dt>
+                              <dd>
+                                <!--@Prompts the user to open an existing file and returns a writable FileEntry on success. Calls using this type will fail with a runtime error if the application doesn't have the 'write' permission under 'fileSystem'.--> 提示用户打开现有文件，并在成功后返回可写的 FileEntry（文件项）。如果应用没有 'fileSystem' 下的 'write' 权限，使用这种类型的调用将会失败，产生运行时错误。
+                              </dd>
+                            </dl>
+                            <dl>
+                              <dt>saveFile</dt>
+                              <dd>
+                                <!--@Prompts the user to open an existing file or a new file and returns a writable FileEntry on success. Calls using this type will fail with a runtime error if the application doesn't have the 'write' permission under 'fileSystem'.--> 提示用户打开现有文件或新文件，并在成功后返回可写的 FileEntry（文件项）。如果应用没有 'fileSystem' 下的 'write' 权限，使用这种类型的调用将会失败，产生运行时错误。
+                              </dd>
+                            </dl>
+                            <dl>
+                              <dt>openDirectory</dt>
+                              <dd>
+                                <!--@Prompts the user to open a directory and returns a DirectoryEntry on success. Calls using this type will fail with a runtime error if the application doesn't have the 'directory' permission under 'fileSystem'. If the application has the 'write' permission under 'fileSystem', the returned DirectoryEntry will be writable; otherwise it will be read-only. New in Chrome 31.--> 提示用户打开目录，并在成功后返回 DirectoryEntry（目录项）。如果应用程序没有 "fileSystem" 之下的 "directory" 权限，使用这种类型调用会失败，产生运行时错误。如果应用程序拥有 "fileSystem" 之下的 "write" 权限，返回的 DirectoryEntry 可写，否则只读。该类型在 Chrome 31 中新增。
+                              </dd>
+                            </dl>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-suggestedName"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-suggestedName" title="">
+                            suggestedName
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@The suggested file name that will be presented to the user as the default name to read or write. This is optional.--> 展现给用户的推荐文件名，作为要读取或写入的默认文件名，该参数可选。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-accepts"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-accepts" title="">
+                            accepts
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of object
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@The optional list of accept options for this file opener. Each option will be presented as a unique group to the end-user.--> 该文件打开器可选接受选项的列表，对最终用户来说，每一个选项都会呈现为唯一的分组。
+                          <h4 title=""><!--@Properties of each object-->每一个对象的属性</h4>
+                          <dl>
+                            <div>
+                              <div>
+                                  <dd>
+                                    <dl>
+                                      <div>
+                                        <a name="property-acceptsType-description"></a>
+                                        <dl>
+                                          <dt>
+                                            <h4 id="property-acceptsType-description" title="">
+                                              description
+                                              <span class="property">
+                                                (
+                                                  <span class="optional">optional</span>
+                                                  string
+                                                )
+                                              </span>
+                                            </h4>
+                                          </dt>
+                                          <dd>
+                                            <!--@This is the optional text description for this option. If not present, a description will be automatically generated; typically containing an expanded list of valid extensions (e.g. "text/html" may expand to "*.html, *.htm").--> 这是该选项的可选文字描述。如果不存在的话，将会自动生成描述，通常包含扩充之后的有效扩展名列表（例如 "text/html" 将扩充为 "*.html, *.htm"）。
+                                          </dd>
+                                        </dl>
+                                      </div><div>
+                                        <a name="property-acceptsType-mimeTypes"></a>
+                                        <dl>
+                                          <dt>
+                                            <h4 id="property-acceptsType-mimeTypes" title="">
+                                              mimeTypes
+                                              <span class="property">
+                                                (
+                                                  <span class="optional">optional</span>
+                                                  array of string
+                                                )
+                                              </span>
+                                            </h4>
+                                          </dt>
+                                          <dd>
+                                            <!--@Mime-types to accept, e.g. "image/jpeg" or "audio/*". One of mimeTypes or extensions must contain at least one valid element.--> 可接受的 MIME 类型，例如 "image/jpeg" 或 "audio/*"。mimeTypes 或 extensions 其中之一必须包含至少一个有效元素。
+                                          </dd>
+                                        </dl>
+                                      </div><div>
+                                        <a name="property-acceptsType-extensions"></a>
+                                        <dl>
+                                          <dt>
+                                            <h4 id="property-acceptsType-extensions" title="">
+                                              extensions
+                                              <span class="property">
+                                                (
+                                                  <span class="optional">optional</span>
+                                                  array of string
+                                                )
+                                              </span>
+                                            </h4>
+                                          </dt>
+                                          <dd>
+                                            <!--@Extensions to accept, e.g. "jpg", "gif", "crx".--> 可接受的扩展名，例如 ["jpg", "gif", "crx"]。
+                                          </dd>
+                                        </dl>
+                                      </div>
+                                    </dl>
+                                  </dd>
+                              </div>
+                            </div>
+                          </dl>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-acceptsAllTypes"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-acceptsAllTypes" title="">
+                            acceptsAllTypes
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Whether to accept all file types, in addition to the options specified in the accepts argument. The default is true. If the accepts field is unset or contains no valid entries, this will always be reset to true.--> 除了 accepts 字段中指定的选项外，是否接受所有文件类型，默认为 true。如果 accepts 字段未设置或没有包含有效的项，它始终会被重置为 true 。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-acceptsMultiple"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-acceptsMultiple" title="">
+                            acceptsMultiple
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Whether to accept multiple files. This is only supported for openFile and openWritableFile. The callback to chooseEntry will be called with a list of entries if this is set to true. Otherwise it will be called with a single Entry.--> 是否接受多个文件，仅在 'openFile'（打开文件）和 'openWritableFile'（打开可写文件）时支持。如果该属性设置为 true，调用 chooseEntry 的回调函数时会传递文件项列表，否则传递单个文件项。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-chooseEntry-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-chooseEntry-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(entry entry, array of fileentry fileEntries) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-entry"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-entry" title="">
+                        entry
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            entry
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+                <div>
+                  <a name="property-callback-fileEntries"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-fileEntries" title="">
+                        fileEntries
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            array of fileentry
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <h4 title=""><!--@Properties of each object-->每一个对象的属性</h4>
+                      <dl>
+                        <div>
+                          <div>
+                          </div>
+                        </div>
+                      </dl>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-restoreEntry"
+            >restoreEntry
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.fileSystem.restoreEntry</span>(<span>string id</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns the file entry with the given id if it can be restored. This call will fail with a runtime error otherwise. This method is new in Chrome 31.--> 如果可以恢复则恢复指定标识符的文件项，否则该调用会失败，产生运行时错误。该方法在 Chrome 31 中增加。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-restoreEntry-id"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-restoreEntry-id" title="">
+                      id
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-restoreEntry-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-restoreEntry-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(entry entry) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-entry"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-entry" title="">
+                        entry
+                        <span class="property">
+                          (
+                            entry
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-isRestorable"
+            >isRestorable
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.fileSystem.isRestorable</span>(<span>string id</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns whether the app has permission to restore the entry with the given id. This method is new in Chrome 31.--> 返回应用是否有权限恢复指定标识符的文件项。该方法在 Chrome 30 中增加。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-isRestorable-id"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-isRestorable-id" title="">
+                      id
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-isRestorable-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-isRestorable-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean isRestorable) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-isRestorable"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-isRestorable" title="">
+                        isRestorable
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-retainEntry"
+            >retainEntry
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>string chrome.fileSystem.retainEntry</span>(<span>entry entry</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns an id that can be passed to restoreEntry to regain access to a given file entry. Only the 500 most recently used entries are retained, where calls to retainEntry and restoreEntry count as use. If the app has the 'retainEntries' permission under 'fileSystem', entries are retained indefinitely. Otherwise, entries are retained only while the app is running and across restarts. This method is new in Chrome 31.--> 返回一个标识符，可以传递给 restoreEntry 而重新获得指定文件项的访问。只能保留最近使用的 500 个项目，调用 retainEntry 和 restoreEntry 都算作使用。如果应用拥有 'fileSystem' 之下的 'retainEntries' 权限，项目将永久保留。否则，只有应用运行时或重新启动后才会保留。该方法在 Chrome 31 中增加。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-retainEntry-entry"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-retainEntry-entry" title="">
+                      entry
+                      <span class="property">
+                        (
+                          entry
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

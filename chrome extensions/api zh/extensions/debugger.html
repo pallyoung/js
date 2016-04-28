@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.debugger - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/debugger.html">https://crxdoc-zh.appspot.com/extensions/debugger.html</a><br>
+<b>Title:</b> chrome.debugger - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 46335<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.debugger</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >说明</a>
+    </li>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-Debuggee"
+             data-list-item
+             >Debuggee</a>
+        </li>
+        <li >
+          <a href="#type-TargetInfo"
+             data-list-item
+             >TargetInfo</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-attach"
+             data-list-item
+             >attach        </a>
+        </li>
+        <li >
+          <a href="#method-detach"
+             data-list-item
+             >detach        </a>
+        </li>
+        <li >
+          <a href="#method-sendCommand"
+             data-list-item
+             >sendCommand        </a>
+        </li>
+        <li >
+          <a href="#method-getTargets"
+             data-list-item
+             >getTargets        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onEvent"
+             data-list-item
+             >onEvent</a>
+        </li>
+        <li >
+          <a href="#event-onDetach"
+             data-list-item
+             >onDetach</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        <code>chrome.debugger</code> API 是 <a href='https://developers.google.com/chrome-developer-tools/docs/remote-debugging'>Chrome 远程调试协议</a>（英文）的另一种消息传输方式。使用 <code>chrome.debugger</code> 可以附加到一个或多个标签页，以便查看网络交互、调试 JavaScript、改变 DOM 和 CSS 等等。使用调试对象的标签页标识符来指定 sendCommand 的目标标签页，并在 onEvent 的回调函数中通过标签页标识符分发事件。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 18<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "debugger"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="manifest"><!--@Notes-->说明</h2>
+
+<p>
+<!--@As of today, attaching to the tab by means of the debugger API
+and using embedded Chrome DevTools with that tab are mutually exclusive.
+If user invokes Chrome DevTools while extension is attached to the tab,
+debugging session is terminated. Extension can re-establish it later.-->
+目前，通过调试器 API 附加到标签页与在同一标签页使用内置的 Chrome
+浏览器开发者工具两者不能同时进行。如果用户在扩展程序已附加到标签页时调用了
+Chrome 浏览器的开发者工具，调试会话将终止，扩展程序可以之后再重新建立会话。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p>
+<!--@You must declare the "debugger" permission in your extension's manifest
+to use this API.-->
+您必须在您的扩展程序的清单文件中声明 "debugger" 权限才能使用这一 API。
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+<b>  "permissions": [
+    "debugger",
+  ]</b>,
+  ...
+}
+</pre>
+
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@You can find samples of this API in
+<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#debugger">Samples</a>.-->
+您可以在<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#debugger">示例</a>中找到这一 API 的示例。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.debugger <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-Debuggee">Debuggee</h3>
+        <div>
+          <dd>调试对象的标识符，必须指定 tabId 或 extensionId 中的某一个。</dd>
+            <h3 id="Debuggee-properties" class="capitalize" title="">
+              <a href="#type-Debuggee">Debuggee</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-Debuggee-tabId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Debuggee-tabId" title="">
+                        tabId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      您要调试的标签页的标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Debuggee-extensionId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Debuggee-extensionId" title="">
+                        extensionId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      您要调试的扩展程序的标识符。只有当目标浏览器上启用了“enable-silent-debugging”标志后，才可以附加到扩展程序的后台网页。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Debuggee-targetId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Debuggee-targetId" title="">
+                        targetId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      调试目标的不透明标识符。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-TargetInfo">TargetInfo</h3>
+        <div>
+          <dd>调试目标的信息。</dd>
+            <h3 id="TargetInfo-properties" class="capitalize" title="">
+              <a href="#type-TargetInfo">TargetInfo</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-TargetInfo-type"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-type" title="">
+                        type
+                        <span class="property">
+                          (
+                            enum of <code>"page"</code>, <code>"background_page"</code>, <code>"worker"</code>, or <code>"other"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      目标类型。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-id"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-id" title="">
+                        id
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      目标标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-tabId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-tabId" title="">
+                        tabId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果 type == 'page'，则为标签页标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-extensionId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-extensionId" title="">
+                        extensionId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果 type == 'background_page'，则为扩展程序标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-attached"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-attached" title="">
+                        attached
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果已附加调试器则为 true。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-title"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-title" title="">
+                        title
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      目标网页的标题。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-url" title="">
+                        url
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      目标 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-TargetInfo-faviconUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-TargetInfo-faviconUrl" title="">
+                        faviconUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      目标的收藏夹图标 URL。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-attach"
+            >attach
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.debugger.attach</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a> target</span>, <span>string requiredVersion</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            将调试器附加到指定目标。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-attach-target"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-attach-target" title="">
+                      target
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    您希望附加的调试目标。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-attach-requiredVersion"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-attach-requiredVersion" title="">
+                      requiredVersion
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要求的调试协议版本（"0.1"），您只能附加到主版本号匹配且次要版本号大于或等于指定版本号的调试对象。协议版本可以从<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging">这里</a>获取。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-attach-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-attach-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    附加操作成功或失败后调用。回调函数不接受参数，如果附加失败，<a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a> 会设置为错误消息。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-detach"
+            >detach
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.debugger.detach</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a> target</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            使调试器脱离指定目标。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-detach-target"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-detach-target" title="">
+                      target
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    您希望脱离的调试目标。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-detach-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-detach-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    脱离操作成功或失败后调用。回调函数不接受参数，如果脱离失败，<a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a> 会设置为错误消息。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-sendCommand"
+            >sendCommand
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.debugger.sendCommand</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a> target</span>, <span>string method</span>, <span class="optional">object commandParams</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            将指定命令发送至调试目标。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-sendCommand-target"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendCommand-target" title="">
+                      target
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    您需要发送命令的调试目标。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendCommand-method"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendCommand-method" title="">
+                      method
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    方法名称，应该为<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging">远程调试协议</a>中定义的某一个方法。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendCommand-commandParams"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendCommand-commandParams" title="">
+                      commandParams
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    包含请求参数的 JSON 对象，这一对象必须遵循适用于指定方法的远程调试参数架构。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendCommand-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendCommand-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    响应正文。如果发送消息时产生错误，将不传递参数调用这一回调函数，并将 <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a> 设置为错误消息。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含响应的 JSON 对象。响应的结构取决于方法，在远程调试协议中定义。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getTargets"
+            >getTargets
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.debugger.getTargets</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            返回可用调试目标的列表。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getTargets-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getTargets-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-TargetInfo">TargetInfo</a> result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-TargetInfo">TargetInfo</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含可用调试目标对应的 TargetInfo 对象的数组。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onEvent">onEvent</h3>
+        <div class="description">
+      <p>
+            当调试目标发出事件时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.debugger.onEvent.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onEvent-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onEvent-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a> source, string method, object params) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onEvent-source"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onEvent-source" title="">
+                              source
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            产生这一事件的调试对象。
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onEvent-method"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onEvent-method" title="">
+                              method
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            方法名称，应该为<a href="https://developers.google.com/chrome-developer-tools/docs/remote-debugging">远程调试协议</a>中定义的某一个通知。
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onEvent-params"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onEvent-params" title="">
+                              params
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            包含响应的 JSON 对象。响应的结构取决于方法，在远程调试协议中定义。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onDetach">onDetach</h3>
+        <div class="description">
+      <p>
+            当浏览器终止某个标签页的调试会话时产生。这会在标签页关闭，或者 Chrome 浏览器的开发者工具在已附加调试器的标签页中调用时发生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.debugger.onDetach.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onDetach-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onDetach-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a> source, enum of <code>"target_closed"</code>, <code>"canceled_by_user"</code>, or <code>"replaced_with_devtools"</code> reason) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onDetach-source"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onDetach-source" title="">
+                              source
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/debugger.html#type-Debuggee">Debuggee</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            调试器脱离的调试对象。
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onDetach-reason"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onDetach-reason" title="">
+                              reason
+                              <span class="property">
+                                (
+                                  enum of <code>"target_closed"</code>, <code>"canceled_by_user"</code>, or <code>"replaced_with_devtools"</code>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            连接终止的原因。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

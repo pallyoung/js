@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=640, maximum-scale=3, minimum-scale=0.5" />
+	<title>海外旅游</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/list.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/env.js"></script>
+	<script type="text/javascript" src="js/wx.js"></script>
+	<script type="text/javascript" src="js/wx.init.js"></script>
+	<script type="text/javascript" src="js/list.js"></script>
+	<script type="text/javascript">
+	wx.list();
+	</script>
+</head>
+<body>
+	<header class="header">
+		<input type="button" value="" class="fts32 backbutton">
+		<h1 class="dslb tac">海外旅游</h1>
+	</header>
+	<div class="seach">
+		<p>
+			<span>
+				<img src="images/location.png" alt="">
+				<input type="text" value="上海" readonly="readonly"></span>
+			<span>
+				<img src="images/serch.png" alt="">
+				<input type="text" placeholder="请输入目的地或关键字查询" readonly="readonly"></span>
+		</p>
+	</div>
+	<div class="seachcontent"></div>
+	<section class="productlist">
+		<ul id="list">
+		</ul>
+	</section>
+	<div id="boxDiv" class="disableDiv"></div>
+	<div id="loadingTip" class="loadingTip"><div class="loadingTitle">提示</div><div class="loadingContent"></div></div>
+</body>
+</html>

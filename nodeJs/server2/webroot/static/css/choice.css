@@ -1,0 +1,185 @@
+/*order.css*/
+body{
+	background: rgb(245,245,245);
+}
+.baseinfo,.userinfo,.userinfo1,.beks{
+	background: white
+}
+.baseinfo,.userinfo,.userinfo1{
+	margin-bottom: 2rem
+}
+.baseinfo{
+	height: 6.3rem;
+	padding: 1rem 32px;
+}
+.baseinfo p{
+	display: inline-block;
+	vertical-align: middle;
+	height: 6.3rem;
+}
+.baseinfo p span{
+	display: inline-block;
+	width: 100%;
+	height: 50%;
+	font-size: 1.8rem;
+}
+.baseinfo p:nth-child(1){
+	width: 49%
+
+}
+.baseinfo p:nth-child(1) span:nth-child(1){
+	content: "成人";
+
+}
+.baseinfo p:nth-child(1) span:nth-child(1)::before{
+	content: "应选";
+	background: rgb(220,220,220);
+	border-radius: 4px;
+	padding-left:0.5em;
+	padding-right:0.5em;
+	margin-right:1em;
+	color: rgb(100,100,100);
+
+}
+.baseinfo p:nth-child(1) span:nth-child(1)::after{
+	content: "成人";
+	margin-left:1em;
+
+}
+.baseinfo p:nth-child(1) span:nth-child(2)::before{
+	margin-right:4em;
+	content: "";
+}
+.baseinfo p:nth-child(1) span:nth-child(2)::after{
+	margin-left: 1em;
+	content: "儿童";
+
+}
+.baseinfo p:nth-child(2){
+	width: 49%;
+	border-left: solid 2px rgb(235,235,235);
+	text-align: left;
+}
+.baseinfo p:nth-child(2) span:nth-child(1){
+	color: rgb(255,66,0);
+}
+.baseinfo p:nth-child(2) span:nth-child(2){
+	color: rgb(255,66,0);
+}
+.baseinfo p:nth-child(2) span:nth-child(1)::before{
+	content: "已选";
+	background:rgb(87,110,250);
+	color:white;
+	border-radius: 4px;
+	padding-left:0.5em;
+	padding-right:0.5em;
+	margin-right:1em;
+	margin-left:1em;
+}
+.baseinfo p:nth-child(2) span:nth-child(2)::before{
+	margin-right:5em;
+	content: "";
+}
+.baseinfo p:nth-child(2) span:nth-child(1)::after{
+	margin-left: 1em;
+	content: "成人";
+	color:rgb(87,110,250);
+}
+.baseinfo p:nth-child(2) span:nth-child(2)::after{
+	margin-left: 1em;
+	content: "儿童";
+	color:rgb(87,110,250);
+}
+.userinfo{
+
+}
+.infotype{
+	color: rgb(10,10,10);
+	width: 460px;
+	font-size: 1.8rem
+}
+
+.userinfo p:nth-child(1) span ,.userinfo p:nth-child(1) img{
+	display: inline-block;
+	vertical-align: middle;
+}
+.icon{	
+
+}
+.userinfo>p:first-child{
+	height: 3.4rem;
+	line-height: 3.4rem;
+	border-bottom: solid 0.1rem rgb(235,235,235);
+	font-size: 0;
+	color: rgb(130,130,130);
+	margin-left: 32px;
+
+}
+.userinfo p:last-child,.userinfo1 p:last-child{
+	border-bottom: none;
+}
+.userinfo>p:first-child{
+	margin-left:0;
+	padding: 0 32px;
+	font-size: 0;
+}
+.userdisplay{
+}
+.users,.addbutton{
+	display: inline-block;
+	vertical-align: middle;
+}
+.users{
+}
+.users li{
+	width: inherit;
+	height: 5.4rem;
+	line-height: 5.4rem;
+	font-size: 0;
+	border-bottom: solid 0.1rem rgb(235,235,235);
+	padding: 0 32px;
+}
+.users li div ,.users li img{
+	display: inline-block;
+	vertical-align: middle;
+}
+.users li div p:nth-child(2){
+	color: rgb(130,130,130);
+	font-size: 0.8em
+
+}
+.users li img{
+	margin: 1rem 0;
+}
+.users li:last-child{
+	border-bottom: none;
+}
+div.usersinfo{
+	width: 440px;
+	font-size: 1.8rem;
+	height:2.4em;
+}
+div.usersinfo p{
+	height:1.2em;
+	line-height:1.2em;
+}
+div.usersinfo p:nth-child(1){
+}
+.beks{
+	font-size: 1.4rem;
+	border-top:  solid 2px rgb(235,235,235);
+	border-bottom:  solid 2px rgb(235,235,235);
+	height: 8.37rem;
+	padding: 1rem 32px;
+	color: rgb(130,130,130);
+}
+.tells{
+	font-size: 1.2rem;
+	padding: 1rem 32px;
+	color: rgb(130,130,130);
+	margin-bottom: 2rem;
+	background: rgb(245,245,245);
+}
+.tells span{
+	color: rgb(255,66,0)
+};

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>清单文件版本 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/manifestVersion.html">https://crxdoc-zh.appspot.com/extensions/manifestVersion.html</a><br>
+<b>Title:</b> 清单文件版本 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 28962<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#current-version"
+         data-list-item
+         >当前版本</a>
+    </li>
+    <li >
+      <a href="#manifest-v1-support-schedule"
+         data-list-item
+         >清单文件版本 1 支持计划</a>
+      <ol>
+        <li >
+          <a href="#manifest-v1-august2012"
+             data-list-item
+             >2012 年 8 月</a>
+        </li>
+        <li >
+          <a href="#manifest-v1-march2013"
+             data-list-item
+             >2013 年 3 月</a>
+        </li>
+        <li >
+          <a href="#manifest-v1-april2013"
+             data-list-item
+             >2013 年 4 月</a>
+        </li>
+        <li >
+          <a href="#manifest-v1-june2013"
+             data-list-item
+             >2013 年 6 月</a>
+        </li>
+        <li >
+          <a href="#manifest-v1-september2013"
+             data-list-item
+             >2013 年 9 月</a>
+        </li>
+        <li >
+          <a href="#manifest-v1-january2014"
+             data-list-item
+             >2014 年 1 月</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#manifest-v1-changes"
+         data-list-item
+         >版本 1 与版本 2 之间的更改</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Manifest Version-->清单文件版本</h1>
+
+<style type="text/css">
+#schedule h3 {
+  margin-bottom:0;
+}
+
+#schedule p {
+  margin-top:0;
+  margin-bottom:1em;
+}
+</style>
+
+<p>
+  <!--@Extensions, themes, and applications are simply bundles of resources, wrapped
+  up with a <a href="manifest.html"><code>manifest.json</code></a> file that
+  describes the package's contents. The format of this file is generally stable,
+  but occasionally breaking changes must be made to address important issues.
+  Developers should specify which version of the manifest specification their
+  package targets by setting a <code>manifest_version</code> key in their
+  manifests.-->
+  扩展程序、主题背景以及应用只不过是打包的资源，另外附带一个
+<a href="manifest.html"><code>manifest.json</code></a>
+文件，描述包的内容。该文件的格式大体上是稳定的，但是偶尔需要重大更改，解决重大问题。开发者应该在清单文件中设置
+<code>manifest_version</code>
+属性，指定他们的包使用的清单文件规范的版本。
+</p>
+
+<h2 id="current-version"><!--@Current Version-->当前版本</h2>
+
+<p>
+  <!--@Developers should currently specify-->
+  目前，开发人员应该指定
+  <strong><code>'manifest_version': 2</code></strong><!--@:-->：
+</p>
+
+<pre>{
+  ...,
+  "manifest_version": 2,
+  ...
+}</pre>
+
+<p>
+  <!--@Manifest version 1 was <em>deprecated</em> in Chrome 18, and support will
+  be phased out according to the following schedule.-->
+  清单文件版本 1 在 Chrome 18
+  及更高版本中<em>弃用</em>，并且根据下列计划，将逐渐减少对它的支持。
+</p>
+
+<h2 id="manifest-v1-support-schedule"><!--@Manifest version 1 support schedule-->清单文件版本 1 支持计划</h2>
+
+<div id="schedule">
+<h3 id="manifest-v1-august2012"><!--@August 2012-->2012 年 8 月</h3>
+<ul>
+  <li><!--@The Web Store will block creation of new manifest version 1 extensions.-->
+  网上应用店将不再允许创建清单文件版本 1 的扩展程序。
+  <li><!--@The Web Store will allow updates to existing manifest version 1 extensions.-->
+  网上应用店仍然允许更新现有的清单文件版本 1 的扩展程序。
+</ul>
+
+<h3 id="manifest-v1-march2013"><!--@March 2013-->2013 年 3 月</h3>
+<ul>
+  <li><!--@The Web Store will block updates to manifest version 1 extensions on March
+  4th, 2013.-->
+  从 2013 年 3 月 4 日开始，网上应用店将不允许更新清单文件版本 1 的扩展程序。
+</ul>
+
+<h3 id="manifest-v1-april2013"><!--@April 2013-->2013 年 4 月</h3>
+<ul>
+  <li><!--@Chrome 27 Beta will stop packaging manifest version 1 extensions (or loading
+    them for development).-->
+    Chrome 27 Beta 将不再为清单文件版本 1 的扩展程序打包（或为开发而加载）。
+</ul>
+
+<h3 id="manifest-v1-june2013"><!--@June 2013-->2013 年 6 月</h3>
+<ul>
+  <li><!--@The Web Store will remove manifest version 1 extensions from the wall,
+    search results, and category pages.-->
+    清单文件版本 1 的扩展程序将从网上应用店的展区、搜索结果以及分类页面中移除。
+  <li><!--@Notice emails will be sent to all developers with manifest
+    version 1 extensions still in the store reminding them that these
+    extensions will be unpublished and providing update instructions.-->
+    通知邮件将会发送至网上应用店中仍然有清单文件版本 1
+    的扩展程序开发人员，提醒他们这些项目将不会发布，并提供更新指示。
+</ul>
+
+<h3 id="manifest-v1-september2013"><!--@September 2013-->2013 年 9 月</h3>
+<ul>
+  <li><!--@The Web Store will unpublish all manifest version 1 extensions.-->
+  网上应用店将取消发布所有清单文件版本 1 的扩展程序。
+  <li><!--@Final notice emails will be sent to developers with manifest
+    version 1 extensions still in the Web Store.-->
+    最终的通知邮件将发送至网上应用店中仍然有清单文件版本 1 的扩展程序开发人员。
+  <li><!--@Chrome will continue to load and run installed manifest
+    version 1 extensions.-->
+    Chrome 浏览器仍然会继续加载和运行已安装的清单文件版本 1 的项目。
+</ul>
+
+<h3 id="manifest-v1-january2014"><!--@January 2014-->2014 年 1 月</h3>
+<ul>
+  <li><!--@Chrome will stop loading or running manifest
+    version 1 extensions.-->
+    Chrome 浏览器将不再加载或运行清单文件版本 1 的扩展程序。
+</ul>
+</div>
+
+<h2 id="manifest-v1-changes"><!--@Changes between version 1 and 2-->版本 1 与版本 2 之间的更改</h2>
+
+<ul>
+  <li>
+    <p>
+      <!--@A content security policy is set to <code>`script-src 'self'
+      chrome-extension-resource:; object-src 'self'</code> by default. This has
+      a variety of impacts on developers, described at length in the
+      <a href="../extensions/contentSecurityPolicy.html">
+      <code>content_security_policy</code></a> documentation.-->
+      内容安全策略默认情况下设置为
+      <code>"script-src 'self' chrome-extension-resource:; object-src 'self'"</code>。这会对开发人员产生一系列影响，在
+      <a href="../extensions/contentSecurityPolicy.html"><code>content_security_policy</code></a>
+      文档中详细描述。
+    </p>
+  </li>
+  <li>
+    <p>
+      <!--@A package's resources are no longer available by default to external
+      websites (as the <code>src</code> of an image, or a <code>script</code>
+      tag). If you want a website to be able to load a resource contained in
+      your package, you'll need to explicitly whitelist it via the
+      <a href="manifest/web_accessible_resources.html">
+        <code>web_accessible_resources</code>
+      </a> manifest attribute. This is particularly relevant for extensions that
+      build up an interface on a website via injected content scripts.-->
+      扩展程序包的资源默认情况下不再可用于外部网站（作为图片的
+      <code>src</code> 属性或者 <code>script</code>
+      标签）。如果您希望网站能够加载您的扩展程序包中的资源，您需要通过
+      <a href="https://crxdoc-zh.appspot.com/extensions/manifest.html#web_accessible_resources"><code>web_accessible_resources</code></a>
+      清单文件属性明确将它列入白名单。这对于通过插入的内容脚本在网页上建立界面的扩展程序特别有用。
+    </p>
+  </li>
+  <li>
+    <p>
+      <!--@The <code>background_page</code> property has been replaced with a
+      <code>background</code> property that contains <em>either</em> a
+      <code>scripts</code> or <code>page</code> property. Details are available
+      in the <a href="event_pages.html">Event Pages</a> documentation.-->
+      <code>background_page</code>
+      属性已经由
+      <code>background</code>
+      属性取代，它包含
+      <code>scripts</code> 或 <code>page</code>
+      属性中的任意一个，详情在<a href="event_pages.html">事件页面</a>文档中可用。
+    </p>
+  </li>
+  <li>
+    <p><!--@Browser action changes:-->浏览器按钮的更改：</p>
+    <ul>
+      <li>
+        <p>
+          <!--@The <code>browser_actions</code> key in the manifest, and the
+          <code>chrome.browserActions</code> API are gone. Use the singular
+          <a href="browserAction.html">
+            <code>browser_action</code> and <code>chrome.browserAction</code>
+          </a> instead.-->
+          清单文件中的
+          <code>browser_actions</code>
+          键以及
+          <code>chrome.browserActions</code> API
+          已经消失，请改用单数形式的
+          <a href="browserAction.html"><code>browser_action</code>
+          以及
+          <code>chrome.browserAction</code></a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>icons</code> property of <code>browser_action</code> has
+          been removed. Use <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#manifest">
+            the <code>default_icon</code> property
+          </a> or <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#method-setIcon">browserAction.setIcon</a> instead.-->
+          <code>browser_action</code>
+          的
+          <code>icons</code>
+          属性已移除，请改用
+          <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#manifest"><code>default_icon</code></a>
+          属性或者 <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#method-setIcon">browserAction.setIcon</a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>name</code> property of <code>browser_action</code> has been
+          removed. Use <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#manifest">
+            the <code>default_title</code> property
+          </a> or <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#method-setTitle">browserAction.setTitle</a> instead.-->
+          <code>browser_action</code>
+          的
+          <code>name</code>
+          属性已移除，请改用
+          <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#manifest"><code>default_title</code></a>
+          属性或者 <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#method-setTitle">browserAction.setTitle</a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>popup</code> property of <code>browser_action</code> has
+          been removed. Use <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#manifest">
+            the <code>default_popup</code> property
+          </a> or <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#method-setPopup">browserAction.setPopup</a> instead.-->
+          <code>browser_action</code>
+          的
+          <code>popup</code>
+          属性已移除，请改用
+          <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#manifest"><code>default_popup</code></a>
+          属性或者 <a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#method-setPopup">browserAction.setPopup</a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>default_popup</code> property of <code>browser_action</code>
+          can no longer be specified as an object. It must be a string.-->
+          <code>browser_action</code>
+          的
+          <code>default_popup</code>
+          属性不能再指定为对象，而必须为字符串。
+        </p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p><!--@Page action changes:-->页面按钮的更改：</p>
+    <ul>
+      <li>
+        <p>
+          <!--@The <code>page_actions</code> key in the manifest, and the
+          <code>chrome.pageActions</code> API are gone. Use the singular
+          <a href="pageAction.html">
+            <code>page_action</code> and <code>chrome.pageAction</code>
+          </a> instead.-->
+          清单文件中的
+          <code>page_actions</code>
+          键以及
+          <code>chrome.pageActions</code> API
+          已经消失，请改用单数形式的
+          <a href="pageAction.html"><code>page_action</code>
+          以及
+          <code>chrome.pageAction</code></a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>icons</code> property of <code>page_action</code> has been
+          removed. Use <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#manifest">
+            the <code>default_icon</code> property
+          </a> or <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-setIcon">pageAction.setIcon</a> instead.-->
+          <code>page_action</code>
+          的
+          <code>icons</code>
+          属性已移除，请改用
+          <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#manifest"><code>default_icon</code></a>
+          属性或者 <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-setIcon">pageAction.setIcon</a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>name</code> property of <code>page_action</code> has been
+          removed. Use <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#manifest">
+            the <code>default_title</code> property
+          </a> or <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-setTitle">pageAction.setTitle</a> instead.-->
+          <code>page_action</code>
+          的
+          <code>name</code>
+          属性已移除，请改用
+          <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#manifest"><code>default_title</code></a>
+          属性或者 <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-setTitle">pageAction.setTitle</a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>popup</code> property of <code>page_action</code> has been
+          removed. Use <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#manifest">
+            the <code>default_popup</code> property
+          </a> or <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-setPopup">pageAction.setPopup</a> instead.-->
+          <code>page_action</code>
+          的
+          <code>popup</code>
+          属性已移除，请改用
+          <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#manifest"><code>default_popup</code></a>
+          属性或者 <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-setPopup">pageAction.setPopup</a>。
+        </p>
+      </li>
+      <li>
+        <p>
+          <!--@The <code>default_popup</code> property of <code>page_action</code>
+          can no longer be specified as an object. It must be a string.-->
+          <code>page_action</code>
+          的
+          <code>default_popup</code>
+          属性不能再指定为对象，而必须为字符串。
+        </p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>
+      <!--@The <code>chrome.self</code> API has been removed. Use
+      <a href="extension.html"><code>chrome.extension</code></a> instead.-->
+      <code>chrome.self</code> API 已移除，请改用
+      <a href="extension.html"><code>chrome.extension</code></a>。
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>chrome.extension.getTabContentses</code> <!--@(!!!) and-->和
+      <code>chrome.extension.getExtensionTabs</code> <!--@are gone. Use-->
+      已消失，请改用
+      <a href="https://crxdoc-zh.appspot.com/extensions/extension.html#method-getViews">chrome.extension.getViews({ "type": "tab" })</a><!--@ instead.-->。
+    </p>
+  </li>
+  <li>
+    <p>
+      <code>Port.tab</code> <!--@is gone. Use-->已消失，请改用
+      <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-Port-sender">runtime.Port.sender</a><!--@
+      instead.-->。
+    </p>
+  </li>
+</ul>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

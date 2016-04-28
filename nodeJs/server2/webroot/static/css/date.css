@@ -1,0 +1,96 @@
+/*date.css*/
+body{
+	background: rgb(245,245,245);
+}
+.datepicker{
+	width: 100%;
+	margin-bottom: 2rem;
+	background: white
+}
+.datepicker header{
+	height:3em;
+	line-height:3em;
+	font-size: 2rem;
+	text-align: center;
+}
+.datepicker header span{
+	margin: 0 35px
+}
+.datepicker section{
+
+}
+.datepicker section p{
+	overflow: hidden;
+	text-align: center;
+
+}
+.datepicker section p span{
+	text-align: center;
+	float: left;
+	border: solid 1px rgb(226,226,226);
+	height:5.7777rem;
+	width:89px;
+	border-collapse: collapse;
+	line-height:5.7777rem;
+	font-size: 2rem 
+}
+.datepicker section p:nth-child(1) span{
+	background:rgb(245,245,245); 
+	color:rgb(102,102,102);
+}
+.num{
+	width: 100%;
+	background: white;
+	border-top:solid 1px rgb(226,226,226);
+	border-bottom:solid 1px rgb(226,226,226); 
+}
+.num header{
+	padding: 1rem 32px;
+	border-bottom:solid 1px rgb(226,226,226); 
+}
+.num header h4{
+	font-weight: normal;
+	color:rgb(94,94,94)
+}
+.num>p:nth-child(2),.num div{
+	padding: 1rem 32px;
+	border-bottom:solid 1px rgb(226,226,226); 
+}
+.num>p:nth-child(2){
+	height:6.5rem;
+	line-height: 6.5rem;
+	font-size: 2.5rem
+}
+.num p input[type=button]{
+	background: url("../imgs/test.png"); 
+	border-radius: 5px;
+	width: 2.5rem;
+	vertical-align: middle;
+	color:rgb(255,66,0)
+}
+.num p:nth-child(2) input[type=button],.num p:nth-child(2) input[type=text],.num p:nth-child(2) input[type=number],.num p:nth-child(2) label{
+	font-size: 2.5rem;
+	height: 2.5rem;
+	height: 2.5rem;
+	vertical-align: middle;
+	text-align: center;
+}
+.num p:nth-child(2) input[type=number]{
+	width: 50px
+}
+.num p:nth-child(2) label{
+	margin-right: 50px
+}
+.num div:nth-child(3){
+	border-bottom:solid 1px rgb(226,226,226); 
+}
+.num div:nth-child(3) p{
+	font-size: 1.6rem;
+	padding: 0;
+	color: rgb(143,143,143);
+	border-bottom: none;
+}
+.header span{
+	font-size: 1.4rem
+}
+.warming{color:red;font-size: 18px;font-weight: bold;text-align: center;}

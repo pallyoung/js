@@ -1,0 +1,41 @@
+﻿.common_modules{
+	margin:0 25px 0 30px;
+}
+.common_modules header h4{
+	font-weight: normal;
+	height: 2em;
+	line-height: 2em;
+	font-size: 2.4rem;
+}
+.common_modules .details{
+	border-radius: 5px;
+	border: solid 1px rgb(200,200,200);
+	background: white;
+	padding: 1em;
+
+}
+.common_modules .details p{
+	font-size: 0;
+}
+.common_modules .details p.fts24{
+	font-size: 2.4rem;
+	color: rgb(1,114,232);
+}
+.common_modules .details span{
+	display: inline-block;
+	height: 2em;
+	line-height: 2em;
+	font-size: 2.4rem
+}
+.common_button{
+	margin: 2em 160px;
+	width: 320px;
+	background: rgb(1,114,232);
+    color: white;
+    height: 2em;
+    line-height: 2em;
+    font-size: 3.2rem;
+    border-radius: 5px;
+    display: inline-block;
+    text-align: center;
+}

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>后台网页 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/background_pages.html">https://crxdoc-zh.appspot.com/extensions/background_pages.html</a><br>
+<b>Title:</b> 后台网页 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 20750<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#details"
+         data-list-item
+         >详情</a>
+    </li>
+    <li >
+      <a href="#example"
+         data-list-item
+         >例子</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Background Pages-->后台网页</h1>
+
+
+<p id="eventPageWarning" class="warning">
+  <em><!--@Caution:-->注意：</em><!--@ Consider using event pages instead.
+  <a href="event_pages.html">Learn more</a>.-->
+  考虑改用事件页面。<a href="event_pages.html">了解更多</a>
+</p>
+
+<p>
+<!--@A common need for extensions is to have
+a single long-running script to manage some task or state.
+Background pages to the rescue.-->
+扩展程序通常需要有一个长时间运行的脚本来管理一些任务或状态，而后台网页就是为这一目的而设立。
+</p>
+
+<p>
+<!--@As the <a href="https://crxdoc-zh.appspot.com/extensions/overview.html#arch">architecture overview</a> explains,
+the background page is an HTML page that runs in the extension process.
+It exists for the lifetime of your extension,
+and only one instance of it at a time is active. (Exception: if your
+extension uses <a href="manifest/incognito.html">incognito</a>
+"split" mode, a second instance is created for incognito windows.)-->
+如<a href="https://crxdoc-zh.appspot.com/extensions/overview.html#arch">架构概述</a>所述，后台网页是一个 HTML 页面，在扩展程序的进程中运行。它在您的扩展程序整个生命周期中都存在，并且一次只有一个活动的实例。（例外：如果您的扩展程序使用<a
+href="manifest/incognito.html">“分离式”隐身模式</a>，则会为隐身窗口创建另一个实例。）
+</p>
+
+<p>
+<!--@In a typical extension with a background page,
+the UI &mdash;
+for example, the browser action or page action
+and any options page &mdash;
+is implemented by dumb views.
+When the view needs some state,
+it requests the state from the background page.
+When the background page notices a state change,
+the background page tells the views to update.-->
+在一个具有后台页面的典型扩展程序中，用户界面（例如浏览器按钮或页面按钮以及选项页面）通过哑视图（dumb view）实现，当视图需要某些状态时，则从后台页面请求状态；当后台页面得知状态更改时，后台页面通知相应的视图更新。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p>
+<!--@Register your background page in the
+<a href="manifest.html">extension manifest</a>.
+In the common case, a background page
+does not require any HTML markup.
+These kind of background pages can be
+implemented using JavaScript files alone,
+like this:-->
+请在<a href="manifest.html">扩展程序的清单文件</a>中注册您的后台页面。通常情况下，后台页面不需要任何 HTML 标记，这种情况下后台页面可以单独使用 JavaScript文件实现，如下列代码所示：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"background": {
+    "scripts": ["background.js"]
+  }</b>,
+  ...
+}</pre>
+
+<p>
+<!--@A background page will be generated
+by the extension system
+that includes each of the files listed
+in the <code>scripts</code> property.-->
+后台页面将由扩展程序系统生成，包含 <code>scripts</code>
+属性中列出的每一个文件。
+</p>
+
+<p>
+<!--@If you need to specify HTML
+in your background page, you can
+do that using the <code>page</code>
+property instead:-->
+如果您需要在您的后台页面中指定 HTML，您可以改用 <code>page</code> 属性：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"background": {
+    "page": "background.html"
+  }</b>,
+  ...
+}</pre>
+
+<p>
+<!--@If you need the browser to start up early&mdash;so
+you can display notifications, for example&mdash;then
+you might also want to specify the
+<a href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#background">"background" permission</a>.-->
+如果您需要浏览器早些启动，例如显示通知，您可能还需要指定
+<a href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#background">"background"</a> 权限。
+</p>
+
+
+<h2 id="details"><!--@Details-->详情</h2>
+
+<p>
+<!--@You can communicate between your various pages using direct script calls,
+similar to how frames can communicate.
+The <a href="https://crxdoc-zh.appspot.com/extensions/extension.html#method-getViews">extension.getViews</a> method
+returns a list of window objects
+for every active page belonging to your extension,
+and the
+<a href="https://crxdoc-zh.appspot.com/extensions/extension.html#method-getBackgroundPage">extension.getBackgroundPage</a> method
+returns the background page.-->
+您可以通过直接的脚本调用在不同页面间通信，类似于在框架间通信。<a href="https://crxdoc-zh.appspot.com/extensions/extension.html#method-getViews">extension.getViews</a>
+方法返回属于您的扩展程序的所有活动页面的 window 对象，而
+<a href="https://crxdoc-zh.appspot.com/extensions/extension.html#method-getBackgroundPage">extension.getBackgroundPage</a> 方法返回后台页面。
+</p>
+
+<h2 id="example"><!--@Example-->例子</h2>
+
+<p>
+<!--@The following code snippet demonstrates
+how the background page
+can interact with other pages in the extension.
+It also shows how you can use
+the background page to handle events
+such as user clicks.-->
+以下代码片段演示了后台页面是如何与扩展程序中的其他页面通信的，同时也演示了您应该如何使用后台页面处理诸如用户单击之类的事件。
+</p>
+
+<p>
+<!--@The extension in this example
+has a background page
+and multiple pages created
+(with
+<a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-create">tabs.create</a>)
+from a file named <code>image.html</code>.-->
+这一例子中的扩展程序有一个后台页面和多个创建自
+<code>image.html</code>
+的页面（使用 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-create">tabs.create</a>）。
+
+</p>
+
+<pre data-filename="background.js">
+// 单击浏览器按钮时作出反应。
+chrome.browserAction.onClicked.addListener(function(tab) {
+  var viewTabUrl = chrome.extension.getURL('image.html');
+  var imageUrl = <em>/* 某个图片的 URL */</em>;
+
+  // 查找扩展程序中的所有页面，找到我们可以使用的一个。
+  var views = chrome.extension.getViews();
+  for (var i = 0; i < views.length; i++) {
+    var view = views[i];
+
+    // 如果这一视图有正确的 URL 并且还未使用……
+    if (view.location.href == viewTabUrl && !view.imageAlreadySet) {
+
+      // ……调用其中一个函数并设置属性。
+      view.setImageUrl(imageUrl);
+      view.imageAlreadySet = true;
+      break; // 完成
+    }
+  }
+});
+</pre>
+<pre data-filename="image.html">
+&lt;html>
+  &lt;script>
+    function setImageUrl(url) {
+      document.getElementById('target').src = url;
+    }
+  &lt;/script&gt;
+
+  &lt;body&gt;
+    &lt;p&gt;
+    图片在此：
+    &lt;/p&gt;
+
+    &lt;img id="target" src="white.png" width="640" height="480">
+
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

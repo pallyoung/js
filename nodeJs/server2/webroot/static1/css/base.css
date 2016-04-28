@@ -1,0 +1,245 @@
+﻿/*@viewport { width:640px; }
+*/
+* {
+    margin:0;
+    padding:0;
+    border: none;
+}
+html,body{
+    width:100%;
+    font-size:0.625em;
+    height: 100%;
+    outline: 0;
+    position: relative;
+    color: rgb(51,51,51);
+    background: rgb(231,231,231);
+}
+div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td{
+    font-family:"微软雅黑", Geneva, sans-serif;
+    vertical-align: baseline;
+    font-size:inherit;
+}
+ol,ul,li{
+    list-style: none;}
+table{
+    border-collapse: collapse;
+    border-spacing: 0;}
+:focus {
+    outline: 0;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: "";
+}
+blockquote, q {
+    quotes: "" "";
+}
+h6{
+    font-size:2rem;
+}
+h5{
+    font-size:2.4rem;
+}
+h4{
+    font-size:2.8rem;
+}
+h3{
+    font-size:3.2rem;
+}
+h2{
+    font-size:3.6rem;
+}
+h1{
+    font-size:4.0rem;
+}
+a {
+    color:inherit;
+}
+a:link{ 
+    text-decoration:none;
+}
+a:visited{
+    text-decoration:none;
+}
+a:hover{
+    text-decoration:none;
+}
+a:active{
+    text-decoration:none;
+}
+.dslb{
+    display: inline-block;
+}
+.toe{
+    text-overflow:ellipsis;
+}
+.tl{
+    text-align: left;
+}
+.fts16{
+    font-size:1.6rem;
+}
+.fts18{
+    font-size:1.8rem
+}
+.fts24{
+    font-size:2.4rem}
+
+.fts20{
+    font-size:2.0rem
+}
+.fts30{
+    font-size:3.0rem
+}
+.fts32{
+    font-size:3.2rem
+}
+.fts36{
+    font-size:3.6rem
+}
+.fts38{
+    font-size:3.8rem
+}
+.ftwb{
+    font-weight: bold;
+}
+
+
+.lh44{
+    line-height: 4.4rem;
+}
+.lh50{
+    line-height: 5.0rem;
+}
+.lh60{
+    line-height:6.0rem;
+}
+.lh70{
+    line-height:7.0rem;
+}
+.lh120{
+    line-height:12.0rem; 
+}
+.lh58{
+    line-height: 5.8rem;
+}
+.pt12{
+    padding-top: 1.2rem;
+}
+.pb22{
+    padding-bottom: 2.2rem;
+}
+.tac{
+    text-align: center;
+}
+.h36{
+    height: 3.6rem;
+}
+.ti2{
+    text-indent: 2em;
+}
+
+.h30{
+    height:3.0rem
+}
+.h44{
+    height:4.4rem;
+}
+.h48{
+    height:4.8rem;
+}
+.h50{
+    height:5.0rem;
+}
+.h60{
+    height:6.0rem;
+}
+.h70{
+    height:7.0rem;
+}
+.h58{
+    height: 5.8rem;
+}
+.h100p{
+    height: 10.0rem;
+}
+.h300{
+    height: 30.0rem
+}
+.h78{
+    height: 7.8rem;
+}
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.cb{
+    clear: both;
+}
+.clearfix:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0;
+    clear: both;
+ }
+  
+
+/*common 层*/
+.top{
+    background: rgb(1,114,232);
+    color: white;
+    height: 2em;
+    line-height: 2em;
+    font-size: 3.2rem
+}
+.top .backbutton{
+    background: transparent;
+    color: white;
+    width: 80px;
+    display: inline-block;
+}
+.top h1{
+    width: 400px;
+    font-size: 3.6rem;
+    font-weight: normal;
+    display: inline-block;
+    text-align: center;
+}
+
+.black{
+    color: black
+}
+
+/*分栏,整个页面分为12栏，分别为8.3%-100%*/
+/*每栏之间的标准间隔为2%*/
+
+.col1{width:6.5%;}
+.col2{width: 15%;}
+.col3{width: 23.5%;}
+.col4{width: 32%;}
+.col5{width: 40.5%;}
+.col6{width: 49%;}
+.col7{width: 57.5%;}
+.col8{width: 66%;}
+.col9{width: 74.5%;}
+.col10{width: 83%;}
+.col11{width: 91.5%;}
+.col12{width: 100%;}
+.colMR { margin-right:2%}
+
+p.hr{
+    border-top: solid 1px rgb(200,200,200);
+}
+.fcb{
+    color: rgb(1,114,232);
+}

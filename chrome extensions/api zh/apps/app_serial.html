@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>串行端口设备 - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/app_serial.html">https://crxdoc-zh.appspot.com/apps/app_serial.html</a><br>
+<b>Title:</b> 串行端口设备 - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 25448<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4 toggled"></div>
+                </a>
+              <ul toggleable
+                  class="level4 ">
+              <li class="level5">
+                    <a href="app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a  class="level5 selected">串行端口</a>
+              </li><li class="level5">
+                    <a href="app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#requirement"
+         data-list-item
+         >清单文件的要求</a>
+    </li>
+    <li >
+      <a href="#listing"
+         data-list-item
+         >列举可用的串行端口</a>
+    </li>
+    <li >
+      <a href="#opening"
+         data-list-item
+         >打开串行端口设备</a>
+    </li>
+    <li >
+      <a href="#closing"
+         data-list-item
+         >关闭串行端口</a>
+    </li>
+    <li >
+      <a href="#reading"
+         data-list-item
+         >读取串行端口</a>
+    </li>
+    <li >
+      <a href="#writing"
+         data-list-item
+         >写入串行端口</a>
+    </li>
+    <li >
+      <a href="#flushing"
+         data-list-item
+         >清洗串行端口缓存</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Serial Devices-->串行端口设备</h1>
+
+<p>
+</p>
+
+<p>
+<!--@This document describes how to use the <a href="https://crxdoc-zh.appspot.com/apps/serial.html">serial API</a> to read
+and write from serial devices. Chrome Apps can also connect to
+<a href="https://crxdoc-zh.appspot.com/apps/usb.html">USB</a> and <a href="https://crxdoc-zh.appspot.com/apps/bluetooth.html">Bluetooth</a> devices.-->
+该文档描述如何使用<a href="https://crxdoc-zh.appspot.com/apps/serial.html">串行端口
+API</a>读取和写入串行端口设备，Chrome 应用还可以连接到
+<a href="https://crxdoc-zh.appspot.com/apps/usb.html">USB</a> 与<a href="https://crxdoc-zh.appspot.com/apps/bluetooth.html">蓝牙</a>设备。
+</p>
+
+<p class="note">
+<b><!--@Samples:-->示例：</b><!--@ For examples that illustrate how Chrome Apps can connect to hardware devices, see the-->有关演示如何在
+Chrome 应用中连接到硬件设备的例子，请参见
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/serial">serial</a><!--@,-->、
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/servo">servo</a><!--@,-->、
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/usb">usb</a><!--@, and-->
+和
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/zephyr_hxm">zephyr_hxm
+<!--@Bluetooth-->蓝牙</a><!--@ samples.-->示例。
+</p>
+
+<h2 id="requirement"><!--@Manifest requirement-->清单文件的要求</h2>
+
+<p>
+<!--@You must add the "serial" permission to the manifest file:-->
+您必须在清单文件中加入 "serial" 权限：
+</p>
+<pre data-filename="manifest.json">
+"permissions": [
+  "serial"
+]
+</pre>
+
+<h2 id="listing"><!--@Listing available serial ports-->列举可用的串行端口</h2>
+
+<p>
+<!--@To get a list of available serial ports,
+use the <code>getPorts()</code> method. <b>Note:</b> not all serial ports are available. The API uses a heuristic based on the name of the port to only expose serial devices that are expected to be safe.-->
+要获取可用串行端口的列表，请使用 <code>getPorts()</code>
+方法。<b>注意：</b>并不是所有的串行端口都可用。该 API
+采用启发式的方式，基于端口名称，只暴露被视为安全的串行端口设备。
+</p>
+
+<pre>
+var onGetPorts = function(ports) {
+  for (var i=0; i&lt;ports.length; i++) {
+    console.log(ports[i]);
+  }
+}
+chrome.serial.getPorts(onGetPorts);
+</pre>
+
+<h2 id="opening"><!--@Opening a serial device-->打开串行端口设备</h2>
+
+<p>
+<!--@If you know the serial port name, you can open it for read and write using the <code>open</code> method:-->
+如果您知道串行端口的名称，您可以使用 <code>open</code> 方法打开它用于读写：
+</p>
+
+<pre>
+chrome.serial.open(portName, options, openCallback)
+</pre>
+
+<table border="0">
+  <tr>
+    <th scope="col"> <!--@Parameter-->参数 </th>
+    <th scope="col"> <!--@Description-->描述 </th>
+  </tr>
+  <tr>
+    <td>portName&nbsp;(string)</td>
+    <td><!--@If your device's port name is unknown, you can use the <code>getPorts</code> method.-->
+      如果您的设备的端口名未知，您可以使用 <code>getPorts</code> 方法。
+    </td>
+  </tr>
+  <tr>
+    <td>options&nbsp;(object)</td>
+    <td><!--@Parameter object with one single value: <code>bitrate</code>, an integer specifying the desired bitrate used to communicate with the serial port.-->
+    包含单个值的参数对象：<code>bitrate</code>，为一个整数，指定用于与串行端口通信时希望使用的比特率。
+  </td>
+  </tr>
+  <tr>
+    <td>openCallback</td>
+    <td><!--@Invoked when the port has been successfully opened. The callback will be called with one parameter, <code>openInfo</code>, that has one attribute, <code>connectionId</code>. Save this id, because you will need it to actually communicate with the port.-->
+    端口成功打开后调用。该回调函数调用时将传递一个参数
+    <code>openInfo</code>，包含一个属性
+    <code>connectionId</code>，请保存该标识符，因为您需要它才能与端口进行实际的通信。
+    </td>
+  </tr>
+</table>
+
+<p><!--@A simple example:-->一个简单的例子：</p>
+
+<pre>
+var onOpen = function(connectionInfo) {
+   // 串行端口已打开，保存其标识符以便以后使用。
+  _this.connectionId = connectionInfo.connectionId;
+  // 对已打开的端口做任何您需要做的事情。
+}
+// 打开串行端口 /dev/ttyS01
+chrome.serial.open("/dev/ttyS01", {bitrate: 115200}, onOpen);
+</pre>
+
+<h2 id="closing"><!--@Closing a serial port-->关闭串行端口</h2>
+
+<p>
+<!--@Closing a serial port is simple but very important. See the example below: -->
+关闭串行端口很简单但是很重要，请参见下面的例子：
+</p>
+
+<pre>
+var onClose = function(result) {
+ console.log("串行端口已关闭");
+}
+chrome.serial.close(connectionId, onClose);
+</pre>
+
+<h2 id="reading"><!--@Reading from a serial port-->读取串行端口</h2>
+
+<p>
+<!--@The serial API reads from the serial port and
+delivers the read bytes as an ArrayBuffer.
+There is no guarantee that all the requested bytes, even if available in the port, will be read in one chunk.
+The following example can accumulate read bytes, at most 128 at a time, until a new line is read,
+and then call a listener with the <code>ArrayBuffer</code> bytes converted to a String:-->
+串行端口 API 从串行端口读取数据并以 <code>ArrayBuffer</code>
+的方式传递已读取的字节。不能保证所有请求的字节（即使在端口中可用）都能在一个片段中读取。如下过程可以积累读取的字节，一次最多
+128 字节，直到读到了换行符，然后调用监听器，传递转换为字符串的
+<code>ArrayBuffer</code>：
+</p>
+
+<pre>
+var dataRead='';
+
+var onCharRead=function(readInfo) {
+    if (!connectionInfo) {
+      return;
+    }
+    if (readInfo &amp;&amp; readInfo.bytesRead&gt;0 &amp;&amp; readInfo.data) {
+      var str=ab2str(readInfo.data);
+      if (str[readInfo.bytesRead-1]==='\n') {
+        dataRead+=str.substring(0, readInfo.bytesRead-1);
+        onLineRead(dataRead);
+        dataRead="";
+      } else {
+        dataRead+=str;
+      }
+    }
+    chrome.serial.read(connectionId, 128, onCharRead);
+  }
+
+/* 将 ArrayBuffer 转换为字符串，使用 UTF-8 编码方案，
+   这和 Arduino 默认情况下发送字符串的方式一致 */
+  var ab2str=function(buf) {
+    return String.fromCharCode.apply(null, new Uint8Array(buf));
+  };
+</pre>
+
+<h2 id="writing"><!--@Writing to a serial port-->写入串行端口</h2>
+
+<p>
+<!--@The writing routine is simpler than reading,
+since the writing can occur all at once.
+The only catch is that if your data protocol is String based,
+you have to convert your output string to an <code>ArrayBuffer</code>.
+See the code example below:-->
+写入例程比读取简单，因为写入操作可以一次完成。唯一的问题是，如果您的数据协议基于字符串，您必须将您的输出字符串转换为
+<code>ArrayBuffer</code>。请参考下列代码：
+</p>
+
+<pre>
+var writeSerial=function(str) {
+  chrome.serial.write(connectionId, str2ab(str), onWrite);
+}
+// 将字符串转换为 ArrayBuffer
+var str2ab=function(str) {
+  var buf=new ArrayBuffer(str.length);
+  var bufView=new Uint8Array(buf);
+  for (var i=0; i&lt;str.length; i++) {
+    bufView[i]=str.charCodeAt(i);
+  }
+  return buf;
+}
+</pre>
+
+<h2 id="flushing"><!--@Flushing a serial port buffer-->清洗串行端口缓存</h2>
+
+<p>
+<!--@You can flush your serial port buffer by issuing the flush command:-->
+您可以通过发出清洗命令清除串行端口缓存：
+</p>
+
+<pre>
+  chrome.serial.flush(connectionId, onFlush);
+</pre>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

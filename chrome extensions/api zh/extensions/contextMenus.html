@@ -1,0 +1,1404 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.contextMenus - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/contextMenus.html">https://crxdoc-zh.appspot.com/extensions/contextMenus.html</a><br>
+<b>Title:</b> chrome.contextMenus - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 57464<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.contextMenus</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#usage"
+         data-list-item
+         >用法</a>
+    </li>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-OnClickData"
+             data-list-item
+             >OnClickData</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-create"
+             data-list-item
+             >create        </a>
+        </li>
+        <li >
+          <a href="#method-update"
+             data-list-item
+             >update        </a>
+        </li>
+        <li >
+          <a href="#method-remove"
+             data-list-item
+             >remove        </a>
+        </li>
+        <li >
+          <a href="#method-removeAll"
+             data-list-item
+             >removeAll        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onClicked"
+             data-list-item
+             >onClicked</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.contextMenus</code> API 向 Google Chrome 浏览器的右键菜单添加项目。您可以选择您在右键菜单中添加的项目应用于哪些类型的对象，例如图片、超链接和页面。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 6<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "contextMenus"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<p>
+<!--@Context menu items can appear in any document
+(or frame within a document),
+even those with file:// or chrome:// URLs.
+To control which documents your items can appear in,
+specify the documentUrlPatterns field
+when you call the create() or update() method.-->
+右键菜单项可以在任何文档（或文档中的框架）中出现，即使它们使用
+file:// 或 chrome:// 协议的 URL。要控制您的菜单项在哪些文档中出现，在您调用
+create() 或 update() 方法时请指定 documentUrlPatterns 属性。
+</p>
+
+<p>
+<!--@You can create as many context menu items
+as you need, but if more than one
+from your extension is visible at once,
+Google Chrome automatically collapses them
+into a single parent menu.-->
+您可以根据自己的需要创建任意数目的右键菜单项，但是如果您的扩展程序一次显示超过一个菜单项，Google Chrome 浏览器会自动将它们折叠至一个父菜单中。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+<p>
+<!--@You must declare the "contextMenus" permission
+in your extension's manifest to use the API.
+Also, you should specify a 16x16-pixel icon
+for display next to your menu item.
+For example:-->
+您必须在扩展程序的清单文件中声明 "contextMenus" 权限才能使用有关
+API，您还应该指定一个 16×16
+像素的图标，显示在您的菜单项旁边。例如：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  "permissions": [
+    <b>"contextMenus"</b>
+  ],
+  "icons": {
+    <b>"16": "icon-bitty.png",</b>
+    "48": "icon-small.png",
+    "128": "icon-large.png"
+  },
+  ...
+}
+</pre>
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@You can find samples of this API on the
+<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#contextMenus">sample page</a>.-->
+您可以在<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#contextMenus">示例页面</a>找到这一 API 的示例。
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.contextMenus <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-OnClickData">OnClickData</h3>
+        <div>
+          <dd>包含右键菜单项单击时发送的信息。</dd>
+            <h3 id="OnClickData-properties" class="capitalize" title="">
+              <a href="#type-OnClickData">OnClickData</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-OnClickData-menuItemId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-menuItemId" title="">
+                        menuItemId
+                        <span class="property">
+                          (
+                            integer or 
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      单击的菜单项标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-parentMenuItemId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-parentMenuItemId" title="">
+                        parentMenuItemId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer or 
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      单击的菜单项的父菜单项标识符（如果有的话）。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-mediaType"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-mediaType" title="">
+                        mediaType
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果右键菜单在其中某一种类型的元素上激活则值为'image'、'video' 或 'audio'。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-linkUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-linkUrl" title="">
+                        linkUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果元素是一个链接，指定它指向的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-srcUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-srcUrl" title="">
+                        srcUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果元素的 src 属性指定了 URL 将会存在这一属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-pageUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-pageUrl" title="">
+                        pageUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      菜单项单击时所在页面的 URL。如果单击时所在上下文没有当前页面，例如在应用执行器的右键菜单中，则不会设置该属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-frameUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-frameUrl" title="">
+                        frameUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果在框架中的话，则为单击后弹出右键菜单时框架元素的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-selectionText"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-selectionText" title="">
+                        selectionText
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      当前选中的文本（如果有的话）。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-editable"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-editable" title="">
+                        editable
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      一个标志，指定当前元素是否可以编辑（&lt;input type="text"&gt;、&lt;textarea&gt; 等）。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-wasChecked"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-wasChecked" title="">
+                        wasChecked
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示单击前复选框或单选菜单项状态的标志。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-OnClickData-checked"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-OnClickData-checked" title="">
+                        checked
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示单击后复选框或单选菜单项状态的标志。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-create"
+            >create
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>integer or string chrome.contextMenus.create</span>(<span>object createProperties</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            创建一个新的右键菜单项。注意，如果创建过程中发生错误，您可能要等到回调函数调用时才能得知（详情可从 <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a> 获得）
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-create-createProperties"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-createProperties" title="">
+                      createProperties
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-createProperties-type"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-type" title="">
+                            type
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                enum of <code>"normal"</code>, <code>"checkbox"</code>, <code>"radio"</code>, or <code>"separator"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          菜单项的类型。如果没有指定则默认为 'normal'（普通）。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-id"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-id" title="">
+                            id
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          指派给该菜单项的唯一标志符，对于事件页面来说必须存在，不能与同一扩展程序中的其他标志符相同。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-title"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-title" title="">
+                            title
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          显示在菜单项中的文字，除非 <em>type</em>（类型）是 'separator'（分隔符），该参数是<em>必选</em>的。当上下文为 'selection'（选定内容）时，您可以在字符串中使用 <code>%s</code> 来显示选中的文本。例如，如果参数值是“将‘%s’翻译为儿童黑话”，当用户选择一个词语“酷”时，对于选中内容的右键菜单项为“将‘酷’翻译为儿童黑话”。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-checked"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-checked" title="">
+                            checked
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          单选或复选菜单项的初始状态：选定为 true，未选定为 false。在一组单选菜单项中，一次只能有一项选定。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-contexts"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-contexts" title="">
+                            contexts
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"all"</code>, <code>"page"</code>, <code>"frame"</code>, <code>"selection"</code>, <code>"link"</code>, <code>"editable"</code>, <code>"image"</code>, <code>"video"</code>, <code>"audio"</code>, or <code>"launcher"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          列出该菜单项将会出现在哪些上下文中，包括 "all"（全部）、"page"（页面）、"frame"（框架）、"selection"（选定内容）、"link"（链接）、"editable"（可编辑内容）、"image"（图片）、"video"（视频）、"audio"（音频），如果没有指定则默认为 ['page']（页面），指定 ['all'] 相当于除 'launcher' 以外的所有其他上下文的组合。'launcher' 上下文仅在应用中支持，为右键菜单添加菜单项，在单击执行器/任务栏/窗格/等等中的应用图标时显示。不同的平台对于执行器中实际支持的特性可能会有一些限制。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-onclick"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-onclick" title="">
+                            onclick
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          当菜单项单击时的回调函数。事件页面不能使用该属性，相反，它们应该为 chrome.contextMenus.onClicked 注册事件处理函数。
+                        </dd>
+                      </dl>
+                      <dd>
+                        <dl>
+                          <h4 title=""><!--@Parameters-->参数</h4>
+                          <div>
+                            <a name="property-onclick-info"></a>
+                            <dl>
+                              <dt>
+                                <h4 id="property-onclick-info" title="">
+                                  info
+                                  <span class="property">
+                                    (
+                                      <a href="https://crxdoc-zh.appspot.com/extensions/contextMenus.html#type-OnClickData">OnClickData</a>
+                                    )
+                                  </span>
+                                </h4>
+                              </dt>
+                              <dd>
+                                有关单击发生时的菜单项和上下文的信息。
+                              </dd>
+                            </dl>
+                          </div><div>
+                            <a name="property-onclick-tab"></a>
+                            <dl>
+                              <dt>
+                                <h4 id="property-onclick-tab" title="">
+                                  tab
+                                  <span class="property">
+                                    (
+                                      <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a>
+                                    )
+                                  </span>
+                                </h4>
+                              </dt>
+                              <dd>
+                                单击发生的标签页详情。
+                              </dd>
+                            </dl>
+                          </div>
+                        </dl>
+                      </dd>
+                    </div><div>
+                      <a name="property-createProperties-parentId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-parentId" title="">
+                            parentId
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer or 
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          父菜单项标识符，指定这一参数使新添加的菜单项成为原先添加菜单项的子菜单项。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-documentUrlPatterns"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-documentUrlPatterns" title="">
+                            documentUrlPatterns
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          让您将该菜单项限制在 URL 匹配给定表达式的文档中显示。（也适用于框架。）有关表达式的格式的详情，请参见<a href='match_patterns.html'>匹配表达式</a>。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-targetUrlPatterns"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-targetUrlPatterns" title="">
+                            targetUrlPatterns
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          类似于 documentUrlPatterns，但是允许您基于 <img>/<audio>/<video> 标签的 src 属性以及 <a> 标签的 href 属性过滤。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createProperties-enabled"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createProperties-enabled" title="">
+                            enabled
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          该右键菜单项是启用还是禁用，默认为 true。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-create-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    当菜单项已经在浏览器中创建后调用。如果创建过程中出现任何错误，详情可从 <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a> 获得。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-update"
+            >update
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.contextMenus.update</span>(<span>integer or string id</span>, <span>object updateProperties</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            更新以前创建的菜单项。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-update-id"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-id" title="">
+                      id
+                      <span class="property">
+                        (
+                          integer or 
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要更新的菜单项标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-update-updateProperties"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-updateProperties" title="">
+                      updateProperties
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要更新的属性，与 create 函数的 createProperties 参数使用的相同值。
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-updateProperties-type"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-type" title="">
+                            type
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                enum of <code>"normal"</code>, <code>"checkbox"</code>, <code>"radio"</code>, or <code>"separator"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-title"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-title" title="">
+                            title
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-checked"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-checked" title="">
+                            checked
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-contexts"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-contexts" title="">
+                            contexts
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"all"</code>, <code>"page"</code>, <code>"frame"</code>, <code>"selection"</code>, <code>"link"</code>, <code>"editable"</code>, <code>"image"</code>, <code>"video"</code>, <code>"audio"</code>, or <code>"launcher"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-onclick"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-onclick" title="">
+                            onclick
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-parentId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-parentId" title="">
+                            parentId
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer or 
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          注意：您不能更改菜单项，使它成为自己的子菜单。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-documentUrlPatterns"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-documentUrlPatterns" title="">
+                            documentUrlPatterns
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-targetUrlPatterns"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-targetUrlPatterns" title="">
+                            targetUrlPatterns
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateProperties-enabled"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateProperties-enabled" title="">
+                            enabled
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-update-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    右键菜单项更新后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-remove"
+            >remove
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.contextMenus.remove</span>(<span>integer or string menuItemId</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            移除右键菜单项。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-remove-menuItemId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-menuItemId" title="">
+                      menuItemId
+                      <span class="property">
+                        (
+                          integer or 
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要移除的菜单项标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-remove-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    右键菜单项移除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeAll"
+            >removeAll
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.contextMenus.removeAll</span>(<span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            移除该扩展程序添加的所有右键菜单项。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeAll-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeAll-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    移除完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onClicked">onClicked</h3>
+        <div class="description">
+      <p>
+            当右键菜单项单击时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.contextMenus.onClicked.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onClicked-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onClicked-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/contextMenus.html#type-OnClickData">OnClickData</a> info, <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> tab) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onClicked-info"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onClicked-info" title="">
+                              info
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/contextMenus.html#type-OnClickData">OnClickData</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            有关单击发生时的菜单项和上下文的信息。
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onClicked-tab"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onClicked-tab" title="">
+                              tab
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            单击发生的标签页的细节。如果单击不在标签页中产生，将不会传递该参数。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.windows - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/windows.html">https://crxdoc-zh.appspot.com/extensions/windows.html</a><br>
+<b>Title:</b> chrome.windows - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 78685<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.windows</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#current-window"
+         data-list-item
+         >当前窗口</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-Window"
+             data-list-item
+             >Window</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#properties"
+         data-list-item
+         >属性</a>
+      <ol>
+        <li >
+          <a href="#property-WINDOW_ID_NONE"
+             data-list-item
+             >WINDOW_ID_NONE</a>
+        </li>
+        <li >
+          <a href="#property-WINDOW_ID_CURRENT"
+             data-list-item
+             >WINDOW_ID_CURRENT</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-get"
+             data-list-item
+             >get        </a>
+        </li>
+        <li >
+          <a href="#method-getCurrent"
+             data-list-item
+             >getCurrent        </a>
+        </li>
+        <li >
+          <a href="#method-getLastFocused"
+             data-list-item
+             >getLastFocused        </a>
+        </li>
+        <li >
+          <a href="#method-getAll"
+             data-list-item
+             >getAll        </a>
+        </li>
+        <li >
+          <a href="#method-create"
+             data-list-item
+             >create        </a>
+        </li>
+        <li >
+          <a href="#method-update"
+             data-list-item
+             >update        </a>
+        </li>
+        <li >
+          <a href="#method-remove"
+             data-list-item
+             >remove        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onCreated"
+             data-list-item
+             >onCreated</a>
+        </li>
+        <li >
+          <a href="#event-onRemoved"
+             data-list-item
+             >onRemoved</a>
+        </li>
+        <li >
+          <a href="#event-onFocusChanged"
+             data-list-item
+             >onFocusChanged</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.windows</code> API 与浏览器窗口交互。您可以使用该模块创建、修改和重新排列浏览器中的窗口。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 5<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">Permissions<!--@:-->：</td>
+    <td>
+        <!--@The <code>chrome.windows</code> API can be used
+         without declaring any permission.
+         However, the <code>"tabs"</code> permission is
+         required in order to populate the
+         <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-url">url</a></code>,
+         <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-title">title</a></code>, and
+         <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-favIconUrl">favIconUrl</a></code> properties of
+         <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">Tab</a></code> objects.-->
+        <code>chrome.windows</code> API 不需要任何权限就能使用。然而，
+        <code><a href="#type-Tab">Tab</a></code> 的
+         <code><a href="#property-Tab-url">url</a></code>、<code><a
+        href="#property-Tab-title">title</a></code> 和
+         <code><a href="#property-Tab-favIconUrl">favIconUrl</a></code>
+         属性需要有 <code>"tabs"</code> 权限后才会给出。
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+<p>
+<!--@When requested, a <code><a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a></code>
+will contain an array of <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a></code> objects.
+
+You must declare the <code>"tabs"</code> permission in your
+<a href="manifest.html">manifest</a> if you require access to the
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-url">url</a></code>,
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-title">title</a></code>, or
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-favIconUrl">favIconUrl</a></code> properties of
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a></code>.
+For example:-->
+当您请求时，<code><a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a></code> 对象会包含
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a></code> 对象数组。如果您需要访问
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a></code> 的
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-url">url</a></code>、<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-title">title</a></code>
+或
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-favIconUrl">favIconUrl</a></code>
+属性，您必须在<a href="manifest.html">清单文件</a>中声明
+<code>"tabs"</code> 权限。例如：
+</p>
+
+<pre data-filename="manifest.json">
+{
+<!--@  "name": "My extension",-->
+  "name": "我的扩展程序",
+  ...
+  <b>"permissions": ["tabs"]</b>,
+  ...
+}
+</pre>
+
+<h2 id="current-window"><!--@The current window-->当前窗口</h2>
+
+<p><!--@Many functions in the extension system
+take an optional <var>windowId</var> parameter,
+which defaults to the current window.-->
+扩展程序系统中的许多函数有一个可选的
+<var>windowId</var>
+参数，默认为当前窗口。
+</p>
+
+<p><!--@The <em>current window</em> is the window that
+contains the code that is currently executing.
+It's important to realize that this can be
+different from the topmost or focused window.-->
+<em>当前窗口</em>即包含当前正在执行的代码的窗口，值得注意的是这不一定是顶层窗口或拥有焦点的窗口。
+</p>
+
+<p><!--@For example, say an extension
+creates a few tabs or windows from a single HTML file,
+and that the HTML file
+contains a call to
+<a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-query">tabs.query</a>.
+The current window is the window that contains the page that made
+the call, no matter what the topmost window is.-->
+例如，假设一个扩展程序在一个 HTML 文件中创建了几个标签页或窗口，该 HTML 文件中又调用了 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-query">tabs.query</a>。当前窗口是包含发出调用的页面的窗口，无论顶层窗口是哪一个。
+</p>
+
+<p><!--@In the case of the <a href="event_pages.html">event page</a>,
+the value of the current window falls back to the last active window. Under some
+circumstances, there may be no current window for background pages.-->
+而在<a href="event_pages.html">事件页面</a>中，当前窗口的值则是最后一个活动的窗口。在某些情况下，后台页面可能没有当前窗口。
+</p>
+
+<h2 id="examples"><!--@ Examples -->例子</h2>
+
+<p>
+<img src="../../developer.chrome.com/static/images/windows.png"
+     width="561" height="224" alt="Two windows, each with one tab" />
+<br>
+<!--@You can find simple examples of using the windows module in the-->
+您可以在
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/windows/">examples/api/windows</a>
+<!--@directory.
+Another example is in the-->
+目录中找到使用窗口模块的简单例子，另一个例子在
+<!--@<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/tabs_api.html?content-type=text/plain">tabs_api.html</a> file
+of the
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/">inspector</a>
+example.
+For other examples and for help in viewing the source code, see
+<a href="samples.html">Samples</a>.-->
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/">inspector</a>
+例子的
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/tabs/inspector/tabs_api.html?content-type=text/plain">tabs_api.html</a>
+文件中。有关其他例子以及查看源代码的帮助，请参见<a href="samples.html">示例</a>。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.windows <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-Window">Window</h3>
+        <div>
+            <h3 id="Window-properties" class="capitalize" title="">
+              <a href="#type-Window">Window</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-Window-id"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-id" title="">
+                        id
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口标识符，窗口标识符在浏览器会话中唯一。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> API 查询窗口时，窗口可能没有标识符，此时存在会话标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-focused"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-focused" title="">
+                        focused
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      是否为当前具有焦点的窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-top"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-top" title="">
+                        top
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口与屏幕顶部的距离，以像素为单位。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> API 查询关闭的窗口时，窗口可能没有 top 属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-left"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-left" title="">
+                        left
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口与屏幕左侧的距离，以像素为单位。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> API 查询关闭的窗口时，窗口可能没有 left 属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-width"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-width" title="">
+                        width
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口的宽度（包含边框），以像素为单位。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> API 查询关闭的窗口时，窗口可能没有 width 属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-height"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-height" title="">
+                        height
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口的高度（包含边框），以像素为单位。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> API 查询关闭的窗口时，窗口可能没有 height 属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-tabs"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-tabs" title="">
+                        tabs
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示窗口中所有标签页的 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象数组。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-incognito"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-incognito" title="">
+                        incognito
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      是否为隐身窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-type"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-type" title="">
+                        type
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            enum of <code>"normal"</code>, <code>"popup"</code>, <code>"panel"</code>, or <code>"app"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器窗口的类型。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> 查询关闭的窗口时，窗口可能没有 type 属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-state"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-state" title="">
+                        state
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            enum of <code>"normal"</code>, <code>"minimized"</code>, <code>"maximized"</code>, or <code>"fullscreen"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器窗口的状态。在某些情况下，例如当您使用 <a href="sessions.html">sessions</a> 查询关闭的窗口时，窗口可能没有 state 属性。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-alwaysOnTop"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-alwaysOnTop" title="">
+                        alwaysOnTop
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口是否设置为前端显示。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Window-sessionId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Window-sessionId" title="">
+                        sessionId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      会话标识符，用于唯一标识由 <a href="sessions.html">sessions</a> API 获取的窗口。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="properties"><!--@Properties-->属性</h2>
+      <div>
+        <h3 id="property-WINDOW_ID_NONE">WINDOW_ID_NONE</h3>
+        <div class="summary">
+          <div class="line">chrome.windows.WINDOW_ID_NONE</div>
+        </div>
+        <div>
+          <dt><span class="property">WINDOW_ID_NONE</span> <span class="type_name">  (  <code>-1</code>  )</span></dt>
+      <dd>
+            表示不存在Chrome浏览器窗口的windowId值。
+          </dd>  </div>
+      </div>
+      <div>
+        <h3 id="property-WINDOW_ID_CURRENT">WINDOW_ID_CURRENT</h3>
+        <div class="summary">
+          <div class="line">chrome.windows.WINDOW_ID_CURRENT</div>
+        </div>
+        <div>
+          <dt><span class="property">WINDOW_ID_CURRENT</span> <span class="type_name">  (  <code>-2</code>  )</span></dt>
+      <dd>
+            代表<a href='https://crxdoc-zh.appspot.com/extensions/windows.html#current-window'>当前窗口</a>的windowId值。
+          </dd>  </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-get"
+            >get
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.get</span>(<span>integer windowId</span>, <span class="optional">object getInfo</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取一个窗口的有关详情。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-get-windowId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-get-windowId" title="">
+                      windowId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-get-getInfo"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-get-getInfo" title="">
+                      getInfo
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-getInfo-populate"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-getInfo-populate" title="">
+                            populate
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为 true，<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> 对象会有 <var>tabs</var> 属性，包含所有 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象的列表。只有当扩展程序清单文件中包含 <code>"tabs"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-get-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-get-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> window) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-window" title="">
+                        window
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getCurrent"
+            >getCurrent
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.getCurrent</span>(<span class="optional">object getInfo</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取<a href='#current-window'>当前窗口</a>。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getCurrent-getInfo"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getCurrent-getInfo" title="">
+                      getInfo
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-getInfo-populate"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-getInfo-populate" title="">
+                            populate
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为 true，<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> 对象会有 <var>tabs</var> 属性，包含所有 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象的列表。只有当扩展程序清单文件中包含 <code>"tabs"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-getCurrent-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getCurrent-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> window) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-window" title="">
+                        window
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getLastFocused"
+            >getLastFocused
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.getLastFocused</span>(<span class="optional">object getInfo</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获得最近获得焦点的窗口，通常为顶层窗口。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getLastFocused-getInfo"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getLastFocused-getInfo" title="">
+                      getInfo
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-getInfo-populate"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-getInfo-populate" title="">
+                            populate
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为 true，<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> 对象会有 <var>tabs</var> 属性，包含所有 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象的列表。只有当扩展程序清单文件中包含 <code>"tabs"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-getLastFocused-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getLastFocused-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> window) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-window" title="">
+                        window
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getAll"
+            >getAll
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.getAll</span>(<span class="optional">object getInfo</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取所有窗口。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getAll-getInfo"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getAll-getInfo" title="">
+                      getInfo
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-getInfo-populate"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-getInfo-populate" title="">
+                            populate
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为 true，<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> 对象会有 <var>tabs</var> 属性，包含所有 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象的列表。只有当扩展程序清单文件中包含 <code>"tabs"</code> 权限时，<code>Tab</code> 对象才会包含 <code>url</code>、<code>title</code> 和 <code>favIconUrl</code> 属性。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-getAll-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getAll-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> windows) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-windows"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-windows" title="">
+                        windows
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-create"
+            >create
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.create</span>(<span class="optional">object createData</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            创建（打开）一个新的浏览器窗口，可以提供大小、位置或默认 URL 等可选参数。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-create-createData"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-createData" title="">
+                      createData
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-createData-url"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-url" title="">
+                            url
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string or 
+                                array of string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          要在窗口中打开的一个 URL 或 URL 数组。完整的 URL 必须包含协议（即 "http://www.google.com"，而不是 "www.google.com"），而相对 URL 相对于扩展程序中的当前页面。默认为“打开新的标签页”页面。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-tabId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-tabId" title="">
+                            tabId
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          需要移动至新窗口的标签页标识符。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-left"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-left" title="">
+                            left
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          新窗口与屏幕左侧的距离，以像素为单位。如果未指定，新窗口将自然地与最后一个活动窗口偏离一定的距离。对于面板将忽略这一值。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-top"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-top" title="">
+                            top
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          新窗口与屏幕顶部的距离，以像素为单位。如果未指定，新窗口将自然地与最后一个活动窗口偏离一定的距离。对于面板将忽略这一值。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-width"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-width" title="">
+                            width
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          新窗口的宽度（包含边框），以像素为单位，如果未指定则默认为自然宽度。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-height"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-height" title="">
+                            height
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          新窗口的高度（包含边框），以像素为单位，如果未指定则默认为自然高度。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-focused"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-focused" title="">
+                            focused
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为true，则打开一个活动窗口；如果为false，则打开一个不活动窗口。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-incognito"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-incognito" title="">
+                            incognito
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          新窗口是否为隐身窗口。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-createData-type"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-createData-type" title="">
+                            type
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                enum of <code>"normal"</code>, <code>"popup"</code>, <code>"panel"</code>, or <code>"detached_panel"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          指定要创建的浏览器窗口类型。除非设置了“--enable-panels”标志，"panel" 与 "detatched_panel" 类型都会创建弹出窗口。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-create-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> window) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-window" title="">
+                        window
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含已创建窗口的详情。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-update"
+            >update
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.update</span>(<span>integer windowId</span>, <span>object updateInfo</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            更新窗口属性。仅指定您需要更改的属性，未指定的属性不会更改。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-update-windowId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-windowId" title="">
+                      windowId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-update-updateInfo"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-updateInfo" title="">
+                      updateInfo
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-updateInfo-left"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-left" title="">
+                            left
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          窗口与屏幕左侧的距离，以像素为单位。对于面板将忽略这一值。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateInfo-top"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-top" title="">
+                            top
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          窗口与屏幕顶部的距离，以像素为单位。对于面板将忽略这一值。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateInfo-width"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-width" title="">
+                            width
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          窗口的宽度，以像素为单位。对于面板将忽略这一值。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateInfo-height"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-height" title="">
+                            height
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          窗口的高度，以像素为单位。对于面板将忽略这一值。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateInfo-focused"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-focused" title="">
+                            focused
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为true，将窗口置于顶层；如果为false，将Z-顺序中的下一个窗口置于顶层。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateInfo-drawAttention"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-drawAttention" title="">
+                            drawAttention
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          如果为true，使窗口以吸引用户注意的方式显示，而不更改活动窗口，这一效果将一直持续到用户将焦点移至这一窗口。如果窗口已经获得焦点则该选项无效，将这一属性设置为false可以取消上一次的突出显示请求。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-updateInfo-state"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-updateInfo-state" title="">
+                            state
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                enum of <code>"normal"</code>, <code>"minimized"</code>, <code>"maximized"</code>, or <code>"fullscreen"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          窗口的新状态。"minimized"（最小化）、"maximized"（最大化）与 "fullscreen"（全屏）状态不能与 left、top、width 或 height 属性一起使用。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-update-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> window) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-window" title="">
+                        window
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-remove"
+            >remove
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.windows.remove</span>(<span>integer windowId</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            移除（关闭）一个窗口以及其中的所有标签页。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-remove-windowId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-windowId" title="">
+                      windowId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-remove-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onCreated">onCreated</h3>
+        <div class="description">
+      <p>
+            当窗口创建时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.windows.onCreated.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onCreated-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onCreated-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a> window) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onCreated-window"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onCreated-window" title="">
+                              window
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">Window</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            有关已创建窗口的详情。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onRemoved">onRemoved</h3>
+        <div class="description">
+      <p>
+            当窗口移除（关闭）时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.windows.onRemoved.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onRemoved-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onRemoved-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(integer windowId) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onRemoved-windowId"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onRemoved-windowId" title="">
+                              windowId
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            已移除窗口的标识符。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onFocusChanged">onFocusChanged</h3>
+        <div class="description">
+      <p>
+            在当前具有焦点的窗口改变时产生，如果所有 Chrome 浏览器窗口都没有焦点则为 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#property-WINDOW_ID_NONE">WINDOW_ID_NONE</a>。注意：在某些 Linux 窗口管理器中，从一个 Chrome 浏览器窗口切换到另一个之前总是会发送 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#property-WINDOW_ID_NONE">WINDOW_ID_NONE</a> 的该事件。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.windows.onFocusChanged.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onFocusChanged-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onFocusChanged-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(integer windowId) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onFocusChanged-windowId"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onFocusChanged-windowId" title="">
+                              windowId
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            获得焦点的新窗口的标识符。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

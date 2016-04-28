@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>存储 API - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/app_storage.html">https://crxdoc-zh.appspot.com/extensions/app_storage.html</a><br>
+<b>Title:</b> 存储 API - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 42792<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="../apps/apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="../apps/samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="../apps/app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="../apps/angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="../apps/sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="../apps/app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="../apps/offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="../apps/app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="../apps/cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="../apps/pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="../apps/gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="../apps/gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="../apps/storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="../apps/app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4 toggled"></div>
+                </a>
+              <ul toggleable
+                  class="level4 ">
+              <li class="level5">
+                    <a  class="level5 selected">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="../apps/app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="../apps/app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="../apps/desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="../apps/google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="../apps/analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="../apps/tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="../apps/api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="../apps/manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="../apps/app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="../apps/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#options"
+         data-list-item
+         >存储的选择</a>
+    </li>
+    <li >
+      <a href="#filesystem"
+         data-list-item
+         >使用 Chrome 浏览器的文件系统 API</a>
+      <ol>
+        <li >
+          <a href="#filesystem-manifest"
+             data-list-item
+             >添加文件系统权限</a>
+        </li>
+        <li >
+          <a href="#import"
+             data-list-item
+             >选择文件的用户选项</a>
+        </li>
+        <li >
+          <a href="#path"
+             data-list-item
+             >获取文件项（fileEntry）的路径</a>
+        </li>
+        <li >
+          <a href="#drag"
+             data-list-item
+             >实现拖放支持</a>
+        </li>
+        <li >
+          <a href="#read"
+             data-list-item
+             >读取文件</a>
+        </li>
+        <li >
+          <a href="#write"
+             data-list-item
+             >写入文件</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#sync-filesystem"
+         data-list-item
+         >使用Chrome 浏览器的同步文件系统 API</a>
+      <ol>
+        <li >
+          <a href="#sync-manifest"
+             data-list-item
+             >添加同步文件系统权限</a>
+        </li>
+        <li >
+          <a href="#initiate"
+             data-list-item
+             >请求同步文件存储</a>
+        </li>
+        <li >
+          <a href="#file-status"
+             data-list-item
+             >关于文件同步状态</a>
+        </li>
+        <li >
+          <a href="#file-status"
+             data-list-item
+             >监听同步状态的更改</a>
+        </li>
+        <li >
+          <a href="#check-usage"
+             data-list-item
+             >检查 API 用量</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Storage APIs-->存储 API</h1>
+
+<p>
+<!--@Almost every aspect of app development involves some element
+of sending or receiving data.
+Starting with the basics,
+you should use an MVC framework to help you design and implement your app
+so that data is completely separate from the app's view on that data
+(see <a href="https://crxdoc-zh.appspot.com/extensions/app_frameworks.html">MVC Architecture</a>).-->
+几乎应用开发的每一方面都会涉及到一些数据的发送与接收。从最基本的开始，您应该使用
+MVC 框架来帮助您设计和实现您的应用，以便使数据完全与应用的数据视图分离（参见
+<a href="https://crxdoc-zh.appspot.com/extensions/app_frameworks.html">MVC 架构</a>）。
+</p>
+
+<p>
+<!--@You also need to think about how data is handled when your app is offline
+(see <a href="https://crxdoc-zh.appspot.com/extensions/offline_apps.html">Offline First</a>).
+This doc briefly introduces the storage options
+for sending, receiving, and saving data locally;
+the remainder of the doc shows you how
+to use Chrome's File System and Sync File System APIs
+(see also <a href="https://crxdoc-zh.appspot.com/extensions/fileSystem.html">fileSystem API</a> and
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html">syncFileSystem API</a>).-->
+您还需要考虑当您的应用离线时（参见<a href="https://crxdoc-zh.appspot.com/extensions/offline_apps.html"
+>首先考虑离线</a>）如何处理数据。该文档简要地介绍了用于在本地发送、接收和保存数据的存储选择，文档的剩下部分向您演示了如何使用
+Chrome 浏览器的文件系统 API 和同步文件系统
+API（请参见<a href="https://crxdoc-zh.appspot.com/extensions/fileSystem.html">文件系统
+API</a> 和<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html">同步文件系统 API</a>）。
+</p>
+
+<p class="note">
+<b>API <!--@Samples: -->示例：</b><!--@
+Want to play with the code?
+Check out the-->
+想试试这些代码吗？请参见
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/filesystem-access">filesystem-access</a><!--@,
+-->、<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/syncfs-editor">syncfs-editor</a>
+<!--@and-->和 <a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/storage">storage</a> <!--@samples.-->
+示例。
+</p>
+
+<h2 id="options"><!--@Storage options-->存储的选择</h2>
+
+<p>
+<!--@Packaged apps use many different mechanisms
+to send and receive data.
+For external data (resources, web pages),
+you need to be aware of the
+<a href="contentSecurityPolicy.html">Content Security Policy (CSP)</a>.
+Similar to Chrome Extensions,
+you can use
+<a href="https://crxdoc-zh.appspot.com/extensions/app_external.html#external">cross-origin XMLHttpRequests</a>
+to communicate with remote servers.
+You can also isolate external pages,
+so that the rest of your app is secure
+(see <a href="https://crxdoc-zh.appspot.com/extensions/app_external.html#webview">Embed external web pages</a>).-->
+Chrome 应用可以使用很多不同的机制发送和接收数据。对于外部数据（资源、网页），您需要意识到<a
+href="contentSecurityPolicy.html">内容安全策略（CSP）</a>的存在。与
+Chrome 扩展程序类似，您可以使用<a href="https://crxdoc-zh.appspot.com/extensions/app_external.html#external">跨站
+XMLHttpRequest</a> 与远程服务器通信。您还可以隔离外部页面，以确保您的应用的其他部分是安全的（参见<a
+href="https://crxdoc-zh.appspot.com/extensions/app_external.html#webview">嵌入外部网页</a>）。
+</p>
+
+<p>
+<!--@When saving data locally,
+you can use the <a href="storage.html">Chrome Storage API</a>
+to save small amounts of string data and
+IndexedDB to save structured data.
+With IndexedDB, you can persist JavaScript objects
+to an object store and use the store's indexes to query data
+(to learn more, see HTML5 Rock's
+<a href="http://www.html5rocks.com/tutorials/indexeddb/todo/">Simple Todo List Tutorial</a>).
+For all other types of data,
+like binary data,
+use the Filesystem and Sync Filesystem APIs.-->
+需要在本地保存数据时，您可以使用
+<a href="storage.html">Chrome 浏览器的存储 API</a>
+来保存少量字符串数据，并使用 IndexedDB
+保存结构化的数据。通过 IndexedDB，您可以将 JavaScript
+对象持久存储在对象存储区中并使用存储区的索引查询数据（要了解更多内容，请参见
+<a href="http://www.html5rocks.com/zh/tutorials/indexeddb/todo/">HTML5
+Rocks 的待办事项简要列表教程</a>）。对于所有其他类型的数据，例如二进制数据，请使用文件系统
+API 和同步文件系统 API。
+</p>
+
+<p>
+<!--@Chrome's Filesystem and Sync Filesystem APIs extend the
+<a href="http://www.html5rocks.com/tutorials/file/filesystem/">HTML5 FileSystem API</a>.
+With Chrome's Filesystem API,
+apps can create, read, navigate,
+and write to a sandboxed section
+of the user's local file system.
+For example,
+a photo-sharing app can use the Filesystem API
+to read and write any photos that a user selects.-->
+Chrome 浏览器的文件系统 API 和同步文件系统 API 扩展了
+<a href="http://www.html5rocks.com/zh/tutorials/file/filesystem/">HTML5
+文件系统 API</a>。使用 Chrome 浏览器的文件系统
+API，应用程序可以创建、读取、导航及写入用户本地文件系统中经过沙盒屏蔽的一个区域。通过
+Chrome 浏览器的文件系统 API，Chrome 应用可以读取或写入用户选择位置的文件。例如，照片分享应用可以使用文件系统
+API 读取和写入用户选择的任何照片。
+</p>
+
+<p>
+<!--@With Chrome's Sync Filesystem API,
+apps can save and synchronize data
+on a user's Google Drive
+so that the same data can be available across different clients.
+For example, a 
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/syncfs-editor">cloud-backed text editor</a>
+app can automatically sync new text files to a user's Google Drive account.
+When the user opens the text editor in a new client,
+Google Drive pushes new text files to that instance of the text editor.-->
+使用 Chrome 浏览器的同步文件系统 API，应用可以在用户的 Google
+云端硬盘上保存和同步数据，这样相同的数据可以在不同的客户端之间使用。例如，一个<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/syncfs-editor">云端支持的文本编辑器</a>应用可以自动将新的文本文件同步至用户的
+Google 云端硬盘账户。当用户在新的客户端打开文本编辑器时，Google
+云端硬盘会将新的文本文件推送至该文本编辑器的实例。
+</p>
+
+<p>
+<!--@Note: Unlike regular Filesystem API, Chrome's Sync Filesystem API
+currently does <b>NOT</b> support directory operations, except for
+reading directory entries in the root directory.
+An attempt to create a directory in Sync Filesystem will result
+in INVALID_MODIFICATION_ERROR.-->
+注意：与普通的文件系统 API 不同，Chrome 浏览器的同步文件系统 API
+当前<b>还不</b>支持目录操作，除了在根目录中读取目录项。尝试在同步文件系统中创建目录会导致
+INVALID_MODIFICATION_ERROR 错误。
+</p>
+
+<h2 id="filesystem"><!--@Using the Chrome Filesystem API-->使用 Chrome
+ 浏览器的文件系统 API</h2>
+<h3 id="filesystem-manifest"><!--@Adding file system permission-->添加文件系统权限</h3>
+
+<p>
+<!--@To use Chrome's File System API,
+you need to add the "fileSystem" permission to the manifest,
+so that you can obtain permission from the user
+to store persistent data.-->
+要使用 Chrome 浏览器的文件系统
+API，您需要在清单文件中添加 "fileSystem"
+权限，使您可以从用户获取持久储存数据的权限。
+
+<pre data-filename="manifest.json">
+"permissions": [
+  "...",
+  "fileSystem"
+]
+</pre>
+
+<h3 id="import"><!--@User-options for selecting files-->选择文件的用户选项</h3>
+
+<p>
+<!--@Users expect to select files
+in the same way they always do.
+At a minimum,
+they expect a 'choose file' button
+and standard file-chooser.
+If your app makes heavy use of file-handing,
+you should also implement drag-and-drop
+(see below and also check out 
+<a href="http://www.html5rocks.com/tutorials/dnd/basics/">Native HTML5 Drag and Drop</a>).-->
+用户期望以习惯的方式选择文件，至少他们期望一个“选择文件”按钮以及标准的文件选择器。如果您的应用大量使用文件选择，您还应该实现拖放支持（参见如下内容以及<a
+href="http://www.html5rocks.com/zh/tutorials/dnd/basics/">本机 HTML5 拖放</a>）。
+</p>
+
+<h3 id="path"><!--@Obtaining the path of a fileEntry-->获取文件项（fileEntry）的路径</h3>
+
+<p>
+<!--@To get the full path
+of the file the user selected,
+<code>fileEntry</code>,
+call <code>getDisplayPath()</code>:-->
+要从文件项（<code>fileEntry</code>）获取用户选定文件的全路径，请调用
+<code>getDisplayPath()</code>：
+</p>
+
+<pre>
+function displayPath(fileEntry) {
+  chrome.fileSystem.getDisplayPath(fileEntry, function(path) {
+    console.log(path)
+  });
+}
+</pre>
+
+<h3 id="drag"><!--@Implementing drag-and-drop-->实现拖放支持</h3>
+
+<p>
+<!--@If you need to implement drag-and-drop selection,
+the drag-and-drop file controller
+(<code>dnd.js</code>) in the-->
+如果您需要实现拖放选择，<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/filesystem-access">filesystem-access</a>
+<!--@sample is a good starting point.
+The controller creates a file entry
+from a <code>DataTransferItem</code>
+via drag-and-drop.
+In this example,
+the <code>fileEntry</code> is set
+to the first dropped item.-->
+示例中的拖放文件控制器（<code>dnd.js</code>）是一个很好的起点。通过拖放控制器从
+<code>DataTransferItem</code>
+创建一个文件项。在这一例子中，<code>fileEntry</code>
+设置为拖放的第一个项目。
+</p>
+
+<pre>
+var dnd = new DnDFileController('body', function(data) {
+  var fileEntry = data.items[0].webkitGetAsEntry();
+  displayPath(fileEntry);
+});
+</pre>
+
+<h3 id="read"><!--@Reading a file-->读取文件</h3>
+
+<p>
+<!--@The following code opens the file (read-only) and
+reads it as text using a <code>FileReader</code> object.
+If the file doesn't exist, an error is thrown.-->
+如下代码打开文件（只读）并使用
+<code>FileReader</code>
+对象以文本形式读取。如果文件不存在，则会引发错误。
+</p>
+
+<pre>
+var chosenFileEntry = null;
+
+chooseFileButton.addEventListener('click', function(e) {
+  chrome.fileSystem.chooseEntry({type: 'openFile'}, function(readOnlyEntry) {
+ 
+    readOnlyEntry.file(function(file) {
+      var reader = new FileReader();
+
+      reader.onerror = errorHandler;
+      reader.onloadend = function(e) {
+        console.log(e.target.result);
+      };
+
+      reader.readAsText(file);
+    });
+	});
+});
+</pre>
+
+<h3 id="write"><!--@Writing a file-->写入文件</h3>
+
+<p>
+<!--@The two common use-cases
+for writing a file are "Save" and "Save as".
+The following code creates a
+<code>writableEntry</code>
+from the read-only <code>chosenFileEntry</code> and
+writes the selected file to it.-->
+用于写入文件的两种常见使用情况为“保存”与“另存为”。如下代码从只读的
+<code>chosenFileEntry</code> 创建一个
+<code>writableEntry</code>，并将选定文件写入它。
+</p>
+
+<pre>
+ chrome.fileSystem.getWritableEntry(chosenFileEntry, function(writableFileEntry) {
+    writableFileEntry.createWriter(function(writer) {
+      writer.onerror = errorHandler;
+      writer.onwriteend = callback;
+
+    chosenFileEntry.file(function(file) {
+      writer.write(file);
+    });   
+  }, errorHandler);
+});
+</pre>
+
+<p>
+<!--@The following code creates a new file
+with "Save as" functionality and
+writes the new blob to the file
+using the <code>writer.write()</code> method.-->
+如下代码具有“另存为”功能，创建一个新文件并使用
+<code>writer.write()</code> 方法将新的
+Blob（二进制大型物件）写入文件。
+</p>
+
+<pre>
+chrome.fileSystem.chooseEntry({type: 'saveFile'}, function(writableFileEntry) {
+    writableFileEntry.createWriter(function(writer) {
+      writer.onerror = errorHandler;
+      writer.onwriteend = function(e) {
+        console.log('write complete');
+      };
+      writer.write(new Blob(['1234567890'], {type: 'text/plain'}));  
+    }, errorHandler);
+});
+</pre>
+
+<h2 id="sync-filesystem"><!--@Using the Chrome Sync Filesystem API-->使用
+Chrome 浏览器的同步文件系统 API</h2>
+
+<p>
+<!--@Using syncable file storage,
+returned data objects can be operated on in the same way
+as local offline file systems in the
+<a href="http://www.w3.org/TR/file-system-api/">FileSystem API</a>,
+but with the added (and automatic) syncing
+of that data to Google Drive.-->
+使用同步文件存储，返回的数据对象可以和<a href="http://www.w3.org/TR/file-system-api/">文件系统 API</a>
+中的本地离线文件系统一样使用，但是增加了（自动）将数据同步到 Google
+云端硬盘的功能。
+</p>
+
+
+<h3 id="sync-manifest"><!--@Adding sync file system permission-->添加同步文件系统权限</h3>
+
+<p>
+<!--@To use Chrome's Sync Filesystem API,
+you need to add the "syncFileSystem" permission to the manifest,
+so that you can obtain permission from the user
+to store and sync persistent data.-->
+要使用 Chrome 浏览器的同步文件系统 API，您需要在清单文件中添加
+"syncFileSystem" 权限，这样您才能从用户那里获取存储和同步持久数据的权限。
+
+<pre data-filename="manifest.json">
+"permissions": [
+  "...",
+  "syncFileSystem"
+]
+</pre>
+
+<h3 id="initiate"><!--@Initiating syncable file storage-->请求同步文件存储</h3>
+
+<p>
+<!--@To initiate syncable file storage in your app,
+simply call <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-requestFileSystem">syncFileSystem.requestFileSystem</a>.
+This method returns a syncable filesystem backed by Google Drive,
+for example:-->
+要在您的应用中请求同步文件存储，只要调用
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-requestFileSystem">syncFileSystem.requestFileSystem</a>。该方法返回一个由 Google
+云端硬盘支持的同步文件系统。例如：
+</p>
+
+<pre>
+chrome.syncFileSystem.requestFileSystem(function (fs) {
+   // 文件系统 API 应该可以直接在返回的“fs”上使用。
+   fs.root.getFile('test.txt', {create:true}, getEntryCallback, errorCallback);
+});
+</pre>
+
+<h3 id="file-status"><!--@About file sync status-->关于文件同步状态</h3>
+
+<p>
+<!--@Use <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-getFileStatus">syncFileSystem.getFileStatus</a> to get the sync status
+for a current file:-->
+使用 <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-getFileStatus">syncFileSystem.getFileStatus</a> 获取当前文件的同步状态：
+</p>
+
+<pre>
+chrome.syncFileSystem.getFileStatus(entry, function(status) {...});
+</pre>
+
+<p>
+<!--@File sync status values can be one of the following:
+<code>'synced'</code>, <code>'pending'</code>, or <code>'conflicting'</code>.
+'Synced' means the file is fully synchronized;
+there're no pending local changes
+that haven't been synchronized to Google Drive.
+There can, however, be pending changes on the Google Drive side
+that haven't been fetched yet.-->
+文件同步状态可以为如下值之一：<code>'synced'</code>（已同步）、<code
+>'pending'</code>（待定）或
+<code>'conflicting'</code>。
+</p>
+
+<p>'synced' 意味着文件已经完全同步，没有还未同步到 Google
+云端硬盘的待定本地更改，然而在 Google 云端硬盘上可能有还未获取的待定更改。</p>
+
+<p>
+<!--@'Pending' means the file has pending changes
+not yet synchronized to Google Drive.
+If the app is running online,
+local changes are (almost) immediately synchronized to Google Drive, and the
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#event-onFileStatusChanged">syncFileSystem.onFileStatusChanged</a>
+event is fired with the <code>'synced'</code> status
+(see below for more details).-->
+'pending' 意味着文件有待定的更改，还未同步到 Google
+云端硬盘。如果应用以在线模式运行，本地更改（几乎）会立即同步到 Google
+云端硬盘，并将产生 <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#event-onFileStatusChanged">syncFileSystem.onFileStatusChanged</a> 事件，传递
+<code>'synced'</code> 状态（更多详情请往下阅读）。
+</p>
+
+<p>
+<!--@The <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#event-onFileStatusChanged">syncFileSystem.onFileStatusChanged</a>
+is fired when a file's status changes to <code>'conflicting'</code>.
+'Conflicting' means there are conflicting changes
+on both the local storage and Google Drive.
+A file can be in this state only if the conflict resolution policy
+is set to <code>'manual'</code>.  The default policy is
+<code>'last_write_win'</code> and conflicts are automatically resolved
+by simple last-write-win policy.  The system's conflict resolution policy
+can be changed by <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-setConflictResolutionPolicy">syncFileSystem.setConflictResolutionPolicy</a>.-->
+当文件状态更改为 <code>'conflicting'</code> 时也会产生
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#event-onFileStatusChanged">syncFileSystem.onFileStatusChanged</a> 事件。'conflicting'
+意味着本地存储和 Google 云端硬盘之间的更改有冲突。只有当冲突解决策略设置为
+<code>'manual'</code>（手动）时文件才有可能处于这种状态，默认策略是
+<code>'last_write_win'</code>（最后写入优先），冲突会按照最后写入优先的策略自动解决。系统的冲突解决策略可以通过
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-setConflictResolutionPolicy">syncFileSystem.setConflictResolutionPolicy</a> 修改。
+</p>
+
+<p>
+<!--@If the conflict resolution policy is set to <code>'manual'</code> and
+a file results in <code>'conflicting'</code> state, the app can still
+read and write the file as a local offline file, but the changes are not
+sync'ed and the file will be kept detached from remote changes made on
+other clients until the conflict is resolved.
+The easiest way to resolve a conflict is to delete or rename the local
+version of file. This forces the remote version to be synchronized,
+the conflicting state is resolved, and
+the <code>onFileStatusChanged</code> event is fired
+with the <code>'synced'</code> status.-->
+如果冲突解决策略设置为
+<code>'manual'</code>（手动），并且文件处于
+<code>'conflicting'</code>（冲突）状态，应用仍然可以继续读取和写入该文件，将它作为一个本地离线文件，但是更改不会被同步，并且该文件将保持脱离状态，不受其他客户端所作的远程更改的影响，直到冲突解决。解决冲突最简单的办法就是删除或重命名本地版本的文件，这样会强制同步远程版本，解决冲突状态，并产生
+<code>onFileStatusChanged</code> 事件，传递 <code>'synced'</code> 状态。
+</p>
+
+<h3 id="file-status"><!--@Listening for changes in synced status-->监听同步状态的更改</h3>
+
+<p>
+<!--@The
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#event-onFileStatusChanged">syncFileSystem.onFileStatusChanged</a>
+event is fired when the sync status of a file changes.
+For example,
+assume a file has pending changes and is in the 'pending' state.
+The app may have been in offline state so that
+the change is about to be synchronized.
+When the sync service detects the pending local change
+and uploads the change to Google Drive,
+the service fires the <code>onFileStatusChanged</code> event
+with following values:-->
+当文件的同步状态更改时，例如假设文件有待定的更改并处于 'pending'
+状态，会产生 <a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#event-onFileStatusChanged">syncFileSystem.onFileStatusChanged</a>
+事件。应用可能已经处于离线状态，所以更改还未被同步。当同步服务检测到本地更改并将更改上传到
+Google 云端硬盘时，该服务会产生 <code>onFileStatusChanged</code>
+事件，并传递下列值： <code>{ fileEntry: <em>文件的文件项</em>, status: 'synced', action: 'updated',
+  direction: 'local_to_remote' }</code>.
+</p>
+
+<p>
+<!--@Similarly, regardless of the local activities,
+the sync service may detect remote changes made by another client,
+and downloads the changes from Google Drive to the local storage.
+If the remote change was for adding a new file,
+an event with following values is fired:-->
+类似地，无论本地有什么活动，同步服务可能会检测到另一个客户端作出的远程更改，并将更改从
+Google 云端硬盘下载到本地存储中。如果远程更改是添加了一个新文件，将产生一个事件，传递下列值：<code>{ fileEntry: <em>文件的文件项</em>, status: 'synced', action: 'added',
+  direction: 'remote_to_local' }</code>.
+</p>
+
+<p>
+<!--@If both the local and remote side have conflicting changes for the same file
+and if the conflict resolution policy is set to <code>'manual'</code>,
+the file status is changed to <code>conflicting</code> state,
+is detached from the sync service,
+and won't be synchronized until the conflict is resolved.
+In this case an event with following values is fired:-->
+如果本地和远程两端都有对同一文件冲突的更改，而且冲突解决策略设置为
+<code>'manual'</code>（手动），文件状态就会变成
+<code>conflicting</code>（冲突）状态，并从同步服务脱离，只有当冲突解决后才会同步。在这种情况下，将会产生一个事件，传递下列值：<code>{ fileEntry: <em>文件的文件项</em>, status: 'conflicting', action: null,
+  direction: null }</code>.
+</p>
+
+<p>
+<!--@You can add a listener for this event
+that responds to any changes in status.
+For example,
+the <a href="https://github.com/agektmr/ChromeMusicPlayer">Chrome Music Player</a> app
+listens for any new music synced from Google Drive,
+but not yet imported to the user's local storage on a particular client.
+Any music found gets synced to that client:-->
+您可以为该事件添加一个监听器，响应状态的更改。例如，<a href="https://github.com/agektmr/ChromeMusicPlayer">Chrome
+<!--@Music Player-->音乐播放器</a>应用监听从 Google
+云端硬盘同步，但是还未导入至某个客户端上用户本地存储的新音乐，找到的音乐会同步到这一客户端。
+</p>
+
+<pre>
+chrome.syncFileSystem.onFileStatusChanged.addListener(function(fileInfo) {
+  if (fileInfo.status === 'synced') {
+    if (fileInfo.direction === 'remote_to_local') { 
+      if (fileInfo.action === 'added') {
+        db.add(fileInfo.fileEntry);
+      } else if (fileInfo.action === 'deleted') {
+        db.remove(fileInfo.fileEntry);
+      }
+    }
+  }
+});
+</pre>
+
+<h3 id="check-usage"><!--@Checking API usage-->检查 API 用量</h3>
+
+<p>
+<!--@To check the amount of data being used by the API,
+query the app's local sandboxed directory
+or the usage bytes returned by-->
+要检查该 API 使用的数据量，查询应用在本地经过沙盒屏蔽的目录，或
+<a href="https://crxdoc-zh.appspot.com/extensions/syncFileSystem.html#method-getUsageAndQuota">syncFileSystem.getUsageAndQuota</a><!--@:-->
+返回的占用字节数：
+</p>
+
+<pre>
+chrome.syncFileSystem.getUsageAndQuota(fileSystem, function (storageInfo) {
+   updateUsageInfo(storageInfo.usageBytes);
+   updateQuotaInfo(storageInfo.quotaBytes);
+});
+</pre>
+
+<p>
+<!--@You can also look at the user's sync backend service storage (in Google Drive).
+Synced files are saved in a hidden Google Drive folder,
+<strong>Chrome Syncable FileSystem</strong>. The folder won't be shown in
+your 'My Drive' list but can be accessed by searching the folder name
+in the search box.  (Note that the remote folder layout is
+<strong>not</strong> guaranteed to remain backwards compatible between
+releases.)-->
+您也可以查看用户的同步后端存储（在 Google 云端硬盘中），同步的文件保存在一个隐藏的
+Google 云端硬盘文件夹中：<strong>Chrome Syncable
+FileSystem</strong>。文件夹不会在您的“我的云端硬盘”列表中显示，但是可以通过在搜索框中搜索文件夹名称来访问。（注意，远程文件夹的布局<strong
+>不保证</strong>在不同版本间向后兼容。）
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>创建基本的应用 - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="https://developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="https://developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="/apps/" title="Google Chrome 应用" id="view-original">
+          <img src="https://developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="/apps/samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4 toggled"></div>
+                </a>
+              <ul toggleable
+                  class="level4 ">
+              <li class="level5">
+                    <a href="/apps/app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a  class="level5 selected">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="/apps/angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="/apps/sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="/apps/app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="/apps/app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="/apps/pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="/apps/app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="/apps/app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="/apps/app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/apps/google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="/apps/analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="/apps/tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="/apps/api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="/apps/manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="/apps/app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >创建清单文件</a>
+    </li>
+    <li >
+      <a href="#background"
+         data-list-item
+         >创建后台脚本</a>
+    </li>
+    <li >
+      <a href="#view"
+         data-list-item
+         >创建视图</a>
+    </li>
+    <li >
+      <a href="#install"
+         data-list-item
+         >安装并运行示例应用</a>
+    </li>
+    <li >
+      <a href="#debug_fix_and_reload_app"
+         data-list-item
+         >调试、修复问题和重新加载</a>
+    </li>
+    <li >
+      <a href="#takeaways"
+         data-list-item
+         >更多信息</a>
+    </li>
+    <li >
+      <a href="#you_should_also_read"
+         data-list-item
+         >您还应该阅读</a>
+    </li>
+    <li >
+      <a href="#what_39_s_next_"
+         data-list-item
+         >接下来做什么？</a>
+    </li>
+  </ol>
+</div>
+
+<h1 id="lab_2_work_with_code"><!--@Create Basic App-->创建基本的应用</h1>
+
+<p><!--@There are three core pieces to any Chrome App:-->每一个 Chrome 应用都包含三个核心部分：</p>
+
+<ul>
+<li><!--@The manifest that describes meta-information about your applicaiton:
+name, description, version number and how to launch your application-->
+清单文件描述有关您的应用的元信息：名称、描述、版本号以及如何运行您的应用
+</li>
+<li><!--@The background script,
+which sets up how your application responds to system events
+such as the user installing and launching the app and the system suspending it-->
+后台脚本设置您的应用响应系统事件的方式，例如用户安装和运行应用以及系统将它关闭
+</li>
+<li><!--@The view
+(which is optional, but you normally need to show the user something)-->
+视图（是可选的，但通常您需要向用户显示一些内容）
+</li>
+</ul>
+
+<p><!--@Let&#39;s look at each of these components at their simplest level.-->
+让我们从最简单的层面看看每一个部分：
+</p>
+
+<p class="note"><b><!--@Tip:-->提示：</b><!--@
+If you use the Sublime Text editor with
+<a href="http://www.youtube.com/watch?v=x_FTILqlbsg&hd=1">our plugin</a>,
+you can create these three files with a click (Chrome -&gt; New App -&gt; Hello World).-->如果您在
+Sublime 文本编辑器中使用<a
+href="https://www.youtube.com/watch?v=x_FTILqlbsg&hd=1"
+>我们的插件</a>，您只要单击一下（Chrome -&gt; New App -&gt;
+Hello World）就能创建这三个文件。
+</p>
+
+<h2 id="manifest"><!--@Create manifest-->创建清单文件</h2>
+
+<p><!--@In an empty directory (let&#39;s call it <code>&lt;myappdir&gt;</code>),
+create the manifest file: <a href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab2_basic/manifest.json">manifest.json</a>-->
+在一个空目录（让我们称之为 <code>&lt;myappdir&gt;</code>）中创建清单文件：<a
+href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab2_basic/manifest.json">manifest.json</a>
+</p>
+
+<pre data-filename="manifest.json">
+{
+  &quot;manifest_version&quot;: 2,
+  &quot;name&quot;: &quot;My first app&quot;,
+  &quot;version&quot;: &quot;1&quot;,
+  &quot;app&quot;: {
+    &quot;background&quot;: {
+      &quot;scripts&quot;: [&quot;main.js&quot;]
+    }
+  }
+}
+</pre>
+
+<h2 id="background"><!--@Create background script-->创建后台脚本</h2>
+
+<p><!--@In the same directory,
+create the background script: -->在同一个目录中创建后台脚本：<a
+href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab2_basic/main.js">main.js</a>
+
+<pre data-filename="main.js">
+chrome.app.runtime.onLaunched.addListener(function() {
+  chrome.app.window.create(&#39;index.html&#39;, {
+    bounds: {
+      width: 500,
+      height: 309
+    }
+  });
+});
+</pre>
+
+<h2 id="view"><!--@Create view-->创建视图</h2>
+
+<p><!--@Create the user interface: -->创建用户界面：<a
+href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab2_basic/index.html">index.html</a>
+
+<pre data-filename="index.html">
+&lt;html&gt;
+  &lt;head&gt;
+      &lt;meta charset=&quot;utf-8&quot;&gt;
+      &lt;title&gt;Hello World&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+      &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h2 id="install"><!--@Install and execute sample app-->安装并运行示例应用</h2>
+
+<ul>
+<li><!--@Go to-->进入 <code>chrome://extensions</code><!--@.-->。</li>
+<li><!--@Load unpacked extension...-->加载正在开发的扩展程序...</li>
+<li><!--@Select the-->选择 <code>&lt;myappdir&gt;</code> <!--@directory.-->目录。</li>
+<li><!--@Open a new Chrome tab.-->打开一个新的 Chrome 浏览器标签页。</li>
+<li><!--@Click on the &quot;-->单击“My First App”图标。<!--@&quot; icon.--></li>
+</ul>
+
+<h2 id="debug_fix_and_reload_app"><!--@Debug, fix, and reload-->调试、修复问题和重新加载</h2>
+
+<p class="note"><b><!--@Tip:-->提示：</b><!--@
+If you have enabled Developer mode in <code>chrome://extensions</code>,
+your apps can be inspected and debugged using the Chrome Developer Tools.
+Just like any standard web page, right-click on page and select Inspect Element.
+For the background page, which doesn&#39;t have UI,
+you can either right-click on any app window and
+select <code>Inspect Background Page</code> or
+go to <code>chrome://extensions</code> and click on Inspect Views...-->如果您在
+<code>chrome://extensions</code> 中启用了开发者模式，您可以使用
+Chrome
+浏览器的开发者工具审查和调试应用，就像标准网页一样，右键单击网页并选择“审查元素”。对于没有用户界面的后台网页，您既可以右键单击应用窗口并选择“检查背景页”，也可以进入
+<code>chrome://extensions</code> 并单击“检查视图”。
+</p>
+
+<ol>
+<li><p><!--@Change the text &quot;Hello world&quot;
+to &quot;My first app&quot; in index.html.-->
+在 index.html 中将“Hello world”文本更改为“我的第一个应用”</p></li>
+<li><p><!--@Change the-->修改 <a href="https://github.com/GoogleChrome/chrome-app-codelab/blob/master/lab2_basic/main.js">main.js</a><!--@ background script to create two windows instead of one.
+Don&#39;t bother to create another html.
+For now, you can open index.html on both.-->
+后台脚本，创建两个而不是一个窗口。不用担心要创建另一个
+HTML 文件，目前您可以在两个窗口中都打开 index.html。</p></li>
+<li><p><!--@After changing code,
+right-click on your app and select Reload App to reload the changed files.
+All Developer Tools windows will be reopened when you reload your app.-->
+修改代码后，右键单击您的应用，并单击重新加载应用，以便重新加载更改的文件。当您重新加载您的应用时，所有开发者工具窗口都会重新打开。</p></li>
+<li><p><!--@Launch the app in a new tab page.
+Move the top window and you will see the second window behind it. -->
+在“打开新的标签页”页面中运行应用，移动顶端的窗口，您就会看到后面的第二个窗口。
+</p></li>
+</ol>
+
+<h2 id="takeaways"><!--@Takeaways-->更多信息</h2>
+
+<ul>
+<li><!--@Chrome Apps have three basic pieces.
+The first and foremost is the manifest, which describes your app,
+requests special permissions, defines important meta information and much more.
+The second part is the background script,
+which contains all logic not tied to a specific user interface.
+The last part is the user interface: HTML, CSS, JavaScripts related to the interface, images, etc.-->
+Chrome
+应用包含三个基本部分。第一个同时也是最重要的是清单文件，用来描述您的应用、请求特殊的权限、定义重要的元信息等等。第二个部分是后台脚本，包含与具体用户界面无关的所有逻辑。最后一部分是用户界面：与界面相关的
+HTML、CSS、JavaScript、图片等。
+</li>
+<li><!--@Chrome Apps can be debugged just like standard web pages using the Chrome Developer Tools.
+But since an app doesn&#39;t have the Reload control of a browser,
+a Reload App option has been added when you run in Developer mode.-->
+Chrome 应用可以像标准网页一样使用 Chrome
+浏览器的开发者工具调试，但是由于应用没有浏览器的“重新加载”控件，当您以开发者模式运行时会新增一个“重新加载应用”的选项。
+</li>
+</ul>
+
+<h2 id="you_should_also_read"><!--@You should also read-->您还应该阅读</h2>
+
+<ul>
+<li><a href="first_app.html"><!--@Create Your First App-->创建您的第一个应用</a><!--@ tutorial-->的教程</li>
+<li><a href="app.runtime.html">chrome.app.runtime</a><!--@ reference--> 参考</li>
+<li><a href="app.window.html">chrome.app.window</a><!--@ reference--> 参考</li>
+</ul>
+
+<h2 id="what_39_s_next_"><!--@What's next?-->接下来做什么？</h2>
+
+<p><!--@In-->在 <a href="app_codelab3_mvc.html">3 - <!--@Create-->创建 MVC</a><!--@,
+you will use either pure JavaScript or
+<a href="http://angularjs.org/">AngluarJS</a>
+to build your app's model, view, and controller.-->
+中，您会使用纯 JavaScript 或
+<a href="http://angularjs.org/">AngularJS</a>
+建立您的应用的模型、视图和控制器。
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="https:////plus.google.com/112419687097816423998?prsrc=3" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="https://developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.omnibox - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/omnibox.html">https://crxdoc-zh.appspot.com/extensions/omnibox.html</a><br>
+<b>Title:</b> chrome.omnibox - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 33519<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.omnibox</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-SuggestResult"
+             data-list-item
+             >SuggestResult</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-setDefaultSuggestion"
+             data-list-item
+             >setDefaultSuggestion        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onInputStarted"
+             data-list-item
+             >onInputStarted</a>
+        </li>
+        <li >
+          <a href="#event-onInputChanged"
+             data-list-item
+             >onInputChanged</a>
+        </li>
+        <li >
+          <a href="#event-onInputEntered"
+             data-list-item
+             >onInputEntered</a>
+        </li>
+        <li >
+          <a href="#event-onInputCancelled"
+             data-list-item
+             >onInputCancelled</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        多功能框 API 允许您在 Google Chrome 浏览器的地址栏（又叫多功能框）中注册一个关键字。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 9<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">清单文件<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "omnibox": {...}
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<p>
+<img src="../../developer.chrome.com/static/images/omnibox.png" width="300" height="150"
+  alt="A screenshot showing suggestions related to the keyword 'Chromium Search'"/>
+</p>
+
+<p>
+<!--@When the user enters your extension's
+keyword, the user starts
+interacting solely with your extension.
+Each keystroke is sent to your
+extension, and you can provide suggestions
+in response.-->
+当用户输入您的扩展程序的关键字时，用户开始完全与您的扩展程序交互。每一次按键消息都将发送至您的扩展程序，您可以作出回应，提供建议。
+</p>
+
+<p>
+<!--@The suggestions can be richly formatted
+in a variety of ways.
+
+When the user accepts
+a suggestion, your extension is notified
+and can take action.-->
+建议可以具有各种不同格式。当用户接受某个建议时，将通知您的扩展程序作出反应。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p>
+<!--@You must include an <code>omnibox</code> <code>keyword</code> field
+in the <a href="manifest.html">manifest</a> 
+to use the omnibox API.
+You should also
+specify a 16x16-pixel icon, which will be
+displayed in the address bar when suggesting that users
+enter keyword mode.-->
+您必须在<a href="manifest.html">清单文件</a>中包含 <code>omnibox </code>
+<code>keyword</code> 属性来使用多功能框 API，您还应该指定一个 16×16
+像素的图标，当用户进入关键字模式时，显示在地址栏中。
+</p>
+
+<p>
+<!--@For example:-->例如：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "Aaron 的多功能框扩展程序",
+  "version": "1.0",
+  <b>"omnibox": { "keyword" : "aaron" },</b>
+  <b>"icons": {</b>
+    <b>"16": "16-full-color.png"</b>
+  <b>},</b>
+  "background": {
+    "persistent": false,
+    "scripts": ["background.js"]
+  }
+}
+</pre>
+
+<p class="note">
+<strong><!--@Note:-->注意：</strong><!--@
+Chrome automatically creates a grayscale version of
+your 16x16-pixel icon. You should provide
+a full-color version so that it can also be
+used in other situations that require color.
+For example, the <a href="contextMenus.html"
+>context menus API</a> also uses a 16x16-pixel
+icon, but it is displayed in color.-->Chrome
+浏览器会自动创建您的 16×16
+像素图标的灰度版本。您应该提供彩色的图标，以便用于其他需要颜色的情况，例如，右键菜单
+API 也使用 16×16 像素的图标，但是显示为彩色。
+</p>
+
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@You can find samples of this API on the
+<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#omnibox">sample page</a>.-->
+您可以在<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#omnibox">示例页面</a>找到这一 API 的例子。
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.omnibox <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-SuggestResult">SuggestResult</h3>
+        <div>
+          <dd>建议结果。</dd>
+            <h3 id="SuggestResult-properties" class="capitalize" title="">
+              <a href="#type-SuggestResult">SuggestResult</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-SuggestResult-content"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-SuggestResult-content" title="">
+                        content
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      输入在地址栏中的文字，当用户选择这一项时发送给扩展程序。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-SuggestResult-description"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-SuggestResult-description" title="">
+                        description
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      显示在地址栏下拉框中的文字，可以包含 XML 样式标记。支持的标记为 <url>（用于字面的 URL）、<match>（用于匹配用户查询的高亮文本）和 <dim>（用于帮助文本的浅色效果）。样式也可以嵌套，例如：<dim><match>浅色的匹配文本</match></dim>。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-setDefaultSuggestion"
+            >setDefaultSuggestion
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.omnibox.setDefaultSuggestion</span>(<span>object suggestion</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            设置默认建议的描述和样式，默认建议即显示在 URL 栏下的第一行建议。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setDefaultSuggestion-suggestion"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setDefaultSuggestion-suggestion" title="">
+                      suggestion
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    具有部分内容的 SuggestResult 对象，没有"content"参数。
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-suggestion-description"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-suggestion-description" title="">
+                            description
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          显示在地址栏下拉框中的文字，可以包含 XML 样式标记。支持的标记为 <url>（用于字面的 URL）、<match>（用于匹配用户查询的高亮文本）和 <dim>（用于帮助文本的浅色效果）。样式也可以嵌套，例如：<dim><match>浅色的匹配文本</match></dim>。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+          </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onInputStarted">onInputStarted</h3>
+        <div class="description">
+      <p>
+            用户输入了扩展程序的关键字，开始关键字输入会话。这一事件确保每次进入输入会话时发送一次，并且在任何 onInputChanged 事件之前发生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.omnibox.onInputStarted.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onInputStarted-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onInputStarted-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onInputChanged">onInputChanged</h3>
+        <div class="description">
+      <p>
+            用户更改了输入在多功能框中的内容。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.omnibox.onInputChanged.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onInputChanged-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onInputChanged-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(string text, function suggest) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onInputChanged-text"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onInputChanged-text" title="">
+                              text
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onInputChanged-suggest"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onInputChanged-suggest" title="">
+                              suggest
+                              <span class="property">
+                                (
+                                  function
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            传递给 onInputChanged 事件的回调函数，用于将建议发回浏览器。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onInputEntered">onInputEntered</h3>
+        <div class="description">
+      <p>
+            用户接受了输入在多功能框中的内容。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.omnibox.onInputEntered.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onInputEntered-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onInputEntered-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(string text, enum of <code>"currentTab"</code>, <code>"newForegroundTab"</code>, or <code>"newBackgroundTab"</code> disposition) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onInputEntered-text"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onInputEntered-text" title="">
+                              text
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                      <div>
+                        <a name="property-onInputEntered-disposition"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onInputEntered-disposition" title="">
+                              disposition
+                              <span class="property">
+                                (
+                                  enum of <code>"currentTab"</code>, <code>"newForegroundTab"</code>, or <code>"newBackgroundTab"</code>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            多功能框查询的窗口性质，即推荐的显示结果的上下文。例如，如果多功能框命令导航至某个 URL，'newForegroundTab'（新的前台标签页）意味着导航应该在新建的已选中标签页中发生。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onInputCancelled">onInputCancelled</h3>
+        <div class="description">
+      <p>
+            用户结束了关键字输入，没有接受输入。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.omnibox.onInputCancelled.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onInputCancelled-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onInputCancelled-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

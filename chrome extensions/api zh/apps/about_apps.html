@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>什么是 Chrome 应用？ - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/about_apps.html">https://crxdoc-zh.appspot.com/apps/about_apps.html</a><br>
+<b>Title:</b> 什么是 Chrome 应用？ - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 24431<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a  class="level3 selected">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#look"
+         data-list-item
+         >应用的外观</a>
+    </li>
+    <li >
+      <a href="#behave"
+         data-list-item
+         >应用的行为</a>
+    </li>
+    <li >
+      <a href="#develop"
+         data-list-item
+         >如何开发应用</a>
+    </li>
+  </ol>
+</div>
+
+<meta name="doc-family" content="apps">
+<h1><!--@What Are Chrome Apps?-->什么是 Chrome 应用？</h1>
+
+<p>
+<!--@Chrome Apps deliver an experience as capable as a native app,
+but as safe as a web page.
+Just like web apps,
+Chrome Apps are written in HTML5, JavaScript, and CSS.
+But Chrome Apps look and behave like native apps,
+and they have native-like capabilities
+that are much more powerful than those available to web apps.-->
+Chrome 应用提供了与原生应用能力相同的体验，但是与网页一样安全。就像网上应用一样，Chrome
+应用使用 HTML5、JavaScript 和 CSS 编写，但是 Chrome
+应用从外观上与行为上都与原生应用类似，它们也具有类似于原生应用的能力，比网上应用可用的更强大。
+</p>
+
+<p>
+<iframe title="YouTube video player" width="610" height="380" src="https://www.youtube.com/embed/lBUGTVIJVfM" frameborder="0" allowfullscreen></iframe>
+</p>
+
+<p>
+<!--@Chrome Apps have access to Chrome APIs and services not available to
+traditional web sites. You can build powerful apps that interact with network
+and hardware devices, media tools, and much more. Here's a short list of
+examples:-->
+Chrome 应用可以访问对传统网站不可用的 Chrome 浏览器 API
+与服务。您可以建立与网络和硬件设备、媒体工具等等交互的强大的应用，如下是一些例子：
+</p>
+
+<ul>
+	<li><!--@Shells (VMWare, Citrix, SSH, RDP or VNC clients)-->外壳（VMWare、Citrix、SSH、RDP 或 VNC 客户端）</li>
+	<li><!--@Music/video streaming-->音乐/视屏流媒体</li>
+	<li><!--@Photo/video/music editing-->图片/视频/音乐编辑</li>
+</ul>
+
+<p>
+<!--@Watch the Chrome Apps<strong>
+<a href="http://www.youtube.com/watch?v=j8oFAr1YR-0">2012</a>
+and
+<a href="http://www.youtube.com/watch?v=f2tJRXDTMuY">2013</a>
+Google I/O presentations</strong> for an in-depth introduction.-->
+更深入的介绍请观看
+<a href="https://www.youtube.com/watch?v=j8oFAr1YR-0">2012</a> 和
+<a href="http://www.youtube.com/watch?v=f2tJRXDTMuY">2013</a> 年
+Chrome 应用 <strong>Google I/O 演示文稿</strong>。
+</p>
+
+<h2 id="look"><!--@How they look-->应用的外观</h2>
+
+<p>
+<!--@When a user opens a Chrome App,
+their focus is specifically on the tasks
+relating to the app.
+Chrome Apps have no traditional chrome:
+the omnibox (address bar), tab strip,
+and other browser interface elements no longer appear.
+Like native apps, they don’t live within the browser.
+When launched, Chrome Apps can open in windows
+that look like this (and you can style
+your windows in all different ways):-->
+当用户打开 Chrome
+应用时，他们的注意力集中在与应用相关的任务上。Chrome 应用没有传统的 Chrome
+界面：多功能框（地址栏）、标签页及其他浏览器界面元素将不再出现。与原生应用类似，它们不在浏览器内活动。运行后，Chrome
+应用可以在如下所示的窗口中打开（您也可以以各种不同的方式修饰您的窗口）：
+</p>
+<br>
+
+<img src="../../developer.chrome.com/static/images/editor.png"
+     width="770"
+     height="586"
+     alt="Text editor Chrome App in a standalone window">
+
+<h2 id="behave"><!--@How they behave-->应用的行为</h2>
+
+<p>
+<!--@Chrome App pages always load locally.
+This allows apps to be less dependent on the network.
+Once a user installs an app, they have full control over the app's lifecycle.
+Apps open and close quickly,
+and the system can shut apps down at any time to improve performance.
+Users can fully uninstall apps.-->
+Chrome 应用的页面总是从本地加载，这样可以使应用更少地依赖于网络。一旦用户安装了应用，他们可以完全控制应用的生命周期。应用的打开和关闭都很迅速，系统也可以在任何时候为提高性能而关闭应用。用户可以完全卸载应用。
+</p>
+
+<p>
+<!--@Without any effort on your part, your apps will launch offline.
+But you will need to put some effort into making sure user data is stored locally while offline
+and then synced back up to your data server once online
+(see <a href="offline_apps.html">Offline First</a>).-->
+您不需要付出任何努力，应用就能离线运行。但是您将需要尽可能地确保用户数据在离线时存储在本地，一旦在线后同步回您的数据服务器（参见<a href="offline_apps.html">首先考虑离线</a>）。
+</p>
+
+<h2 id="develop"><!--@How to develop them-->如何开发应用</h2>
+
+<p>
+<!--@Chrome Apps are modified web apps.
+You use the same code, frameworks, and tools of the web platform to write your apps.
+Some browser features have been removed, other web APIs have been disabled
+or changed to improve security and programming practices.-->
+Chrome 应用是经过修改的网上应用。您使用与网页平台相同的代码、框架以及工具编写您的应用。某些浏览器特性已移除，其他网页
+API 已禁用或更改，以便提升安全性并改善编程习惯。
+</p>
+
+<p>
+<!--@New features have been added to help you build more native-like apps.
+The app container and programming models control how Chrome Apps look and behave.
+These models aim to provide users with a more native experience.
+Powerful APIs have been added so your apps can have native-like capabilities,
+and a serious security model is enforced to make sure these APIs are not abused.-->
+新增的特性可以帮助您建立更类似原生的应用。应用容器与编程模型控制 Chrome
+应用的外观与行为，这些模型旨在为用户提供更加原生的体验。新增的强大 API
+使您的应用能够具有类似原生的能力，强制实施的严格安全模型确保这些 API
+不会被滥用。
+</p>
+
+<p>
+<!--@To learn more about how to develop Chrome Apps:-->
+要了解有关如何开发 Chrome 应用的更多信息：
+</p>
+
+<ul>
+	<li>
+		<a href="app_architecture.html"><!--@Understanding the Architecture-->理解架构</a><!--@
+		introduces the app container, programming, and security models.-->介绍了应用容器、编程与安全模型。
+	</li>
+	<li>
+		<a href="app_lifecycle.html"><!--@The Fundamentals-->基础知识</a><!--@
+		shows how to use this architecture and how to build
+		for offline, manage data, and embed external content.-->展示了如何使用这一架构以及如何为离线支持、管理数据及嵌入外部内容编写代码。
+	</li>
+	<li>
+		<a href="app_network.html"><!--@Advanced Technologies-->高级技术</a><!--@
+		shows how to use the powerful network and hardware APIs,
+		and how to connect your app to other apps using web intents.-->展示了如何使用强大的网络和硬件
+        API。
+	</li>
+	<li>
+		<a href="app_deprecated.html"><!--@Disabled Features-->禁用的特性</a><!--@
+		describes the web features that have been disabled
+		and what to use in their place, where relevant.-->描述了已禁用的网页特性及其替代品（如果相关的话）。
+	</li>
+</ul>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

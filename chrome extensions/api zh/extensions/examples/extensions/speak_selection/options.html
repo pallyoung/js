@@ -1,0 +1,168 @@
+<html>
+<head>
+  <title>Speak Selection Options</title>
+  <style>
+    body {
+      font-family: arial, helvetica, sans-serif;
+    }
+    .banner {
+      width: 100%;
+      float: left;
+    }
+    .banner_left {
+      padding: 8px;
+      float: left;
+    }
+    .banner_right {
+      padding: 8px;
+    }
+    .body_wrapper {
+      width: 100%;
+      float: left;
+    }
+    .body_left {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 50%;
+      float: left;
+    }
+    .body_right {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      width: 46%;
+      float: left;
+    }
+    .body_inner {
+      padding: 0 32px;
+    }
+    .browser_action {
+      vertical-align: middle;
+      margin: 0 2px 3px 2px;
+    }
+    .ctrl_label {
+      width: 100px;
+      float: left;
+    }
+    .ctrl_wrap {
+      margin: 18px 8px;
+    }
+    .ctrl {
+      width: 200px;
+    }
+    #hotkey {
+      font-size: 16px;
+      width: 15em;
+      margin-left: 12px;
+    }
+    #test {
+    }
+    #defaults {
+      margin-left: 24px;
+    }
+  </style>
+  <script src="keycodes.js"></script>
+  <script src="tabs.js"></script>
+  <script src="options.js"></script>
+  <script src="content_script.js"></script>
+</head>
+<body>
+
+
+<!-- Copyright © 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/examples/extensions/speak_selection/options.html">https://crxdoc-zh.appspot.com/extensions/examples/extensions/speak_selection/options.html</a><br>
+<b>Title:</b> Speak Selection Options &nbsp;&bull;&nbsp; <b>Size:</b> 3319<br></div>
+<!-- /Copyright © 2005. Spidersoft Ltd -->
+
+
+
+<div class="banner">
+  <div class="banner_left">
+    <img src="SpeakSel128.png" class="logo" alt="">
+  </div>
+  <div class="banner_right">
+    <h1>Speak Selection</h1>
+    <p>
+      This extension lets you use Chrome's text-to-speech (TTS) capabilities
+      to speak any text you find on the web.
+    </p>
+  </div>
+</div>
+
+<div class="body_wrapper">
+  <div class="body_left">
+    <div class="body_inner">
+      <h2>Speech Settings</h2>
+
+      <div class="ctrl_label">
+        <label for="voice">Voice:</label>
+      </div>
+      <div class="ctrl_wrap">
+        <select id="voice" class="ctrl"></select>
+      </div>
+
+      <div class="ctrl_label">
+        <label for="rate">Rate:</label>
+      </div>
+      <div class="ctrl_wrap">
+        <input id="rate" type="range" class="ctrl"
+               min=0.5 max=2.0 step=0.1 value=1.0></input>
+      </div>
+
+      <div class="ctrl_label">
+        <label for="pitch">Pitch:</label>
+      </div>
+      <div class="ctrl_wrap">
+        <input id="pitch" type="range" class="ctrl"
+               min=0.5 max=1.5 step=0.1 value=1.0></input>
+      </div>
+
+      <div class="ctrl_label">
+        <label for="volume">Volume:</label>
+      </div>
+      <div class="ctrl_wrap">
+        <input id="volume" type="range" class="ctrl"
+               min=0.0 max=1.0 step=0.1 value=1.0></input>
+      </div>
+
+      <div class="ctrl_label">
+         &nbsp;
+      </div>
+      <div class="ctrl_wrap">
+        <button id="test">Test Speech</button>
+        <button id="defaults">Defaults</button>
+      </div>
+
+    </div>
+  </div>
+  <div class="body_right">
+    <div class="body_inner">
+      <h2>When to speak</h2>
+      <p>
+        <span id="selected">Select some text</span>
+        anywhere on a webpage, then either:
+      </p>
+
+      <p>1. Click on the
+        <img class="browser_action" src="SpeakSel19.png" alt="Speak Selection">
+        button in the toolbar &#x2197;, or
+      </p>
+
+      <p>2. Use this hot key: <input type="text" id="hotkey"></input>
+      </p>
+      <p>Click the button or press the key again to stop speech.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

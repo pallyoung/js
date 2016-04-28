@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>外部内容 - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/app_external.html">https://crxdoc-zh.appspot.com/apps/app_external.html</a><br>
+<b>Title:</b> 外部内容 - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 32239<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4 toggled"></div>
+                </a>
+              <ul toggleable
+                  class="level4 ">
+              <li class="level5">
+                    <a href="app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a  class="level5 selected">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#external"
+         data-list-item
+         >引用外部资源</a>
+      <ol>
+        <li >
+          <a href="#manifest"
+             data-list-item
+             >清单文件的要求</a>
+        </li>
+        <li >
+          <a href="#cross-origin"
+             data-list-item
+             >跨站 XMLHttpRequest</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#webview"
+         data-list-item
+         >嵌入外部网页</a>
+      <ol>
+        <li >
+          <a href="#webview_element"
+             data-list-item
+             >添加 webview 元素</a>
+        </li>
+        <li >
+          <a href="#properties"
+             data-list-item
+             >更新属性</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#sandboxing"
+         data-list-item
+         >通过沙盒保护本地内容</a>
+      <ol>
+        <li >
+          <a href="#inline_scripts"
+             data-list-item
+             >在沙盒中使用内嵌脚本</a>
+        </li>
+        <li >
+          <a href="#include_sandbox"
+             data-list-item
+             >在清单文件中包含 sandbox</a>
+        </li>
+        <li >
+          <a href="#opening_sandbox"
+             data-list-item
+             >在窗口中打开经过沙盒屏蔽的页面</a>
+        </li>
+        <li >
+          <a href="#embedding_sandbox"
+             data-list-item
+             >在应用页面中嵌入经过沙盒屏蔽的页面</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#postMessage"
+         data-list-item
+         >向经过沙盒屏蔽的页面发送消息</a>
+      <ol>
+        <li >
+          <a href="#post_message"
+             data-list-item
+             >投递消息</a>
+        </li>
+        <li >
+          <a href="#listen_message"
+             data-list-item
+             >监听消息</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@External Content-->外部内容</h1>
+
+
+<p>
+<!--@The <a href="https://crxdoc-zh.appspot.com/apps/app_architecture.html#security">Chrome Apps security model</a> disallows
+external content in iframes and
+the use of inline scripting and <code>eval()</code>.
+You can override these restrictions,
+but your external content must be isolated from the app.-->
+<a href="https://crxdoc-zh.appspot.com/apps/app_architecture.html#security">Chrome 应用的安全模型</a>不允许
+iframe 中的外部内容，也不允许使用内嵌脚本与
+<code>eval()</code>。您可以覆盖这些限制，但是您的外部内容必须与应用程序隔离。
+</p>
+
+<p>
+<!--@Isolated content cannot directly
+access the app's data or any of the APIs.
+Use cross-origin XMLHttpRequests
+and post-messaging to communicate between the event page and sandboxed content
+and indirectly access the APIs.-->
+隔离的内容不能直接访问应用程序的数据或任何 API，但可以使用跨站
+XMLHttpRequest 及消息传递在事件页面和经过沙盒屏蔽的内容间通信，并间接访问
+API。
+</p>
+
+<p class="note">
+<b>API <!--@Sample: -->示例：</b><!--@
+Want to play with the code?
+Check out the-->想试试这些代码吗？请参见
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/sandbox">sandbox</a> <!--@sample.-->
+示例。
+</p>
+
+<h2 id="external"><!--@Referencing external resources-->引用外部资源</h2>
+
+<p>
+<!--@The <a href="contentSecurityPolicy.html">Content Security Policy</a> used by apps disallows
+the use of many kinds of remote URLs, so you can't directly reference external
+images, stylesheets, or fonts from an app page. Instead, you can use use
+cross-origin XMLHttpRequests to fetch these resources,
+and then serve them via <code>blob:</code> URLs.-->
+应用使用的<a href="contentSecurityPolicy.html">内容安全策略</a>不允许多种类型的远程
+URL，所以您不能从应用页面中直接引用外部图像、样式表或字体。相反，您可以使用跨站
+XMLHttpRequest 获取这些资源，并通过 <code>blob:</code> URL 来使用它们。
+</p>
+
+<h3 id="manifest"><!--@Manifest requirement-->清单文件的要求</h3>
+
+<p>
+<!--@To be able to do cross-origin XMLHttpRequests, you'll need to add a permission
+for the remote URL's host:-->
+为了能够发出跨来源 XMLHttpRequest 请求，您需要为远程 URL 的主机添加权限：
+</p>
+
+<pre data-filename="manifest.json">
+"permissions": [
+    "...",
+    "https://supersweetdomainbutnotcspfriendly.com/"
+  ]
+</pre>
+
+<h3 id="cross-origin"><!--@Cross-origin-->跨站 XMLHttpRequest</h3>
+
+<p>
+<!--@Fetch the remote URL into the app and serve its contents as a-->
+将远程 URL 获取进应用并通过
+<code>blob:</code>
+URL<!--@:-->
+来使用它的内容：
+</p>
+
+<pre>
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://supersweetdomainbutnotcspfriendly.com/image.png', true);
+xhr.responseType = 'blob';
+xhr.onload = function(e) {
+  var img = document.createElement('img');
+  img.src = window.webkitURL.createObjectURL(this.response);
+  document.body.appendChild(img);
+};
+
+xhr.send();
+</pre>
+
+<p><!--@You may want to <a href="https://crxdoc-zh.appspot.com/apps/offline_apps.html#saving-locally">save</a>
+these resources locally, so that they are available offline.-->
+您可能希望在本地<a href="https://crxdoc-zh.appspot.com/apps/offline_apps.html#saving-locally"
+>保存</a>这些资源，这样它们在离线状态下也可以使用。
+</p>
+
+<h2 id="webview"><!--@Embed external web pages-->嵌入外部网页</h2>
+
+<p class="note">
+<b>API <!--@Sample: -->示例：</b><!--@
+Want to play with the code? Check out the-->想试试这些代码吗？请参见
+<a href="https://github.com/GoogleChrome/chrome-app-samples/tree/master/browser">browser</a>
+<!--@sample.-->
+示例。
+</p>
+
+<p>
+<!--@The <code>webview</code> tag allows you to embed external web content in your
+app, for example, a web page. It replaces iframes that point to remote URLs,
+which are disabled inside Chrome Apps. Unlike iframes, the
+<code>webview</code> tag runs in a separate process. This means that an exploit
+inside of it will still be isolated and won't be able to gain elevated
+privileges. Further, since its storage (cookies, etc.) is isolated from the app,
+there is no way for the web content to access any of the app's data.-->
+<code>webview</code>
+标签允许您在您的应用中嵌入外部网络内容，例如一个网页。它替换了指向远程 URL
+的 iframe，在 Chrome 应用内这是禁用的。与 iframe 不同，<code>webview</code>
+标签运行在单独的进程中，这意味着它内部的攻击仍然会被隔离开来，不能获得提升的权限。此外，由于它的存储区（Cookie 等）与应用隔离，没有办法让网络内容访问应用的任何数据。
+</p>
+
+<h3 id="webview_element"><!--@Add webview element-->添加 webview 元素</h3>
+
+<p>
+<!--@Your <code>webview</code> element must include the URL to the source content
+and specify its dimensions.-->
+您的 webview 元素必须包含来源内容的 URL 并指定大小。
+</p>
+
+<pre data-filename="browser.html">
+&lt;webview src="http://news.google.com/" width="640" height="480">&lt;/webview>
+</pre>
+
+<h3 id="properties"><!--@Update properties-->更新属性</h3>
+
+<p>
+<!--@To dynamically change the <code>src</code>, <code>width</code> and
+<code>height</code> properties of a <code>webview</code> tag, you can either
+set those properties directly on the JavaScript object, or use the
+<code>setAttribute</code> DOM function.-->
+要动态更改 <code>webview</code> 标签的 <code>src</code>、<code>width</code>
+和 <code>height</code> 属性，您既可以直接在 <code>JavaScript</code>
+对象上设置这些属性，也可以使用 DOM 函数 <code>setAttribute</code>。
+</p>
+
+<pre data-filename="browser.js">
+document.querySelector('#mywebview').src =
+    'http://blog.chromium.org/';
+// 或
+document.querySelector('#mywebview').setAttribute(
+    'src', 'http://blog.chromium.org/');
+</pre>
+
+<h2 id="sandboxing"><!--@Sandbox local content-->通过沙盒保护本地内容</h2>
+
+<p>
+<!--@Sandboxing allows specified pages
+to be served in a sandboxed, unique origin.
+These pages are then exempt from their Content Security Policy.
+Sandboxed pages can use iframes, inline scripting,
+and <code>eval()</code>.
+Check out the manifest field description for
+<a href="https://crxdoc-zh.appspot.com/apps/manifest/sandbox.html">sandbox</a>.-->
+沙盒功能允许指定页面在经过沙盒屏蔽的唯一来源中运行，这些页面就不受内容安全策略的限制。经过沙盒屏蔽的页面可以使用 iframe、内嵌脚本以及
+<code>eval()</code>。请查阅 <a href="https://crxdoc-zh.appspot.com/apps/manifest/sandbox.html">sandbox</a>
+清单文件字段的描述。
+</p>
+
+<p>
+<!--@It's a trade-off though:
+sandboxed pages can't use the chrome.* APIs.
+If you need to do things like <code>eval()</code>,
+go this route to be exempt from CSP,
+but you won't be able to use the cool new stuff.-->
+不过这也是一个权衡的问题：经过沙盒屏蔽的页面不能使用 chrome.*
+API。如果您需要做一些类似于 <code>eval()</code>
+的事情，请使用这种方法免受
+CSP（内容安全策略）的限制，但是您也不能使用一些很棒的新功能。
+</p>
+
+<h3 id="inline_scripts"><!--@Use inline scripts in sandbox-->在沙盒中使用内嵌脚本</h3>
+
+<p>
+<!--@Here's a sample sandboxed page
+which uses an inline script and <code>eval()</code>:-->
+如下是一个经过沙盒屏蔽的页面示例，使用了内嵌脚本与
+<code>eval()</code>：
+</p>
+
+<pre data-filename="sandboxed.html">
+&lt;html&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Woot&lt;/h1&gt;
+    &lt;script&gt;
+      document.write('这是内嵌脚本。&lt;br&gt;');
+      eval('document.write(\'这是使用了 eval 的内嵌脚本。\');');
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<h3 id="include_sandbox"><!--@Include sandbox in manifest-->在清单文件中包含 sandbox</h3>
+
+<p>
+<!--@You need to include the <code>sandbox</code> field in the manifest
+and list the app pages to be served in a sandbox:-->
+您需要在清单文件中包含 <code>sandbox</code>
+字段，并列出需要在沙盒中运行的应用页面：
+</p>
+
+<pre data-filename="manifest.json">
+"sandbox": {
+  "pages": ["sandboxed.html"]
+}
+</pre>
+
+<h3 id="opening_sandbox"><!--@Opening a sandboxed page in a window-->在窗口中打开经过沙盒屏蔽的页面</h3>
+
+<p>
+<!--@Just like any other app pages,
+you can create a window that the sandboxed page opens in.
+Here's a sample that creates two windows,
+one for the main app window that isn't sandboxed,
+and one for the sandboxed page:-->
+就像其他应用页面一样，您可以创建一个窗口，打开经过沙盒屏蔽的页面。如下是一个示例，它创建了两个窗口，一个用于应用主窗口，不经过沙盒屏蔽，另一个用于经过沙河屏蔽的页面：
+</p>
+
+<p class="warning">
+<!--@NOTE:
+-->注意：使用经过沙盒屏蔽的页面创建窗口时会遇到<a href="https://code.google.com/p/chromium/issues/detail?id=154662"><!--@issue-->问题 154662</a><!--@
+is a bug when using sandbox pages to create windows.
+The effect is that an error "Uncaught TypeError: Cannot call method
+'initializeAppWindow' of undefined" is output to the developer console
+and that the app.window.create call does not call the callback function
+with a window object. However, the sandbox page is created as a new window.-->，开发者控制台中会输出错误“Uncaught
+TypeError: Cannot call method 'initializeAppWindow' of
+undefined”，而且 app.window.create
+不会调用回调函数，并传递窗口对象。但还是会创建新窗口，打开经过沙盒屏蔽的页面。
+</p>
+
+<pre data-filename="background.js">
+chrome.app.runtime.onLaunched.addListener(function() {
+  chrome.app.window.create('window.html', {
+    'bounds': {
+      'width': 400,
+      'height': 400,
+      'left': 0,
+      'top': 0
+    }
+  });
+
+  chrome.app.window.create('sandboxed.html', {
+    'bounds': {
+      'width': 400,
+      'height': 400,
+      'left': 400,
+      'top': 0
+    }
+  });
+});
+</pre>
+
+<h3 id="embedding_sandbox"><!--@Embedding a sandboxed page in an app page-->在应用页面中嵌入经过沙盒屏蔽的页面</h3>
+
+<p><!--@Sandboxed pages can also be embedded within another app page
+  using an <code>iframe</code>:-->
+  经过沙盒屏蔽的页面也可以使用 <code>iframe</code> 嵌入至另一个应用页面：
+</p>
+
+<pre data-filename="window.html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;I am normal app window.&lt;/p&gt;
+
+    &lt;iframe src="sandboxed.html" width="300" height="200"&gt;&lt;/iframe&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+
+<h2 id="postMessage"><!--@Sending messages to sandboxed pages-->向经过沙盒屏蔽的页面发送消息</h2>
+
+<p>
+<!--@There are two parts to sending a message:
+you need to post a message from the sender page/window,
+and listen for messages on the receiving page/window.-->
+发送消息需要两方面同时进行：您需要从发送者页面/窗口投递消息，并在接收端页面/窗口监听消息。
+</p>
+
+<h3 id="post_message"><!--@Post message-->投递消息</h3>
+
+<p>
+<!--@You can use <code>postMessage</code> to communicate
+between your app and sandboxed content.
+Here's a sample background script
+that posts a message to the sandboxed page it
+opens:-->
+您可以使用 <code>postMessage</code>
+在您的应用与经过沙盒屏蔽的内容间通信。如下是一个后台脚本的示例，向它打开的经过沙盒屏蔽的页面发送消息：
+</p>
+
+<pre data-filename="background.js">
+var myWin = null;
+
+chrome.app.runtime.onLaunched.addListener(function() {
+  chrome.app.window.create('sandboxed.html', {
+    'bounds': {
+      'width': 400,
+      'height': 400
+    }
+  }, function(win) {
+       myWin = win;
+       myWin.contentWindow.postMessage('只是打个招呼。', '*');
+     });
+});
+</pre>
+
+<p>
+<!--@Generally speaking on the web,
+you want to specify the exact origin
+from where the message is sent.
+Chrome Apps have no access
+to the unique origin of sandboxed content,
+so you can only whitelist all origins
+as acceptable origins ('*').
+On the receiving end,
+you generally want to check the origin;
+but since Chrome Apps content is contained,
+it isn't necessary.
+To find out more,
+see-->
+一般从网页的角度来说，您希望指定消息发送方的准确来源。Chrome
+应用无法访问经过沙盒屏蔽的内容的唯一来源，所以您只能将所有来源添加到可接受来源的白名单中（'*'）。在接收端，您通常希望检查来源，但是由于
+Chrome 应用的内容是受限的，这没有必要。要想了解更多内容，请参见
+<a href="https://developer.mozilla.org/en/DOM/window.postMessage">window.postMessage</a><!--@.-->。
+</p>
+
+<h3 id="listen_message"><!--@Listen for message-->监听消息</h3>
+
+<p>
+<!--@Here's a sample message receiver
+that gets added to your sandboxed page:-->
+如下是消息接收端的示例，可以添加到经过沙盒屏蔽的页面中去：
+</p>
+
+<pre data-filename="sandboxed.html">
+var messageHandler = function(e) {
+  console.log('后台脚本打了个招呼。', e.data);
+};
+
+window.addEventListener('message', messageHandler);
+</pre>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

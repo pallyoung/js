@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.declarativeContent - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html">https://crxdoc-zh.appspot.com/extensions/declarativeContent.html</a><br>
+<b>Title:</b> chrome.declarativeContent - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 29993<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<p class="warning">
+  <!--@This API is experimental. It is only available to Chrome users on the-->
+  该 API 还是实验性的，仅对
+  <a href="http://www.chromium.org/getting-involved/dev-channel">dev <!--@channel-->分支</a><!--@.-->的
+  Chrome 用户可用。
+</p>
+<h1>chrome.declarativeContent</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#usage"
+         data-list-item
+         >用法</a>
+    </li>
+    <li >
+      <a href="#rules"
+         data-list-item
+         >规则</a>
+    </li>
+    <li >
+      <a href="#css-matching"
+         data-list-item
+         >CSS 匹配</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-PageStateMatcher"
+             data-list-item
+             >PageStateMatcher</a>
+        </li>
+        <li >
+          <a href="#type-ShowPageAction"
+             data-list-item
+             >ShowPageAction</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onPageChanged"
+             data-list-item
+             >onPageChanged</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.declarativeContent</code> API 根据网页内容采取行动，而不需要读取页面内容的权限。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        仅用于 <a href="http://www.chromium.org/getting-involved/dev-channel">Dev</a> <!--@channel only.-->分支。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "declarativeContent"
+                </span>
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">了解更多<!--@:-->：</td>
+    <td>
+        <a href="events.html">
+        声明事件
+                </a>
+        <br>
+        <a href="activeTab.html">
+        activeTab
+                </a>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<p>
+<!--@The Declarative Content API allows you to show your extension's
+<a href="pageAction.html">page action</a> depending on the URL of a web page and
+the CSS selectors its content matches, without needing to take a <a
+href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#host-permissions">host permission</a> or
+inject a <a href="content_scripts.html">content script</a>.  Use the
+<a href="activeTab.html">activeTab</a> permission in order to be able
+to interact with a page after the user clicks on your page action.-->
+声明式内容 API 允许您根据网页的 URL
+和它的内容匹配的 CSS
+选择器来显示您的扩展程序的<a href="pageAction.html">页面按钮</a>，而不需要拥有<a
+href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#host-permissions">主机权限</a>或插入<a
+href="content_scripts.html">内容脚本</a>。为了在用户单击您的页面按钮后能够与网页交互，请使用
+<a href="activeTab.html">activeTab</a> 权限。
+</p>
+
+<p>
+<!--@If you need more precise control over when your page action appears or
+you need to change its appearance to match the current tab before the
+user clicks on it, you'll have to keep using the <a href="pageAction.html">pageAction</a> API.-->
+如果您需要更精确地控制什么时候显示您的页面按钮，或者需要在用户单击它之前更改它的外观以匹配当前标签页，您还是需要继续使用<a href="pageAction.html">页面按钮</a> API。
+</p>
+
+<h2 id="rules"><!--@Rules-->规则</h2>
+
+<p><!--@As a <a href="https://crxdoc-zh.appspot.com/extensions/events.html#declarative">declarative API</a>, this
+API lets you register rules on the
+<code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#event-onPageChanged">onPageChanged</a></code> <a href="https://crxdoc-zh.appspot.com/extensions/events.html#type-Event">event</a> object which
+take an action (currently just <code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-ShowPageAction">ShowPageAction</a></code>) when
+a set of conditions, represented as a
+<code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">PageStateMatcher</a></code>, are met.-->
+作为一种<a href="https://crxdoc-zh.appspot.com/extensions/events.html#declarative">声明式 API</a>，该 API 让您在
+<code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#event-onPageChanged">onPageChanged</a></code>
+<a href="https://crxdoc-zh.appspot.com/extensions/events.html#type-Event">事件对象</a>上注册规则，当一系列由
+<code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">PageStateMatcher</a></code>
+表示的条件满足时执行某个操作（目前只有
+<code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-ShowPageAction">ShowPageAction</a></code>）。
+</p>
+
+<p>
+<!--@The <code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">PageStateMatcher</a></code> matches web pages if and only
+if all listed criteria are met. The following rule would show a page
+action for pages on <code>https://www.google.com/</code> when a
+password field is present on it:-->
+当且仅当列出的所有条件都满足时，<code><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">PageStateMatcher</a></code>
+才会匹配网页。当 <code>https://www.google.com/</code>
+上的页面存在密码字段时，以下规则将为该页面显示页面按钮：
+</p>
+
+<pre>
+var rule1 = {
+  conditions: [
+    new <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">chrome.declarativeContent.PageStateMatcher</a>({
+      <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#property-PageStateMatcher-pageUrl">pageUrl</a>: { <a href="https://crxdoc-zh.appspot.com/extensions/events.html#property-UrlFilter-hostEquals">hostEquals</a>: 'www.google.com', <a href="https://crxdoc-zh.appspot.com/extensions/events.html#property-UrlFilter-schemes">schemes</a>: ['https'] },
+      <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#property-PageStateMatcher-css">css</a>: ["input[type='password']"]
+    })
+  ],
+  actions: [ new <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-ShowPageAction">chrome.declarativeContent.ShowPageAction</a>() ]
+};
+</pre>
+
+<p class="note">
+<strong><!--@Note:-->注意：</strong><!--@ All conditions and actions are created via a constructor
+as shown in the example above.-->所有条件和操作都通过构造函数创建，如以上例子所示。
+</p>
+
+<p>
+<!--@In order to also show a page action for sites with a video, you can
+add a second condition, as each condition is sufficient to trigger all
+specified actions:-->
+如果要为包含视频的网站显示页面按钮，您可以添加第二个条件，每一个条件都足以触发所有指定的操作：
+</p>
+<pre>
+var rule2 = {
+  conditions: [
+    new <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">chrome.declarativeContent.PageStateMatcher</a>({
+      <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#property-PageStateMatcher-pageUrl">pageUrl</a>: { <a href="https://crxdoc-zh.appspot.com/extensions/events.html#property-UrlFilter-hostEquals">hostEquals</a>: 'www.google.com', <a href="https://crxdoc-zh.appspot.com/extensions/events.html#property-UrlFilter-schemes">schemes</a>: ['https'] },
+      <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#property-PageStateMatcher-css">css</a>: ["input[type='password']"]
+    })<strong>,
+    new <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">chrome.declarativeContent.PageStateMatcher</a>({
+      <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#property-PageStateMatcher-css">css</a>: ["video"]
+    })</strong>
+  ],
+  actions: [ new <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-ShowPageAction">chrome.declarativeContent.ShowPageAction</a>() ]
+};
+</pre>
+
+<p>
+<a href="https://crxdoc-zh.appspot.com/extensions/events.html#addingrules"><!--@Added rules-->添加的规则</a><!--@ are saved across
+browser restarts, so register them as follows:-->在浏览器重新启动后也将保留，所以请按照下面的方式注册它们：
+</p>
+<pre>
+<a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#event-onInstalled">chrome.runtime.onInstalled</a>.addListener(function(details) {
+  <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#event-onPageChanged">chrome.declarativeContent.onPageChanged</a>.<a href="https://crxdoc-zh.appspot.com/extensions/events.html#removingrules">removeRules</a>(undefined, function() {
+    <a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#event-onPageChanged">chrome.declarativeContent.onPageChanged</a>.<a href="https://crxdoc-zh.appspot.com/extensions/events.html#addingrules">addRules</a>([rule2]);
+  });
+});
+</pre>
+
+<p class="note">
+<strong><!--@Note:-->注意：</strong><!--@ You should always register or unregister rules in bulk
+rather than individually because each of these operations recreates internal
+data structures.  This re-creation is computationally expensive but facilitates
+a faster matching algorithm.-->您一定要批量注册或取消注册规则，而不是一个一个地进行，因为每一次这样的操作都会重新创建内部的数据结构，这一重新创建的过程需要大量的计算，但是利用了一种更快的匹配算法。
+</p>
+
+<p>
+<!--@Combine the above rule with the <a href="activeTab.html">activeTab</a>
+permission to create an extension that doesn't need any install-time
+permissions but can invite the user to click its page action on
+relevant pages and can run on those pages when the user clicks the
+page action.-->
+将以上规则与
+<a href="activeTab.html">activeTab</a>
+权限一起使用，就能创建一个不需要任何安装时警告的扩展程序，使用户在相关的页面上单击它的页面按钮，并当用户单击页面按钮时在这些页面上运行。
+</p>
+
+<h2 id="css-matching">CSS <!--@Matching-->匹配</h2>
+
+<p><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#property-PageStateMatcher-css">PageStateMatcher.css</a> <!--@conditions must be
+<i><a href="http://www.w3.org/TR/selectors4/#compound">compound selectors</a></i>,
+meaning that you can't
+include <a href="http://www.w3.org/community/webed/wiki/CSS/Selectors#Combinators">combinators</a>
+like whitespace or "<code>&gt;</code>" in your selectors.  This helps Chrome
+match the selectors more efficiently.-->
+条件必须为<i><a href="http://www.w3.org/TR/selectors4/#compound"
+>复合选择器</a></i>，这意味着您在选择器中不能包含<a
+href="http://www.w3.org/community/webed/wiki/CSS/Selectors#Combinators">组合器</a>，例如空格或“<code>&gt;</code>”。这有利于让 Chrome
+浏览器更高效地匹配选择器。
+</p>
+
+<table>
+  <tr><th><!--@Compound Selectors (OK)-->复合选择器（可以使用）</th><th><!--@Complex Selectors (Not OK)-->复杂选择器（不能使用）</th></tr>
+  <tr><td><code>a</code></td><td><code>div p</code></td></tr>
+  <tr><td><code>iframe.special[src^='http']</code></td><td><code>p&gt;span.highlight</code></td></tr>
+  <tr><td><code>ns|*</code></td><td><code>p + ol</code></td></tr>
+  <tr><td><code>#abcd:checked</code></td><td><code>p::first-line</code></td></tr>
+</table>
+
+<p><!--@CSS conditions only match displayed elements: if an element that matches your
+selector is <code>display:none</code> or one of its parent elements
+is <code>display:none</code>, it doesn't cause the condition to match.  Elements
+styled with <code>visibility:hidden</code>, positioned off-screen, or hidden by
+other elements can still make your condition match.-->
+CSS 条件只匹配显示的元素：如果匹配您的选择器的元素或者它的某个父元素为
+<code>display:none</code>，这样不会使条件匹配。具有
+<code>visibility:hidden</code>
+样式、位置在屏幕以外或者被其他元素隐藏的元素仍然可以使您的条件匹配。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.declarativeContent <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-PageStateMatcher">PageStateMatcher</h3>
+        <div>
+          <dd>通过各种条件匹配网页的状态。</dd>
+            <h3 id="PageStateMatcher-properties" class="capitalize" title="">
+              <a href="#type-PageStateMatcher">PageStateMatcher</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-PageStateMatcher-pageUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-PageStateMatcher-pageUrl" title="">
+                        pageUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/events.html#type-UrlFilter">events.UrlFilter</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果页面的顶层 URL 满足 UrlFilter 的条件则匹配。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-PageStateMatcher-css"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-PageStateMatcher-css" title="">
+                        css
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            array of string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果在与页面主框架来源相同的某个框架中，数组中的所有 CSS 选择器都匹配显示的元素，则匹配网页状态。为了提高匹配速度，该数组中的所有选择器必须是<a href="http://www.w3.org/TR/selectors4/#compound">复合选择器</a>。注意，在这里列出几百个 CSS 选择器或者每个网页都能匹配几百次的 CSS 选择器可能会使网站变慢。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ShowPageAction">ShowPageAction</h3>
+        <div>
+          <dd>声明式事件操作，当相应的条件满足时显示扩展程序的 <a href="pageAction.html">页面按钮</a>。使用该操作不需要<a href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#host-permissions">主机权限</a>，但是扩展程序必须要有页面按钮。如果扩展程序拥有 <a href="activeTab.html">activeTab</a> 权限，单击页面按钮就会授予对活动标签页的访问权限。</dd>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onPageChanged">onPageChanged</h3>
+        <div class="description">
+          <p><!--@Provides the <a href="https://crxdoc-zh.appspot.com/extensions/events.html#declarative">Declarative Event API</a>
+          consisting of $ref:[events.Event.addRules addRules],
+          $ref:[events.Event.removeRules removeRules], and $ref:[events.Event.getRules
+          getRules].-->
+          提供<a href="https://crxdoc-zh.appspot.com/extensions/events.html#declarative">声明式事件 API</a>，包括
+          $ref:[events.Event.addRules addRules]、$ref:[events.Event.removeRules
+          removeRules] 和 $ref:[events.Event.getRules getRules]。
+          </p>
+          <div class="summary">
+            <div class="line">
+            <span>chrome.declarativeContent.onPageChanged.addRules</span>(<span>array of <a href="#type-Rule">Rule</a> rules</span>, <span class="optional">function callback</span>)
+            </div>
+            <div class="line">
+            <span>chrome.declarativeContent.onPageChanged.removeRules</span>(<span class="optional">array of string ruleIdentifiers</span>, <span class="optional">function callback</span>)
+            </div>
+            <div class="line">
+            <span>chrome.declarativeContent.onPageChanged.getRules</span>(<span class="optional">array of string ruleIdentifiers</span>, <span>function callback</span>)
+            </div>
+          </div>
+            <h4 title=""><!--@Supported conditions-->支持的条件</h4>
+            <ul>
+              <div><li><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-PageStateMatcher">PageStateMatcher</a></li></div>
+            </ul>
+            <h4 title=""><!--@Supported actions-->支持的操作</h4>
+            <ul>
+              <div><li><a href="https://crxdoc-zh.appspot.com/extensions/declarativeContent.html#type-ShowPageAction">ShowPageAction</a></li></div>
+            </ul>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

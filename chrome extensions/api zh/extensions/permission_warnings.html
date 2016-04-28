@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>权限警告 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/permission_warnings.html">https://crxdoc-zh.appspot.com/extensions/permission_warnings.html</a><br>
+<b>Title:</b> 权限警告 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 33111<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a  class="level3 selected">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#examples"
+         data-list-item
+         > 权限警告的例子 </a>
+    </li>
+    <li >
+      <a href="#warnings"
+         data-list-item
+         > 警告以及导致它们的原因 </a>
+    </li>
+    <li >
+      <a href="#nowarning"
+         data-list-item
+         > 不导致警告的权限 </a>
+    </li>
+    <li >
+      <a href="#test"
+         data-list-item
+         > 测试权限警告 </a>
+    </li>
+    <li >
+      <a href="#api"
+         data-list-item
+         >API</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Permission Warnings-->权限警告</h1>
+
+
+<!--
+NOTE: When this doc is updated, the online help should also be updated:
+http://www.google.com/support/chrome_webstore/bin/answer.py?hl=en&answer=186213
+
+We should periodically look at
+http://src.chromium.org/viewvc/chrome/trunk/src/chrome/app/generated_resources.grd?view=markup
+to make sure that we're covering all messages. Search for
+IDS_EXTENSION_PROMPT_WARNING
+(e.g. IDS_EXTENSION_PROMPT_WARNING_BROWSING_HISTORY).
+-->
+
+<p>
+<!--@To use most chrome.* APIs and extension capabilities,
+your extension must declare its intent in the
+<a href="manifest.html">manifest</a>,
+often in the "permissions" field.
+Some of these declarations
+result in a warning when
+a user installs your extension.-->
+要使用大部分 chrome.* API
+和扩展程序功能，您的扩展程序必须在<a href="manifest.html">清单文件</a>中声明它的意图，通常在
+"permission" 字段中。其中一些声明会使用户在安装您的扩展程序时看到一个警告对话框。
+</p>
+
+<p>
+<!--@When you autoupdate your extension,
+the user might see another warning
+if the extension requests new permissions.
+These new permissions might be new APIs that your extension uses,
+or they might be new websites
+that your extension needs access to.-->
+当您自动更新您的扩展程序时，如果扩展程序请求新的权限，用户可能会看到另一个警告对话框。这些新的权限可能是因为您的扩展程序使用了新的
+API，也可能是因为您的扩展程序需要访问新的网站。
+</p>
+
+
+<h2 id="examples"> <!--@Examples of permission warnings-->权限警告的例子 </h2>
+
+<p>
+<!--@Here's a typical dialog
+that a user might see when installing an extension:-->
+如下是用户在安装扩展程序时可能会看到的典型对话框：
+</p>
+
+<img src="../../developer.chrome.com/static/images/perms-hw1.png"
+  width="490" height="193"
+  alt="Permission warning: 'It can: Access your data on api.flickr.com'"
+  />
+
+<p>
+<!--@The warning about access to data on api.flickr.com
+is caused by the following lines
+in the extension's manifest:-->
+有关访问来自 api.flickr.com
+的数据的警告是因为扩展程序清单文件中的如下几行：
+</p>
+
+<pre data-filename="manifest.json">
+"permissions": [
+  <b>"http://api.flickr.com/"</b>
+],
+</pre>
+
+<p class="note">
+<b><!--@Note:-->注意：</b><!--@
+You don't see permission warnings when
+you load an unpacked extension.
+You get permission warnings only when you install an extension
+from a <code>.crx</code> file.-->当您加载未打包的扩展程序时不会看到权限警告，只有当您从
+<code>.crx</code> 文件安装扩展程序时才会看到权限警告。
+</p>
+
+<p>
+<!--@If you add a permission to the extension when you autoupdate it,
+the user might see a new permission warning.
+For example,
+assume you add a new site and the "tabs" permission
+to the previous example:-->
+如果您在自动更新时向扩展程序添加新的权限，用户可能看到新的权限警告。例如，假设您在前一个例子中添加了一个新的站点以及
+"tabs" 权限：
+</p>
+
+<pre data-filename="manifest.json">
+"permissions": [
+  "http://api.flickr.com/",
+  <b>"http://*.flickr.com/",
+  "tabs"</b>
+],
+</pre>
+
+<p>
+<!--@When the extension autoupdates,
+the increased permissions
+cause the extension to be disabled
+until the user re-enables it.
+Here's the warning the user sees:-->
+当扩展程序自动更新时，增加的权限将使扩展程序被禁用，直到用户重新启用。如下是用户看到的警告：
+</p>
+
+<img src="../../developer.chrome.com/static/images/perms-hw2-disabled.png"
+  width="332" height="208"
+  alt="Warning text: 'The newest version of the extension Hello World requires more permissions, so it has been disabled. [Re-enable].'"
+  />
+
+<p>
+<!--@Clicking the Re-enable button
+brings up the following warning:-->
+单击重新启用按钮将显示如下警告：
+</p>
+
+<img src="../../developer.chrome.com/static/images/perms-hw2.png"
+  width="490" height="193"
+  alt="Permission warning: 'It can: Access your data on api.flickr.com and flickr.com; Read and modify your browsing history'"
+  />
+
+
+<h2 id="warnings"> <!--@Warnings and their triggers-->警告以及导致它们的原因 </h2>
+
+<p>
+<!--@It can be surprising when adding a permission such as "tabs"
+results in the seemingly unrelated warning
+that the extension can access your browsing activity.
+The reason for the warning is that
+although the <code>chrome.tabs</code> API
+might be used only to open new tabs,
+it can also be used to see the URL that's associated
+with every newly opened tab
+(using their <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> objects).-->
+当您添加某些权限，例如 "tabs"
+后，将显示看上去不相关的警告，说扩展程序可以访问您的浏览器活动，这可能令人惊讶。这一警告的原因是尽管
+<code>chrome.tabs</code> API
+可能只用来打开新标签页，它也能够用来查看每一个新打开的标签页相关联的
+URL（使用它们的 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象）。
+</p>
+
+<p class="note">
+<b><!--@Note:-->注意：</b><!--@
+As of Google Chrome 7,
+you no longer need to specify the "tabs" permission
+just to call <code>chrome.tabs.create()</code>
+or <code>chrome.tabs.update()</code>.-->从 Google Chrome 7 开始，您不再需要指定
+"tabs" 权限，就能直接调用
+<code>chrome.tabs.create()</code> 或
+<code>chrome.tabs.update()</code>。
+</p>
+
+<p>
+<!--@The following table lists the warning messages
+that users can see,
+along with the manifest entries
+that trigger them.-->
+下表列出了用户可能看到的警告消息，以及导致这些警告的清单文件条目。
+</p>
+
+<p>
+<table>
+  <tr>
+    <th> <!--@Warning message-->警告消息 </th>
+    <th> <!--@Manifest entry that caused it-->导致这一警告的清单文件条目 </th>
+    <th> <!--@Notes-->备注 </th>
+  </tr>
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_FULL_ACCESS -->
+    <!--@Access all data on your computer and the websites you visit-->
+    访问您计算机上的所有数据以及您在所有网站上的数据
+  </td>
+  <td>
+    "plugins"
+  </td>
+  <td>
+    <!--@The "plugins" permission is required by-->
+    <a href="npapi.html">NPAPI <!--@plugins-->插件</a><!--@.-->要求
+    "plugins" 权限。
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_BOOKMARKS -->
+    <!--@Read and modify your bookmarks-->
+    读取和修改您的书签
+  </td>
+  <td>
+    "bookmarks" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@The "bookmarks" permission is required by the-->
+    <a href="bookmarks.html"><code>chrome.bookmarks</code></a> <!--@module.-->
+    模块要求 "bookmarks" 权限。
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_BROWSING_HISTORY -->
+    <!--@Read and modify your browsing history-->
+    读取和修改您的浏览记录
+  </td>
+  <td>
+    <!-- HasEffectiveBrowsingHistoryPermission -->
+     <!--@Any of the following:-->以下任意一个：
+    <ul>
+      <li> "history" <!--@permission-->权限 </li>
+      <li> "topSites" <!--@permission-->权限 </li>
+    </ul>
+  </td>
+  <td>
+    <p>
+      <!--@The "history" permission is required by-->
+      <a href="history.html"><code>chrome.history</code></a><!--@.-->
+      模块要求 "history" 权限。
+    </p>
+    <p>
+      <!--@The "topSites" permission is required by-->
+      <a href="topSites.html"><code>chrome.topSites</code></a><!--@.-->
+      模块要求 "topSites" 权限。
+    </p>
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_TABS -->
+    <!--@Access your tabs and browsing activity-->
+    访问您的标签页和浏览活动
+  </td>
+  <td>
+    <!-- HasEffectiveBrowsingHistoryPermission -->
+     <!--@Any of the following:-->以下任意一个：
+    <ul>
+      <li> "tabs" <!--@permission-->权限 </li>
+      <li> "webNavigation" <!--@permission-->权限 </li>
+    </ul>
+  </td>
+  <td>
+    <p>
+      <!--@The "tabs" permission is required by the-->
+      <a href="tabs.html"><code>chrome.tabs</code></a> <!--@and-->和
+      <a href="windows.html"><code>chrome.windows</code></a> <!--@modules.-->
+      模块要求 "tabs" 权限。
+    </p>
+    <p>
+      <!--@The "webNavigation" permission is required by the-->
+      <a href="webNavigation.html"><code>chrome.webNavigation</code></a> <!--@module.-->
+      模块要求 "webNavigation" 权限。
+    </p>
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_CONTENT_SETTINGS -->
+    <!--@Manipulate settings that specify whether websites can use features such as cookies, JavaScript, and plug-ins-->
+    管理用于控制网站对 Cookie、JavaScript 和插件的访问权限的设置
+  </td>
+  <td>
+    <!-- HasEffectiveBrowsingHistoryPermission -->
+     "contentSettings" <!--@permission-->权限
+  </td>
+  <td>
+    <p>
+      <!--@The "contentSettings" permission is required by-->
+      <a href="contentSettings.html"><code>chrome.contentSettings</code></a><!--@.-->
+      模块要求"contentSettings"权限。
+    </p>
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_ALL_HOSTS -->
+    <!--@Access your data on all websites-->
+    访问您在所有网站上的数据
+  </td>
+  <td>
+    <!-- HasEffectiveAccessToAllHosts() -->
+    <!--@Any of the following:-->以下任意一个：
+    <ul>
+      <li> "debugger" <!--@permission-->权限 </li>
+      <li> "pageCapture" <!--@permission-->权限 </li>
+      <li> "proxy" <!--@permission-->权限 </li>
+      <li> <!--@A match pattern in the "permissions" field
+        that matches all hosts-->
+        在 "permissions" 字段中匹配所有主机的匹配表达式，
+      </li>
+      <li> <!--@A&nbsp;"content_scripts" field with a "matches" entry
+        that matches all hosts-->
+        "content_scripts" 字段中 "matches" 项匹配所有主机
+      </li>
+      <li> "devtools_page" </li>
+    </ul>
+  </td>
+  <td>
+    <p>
+      <!--@The "debugger" permission is required by the-->
+      <a href="debugger.html">debugger</a> <!--@module.-->
+      模块要求 "debugger" 权限。
+    </p>
+
+    <p>
+      <!--@The "proxy" permission is required by the-->
+      <a href="proxy.html"><code>chrome.proxy</code></a> <!--@module.-->
+      模块要求 "proxy" 权限。
+    </p>
+
+    <p>
+      <!--@Any of the following URLs match all hosts:-->
+      以下任意一个 URL 匹配所有主机：
+    </p>
+    <ul>
+      <li> <code>http://*/*</code> </li>
+      <li> <code>https://*/*</code> </li>
+      <li> <code>*://*/*</code> </li>
+      <li> <code>&lt;all_urls&gt;</code> </li>
+    </ul>
+    <strong><!--@Note that you may be able to avoid declaring all host permissions using the-->
+    注意您可以使用
+    <code><a href="activeTab.html">activeTab</a></code> <!--@permission.-->
+    权限避免声明所有主机权限。
+    </strong>
+  </td>
+</tr>
+<tr>
+  <td style="font-weight:bold">
+    访问页面调试程序后端
+  </td>
+  <td>
+    "debugger" 权限
+  </td>
+  <td>
+    <p>
+      <!--@The "debugger" permission is required by the experimental-->
+      <a href="debugger.html">chrome.debugger</a> <!--@module.-->
+      模块要求 "debugger" 权限。
+    </p>
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_?_HOST -->
+    <!-- IDS_EXTENSION_PROMPT_WARNING_4_OR_MORE_HOSTS -->
+    <!--@Access your data on <em>{list of websites}</em>-->
+    访问您在 <em>{网站列表}</em> 上的数据
+  </td>
+  <td>
+    <!--@A match pattern in the "permissions" field
+    that specifies one or more hosts,
+    but not all hosts-->
+    在 "permissions"
+    字段的匹配表达式中，指定了一个或多个，但不是所有主机
+  </td>
+  <td>
+    <p>
+    <!--@Up to 3 sites are listed by name.
+    Subdomains aren't treated specially.
+    For example, <code>a.com</code> and <code>b.a.com</code>
+    are listed as different sites.-->
+    最多会列出 3
+    个站点的名称。子域名不会特别对待，例如，<code>a.com</code>
+    和 <code>b.a.com</code> 将作为不同站点列出。
+    </p>
+
+    <p>
+    <!--@On autoupdate,
+    the user sees a permission warning
+    if the extension adds or changes sites.
+    For example, going from <code>a.com,b.com</code>
+    to <code>a.com,b.com,c.com</code>
+    triggers a warning.
+    Going from <code>b.a.com</code>
+    to <code>a.com</code>,
+    or vice versa,
+    also triggers a warning.-->
+    在自动更新时，如果扩展程序添加或更改了站点，用户将会看到权限警告。例如，从
+    <code>a.com,b.com</code> 到
+    <code>a.com,b.com,c.com</code> 会导致一个警告。从
+    <code>b.a.com</code> 到
+    <code>a.com</code> 或者反过来也都会导致警告。
+    </p>
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_MANAGEMENT -->
+    <!--@Manage your apps, extensions, and themes-->
+    管理您的应用、扩展程序和主题背景
+  </td>
+  <td>
+    "management" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@The "management" permission is required by the-->
+    <a href="management.html"><code>chrome.management</code></a> <!--@module.-->
+    模块要求 "management" 权限。
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_GEOLOCATION -->
+    <!--@Detect your physical location-->
+    检测您所在的地理位置
+  </td>
+  <td>
+    "geolocation" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@Allows the extension to use the proposed HTML5
+    <a href="http://dev.w3.org/geo/api/spec-source.html">geolocation API</a>
+    without prompting the user for permission.-->
+    允许扩展程序使用提议的 HTML5
+    <a href="http://dev.w3.org/geo/api/spec-source.html">地理定位
+    API</a>
+    而不用提示用户就允许访问。
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_CLIPBOARD-->
+    <!--@Access data you copy and paste-->
+    访问您复制和粘贴的数据
+  </td>
+  <td>
+    "clipboardRead" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@Allows the extension to use the following editing commands with-->
+    允许扩展程序通过
+    <code>document.execCommand()</code><!--@:-->
+    使用以下编辑命令：
+    <ul>
+      <li> <code>"copy"</code> </li>
+      <li> <code>"cut"</code> </li>
+    </ul>
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_PRIVACY-->
+    <!--@Manipulate privacy-related settings-->
+    管理隐私相关设置
+  </td>
+  <td>
+    "privacy" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@The "privacy" permission is required by the-->
+    <a href="privacy.html"><code>chrome.privacy</code></a> <!--@module.-->
+    模块要求 "privacy" 权限。
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_SIGNED_IN_DEVICES-->
+    <!--@Access the list of your signed-in devices-->
+    访问您登录的设备列表
+  </td>
+  <td>
+    "signedInDevices" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@The "signedInDevices" permission is required by the-->
+    <a href="signedInDevices.html"><code>chrome.signedInDevices</code></a>
+    <!--@module.-->
+    模块要求 "signedInDevices" 权限。
+  </td>
+</tr>
+
+<tr>
+  <td style="font-weight:bold">
+    <!-- IDS_EXTENSION_PROMPT_WARNING_TTS_ENGINE-->
+    <!--@Access all text spoken using synthesized speech-->
+    访问使用合成语音说出的所有文字
+  </td>
+  <td>
+    "ttsEngine" <!--@permission-->权限
+  </td>
+  <td>
+    <!--@The "ttsEngine" permission is required by the-->
+    <a href="ttsEngine.html"><code>chrome.ttsEngine</code></a> <!--@module.-->
+    模块要求 "ttsEngine" 权限。
+  </td>
+</tr>
+</table>
+</p>
+
+
+<h2 id="nowarning"> <!--@Permissions that don't cause warnings-->不导致警告的权限 </h2>
+
+<p>
+<!--@The following permissions don't result in a warning:-->
+如下权限不会导致警告：
+</p>
+
+<ul>
+  <li>"activeTab"</li>
+  <li>"browsingData"</li>
+  <li>"chrome://favicon/"</li>
+  <li>"clipboardWrite"</li>
+  <li>"contextMenus"</li>
+  <li>"cookies"</li>
+  <li>"experimental"</li>
+  <li>"idle"</li>
+  <li>"notifications"</li>
+  <li>"storage"</li>
+  <li>"unlimitedStorage"</li>
+  <li>"webRequest"</li>
+  <li>"webRequestBlocking"</li>
+</ul>
+
+<h2 id="test"> <!--@Testing permission warnings-->测试权限警告 </h2>
+
+<p>
+<!--@If you'd like to see exactly which warnings your users will get,
+<a href="packaging.html">package your extension</a>
+into a <code>.crx</code> file,
+and install it.-->
+如果您想看到您的用户会得到怎样的警告，将您的扩展程序<a
+href="packaging.html">打包</a>为
+<code>.crx</code> 文件并安装。
+</p>
+
+<p>
+<!--@To see the warnings users will get when your extension is autoupdated,
+you can go to a little more trouble
+and set up an autoupdate server.
+To do this, first create an update manifest
+and point to it from your extension,
+using the "update_url" key
+(see <a href="autoupdate.html">Autoupdating</a>).
+Next, <a href="packaging.html">package the extension</a>
+into a new <code>.crx</code> file,
+and install the app from this <code>.crx</code> file.
+Now, change the extension's manifest to contain the new permissions,
+and <a href="https://crxdoc-zh.appspot.com/extensions/packaging.html#update">repackage the extension</a>.
+Finally, update the extension
+(and all other extensions that have outstanding updates)
+by clicking the <b>chrome://extensions</b> page's
+<b>Update extensions now</b> button.-->
+如果您想看到在您的扩展程序自动更新时用户会看到的警告，这要稍微麻烦一些，需要设置自动更新服务器。如果要这么做，首先创建一个更新清单文件，并在您的扩展程序中通过
+"update_url"
+属性（参见<a href="autoupdate.html">自动更新</a>）指向它。接着，<a href="packaging.html">将扩展程序打包</a>成新的
+<code>.crx</code>
+文件，并从这一
+<code>.crx</code>
+文件安装。现在，更改扩展程序的清单文件，以包含新的权限，并<a href="https://crxdoc-zh.appspot.com/extensions/packaging.html#update">重新打包扩展程序</a>。最后，单击
+<b>chrome://extensions</b>
+页面中的<b>立即更新扩展程序</b>按钮，更新扩展程序（以及所有其他有更新的扩展程序）。
+</p>
+
+<h2 id="api">API</h2>
+
+<p>
+<!--@You can get a list of permission warnings for any manifest with-->
+您可以使用
+<a href="https://crxdoc-zh.appspot.com/extensions/management.html#method-getPermissionWarningsByManifest">management.getPermissionWarningsByManifest</a><!--@.-->
+获得任意清单文件的权限警告列表。
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

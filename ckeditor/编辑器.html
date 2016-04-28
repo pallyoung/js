@@ -1,0 +1,20 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charest="utf-8">
+<title>编辑器修改图片上传</title>
+<script type="text/javascript" src="ckeditor.js"></script>
+<script type="text/javascript" src="config.js"></script>
+</head>
+<body>
+<textarea id="ckeditor"></textarea>
+<script type="text/javascript">CKEDITOR.replace("ckeditor",{
+        filebrowserBrowseUrl : '/browser/browse.php',
+        filebrowserImageBrowseUrl : '/browser/browse.php?type=Images',
+        filebrowserUploadUrl : '/uploader/upload.php',
+        filebrowserImageUploadUrl : '/uploader/upload.php?type=Images'
+    });
+
+</script>
+</body>
+</html>

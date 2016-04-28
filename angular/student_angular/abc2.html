@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.js"></script>
+<script src="jQuery_1_10_2.js"></script>
+<script src="student.js"></script>
+<script src="abc2.js"></script>
+<script src="studentController.js"></script>
+  <meta charset="utf-8">
+  <title>JS Bin</title>
+</head>
+<body ng-app="docsBindExample">
+第二页
+    <div ng-controller="getStuInfo">
+  name <input ng-model='stu.name'> <br/>
+  address <input ng-model='stu.address'> <br/>
+  phone <input ng-model='stu.phone'> <br/>
+  {{stu.getInfo()}}<br/>
+  {{getStuInfo()}}<br/>
+</body>
+12{{stu.getInfo()}}3<br/>
+<button onclick="back()">back</button>
+<button onclick="next()">next</button>
+</html>

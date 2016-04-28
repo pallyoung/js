@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>海外旅游</title>
+		<link rel="stylesheet" type="text/css" href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/addone.css">
+		<meta name="viewport" content="width=640, maximum-scale=1, minimum-scale=1,user-scalable=no" />
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/wx.js"></script>
+		<script type="text/javascript" src="js/wx.init.js"></script>
+		<script type="text/javascript" src="js/wx.data.js"></script>
+		<script src="js/addone.js"></script>
+	</head>
+	<body>
+		<header class="header">
+		<input type="button" class="fts32 backbutton">
+		<h1 class="dslb tac">新增旅客</h1>
+		<span class="complete">完成</span>
+	</header>
+	<section class="info">
+		<input type="hidden" id="customerId" value="" />
+		<div>
+			<label>中文姓名&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" id="fullName" autofocus="autofocus" placeholder="所选证件上相同的中文"></div>
+		<div>
+			<label>姓（英文）&nbsp;&nbsp;</label>
+			<input type="text" id="lastName" placeholder="所选证件上相同的姓"></div>
+		<div>
+			<label>名（英文）&nbsp;&nbsp;</label>
+			<input type="text" id="firstName" placeholder="所选证件上相同的名"></div>
+		<div>
+			<label>证件类型&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<span id="idType">身份证</span>
+			<ul class="cardtype">
+				<li>身份证</li>
+				<li>护照</li>
+				<li>军官证</li>
+			</ul>
+			<span class="arrow">&gt;</span>
+		</div>
+		<div>
+			<label>证件号码&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" id="idNum" placeholder="请输入证件号码"></div>
+		<div>
+			<label>国籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<span id="nation">中国</span>
+			<ul class="cardtype">
+				<li>中国</li>
+				<li>美国</li>
+				<li>日本</li>
+			</ul>
+			<span class="arrow">&gt;</span></div>
+			
+		<div>
+			<label>性别&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<span id="sex"></span>
+			<ul class="cardtype">
+				<li>男</li>
+				<li>女</li>
+			</ul>
+			<span class="arrow">&gt;</span></div>
+		<div>
+			<label>出生日期&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<span id="birthday">1991-12-11</span>
+			<section class="datepicker">
+				<header>
+					<span style="width:80px;margin:0">&lt;</span>
+					<span style="width:200px;margin:0">2015年1月</span>
+					<span style="width:80px;margin:0">&gt;</span>
+				</header>
+			<section>
+			<p>
+				<span>日</span>
+				<span>一</span>
+				<span>二</span>
+				<span>三</span>
+				<span>四</span>
+				<span>五</span>
+				<span>六</span>
+			</p>
+			<p id="calendar">
+			</p>
+		</section>
+	</section>
+			<span class="arrow">&gt;</span>
+			</div>
+		<div>
+			<label>手机号码&nbsp;&nbsp;&nbsp;&nbsp;</label>
+			<input type="text" id="phone" placeholder="请输入手机号码"></div>	
+		<div>请确保旅行结束日期至少比证件有效期早6个月。</div>
+	</section>
+	</body>
+	</html>	

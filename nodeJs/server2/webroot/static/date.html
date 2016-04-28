@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=640, maximum-scale=3, minimum-scale=0.5" />
+	<title>海外旅游</title>
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" type="text/css" href="css/date.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/wx.js"></script>
+	<script type="text/javascript" src="js/wx.init.js"></script>
+	<script type="text/javascript" src="js/date.js"></script>
+</head>
+<body>
+	<header class="header">
+		<input type="button" value="" class="fts32 backbutton">
+		<h1 class="dslb tac">选择日期和人数</h1>
+	</header>
+	<section class="datepicker">
+		<header>
+			<span>&lt;</span>
+			<span>2015年1月</span>
+			<span>&gt;</span>
+		</header>
+		<section>
+			<p>
+				<span>日</span>
+				<span>一</span>
+				<span>二</span>
+				<span>三</span>
+				<span>四</span>
+				<span>五</span>
+				<span>六</span>
+			</p>
+			<p id="calendar">
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span>元旦</span>
+				<span>2</span>
+				<span>3</span>
+				<span>4</span>
+				<span>5</span>
+				<span>6</span>
+				<span>7</span>
+				<span>8</span>
+				<span>9</span>
+				<span>10</span>
+				<span>11</span>
+				<span>12</span>
+				<span>13</span>
+				<span>14</span>
+				<span>15</span>
+				<span>16</span>
+				<span>17</span>
+				<span>18</span>
+				<span>19</span>
+				<span>20</span>
+				<span>21</span>
+				<span>22</span>
+				<span>23</span>
+				<span>24</span>
+				<span>25</span>
+				<span>26</span>
+				<span>27</span>
+				<span>28</span>
+				<span>29</span>
+				<span>30</span>
+				<span>31</span>
+			</p>
+		</section>
+	</section>
+	<section class="num">
+		<header>
+			<h4>选出行人数</h4>
+		</header>
+		<p>
+			<input type="button" value="-" class="op">		
+			<input min="0" type="number" id="adultCount" value="0" />		
+			<input type="button" value="+" class="op">		
+			<label for="">成人</label>
+			<input type="button" value="-" class="op">		
+			<input min="0" type="number" id="childCount" value="0" />		
+			<input type="button" value="+" class="op">		
+			<label for="">儿童</label>
+		</p>
+		<div>
+			<p>最少一人起订</p>
+			<p>儿童价标准:2-12岁</p>
+		</div>
+	</section><br>
+	<p class="warming"></p>
+	<p class="button1">
+		<input type="button" value="下一步" id="nextPage">
+	</p>
+</body>
+</html>

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>打包 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/packaging.html">https://crxdoc-zh.appspot.com/extensions/packaging.html</a><br>
+<b>Title:</b> 打包 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 24332<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#creating"
+         data-list-item
+         >创建包</a>
+    </li>
+    <li >
+      <a href="#update"
+         data-list-item
+         >更新扩展程序</a>
+    </li>
+    <li >
+      <a href="#upload"
+         data-list-item
+         > 将已经打包的扩展程序上传到 Chrome 网上应用店</a>
+    </li>
+    <li >
+      <a href="#packaging"
+         data-list-item
+         >在命令行中打包</a>
+    </li>
+    <li >
+      <a href="#format"
+         data-list-item
+         >扩展程序包的格式和脚本</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Packaging-->打包</h1>
+
+
+<p>
+<!--@This page describes how to package your extension.
+As the <a href="overview.html">Overview</a> explains,
+extensions are packaged as signed ZIP files
+with the file extension "crx"&mdash;for example,
+<code>myextension.crx</code>.-->
+这一页面描述如何将您的扩展程序打包。如<a href="overview.html"
+>概述</a>中所述，扩展程序打包为已签名的 ZIP 文件，文件扩展名为“crx”，例如
+<code>myextension.crx</code>。
+</p>
+
+<p>
+<!--@<b>Note:</b>
+You do not need to package your own extension.
+If you publish your extension using the
+<a href="https://chrome.google.com/webstore/developer/dashboard">Chrome Developer Dashboard</a>,
+then the only reason to create your own <code>.crx</code> file
+would be to distribute a non-public version&mdash;for example,
+to alpha testers.
+You can find information on publishing extensions and apps in the
+Chrome Web Store getting started tutorial, starting at
+<a href="http://code.google.com/chrome/webstore/docs/get_started_simple.html#step5">Step 5: Zip up your app</a>.-->
+注意：您通常不需要为您的扩展程序打包。如果您使用 <a
+href="https://chrome.google.com/webstore/developer/dashboard">Chrome
+开发者信息中心</a>发布扩展程序，那么您不需要创建自己的 <code>.crx</code>
+文件，除非您需要发布一个非公开版本，例如用于测试人员。您可以在 Chrome
+网上应用店的入门教程中从<a
+href="https://code.google.com/chrome/webstore/docs/get_started_simple.html#step5">步骤
+5：为您的应用创建 ZIP
+文件</a>（英文）这一部分开始，找到发布扩展程序和应用的有关信息。
+</p>
+
+<p>
+<!--@When you package an extension,
+the extension is assigned a unique key pair.
+The extension's ID is based on a hash of the public key.
+The private key is used to sign each version of the extension
+and must be secured from public access.
+Be careful not to include your private key within
+your extensions!-->
+当您为扩展程序打包时，扩展程序将获得唯一的密钥对，扩展程序的标识符基于公钥的散列，私有密钥用来为每一个版本的扩展程序签名，必须严格保护，不能由公众访问。注意千万不要将您的私有密钥包含在扩展程序中！
+</p>
+
+
+<h2 id="creating"><!--@Creating a package-->创建包</h2>
+
+<p><!--@To package an extension:-->要为扩展程序打包：</p>
+<ol>
+  <li>
+    <!--@Bring up the Extensions management page
+    by going to this URL:-->
+    进入以下URL，打开扩展程序管理页面：
+    <blockquote>
+    <b>chrome://extensions</b>
+    </blockquote>
+  </li>
+
+  <li>
+    <!--@Ensure that the "Developer mode" checkbox in the top right-hand corner
+    is checked.-->
+    确保右上角的<b>开发者模式</b>复选框已选中。
+  </li>
+
+  <li>
+    <!--@Click the <b>Pack extension</b> button.
+    A dialog appears.-->
+    单击<b>打包扩展程序</b>按钮，出现一个对话框。
+  </li>
+
+  <li>
+    <!--@In the <b>Extension root directory</b> field,
+    specify the path to the extension's folder&mdash;for example,
+    <code>C:\myext</code>.
+    (Ignore the other field;
+    you don't specify a private key file
+    the first time you package a particular extension.)-->
+    在<b>扩展程序根目录</b>字段中，指定扩展程序所在文件夹的路径，例如，<code>C:\myext</code>。（忽略其他字段，您第一次为一个扩展程序打包时不需要指定私有密钥文件。）
+  </li>
+
+  <li>
+    <!--@Click <b>Package</b>.
+    The packager creates two files:
+    a <code>.crx</code> file,
+    which is the actual extension that can be installed,
+    and a <code>.pem</code> file,
+    which contains the private key.-->
+    单击<b>打包扩展程序</b>。打包程序将创建两个文件：一个
+    <code>.crx</code> 文件，是实际的可安装的扩展程序；另一个是
+    <code>.pem</code> 文件，包含私有密钥。
+  </li>
+</ol>
+
+
+<p>
+<b><!--@Do not lose the private key!-->不要丢失私有密钥！</b><!--@
+Keep the <code>.pem</code> file secret and in a safe place.
+You'll need it later if you want to do any of the following:-->确保
+<code>.pem</code>
+文件保密，并存放在安全的地方。如果您今后需要做如下事情，您需要这一文件：
+</p>
+<ul>
+<li><a href="#update"><!--@Update-->更新</a><!--@ the extension-->扩展程序</li>
+<li>将扩展程序<a href="#upload"><!--@Upload-->上传</a><!--@ the extension to the Chrome Web Store-->至 Chrome 网上应用店</li>
+</ul>
+
+<p>
+<!--@If the extension is successfully packaged, you'll see a dialog like this
+that tells you where to find
+the <code>.crx</code> and <code>.pem</code> files:</p>-->
+如果扩展程序打包成功，您会看到如下对话框，告诉您
+<code>.crx</code> 文件与 <code>.pem</code> 文件的位置：
+</p>
+
+<img src="../../developer.chrome.com/static/images/package-success.png"
+  width="540" height="251" />
+
+
+<h2 id="update"><!--@Updating a package-->更新扩展程序</h2>
+
+<p><!--@To create an updated version of your extension:-->要创建您的扩展程序的更新版本：</p>
+<ol>
+  <li>
+    <!--@Increase the version number in-->增加 <code>manifest.json</code><!--@.-->
+    中的版本号。
+  </li>
+
+  <li>
+    <!--@Bring up the Extensions management page
+    by going to this URL: -->
+    进入如下 URL，打开扩展程序管理页面：
+    <b>chrome://extensions</b>
+  </li>
+
+  <li>
+    <!--@Click the <b>Pack extension</b> button.
+    A dialog appears.-->
+    单击<b>打包扩展程序</b>按钮，出现一个对话框。
+  </li>
+
+  <li>
+    <!--@In the <b>Extension root directory</b> field,
+    specify the path to the extension's folder&mdash;for example,
+    <code>C:\myext</code>.-->
+    在<b>扩展程序根目录</b>字段中指定扩展程序所在文件夹，例如
+    <code>C:\myext</code>。
+  </li>
+
+  <li>
+    <!--@In the <b>Private key file</b> field,
+    specify the location of the
+    already generated <code>.pem</code> file for this extension&mdash;for
+    example, <code>C:\myext.pem</code>.-->
+    在<b>私有密钥文件</b>字段中，指定已生成的用于该扩展程序的
+    <code>.pem</code> 文件位置，例如 <code>C:\myext.pem</code>。
+  </li>
+
+  <li>
+    <!--@Click <b>OK</b>.-->
+    单击<b>打包扩展程序</b>。
+  </li>
+</ol>
+
+<p><!--@If the updated extension is successfully packaged, you'll see a dialog like this:-->
+如果已更新的扩展程序打包成功，您将会看到如下对话框：
+</p>
+
+<img src="../../developer.chrome.com/static/images/update-success.png"
+  width="540" height="191" />
+
+
+<h2 id="upload"> <!--@Uploading a previously packaged extension to the Chrome Web Store-->将已经打包的扩展程序上传到 Chrome 网上应用店</h2>
+
+<p>
+<!--@You can use the Chrome Developer Dashboard
+to upload an extension that you've previously packaged yourself.
+However, unless you take special steps,
+the extension's ID in the Chrome Web Store
+will be different from its ID in the package you created.
+This different ID might be a problem if you've
+distributed your extension package,
+because it allows users to install multiple versions of your extension,
+each with its own local data.-->
+您可以使用 Chrome
+开发者信息中心来上传您之前自己打包的扩展程序。然而，除非您进行特别的处理，Chrome
+网上应用店中的扩展程序标识符将与您创建的扩展程序包不同。如果您已经发布了扩展程序包，不同的标识符可能会出问题，因为这样将允许用户安装您的扩展程序的多个版本，分别具有单独的本地数据。
+</p>
+
+<p>
+<!--@If you want to keep the extension ID the same,
+follow these steps:-->
+如果您希望保持扩展程序的标识符不变，请遵循以下步骤：
+</p>
+
+<ol>
+  <li> <!--@Rename the private key that was generated
+    when you created the <code>.crx</code> file to <code>key.pem</code>. -->
+    将您创建 <code>.crx</code> 文件时生成的私有密钥文件重命名为
+    <code>key.pem</code>。
+  </li>
+  <li> <!--@Put <code>key.pem</code> in the top directory
+    of your extension. -->
+    将 <code>key.pem</code> 文件放在您的扩展程序根目录中。
+  </li>
+  <li> <!--@Compress that directory into a ZIP file.-->将这一目录压缩为 ZIP 文件。 </li>
+  <li> <!--@Upload the ZIP file using the-->使用
+    <a href="https://chrome.google.com/webstore/developer/dashboard">Chrome <!--@Developer Dashboard-->开发者信息中心</a><!--@.-->上传 ZIP 文件。 </li>
+</ol>
+
+
+<h2 id="packaging"><!--@Packaging at the command line-->在命令行中打包</h2>
+
+<p>
+<!--@Another way to package extensions
+is by invoking <code>chrome.exe</code> at the command line.
+Use the <code>--pack-extension</code> flag
+to specify the location of the extension's folder.
+Use <code>--pack-extension-key</code>
+to specify the location of the extension's private key file.
+For example:-->
+为扩展程序打包的另一种方式是在命令行中执行
+<code>chrome.exe</code>（在 Linux 或 Mac OS X 上为
+<code>chrome</code>）。使用 <code>--pack-extension</code>
+参数指定扩展程序所在文件夹的位置，使用 <code>--pack-extension-key</code>
+指定扩展程序私有密钥文件的位置。例如：
+</p>
+
+<pre>
+chrome.exe --pack-extension=C:\myext --pack-extension-key=C:\myext.pem
+</pre>
+
+<h2 id="format"><!--@Package format and scripts-->扩展程序包的格式和脚本</h2>
+<p>
+<!--@For more information on the format, as well as pointers to scripts you can use
+to create <code>.crx</code> files, see <a href="crx.html">CRX Package Format</a>.-->
+有关格式的更多信息以及您可以用来创建 <code>.crx</code> 文件的脚本，请参见
+<a href="crx.html">CRX 包的格式</a>。
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

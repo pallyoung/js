@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>事件页面 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="https://developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="https://developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="/extensions/" title="Google Chrome 扩展程序" id="view-original">
+          <img src="https://developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="/extensions/samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="/extensions/getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="/extensions/overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="/extensions/whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="/extensions/devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="/extensions/contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="/extensions/desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="/extensions/omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="/extensions/options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="/extensions/override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="/extensions/pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="/extensions/cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="/extensions/devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="/extensions/events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="/extensions/history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="/extensions/management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="/extensions/tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="/extensions/windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="/extensions/a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">事件页面</a>
+            </li><li class="level4">
+                  <a href="/extensions/contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="/extensions/content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="/extensions/xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="/extensions/i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="/extensions/messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="/extensions/permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="/extensions/npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="/extensions/external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="/extensions/tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/extensions/tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="/extensions/tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="/extensions/tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="/extensions/tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/extensions/manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="/extensions/match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="/extensions/permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="/extensions/api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="/extensions/api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/extensions/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="/extensions/themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#lifetime"
+         data-list-item
+         >生命周期</a>
+    </li>
+    <li >
+      <a href="#registration"
+         data-list-item
+         >事件注册</a>
+    </li>
+    <li >
+      <a href="#transition"
+         data-list-item
+         >将后台页面转换为事件页面</a>
+    </li>
+    <li >
+      <a href="#best-practices"
+         data-list-item
+         >使用事件页面时的最佳做法</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Event Pages-->事件页面</h1>
+
+
+<p>
+<!--@Event pages are very similar to
+<a href="background_pages.html">background pages</a>,
+with one important difference:
+event pages are loaded only when they are needed.
+When the event page is not actively doing something,
+it is unloaded, freeing memory and other system resources.-->
+事件页面与<a href="background_pages.html">后台网页</a>十分相似，但是有一个重要的区别：事件页面只在需要时加载，当事件页面当前不活动时将会卸载，释放内存及其他系统资源。
+</p>
+
+
+<p>
+<!--@Event pages are available in the stable channel as of Chrome 22, and the
+performance advantages are significant, especially on low-power devices. Please
+prefer them to persistent background pages whenever possible for new development
+and begin <a href="#transition">migrating existing background pages</a> to this
+new model.-->
+从 Chrome 22 的稳定版开始可以使用事件页面，它具有明显的性能优势，尤其在低功耗设备上。请您在开发新的扩展程序时尽可能首先考虑事件页面，而不是持久存在的后台页面，并开始<a href="#transition">将现有的后台页面迁移</a>到这一新模型。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p>
+<!--@Register your event page in the
+<a href="manifest.html">extension manifest</a>:-->
+在<a href="manifest.html">扩展程序的清单文件</a>中注册您的事件页面：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"background": {
+    "scripts": ["eventPage.js"],
+    "persistent": false
+  }</b>,
+  ...
+}
+</pre>
+
+<p>
+<!--@Notice that without the "persistent" key, you have
+a regular background page. Persistence is what differentiates
+an event page from a background page.-->
+注意，如果没有 "persistent" 键，您将得到一个普通的后台网页。是否持久存在是事件页面与后台网页之间的根本区别。
+</p>
+
+<h2 id="lifetime"><!--@Lifetime-->生命周期</h2>
+
+<p>
+<!--@The event page is loaded when it is "needed", and unloaded
+when it goes idle again. Here are some examples of things
+that will cause the event page to load:-->
+事件页面在“需要”时加载，再次进入空闲状态后卸载。如下是一些可能使事件页面加载的例子：
+</p>
+<ul>
+<li><!--@The app or extension is first installed or is updated to a new version
+(in order to <a href="#registration">register for events</a>).-->
+应用或扩展程序第一次安装或者更新到新版本（为了<a href="#registration">注册事件</a>）。
+<li><!--@The event page was listening for an event, and the event is dispatched.-->
+事件页面监听的某个事件触发。
+<li><!--@A content script or other extension
+<a href="messaging.html">sends a message.</a>-->
+内容脚本或其他扩展程序<a href="messaging.html">发送消息</a>。
+<li><!--@Another view in the extension (for example, a popup) calls
+<code><a href="runtime.html#method-getBackgroundPage">runtime.getBackgroundPage</a></code>.-->
+扩展程序中的其他视图调用了 <code><a href="runtime.html#method-getBackgroundPage">runtime.getBackgroundPage</a></code>。
+</ul>
+
+<p>
+<!--@Once it has been loaded, the event page will stay running
+as long as it is active (for example, calling an extension
+API or issuing a network request). Additionally, the
+event page will not unload until all visible views (for example,
+popup windows) are closed and all message ports are closed. Note
+that opening a view does not cause the event page to load, but
+only prevents it from closing once loaded.-->
+一旦加载后，只要它仍然处于活动状态（例如，调用扩展程序 API
+或发出网络请求），事件页面会继续运行。此外，直到所有可见视图（例如弹出窗口）关闭并且所有消息端口都关闭后，事件页面才会卸载。注意，打开某个视图并不会使事件页面载入，只会在载入后防止它关闭。
+</p>
+
+<p>
+<!--@Make sure your event page closes as soon as the event that
+opened it is processed.
+You can observe the lifetime of your event page by
+opening Chrome's task manager. You can see when your event
+page loads and unloads by observing when an entry for your
+extension appears in the list of processes.-->
+确保您的事件页面在打开它的事件处理完之后立刻关闭。您可以打开 Chrome
+浏览器的任务管理器，观察您的事件页面的生命周期。您的扩展程序对应的条目在进程列表中出现时您可以注意观察，看出您的事件页面的加载与卸载。
+</p>
+
+<p>
+<!--@Once the event page has been idle a short time
+(a few seconds), the
+<code><a href="runtime.html#event-onSuspend">runtime.onSuspend</a></code>
+event is dispatched. The event page has a few more seconds to handle this
+event before it is forcibly unloaded. If during this time an event occurs which
+would normally cause the event page to be loaded, the suspend is canceled
+and the <code><a href="runtime.html#event-onSuspendCanceled">runtime.onSuspendCanceled</a></code> event is dispatched.-->
+一旦事件页面保持一段时间（几秒钟）的空闲状态，将触发 <a href="runtime.html#event-onSuspend">runtime.onSuspend</a>
+事件。事件页面在强制卸载之前，还有几秒钟的时间来处理该事件。如果在这段时间内产生了通常会使事件页面载入的事件，卸载操作将取消，并产生
+<code><a href="runtime.html#event-onSuspendCanceled">runtime.onSuspendCanceled</a></code> 事件。
+</p>
+
+<h2 id="registration"><!--@Event registration-->事件注册</h2>
+
+<p>
+<!--@Chrome keeps track of events that an app or extension has added listeners
+for. When it dispatches such an event, the event page is
+loaded. Conversely, if the app or extension removes all of its listeners for
+an event by calling <code>removeListener</code>, Chrome will no longer
+load its event page for that event.-->
+Chrome 浏览器会追踪应用或扩展程序监听的事件。分发这样的事件时，将加载扩展程序的事件页面。相反，如果应用或扩展程序通过调用
+removeListener 移除所有的监听器，Chrome
+浏览器不会再为那一事件加载其事件页面。
+</p>
+
+<p>
+<!--@Because the listeners themselves only exist in the context of the
+event page, you must use <code>addListener</code> each time the event
+page loads; only doing so at
+<code><a href="runtime.html#event-onInstalled">runtime.onInstalled</a></code>
+by itself is insufficient.-->
+因为监听器本身只在事件页面的环境中存在，您必须每次在事件页面加载时使用
+<code>addListener</code>，仅仅在 <a href="runtime.html#event-onInstalled">runtime.onInstalled</a> 这么做是不够的。
+</p>
+
+<p>
+<!--@For an example of event registration in action, you can view the
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/gmail/">Google Mail
+Checker</a> extension.-->
+有关事件注册操作的具体例子，您可以查看<a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/gmail/">Google Mail Checker</a>扩展程序。
+</p>
+
+<h2 id="transition"><!--@Convert background page to event page-->将后台页面转换为事件页面</h2>
+<p>
+<!--@Follow this checklist to convert your extension's
+(persistent) background page to an event page.-->
+请根据下列清单，将您的扩展程序的（持久）后台网页转换为事件页面。
+
+<ol>
+  <li><!--@Add-->向您的清单文件添加 <code>"persistent": false</code><!--@ to your manifest as shown above.-->，如上所示。
+
+  <li><!--@If your extension uses <code>window.setTimeout()</code> or
+  <code>window.setInterval()</code>, switch to using the
+  <a href="alarms.html">alarms API</a> instead. DOM-based timers won't
+  be honored if the event page shuts down.-->
+  如果您的扩展程序使用 <code>window.setTimeout()</code> 或
+  <code>window.setInterval()</code>，请改用<a href="alarms.html">定时器
+  API</a>。如果事件页面已关闭，基于 DOM 的定时器不会触发。
+
+  <li><!--@Similarly, other asynchronous HTML5 APIs like notifications and
+  geolocation will not complete if the event page shuts down. Instead,
+  use equivalent extension APIs, like
+  <a href="notifications.html">notifications</a>.-->
+  类似地，其他异步 HTML5 API，例如通知与地理定位，在事件页面关闭后不能完成。请改用等价的扩展程序
+  API，例如<a href="notifications.html">通知</a>。
+
+  <li><!--@If your extension uses,
+  <code><a href="extension.html#method-getBackgroundPage">extension.getBackgroundPage</a></code>,
+  switch to
+  <code><a href="runtime.html#method-getBackgroundPage">runtime.getBackgroundPage</a></code>
+  instead. The newer method is asynchronous so that it can start the event
+  page if necessary before returning it.-->
+  如果您的扩展程序使用
+  <code><a href="extension.html#method-getBackgroundPage">extension.getBackgroundPage</a></code>，请改用
+  <code><a href="runtime.html#method-getBackgroundPage">runtime.getBackgroundPage</a></code>。新方法是异步的，所以如果有必要的话它可以在返回前启动事件页面。
+</ol>
+</p>
+
+<h2 id="best-practices"><!--@Best practices when using event pages-->使用事件页面时的最佳做法</h2>
+<p>
+<!--@Keep these tips in mind when using event pages to avoid common subtle pitfalls.-->
+使用事件页面时请牢记这些技巧，避免一些常见而又微妙的陷阱。
+
+<ol>
+  <li><!--@Register to receive any events your extension is interested in
+  each time the event page is loaded. The event page will be loaded once
+  for each new version of your extension. After that it will only be
+  loaded to deliver events you have registered for. This generally means that
+  your event listeners should be added at the top level scope of the event
+  page, otherwise they may not be available when the event page reloads.-->
+  每次事件页面加载时注册您的扩展程序感兴趣的事件。每次您的扩展程序升级到新版本时，事件页面都会加载一次，之后只有当传递您已注册的事件时才会加载。大体上，这意味着您的事件监听器应该在事件页面的顶层区域添加，否则事件页面重新载入时它们不一定可用。
+
+  <li><!--@If you need to do some initialization when your extension is
+  installed or upgraded, listen to the
+  <code><a href="runtime.html#event-onInstalled">runtime.onInstalled</a></code>
+  event. This is a good place to register for
+  <a href="declarativeWebRequest.html">declarativeWebRequest</a> rules,
+  <a href="contextMenus.html">contextMenu</a> entries, and other such
+  one-time initialization.-->
+  如果您的扩展程序安装或升级时需要做一些初始化，请监听
+  <a href="runtime.html#event-onInstalled">runtime.onInstalled</a> 事件。这里很适合注册<a href="declarativeWebRequest.html"
+  >声明式网络请求</a>规则、<a href="contextMenus.html">右键菜单</a>项以及其他类似的一次性初始化。
+
+  <li><!--@If you need to keep runtime state in memory throughout a browser
+  session, use the <a href="storage.html">storage API</a> or
+  IndexedDB. Since the event page does not stay loaded for long, you
+  can no longer rely on global variables for runtime state.-->
+  如果您需要在浏览器会话间保持运行时状态，请使用<a href="storage.html">存储 API</a> 或 IndexedDB。由于事件页面不会长时间保持加载状态，您不能再依赖全局变量来保存运行时状态。
+
+  <li><!--@Use <a href="events.html#filtered">event filters</a> to restrict
+  your event notifications to the cases you care about. For example, if
+  you listen to the <code><a href="tabs.html#event-onUpdated">tabs.onUpdated</a></code>
+  event, try using the
+  <code><a href="webNavigation.html#event-onCompleted">webNavigation.onCompleted</a></code>
+  event with filters instead (the tabs API does not support filters).
+  That way, your event page will only be loaded for events that
+  interest you.-->
+  使用<a href="events.html#filtered">事件过滤器</a>将事件通知限制为您关心的那些。例如，如果您监听
+  <code><a href="tabs.html#event-onUpdated">tabs.onUpdated</a></code> 事件，尝试改用
+  <code><a href="webNavigation.html#event-onCompleted">webNavigation.onCompleted</a></code> 事件并使用过滤器（标签页 API
+  不支持过滤器），这样，您的事件页面仅在您感兴趣的事件产生时才会加载。
+
+  <li><!--@Listen to the-->如果您在事件页面卸载之前需要做最后的清理，请监听
+  <code><a href="runtime.html#event-onSuspend">runtime.onSuspend</a></code>
+  <!--@event if you need to do last second cleanup before your event page
+  is shut down. However, we recommend persisting periodically instead.
+  That way if your extension crashes without receiving
+  <code>onSuspend</code>, no data will typically be lost.-->
+  事件。然而，我们建议您定期保存数据，这样如果您的扩展程序由于崩溃而没有接收到
+  <code>onSuspend</code> 事件时，一般情况下也不会丢失数据。
+
+  <li><!--@If you're using <a href="messaging.html">message passing</a>, be sure
+  to close unused message ports. The event page will not shut down until all
+  message ports are closed.-->
+  如果您使用<a href="messaging.html">消息传递</a>，务必关闭不再使用的端口。在所有消息端口都关闭前，事件页面不会卸载。
+
+  <li><!--@If you're using the <a href="contextMenus.html">context menus</a> API,
+  pass a string <code>id</code> parameter to
+  <code><a href="contextMenus.html#method-create">contextMenus.create</a></code>,
+  and use the
+  <code><a href="contextMenus.html#event-onClicked">contextMenus.onClicked</a></code>
+  callback instead of an <code>onclick</code> parameter to
+  <code><a href="contextMenus.html#method-create">contextMenus.create</a></code>.-->
+  如果您使用<a href="contextMenus.html">右键菜单 API</a>，请向
+  <code><a href="contextMenus.html#method-create">contextMenus.create</a></code> 传递一个字符串的
+  <code>id</code>参数，并使用 <code><a href="contextMenus.html#event-onClicked">contextMenus.onClicked</a></code>
+  回调函数代替 <code><a href="contextMenus.html#method-create">contextMenus.create</a></code> 的
+  <code>onclick</code> 参数。
+
+  <li><!--@Remember to test that your event page works properly when it is unloaded
+  and then reloaded, which only happens after several seconds of inactivity. 
+  Common mistakes include doing unnecessary work at page load time (when it
+  should only be done when the extension is installed); setting an alarm at
+  page load time (which resets any previous alarm); or not adding event
+  listeners at page load time.-->
+  记得测试您的事件页面在卸载和重新载入时能正常工作，这只会在几秒钟不活动后发生。常见的错误包括在网页载入时进行不必要的工作（只应该在扩展程序安装时进行），在网页载入时设置定时器（会重置原来的定时器）以及没有在网页载入时添加事件监听器。
+</ol>
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="https:////plus.google.com/112419687097816423998?prsrc=3" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="https://developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

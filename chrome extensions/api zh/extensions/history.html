@@ -1,0 +1,1566 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.history - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/history.html">https://crxdoc-zh.appspot.com/extensions/history.html</a><br>
+<b>Title:</b> chrome.history - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 59621<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.history</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#transition_types"
+         data-list-item
+         >过渡类型</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-HistoryItem"
+             data-list-item
+             >HistoryItem</a>
+        </li>
+        <li >
+          <a href="#type-VisitItem"
+             data-list-item
+             >VisitItem</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-search"
+             data-list-item
+             >search        </a>
+        </li>
+        <li >
+          <a href="#method-getVisits"
+             data-list-item
+             >getVisits        </a>
+        </li>
+        <li >
+          <a href="#method-addUrl"
+             data-list-item
+             >addUrl        </a>
+        </li>
+        <li >
+          <a href="#method-deleteUrl"
+             data-list-item
+             >deleteUrl        </a>
+        </li>
+        <li >
+          <a href="#method-deleteRange"
+             data-list-item
+             >deleteRange        </a>
+        </li>
+        <li >
+          <a href="#method-deleteAll"
+             data-list-item
+             >deleteAll        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onVisited"
+             data-list-item
+             >onVisited</a>
+        </li>
+        <li >
+          <a href="#event-onVisitRemoved"
+             data-list-item
+             >onVisitRemoved</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.history</code> API 与浏览器的历史记录交互，您可以添加、删除、通过 URL 查询浏览器的历史记录。如果您想要使用您自己的版本替换默认的历史记录页面，请参见<a href='override.html'>替代页面</a>。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 5<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "history"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p><!--@You must declare the "history" permission
+in the <a href="manifest.html">extension manifest</a>
+to use the history API.
+For example:-->
+您必须在<a href="manifest.html">扩展程序的清单文件</a>中声明 "history"
+权限才能使用历史记录 API。例如：
+</p>
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"permissions": [
+    "history"
+  ]</b>,
+  ...
+}
+</pre>
+
+<h2 id="transition_types"><!--@Transition types-->过渡类型</h2>
+
+<p>
+<!--@The history API uses a <em>transition type</em> to describe
+how the browser navigated to a particular URL
+on a particular visit.
+For example, if a user visits a page
+by clicking a link on another page,
+the transition type is "link".-->
+历史记录 API 使用<em>过渡类型</em>来描述浏览器在某次访问中如何进入某个特定的
+URL。例如，如果用户通过单击另一个页面上的链接访问一个页面，则过渡类型为
+"link"（链接）。
+</p>
+
+<p>
+<!--@The following table describes each transition type.-->
+下表描述每一种过渡类型。
+</p>
+
+<table>
+<tr>
+  <th> <!--@Transition type-->过渡类型 </th> <th> <!--@Description-->描述 </th>
+</tr>
+<tr id="tt_link">
+  <td>"link"</td>
+  <td>
+    <!--@The user got to this page by clicking a link on another page.-->
+    用户通过单击另一个页面上的链接进入此页面。
+  </td>
+</tr>
+<tr id="tt_typed">
+  <td>"typed"</td>
+  <td>
+    <!--@The user got this page by typing the URL in the address bar.
+    Also used for other explicit navigation actions.
+    See also <a href="#tt_generated">generated</a>,
+    which is used for cases where the user selected a choice
+    that didn't look at all like a URL.-->
+    用户通过在地址栏中输入 URL
+    进入此页面，也用于其他显式的导航操作。请注意与
+    <a href="#tt_generated">generated</a> 比较，它在用户选择了非
+    URL 选项的情况下使用。
+  </td>
+</tr>
+<tr id="tt_auto_bookmark">
+  <td>"auto_bookmark"</td>
+  <td>
+    <!--@The user got to this page through a suggestion in the UI &mdash;
+    for example, through a menu item.-->
+    用户通过用户界面中的建议（例如通过菜单项）进入了此页面。
+  </td>
+</tr>
+<tr id="tt_auto_subframe">
+  <td>"auto_subframe"</td>
+  <td>
+    <!--@Subframe navigation.
+    This is any content that is automatically
+    loaded in a non-top-level frame.
+    For example, if a page consists of
+    several frames containing ads,
+    those ad URLs have this transition type.
+    The user may not even realize the content in these pages
+    is a separate frame, and so may not care about the URL
+    (see also <a href="#tt_manual_subframe">manual_subframe</a>).-->
+    子框架导航，用于任何自动在非顶层框架中加载的内容。例如，如果一个页面包含几个含有广告的框架，这些广告的
+    URL 具有这种过渡类型。用户不一定知道这些页面中的内容在单独的框架中，也不一定会关心它们的 URL（请注意与
+    <a href="#tt_manual_subframe">manual_subframe</a>比较）。
+  </td>
+</tr>
+<tr id="tt_manual_subframe">
+  <td>"manual_subframe"</td>
+  <td>
+    <!--@For subframe navigations that are explicitly requested by the user
+    and generate new navigation entries in the back/forward list.
+    An explicitly requested frame is probably more important than
+    an automatically loaded frame
+    because the user probably cares about the fact that
+    the requested frame was loaded.-->
+    用于用户明确请求的子框架导航，在前进/后退列表中会产生新的导航项。明确的框架请求可能比自动加载的框架更重要，因为用户可能关心请求的框架加载的情况。
+  </td>
+</tr>
+<tr id="tt_generated">
+  <td>"generated"</td>
+  <td>
+    <!--@The user got to this page by typing in the address bar
+    and selecting an entry that did not look like a URL.
+    For example, a match might have the URL of a Google search result page,
+    but it might appear to the user as "Search Google for ...".
+    These are not quite the same as <a href="#tt_typed">typed</a> navigations
+    because the user didn't type or see the destination URL.
+    See also <a href="#tt_keyword">keyword</a>.-->
+    用户通过在地址栏中输入并选择非 URL 项进入了该页面。例如，匹配项可能具有
+    Google 搜索结果页面的 URL，但是用户看到的可能是“在 Google 中搜索…”。这和
+    <a href="#tt_typed">typed</a> 导航不同，因为用户没有输入也没有看到目标
+    URL。另外请与 <a href="#tt_keyword">keyword</a> 比较。
+  </td>
+</tr>
+<tr id="tt_auto_toplevel">
+  <td>"auto_toplevel"</td>
+  <td>
+    <!--@The page was specified in the command line or is the start page.-->
+    该页面在命令行中指定或者为主页。
+  </td>
+</tr>
+<tr id="tt_form_submit">
+  <td>"form_submit"</td>
+  <td>
+    <!--@The user filled out values in a form and submitted it.
+    Note that in some situations &mdash;
+    such as when a form uses script to submit contents &mdash;
+    submitting a form does not result in this transition type.-->
+    用户填写了表单中的内容并提交。注意，在某些情况下（例如表单使用脚本来提交内容），提交表单不一定产生这种过渡类型。
+  </td>
+</tr>
+<tr id="tt_reload">
+  <td>"reload"</td>
+  <td>
+    <!--@The user reloaded the page,
+    either by clicking the reload button
+    or by pressing Enter in the address bar.
+    Session restore and Reopen closed tab use this transition type, too.-->
+    用户重新加载了此页面，无论是单击重新加载按钮还是在地址栏中按下回车。会话恢复以及重新打开已关闭的标签页也使用这一种过渡类型。
+  </td>
+</tr>
+<tr id="tt_keyword">
+  <td>"keyword"</td>
+  <td>
+    <!--@The URL was generated from a replaceable keyword
+    other than the default search provider.
+    See also
+    <a href="#tt_keyword_generated">keyword_generated</a>.-->
+    URL 从除了默认搜索引擎以外的可替换关键字生成。同时参见
+    <a href="#tt_keyword_generated">keyword_generated</a>。
+  </td>
+</tr>
+<tr id="tt_keyword_generated">
+  <td>"keyword_generated"</td>
+  <td>
+    <!--@Corresponds to a visit generated for a keyword.
+    See also <a href="#tt_keyword">keyword</a>.-->
+    对应于为某一关键字产生的访问。同时参见
+    <a href="#tt_keyword">keyword</a>。
+  </td>
+</tr>
+</table>
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p>
+<!--@For examples of using this API, see the
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/history/">history sample directory</a> and the
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/test/data/extensions/api_test/history/">history API test directory</a>.
+For other examples and for help in viewing the source code, see
+<a href="samples.html">Samples</a>.-->
+有关使用这一 API 的例子，请参见<a
+href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/history/">历史记录示例目录</a>和<a
+href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/test/data/extensions/api_test/history/">历史记录API测试目录</a>。有关其他例子以及查看源代码的帮助，请参见<a
+href="samples.html">示例</a>。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.history <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-HistoryItem">HistoryItem</h3>
+        <div>
+          <dd>包含历史记录的一个查询结果的对象。</dd>
+            <h3 id="HistoryItem-properties" class="capitalize" title="">
+              <a href="#type-HistoryItem">HistoryItem</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-HistoryItem-id"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-HistoryItem-id" title="">
+                        id
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      该项目的唯一标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-HistoryItem-url"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-HistoryItem-url" title="">
+                        url
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      用户访问的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-HistoryItem-title"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-HistoryItem-title" title="">
+                        title
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      上一次加载时该页面的标题。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-HistoryItem-lastVisitTime"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-HistoryItem-lastVisitTime" title="">
+                        lastVisitTime
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      页面最后一次访问的时间，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-HistoryItem-visitCount"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-HistoryItem-visitCount" title="">
+                        visitCount
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      用户访问此页面的次数。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-HistoryItem-typedCount"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-HistoryItem-typedCount" title="">
+                        typedCount
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      用户通过在地址来中输入 URL 的方式访问此页面的次数。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-VisitItem">VisitItem</h3>
+        <div>
+          <dd>包含对一个 URL 的某一次访问的对象。</dd>
+            <h3 id="VisitItem-properties" class="capitalize" title="">
+              <a href="#type-VisitItem">VisitItem</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-VisitItem-id"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-VisitItem-id" title="">
+                        id
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      该项目的唯一标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-VisitItem-visitId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-VisitItem-visitId" title="">
+                        visitId
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      本次访问的唯一标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-VisitItem-visitTime"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-VisitItem-visitTime" title="">
+                        visitTime
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      访问时间，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-VisitItem-referringVisitId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-VisitItem-referringVisitId" title="">
+                        referringVisitId
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      引用者的访问所对应的标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-VisitItem-transition"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-VisitItem-transition" title="">
+                        transition
+                        <span class="property">
+                          (
+                            enum of <code>"link"</code>, <code>"typed"</code>, <code>"auto_bookmark"</code>, <code>"auto_subframe"</code>, <code>"manual_subframe"</code>, <code>"generated"</code>, <code>"auto_toplevel"</code>, <code>"form_submit"</code>, <code>"reload"</code>, <code>"keyword"</code>, or <code>"keyword_generated"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      这一次访问相对引用者的<a href='#transition_types'>过渡类型</a>。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-search"
+            >search
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.history.search</span>(<span>object query</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            搜索历史记录，找出所有匹配页面的最后一次访问记录。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-search-query"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-search-query" title="">
+                      query
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-query-text"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-query-text" title="">
+                            text
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          向历史记录服务发出的查询文本，如果为空则获取所有页面。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-query-startTime"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-query-startTime" title="">
+                            startTime
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                double
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          将结果限制为此日期之后的访问，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-query-endTime"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-query-endTime" title="">
+                            endTime
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                double
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          将结果限制为此日期之前的访问，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-query-maxResults"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-query-maxResults" title="">
+                            maxResults
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          要获得的最大结果数目，默认为 100。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-search-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-search-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="https://crxdoc-zh.appspot.com/extensions/history.html#type-HistoryItem">HistoryItem</a> results) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-results"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-results" title="">
+                        results
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/history.html#type-HistoryItem">HistoryItem</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getVisits"
+            >getVisits
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.history.getVisits</span>(<span>object details</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取有关某个 URL 的访问信息。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getVisits-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getVisits-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-url"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-url" title="">
+                            url
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          需要获取信息的 URL，必须与 <a href="https://crxdoc-zh.appspot.com/extensions/history.html#method-search">search</a> 调用的返回值具有相同的形式。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-getVisits-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getVisits-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="https://crxdoc-zh.appspot.com/extensions/history.html#type-VisitItem">VisitItem</a> results) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-results"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-results" title="">
+                        results
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/history.html#type-VisitItem">VisitItem</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-addUrl"
+            >addUrl
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.history.addUrl</span>(<span>object details</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            向历史记录中以当前时间添加 URL，<a href='#transition_types'>过渡类型</a>为 "link"。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-addUrl-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-addUrl-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-url"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-url" title="">
+                            url
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          要添加的 URL。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-addUrl-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-addUrl-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-deleteUrl"
+            >deleteUrl
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.history.deleteUrl</span>(<span>object details</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            从历史记录中删除出现给定 URL 的所有内容。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-deleteUrl-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-deleteUrl-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-url"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-url" title="">
+                            url
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          要删除的 URL。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-deleteUrl-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-deleteUrl-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-deleteRange"
+            >deleteRange
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.history.deleteRange</span>(<span>object range</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            删除指定日期范围内的所有历史记录，访问日期不在这一范围内的页面不会从历史记录中删除。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-deleteRange-range"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-deleteRange-range" title="">
+                      range
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-range-startTime"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-range-startTime" title="">
+                            startTime
+                            <span class="property">
+                              (
+                                double
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          删除这一时间之后的添加历史记录，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-range-endTime"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-range-endTime" title="">
+                            endTime
+                            <span class="property">
+                              (
+                                double
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          删除这一时间之前的添加历史记录，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-deleteRange-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-deleteRange-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-deleteAll"
+            >deleteAll
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.history.deleteAll</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            删除历史记录中的所有项目。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-deleteAll-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-deleteAll-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onVisited">onVisited</h3>
+        <div class="description">
+      <p>
+            当访问某个 URL 时产生，并提供该 URL 的 HistoryItem 数据。这一事件在页面加载完成前产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.history.onVisited.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onVisited-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onVisited-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/history.html#type-HistoryItem">HistoryItem</a> result) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onVisited-result"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onVisited-result" title="">
+                              result
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/history.html#type-HistoryItem">HistoryItem</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onVisitRemoved">onVisitRemoved</h3>
+        <div class="description">
+      <p>
+            当一个或多个 URL 从历史记录服务删除时产生，当所有访问都删除时 URL 将从历史记录中清除。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.history.onVisitRemoved.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onVisitRemoved-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onVisitRemoved-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object removed) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onVisitRemoved-removed"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onVisitRemoved-removed" title="">
+                              removed
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-removed-allHistory"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-removed-allHistory" title="">
+                                    allHistory
+                                    <span class="property">
+                                      (
+                                        boolean
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  如果删除所有历史记录则为 true。如果为 true，urls 参数将为空。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-removed-urls"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-removed-urls" title="">
+                                    urls
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        array of string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

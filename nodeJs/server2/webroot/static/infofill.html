@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=640, maximum-scale=3, minimum-scale=0.5" />
+	<title>海外旅游</title>
+	<link rel="stylesheet" type="text/css" href="/static/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/infofill.css">
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/Math.uuid.js"></script>
+	<script type="text/javascript" src="js/wx.js"></script>
+	<script type="text/javascript" src="js/wx.init.js"></script>
+	<script type="text/javascript" src="js/infofill.js"></script>
+</head>
+<body>
+	<header class="header">
+		<input type="button" value="" class="fts32 backbutton">
+		<h1 class="dslb tac">订单填写</h1>
+	</header>
+	<section class="baseinfo">
+		<p>
+			<span id="tripDate">2015-01-01</span>
+			<span>出发日期</span>
+		</p>
+		<p>
+			<span id="totalPrice">0</span>
+			<span>总额说明</span>
+		</p>
+	</section>
+	<section class="userinfo">
+		<p>
+			<span class="infotype">旅客</span>
+			<span id="adultCount">0</span>
+			<span id="childCount">0</span>
+		</p>
+		<div class="userdisplay">
+			<ul class="users">
+			</ul>
+			<p class="addbutton"><img src="/static/images/icon.png" alt=""></p>
+		</div>
+		
+	</section>
+	<section class="userinfo1">
+		<p>
+			<label class="infotype">姓名</label>
+			<input type="text" id="orderName" placeholder="姓名"></p>
+		<p>
+			<label class="infotype">联系手机</label>
+			<input type="text" id="orderPhone" placeholder="请输入手机号码"></p>
+		<p>
+			<label class="infotype">电子邮件</label>
+			<input type="text" id="orderEmail" placeholder="用于接收确认单"></p>
+	</section>
+	<section class="beks">
+		<textarea style="width: 100%;height:100%;" id="orderMemo" placeholder="您的特殊需求，我们会尽量协调，如无法满足，请您见谅。"></textarea>
+	</section>
+	<p class="tells">
+		点击下一步表示已阅读并同意
+		<span>预订须知和重要条款。</span>
+	</p>
+	<p class="button1">
+		<input type="button" id="nextPage" value="下一步"></p>
+</body>
+</html>

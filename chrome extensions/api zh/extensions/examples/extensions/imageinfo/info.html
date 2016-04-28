@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--
+ * Copyright (c) 2010 The Chromium Authors. All rights reserved.  Use of this
+ * source code is governed by a BSD-style license that can be found in the
+ * LICENSE file.
+-->
+<html>
+  <head>
+    <script src="imageinfo/binaryajax.js"></script>
+    <script src="imageinfo/imageinfo.js" ></script>
+    <script src="imageinfo/exif.js" ></script>
+    <link href="info.css" rel="stylesheet" type="text/css"></link>
+    <script src="info.js"></script>
+  </head>
+  <body>
+
+
+<!-- Copyright © 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/examples/extensions/imageinfo/info.html">https://crxdoc-zh.appspot.com/extensions/examples/extensions/imageinfo/info.html</a><br>
+<b>Title:</b> info.html &nbsp;&bull;&nbsp; <b>Size:</b> 2450<br></div>
+<!-- /Copyright © 2005. Spidersoft Ltd -->
+
+
+    <div id="loader">
+      Loading... <img src="loader.gif" />
+    </div>
+    <div id="output">
+      <div id="info">
+        <h1>Image Information</h1>
+        <code id="url"></code>
+        <canvas id="thumbnail"></canvas>
+        <table>
+          <tr>
+            <th>Format</th>
+            <td>format</td>
+          </tr>
+          <tr>
+            <th>Version</th>
+            <td>version</td>
+          </tr>
+          <tr>
+            <th>Width</th>
+            <td>width</td>
+          </tr>
+          <tr>
+            <th>Height</th>
+            <td>height</td>
+          </tr>
+          <tr>
+            <th>Mime Type</th>
+            <td>mimeType</td>
+          </tr>
+          <tr>
+            <th>Size (Bytes)</th>
+            <td>byteSize</td>
+          </tr>
+        </table>
+      </div>
+      <div id="exif">
+        <h2>EXIF Information</h2>
+        <table>
+          <tr>
+            <th>Date</th>
+            <td>DateTime</td>
+          </tr>
+          <tr>
+            <th>Aperture</th>
+            <td>ApertureValue</td>
+          </tr>
+          <tr>
+            <th>Exposure</th>
+            <td>ExposureTime</td>
+          </tr>
+          <tr>
+            <th>Shutter Speed</th>
+            <td>ShutterSpeedValue</td>
+          </tr>
+          <tr>
+            <th>ISO</th>
+            <td>ISOSpeedRatings</td>
+          </tr>
+          <tr>
+            <th>Camera Make</th>
+            <td>Make</td>
+          </tr>
+          <tr>
+            <th>Camera Model</th>
+            <td>Model</td>
+          </tr>
+          <tr>
+            <th>Software</th>
+            <td>Software</td>
+          </tr>
+          <tr>
+            <th>XResolution</th>
+            <td>XResolution</td>
+          </tr>
+          <tr>
+            <th>YResolution</th>
+            <td>YResolution</td>
+          </tr>
+          <tr>
+            <th>Flash</th>
+            <td>Flash</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

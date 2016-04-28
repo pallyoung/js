@@ -1,0 +1,2848 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.socket - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="https://developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="https://developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:38.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/socket.html">https://crxdoc-zh.appspot.com/apps/socket.html</a><br>
+<b>Title:</b> chrome.socket - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 109752<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="/apps/" title="Google Chrome 应用" id="view-original">
+          <img src="https://developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="/apps/samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="/apps/angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="/apps/sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="/apps/app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="/apps/app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="/apps/pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="/apps/app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="/apps/app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="/apps/app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/apps/google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="/apps/analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="/apps/tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="/apps/api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="/apps/manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="/apps/app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.socket</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-SocketType"
+             data-list-item
+             >SocketType</a>
+        </li>
+        <li >
+          <a href="#type-WriteInfo"
+             data-list-item
+             >WriteInfo</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-create"
+             data-list-item
+             >create        </a>
+        </li>
+        <li >
+          <a href="#method-destroy"
+             data-list-item
+             >destroy        </a>
+        </li>
+        <li >
+          <a href="#method-connect"
+             data-list-item
+             >connect        </a>
+        </li>
+        <li >
+          <a href="#method-bind"
+             data-list-item
+             >bind        </a>
+        </li>
+        <li >
+          <a href="#method-disconnect"
+             data-list-item
+             >disconnect        </a>
+        </li>
+        <li >
+          <a href="#method-read"
+             data-list-item
+             >read        </a>
+        </li>
+        <li >
+          <a href="#method-write"
+             data-list-item
+             >write        </a>
+        </li>
+        <li >
+          <a href="#method-recvFrom"
+             data-list-item
+             >recvFrom        </a>
+        </li>
+        <li >
+          <a href="#method-sendTo"
+             data-list-item
+             >sendTo        </a>
+        </li>
+        <li >
+          <a href="#method-listen"
+             data-list-item
+             >listen        </a>
+        </li>
+        <li >
+          <a href="#method-accept"
+             data-list-item
+             >accept        </a>
+        </li>
+        <li >
+          <a href="#method-setKeepAlive"
+             data-list-item
+             >setKeepAlive        </a>
+        </li>
+        <li >
+          <a href="#method-setNoDelay"
+             data-list-item
+             >setNoDelay        </a>
+        </li>
+        <li >
+          <a href="#method-getInfo"
+             data-list-item
+             >getInfo        </a>
+        </li>
+        <li >
+          <a href="#method-getNetworkList"
+             data-list-item
+             >getNetworkList        </a>
+        </li>
+        <li >
+          <a href="#method-joinGroup"
+             data-list-item
+             >joinGroup        </a>
+        </li>
+        <li >
+          <a href="#method-leaveGroup"
+             data-list-item
+             >leaveGroup        </a>
+        </li>
+        <li >
+          <a href="#method-setMulticastTimeToLive"
+             data-list-item
+             >setMulticastTimeToLive        </a>
+        </li>
+        <li >
+          <a href="#method-setMulticastLoopbackMode"
+             data-list-item
+             >setMulticastLoopbackMode        </a>
+        </li>
+        <li >
+          <a href="#method-getJoinedGroups"
+             data-list-item
+             >getJoinedGroups        </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+         <!--@Use the <code>chrome.socket</code> API to send and receive data over the
+         network using TCP and UDP connections.-->
+         使用 <code>chrome.socket</code> API 使用 TCP 和 UDP
+         连接通过网络发送和接收数据。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 24<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        {"socket": ["rule1", "rule2"]}
+                </span>
+        <br>
+        <!--@For example: -->例如：<code>{"socket": ["tcp-connect:*:*"]}</code> <!--@means connecting on any port of any host. See -->
+        表示可以连接任意主机的任意端口。有关规则的语法请参见<a href='app_network.html'><!--@Network Communications-->网络通信</a><!--@ for rule syntax.-->。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">了解更多<!--@:-->：</td>
+    <td>
+        <a href="app_network.html">
+        网络通信
+                </a>
+        <br>
+        <a href="sencha_framework.html">
+        用 Sencha ExtJS 建立应用
+                </a>
+        <br>
+        <a href="https://developers.google.com/live/shows/7320022-5001/">
+        Chrome 应用办公时间：网络通信 API
+                </a>
+        <br>
+        <a href="https://developers.google.com/live/shows/7320022-2001/">
+        Chrome 应用办公时间：控制 AR ParrotDrone
+                </a>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.socket <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-SocketType">SocketType</h3>
+        <div>
+          <dd>enum of
+            <code>"tcp"</code>, 
+            or <code>"udp"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-WriteInfo">WriteInfo</h3>
+        <div>
+            <h3 id="WriteInfo-properties" class="capitalize" title="">
+              <a href="#type-WriteInfo">WriteInfo</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-WriteInfo-bytesWritten"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-WriteInfo-bytesWritten" title="">
+                        bytesWritten
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The number of bytes sent, or a negative error code.--> 发送的字节数，或者为负数，表示错误代码。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-create"
+            >create
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.create</span>(<span><a href="socket.html#type-SocketType">SocketType</a> type</span>, <span class="optional">object options</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Creates a socket of the specified type that will connect to the specified remote machine.--> 创建指定类型的套接字，以便用来连接到远程计算机。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-create-type"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-type" title="">
+                      type
+                      <span class="property">
+                        (
+                          <a href="socket.html#type-SocketType">SocketType</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The type of socket to create. Must be <code>tcp</code> or <code>udp</code>.--> 要创建的套接字类型，必须为 <code>"tcp"</code> 或 <code>"udp"</code>。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-create-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socket options.--> 套接字选项。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-create-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the socket has been created.--> 套接字创建后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object createInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-createInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-createInfo" title="">
+                        createInfo
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-createInfo-socketId"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-createInfo-socketId" title="">
+                              socketId
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The id of the newly created socket.--> 新创建套接字的标识符。
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-destroy"
+            >destroy
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.destroy</span>(<span>integer socketId</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Destroys the socket. Each socket created should be destroyed after use.--> 释放套接字，创建的套接字使用完后应该释放。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-destroy-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-destroy-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-connect"
+            >connect
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.connect</span>(<span>integer socketId</span>, <span>string hostname</span>, <span>integer port</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Connects the socket to the remote machine (for a <code>tcp</code> socket). For a <code>udp</code> socket, this sets the default address which packets are sent to and read from for <code>read()</code> and <code>write()</code> calls.--> 将套接字连接至远程计算机（用于 <code>tcp</code> 套接字）。对于 <code>udp</code> 套接字，该函数设置 <code>read()</code> 与 <code>write()</code> 调用时数据包发送至的默认地址。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-connect-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-connect-hostname"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-hostname" title="">
+                      hostname
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The hostname or IP address of the remote machine.--> 远程计算机的主机名或 IP 地址。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-connect-port"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-port" title="">
+                      port
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The port of the remote machine.--> 远程计算机的端口。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-connect-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the connection attempt is complete.--> 连接尝试完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-bind"
+            >bind
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.bind</span>(<span>integer socketId</span>, <span>string address</span>, <span>integer port</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Binds the local address for socket. Currently, it does not support TCP socket.--> 为套接字绑定本机地址。当前还不支持 TCP 套接字。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-bind-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-bind-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-bind-address"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-bind-address" title="">
+                      address
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The address of the local machine.--> 本机地址。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-bind-port"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-bind-port" title="">
+                      port
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The port of the local machine.--> 本机端口
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-bind-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-bind-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the bind attempt is complete.--> 绑定尝试完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-disconnect"
+            >disconnect
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.disconnect</span>(<span>integer socketId</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Disconnects the socket. For UDP sockets, <code>disconnect</code> is a non-operation but is safe to call.--> 断开套接字的连接。对于 UDP 套接字来说，断开连接并不会执行任何操作，但是可以安全地调用。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-disconnect-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-disconnect-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-read"
+            >read
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.read</span>(<span>integer socketId</span>, <span class="optional">integer bufferSize</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Reads data from the given connected socket.--> 从指定的已连接套接字读取数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-read-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-read-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-read-bufferSize"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-read-bufferSize" title="">
+                      bufferSize
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The read buffer size.--> 读取缓冲区大小。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-read-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-read-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Delivers data that was available to be read without blocking.--> 以非阻塞的方式传递可以读取的数据
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object readInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-readInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-readInfo" title="">
+                        readInfo
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-readInfo-resultCode"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-readInfo-resultCode" title="">
+                              resultCode
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The resultCode returned from the underlying read() call.--> read() 调用返回的结果代码。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-readInfo-data"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-readInfo-data" title="">
+                              data
+                              <span class="property">
+                                (
+                                  arraybuffer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-write"
+            >write
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.write</span>(<span>integer socketId</span>, <span>arraybuffer data</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Writes data on the given connected socket.--> 向已连接的指定套接字写入数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-write-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-write-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-write-data"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-write-data" title="">
+                      data
+                      <span class="property">
+                        (
+                          arraybuffer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The data to write.--> 要写入的数据。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-write-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-write-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the write operation completes without blocking or an error occurs.--> 以非阻塞的方式在写入操作完成或发生错误时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="socket.html#type-WriteInfo">WriteInfo</a> writeInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-writeInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-writeInfo" title="">
+                        writeInfo
+                        <span class="property">
+                          (
+                            <a href="socket.html#type-WriteInfo">WriteInfo</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-recvFrom"
+            >recvFrom
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.recvFrom</span>(<span>integer socketId</span>, <span class="optional">integer bufferSize</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Receives data from the given UDP socket.--> 从指定 UDP 套接字接收数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-recvFrom-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-recvFrom-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-recvFrom-bufferSize"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-recvFrom-bufferSize" title="">
+                      bufferSize
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The receive buffer size.--> 接收缓冲区大小。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-recvFrom-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-recvFrom-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Returns result of the recvFrom operation.--> 返回接收操作的结果。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object recvFromInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-recvFromInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-recvFromInfo" title="">
+                        recvFromInfo
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-recvFromInfo-resultCode"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-recvFromInfo-resultCode" title="">
+                              resultCode
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The resultCode returned from the underlying recvfrom() call.--> recvFrom() 调用返回的结果代码。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-recvFromInfo-data"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-recvFromInfo-data" title="">
+                              data
+                              <span class="property">
+                                (
+                                  arraybuffer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-recvFromInfo-address"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-recvFromInfo-address" title="">
+                              address
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The address of the remote machine.--> 远程计算机的地址。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-recvFromInfo-port"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-recvFromInfo-port" title="">
+                              port
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-sendTo"
+            >sendTo
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.sendTo</span>(<span>integer socketId</span>, <span>arraybuffer data</span>, <span>string address</span>, <span>integer port</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Sends data on the given UDP socket to the given address and port.--> 在指定 UDP 套接字上向指定地址与端口发送数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-sendTo-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendTo-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendTo-data"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendTo-data" title="">
+                      data
+                      <span class="property">
+                        (
+                          arraybuffer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The data to write.--> 要写入的数据。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendTo-address"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendTo-address" title="">
+                      address
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The address of the remote machine.--> 远程计算机的地址。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendTo-port"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendTo-port" title="">
+                      port
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The port of the remote machine.--> 远程计算机的端口。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-sendTo-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-sendTo-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the send operation completes without blocking or an error occurs.--> 以非阻塞的方式在发送操作完成或产生错误时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="socket.html#type-WriteInfo">WriteInfo</a> writeInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-writeInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-writeInfo" title="">
+                        writeInfo
+                        <span class="property">
+                          (
+                            <a href="socket.html#type-WriteInfo">WriteInfo</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-listen"
+            >listen
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.listen</span>(<span>integer socketId</span>, <span>string address</span>, <span>integer port</span>, <span class="optional">integer backlog</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@This method applies to TCP sockets only. Listens for connections on the specified port and address. This effectively makes this a server socket, and client socket functions (connect, read, write) can no longer be used on this socket.--> 该方法仅适用于 TCP 套接字，监听指定端口与地址上的连接，这样的结果是使该套接字成为服务器套接字，客户端套接字函数（connect、read、write）就不能再在该套接字上使用。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-listen-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-listen-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-listen-address"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-listen-address" title="">
+                      address
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The address of the local machine.--> 本地计算机的地址。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-listen-port"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-listen-port" title="">
+                      port
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The port of the local machine.--> 本地计算机的端口。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-listen-backlog"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-listen-backlog" title="">
+                      backlog
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Length of the socket's listen queue.--> 套接字监听队列的长度。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-listen-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-listen-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when listen operation completes.--> 监听操作完成时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-accept"
+            >accept
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.accept</span>(<span>integer socketId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@This method applies to TCP sockets only. Registers a callback function to be called when a connection is accepted on this listening server socket. Listen must be called first. If there is already an active accept callback, this callback will be invoked immediately with an error as the resultCode.--> 该方法仅适用于 TCP 套接字，注册一个回调函数，当正在监听的服务器套接字接受连接时调用。必须首先调用 listen。如果已经有活动的接受回调函数，该回调函数将立即执行，resultCode 包含错误。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-accept-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-accept-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-accept-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-accept-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The callback is invoked when a new socket is accepted.--> 新的套接字接受时调用该回调函数。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object acceptInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-acceptInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-acceptInfo" title="">
+                        acceptInfo
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-acceptInfo-resultCode"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-acceptInfo-resultCode" title="">
+                              resultCode
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-acceptInfo-socketId"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-acceptInfo-socketId" title="">
+                              socketId
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The id of the accepted socket.--> 已接受套接字的标识符。
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setKeepAlive"
+            >setKeepAlive
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.setKeepAlive</span>(<span>integer socketId</span>, <span>boolean enable</span>, <span class="optional">integer delay</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Enables or disables the keep-alive functionality for a TCP connection.--> 启用或禁用 TCP 连接保持活动状态的功能。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setKeepAlive-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setKeepAlive-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setKeepAlive-enable"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setKeepAlive-enable" title="">
+                      enable
+                      <span class="property">
+                        (
+                          boolean
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@If true, enable keep-alive functionality.--> 如果为 true 的话，启用保持活动状态的功能。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setKeepAlive-delay"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setKeepAlive-delay" title="">
+                      delay
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Set the delay seconds between the last data packet received and the first keepalive probe. Default is 0.--> 设置最后一次数据包接收与第一次活动状态检测之间的时间延迟，默认为 0。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setKeepAlive-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setKeepAlive-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the setKeepAlive attempt is complete.--> 操作完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setNoDelay"
+            >setNoDelay
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.setNoDelay</span>(<span>integer socketId</span>, <span>boolean noDelay</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Sets or clears <code>TCP_NODELAY</code> for a TCP connection. Nagle's algorithm will be disabled when <code>TCP_NODELAY</code> is set.--> 设置或清除 TCP 连接的 <code>TCP_NODELAY</code>标志，当设置 <code>TCP_NODELAY</code> 标志时将禁用<a href="https://zh.wikipedia.org/zh/%E7%B4%8D%E6%A0%BC%E7%AE%97%E6%B3%95">纳格算法</a>。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setNoDelay-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setNoDelay-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setNoDelay-noDelay"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setNoDelay-noDelay" title="">
+                      noDelay
+                      <span class="property">
+                        (
+                          boolean
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@If true, disables Nagle's algorithm.--> 如果为 true 的话，禁用纳格算法。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setNoDelay-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setNoDelay-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the setNoDelay attempt is complete.--> 操作完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getInfo"
+            >getInfo
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.getInfo</span>(<span>integer socketId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Retrieves the state of the given socket.--> 获取指定套接字的状态。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getInfo-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getInfo-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getInfo-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getInfo-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the state is available.--> 状态可用时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-result-socketType"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-socketType" title="">
+                              socketType
+                              <span class="property">
+                                (
+                                  <a href="socket.html#type-SocketType">SocketType</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The type of the passed socket. This will be <code>tcp</code> or <code>udp</code>.--> 传递的套接字类型，为 "tcp" 或 "udp"。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-connected"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-connected" title="">
+                              connected
+                              <span class="property">
+                                (
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@Whether or not the underlying socket is connected.<br/><br/> For <code>tcp</code> sockets, this will remain true even if the remote peer has disconnected. Reading or writing to the socket may then result in an error, hinting that this socket should be disconnected via <code>disconnect()</code>.<br/><br/> For <code>udp</code> sockets, this just represents whether a default remote address has been specified for reading and writing packets.--> 指定套接字是否已连接。对于 <code>tcp</code> 套接字，即使远程计算机已经断开连接，该属性仍然为 true。读取或写入套接字可能会导致错误，表示该套接字应该通过 <code>disconnect()</code> 断开连接。对于 udp 套接字，该属性只是表示读取和写入数据包的默认远程地址是否已经指定。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-peerAddress"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-peerAddress" title="">
+                              peerAddress
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@If the underlying socket is connected, contains the IPv4/6 address of the peer.--> 如果套接字已连接，则包含对方的 IPv4/6 地址。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-peerPort"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-peerPort" title="">
+                              peerPort
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@If the underlying socket is connected, contains the port of the connected peer.--> 如果套接字已连接，则包含对方的端口号。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-localAddress"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-localAddress" title="">
+                              localAddress
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@If the underlying socket is bound or connected, contains its local IPv4/6 address.--> 如果套接字已绑定或连接，则包含本机 IPv4/6 地址。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-localPort"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-localPort" title="">
+                              localPort
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@If the underlying socket is bound or connected, contains its local port.--> 如果套接字已绑定或连接，则包含本机端口。
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getNetworkList"
+            >getNetworkList
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.getNetworkList</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Retrieves information about local adapters on this system.--> 获取当前系统中本地适配器的有关信息。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getNetworkList-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getNetworkList-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when local adapter information is available.--> 本地适配器信息可用时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of object result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            array of object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <h4 title=""><!--@Properties of each object-->每一个对象的属性</h4>
+                      <dl>
+                        <div>
+                          <div>
+                              <dd>
+                                <dl>
+                                  <div>
+                                    <a name="property-resultType-name"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-resultType-name" title="">
+                                          name
+                                          <span class="property">
+                                            (
+                                              string
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@The underlying name of the adapter. On *nix, this will typically be "eth0", "lo", etc.--> 适配器的名称，在 *nix 上通常为"eth0"、"lo" 等等。
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-resultType-address"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-resultType-address" title="">
+                                          address
+                                          <span class="property">
+                                            (
+                                              string
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@The available IPv4/6 address.--> 可用的 IPv4/6 地址。
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-resultType-prefixLength"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-resultType-prefixLength" title="">
+                                          prefixLength
+                                          <span class="property">
+                                            (
+                                              integer
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@The prefix length--> 前缀长度。
+                                      </dd>
+                                    </dl>
+                                  </div>
+                                </dl>
+                              </dd>
+                          </div>
+                        </div>
+                      </dl>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-joinGroup"
+            >joinGroup
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.joinGroup</span>(<span>integer socketId</span>, <span>string address</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Join the multicast group and start to receive packets from that group. The socket must be of UDP type and must be bound to a local port before calling this method.--> 加入多播组，并开始接收数据包。调用该方法之前，套接字的类型必须是 UDP，并且已经绑定至本机端口。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-joinGroup-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-joinGroup-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-joinGroup-address"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-joinGroup-address" title="">
+                      address
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The group address to join. Domain names are not supported.--> 要加入的多播组地址，不支持域名。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-joinGroup-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-joinGroup-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the join group operation is done with an integer parameter indicating the platform-independent error code.--> 加入多播组的操作完成后调用，并传递一个整型参数，表示平台无关的错误代码。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-leaveGroup"
+            >leaveGroup
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.leaveGroup</span>(<span>integer socketId</span>, <span>string address</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Leave the multicast group previously joined using <code>joinGroup</code>. It's not necessary to leave the multicast group before destroying the socket or exiting. This is automatically called by the OS.--> 离开之前使用 <code>joinGroup</code> 加入的多播组。释放套接字或退出前不用离开多播组，这会由操作系统自动调用。<br/><br/> <!--@Leaving the group will prevent the router from sending multicast datagrams to the local host, presuming no other process on the host is still joined to the group.--> 离开多播组后，如果没有其他进程仍然加入多播组，路由器不会继续向本机发送多播数据包。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-leaveGroup-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-leaveGroup-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-leaveGroup-address"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-leaveGroup-address" title="">
+                      address
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The group address to leave. Domain names are not supported.--> 要离开的多播组地址，不支持域名。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-leaveGroup-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-leaveGroup-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the leave group operation is done with an integer parameter indicating the platform-independent error code.--> 离开多播组的操作完成后调用，并传递一个整型参数，表示平台无关的错误代码。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setMulticastTimeToLive"
+            >setMulticastTimeToLive
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.setMulticastTimeToLive</span>(<span>integer socketId</span>, <span>integer ttl</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Set the time-to-live of multicast packets sent to the multicast group.--> 设置发送至多播组的多播数据包的 TTL 值。<br/><br/> <!--@Calling this method does not require multicast permissions.--> 调用该方法不需要多播权限。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setMulticastTimeToLive-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setMulticastTimeToLive-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setMulticastTimeToLive-ttl"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setMulticastTimeToLive-ttl" title="">
+                      ttl
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The time-to-live value.--> TTL 值。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setMulticastTimeToLive-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setMulticastTimeToLive-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the configuration operation is done.--> 配置操作完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setMulticastLoopbackMode"
+            >setMulticastLoopbackMode
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.setMulticastLoopbackMode</span>(<span>integer socketId</span>, <span>boolean enabled</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Set whether multicast packets sent from the host to the multicast group will be looped back to the host.--> 设置主机向多播组发送的多播包是否要回环至主机。<br/><br/> <!--@Note: the behavior of <code>setMulticastLoopbackMode</code> is slightly different between Windows and Unix-like systems. The inconsistency happens only when there is more than one application on the same host joined to the same multicast group while having different settings on multicast loopback mode. On Windows, the applications with loopback off will not RECEIVE the loopback packets; while on Unix-like systems, the applications with loopback off will not SEND the loopback packets to other applications on the same host. See MSDN: http://goo.gl/6vqbj--> 注意：<code>setMulticastLookbackMode</code> 在 Windows 与类 Unix 系统上的行为不同。只有当同一主机上不止一个应用程序加入了同一个多播组，并且多播回环模式的设置不同时才会出现这一不一致性。在 Windows 中，关闭回环的应用程序不会<b>接受</b>到回环包；而在类 Unix 系统中，关闭回环的应用程序不会向同一主机上的其他应用程序<b >发送</b>回环包。请参见 MSDN：<a href="http://goo.gl/6vqbj" >http://goo.gl/6vqbj</a>。<br/><br/> <!--@Calling this method does not require multicast permissions.--> 调用该方法不需要多播权限。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setMulticastLoopbackMode-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setMulticastLoopbackMode-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setMulticastLoopbackMode-enabled"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setMulticastLoopbackMode-enabled" title="">
+                      enabled
+                      <span class="property">
+                        (
+                          boolean
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Indicate whether to enable loopback mode.--> 表示是否启用回环模式。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setMulticastLoopbackMode-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setMulticastLoopbackMode-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the configuration operation is done.--> 配置操作完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(integer result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getJoinedGroups"
+            >getJoinedGroups
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.socket.getJoinedGroups</span>(<span>integer socketId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Get the multicast group addresses the socket is currently joined to.--> 获取套接字当前加入的多播组地址。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getJoinedGroups-socketId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getJoinedGroups-socketId" title="">
+                      socketId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The socketId.--> 套接字标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getJoinedGroups-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getJoinedGroups-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called with an array of strings of the result.--> 调用时传递字符串数据，表示结果。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of string groups) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-groups"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-groups" title="">
+                        groups
+                        <span class="property">
+                          (
+                            array of string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="https:////plus.google.com/112419687097816423998?prsrc=3" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="https://developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

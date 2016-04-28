@@ -1,0 +1,110 @@
+﻿body{
+	background: rgb(245,245,245);
+}
+.header span{
+	font-size: 0.7em;
+}
+.info{
+	padding-left:2rem; 
+	background: white;
+}
+.info div{
+	height: 2em;
+	line-height: 2em;
+	font-size: 2rem;
+	border-bottom: solid 1px rgb(220,220,220);
+	position: relative;
+	overflow: hidden;
+}
+.info div label,.info div input{
+	font-size:inherit;
+	height: inherit;
+	line-height: inherit;
+	color: black;
+}
+.info div input{
+	height: 1.1em;
+	line-height: 1.1em;
+}
+.info div input[type="text"]::-webkit-input-placeholder{
+	font-size: 1.4rem
+}
+.info div:last-child{
+	border-bottom: none;
+	background: rgb(245,245,245);
+	font-size: 1.4rem
+}
+.cardtype{
+	width: 400px;
+	color: rgb(34,191,100);
+	font-size: 2rem;
+	display: none;
+	position: absolute;
+	left:11rem;
+	z-index: 99;
+	text-indent: 0;
+	padding: 0;
+	background: white;
+}
+.info div span{
+	color: rgb(34,191,100);
+	font-size: 2rem;
+	width: 300px;
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+.info div .arrow{
+	color: rgb(110,110,110);
+	position: absolute;
+	display: inline-block;
+	right: 24px;
+	width:100px;
+	text-align: right;
+	background: white;
+	top: 0;
+
+}
+
+
+.datepicker{
+	width: 400px;
+	color: rgb(34,191,100);
+	font-size: 2rem;
+	background: white;
+	display: none;
+	position: absolute;
+	left: 11rem;
+	z-index: 99;
+}
+.datepicker header{
+	height:3em;
+	line-height:3em;
+	font-size: 2rem;
+	text-align: center;
+}
+.datepicker header span{
+	margin: 0 35px
+}
+.datepicker section{
+
+}
+.datepicker section p{
+	overflow: hidden;
+	text-align: center;
+
+}
+.datepicker section p span{
+	text-align: center;
+	float: left;
+	border: solid 1px rgb(226,226,226);
+	height:5.7777rem;
+	width:55px;
+	border-collapse: collapse;
+	line-height:5.7777rem;
+	font-size: 2rem 
+}
+.datepicker section p:nth-child(1) span{
+	background:rgb(245,245,245); 
+	color:rgb(102,102,102);
+}

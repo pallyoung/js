@@ -1,0 +1,122 @@
+/*
+*authentication页面
+*/
+
+#authentication .part{
+	background-color:white;
+	font-size: 2.4rem;
+	padding-bottom: 1.5em
+}
+#authentication .part>h5{
+	color: rgb(153,153,153);
+	font-weight: normal;
+	padding:0 1em;
+	line-height: 2.6em;
+	height:2.6em;
+}
+#authentication .part>section>p{
+	line-height: 3em;
+	padding: 0 0.5em 0 1em;
+}
+#authentication .part:nth-child(1)>section>p> *:nth-child(n){
+	display: inline-block;
+	vertical-align: middle;
+}
+#authentication .part:nth-child(1)>section>p:nth-child(1)>label:nth-child(1){
+	padding:0 1.8em 0 0;
+	height: 3em;
+	line-height: 3em;
+}
+#authentication .part:nth-child(1)>section>p:nth-child(1)>input:nth-child(2){
+	font-size: 2.4rem;
+	height: 3em;
+	/*line-height: 3em;*/
+	width: 12em;
+}
+#authentication .part:nth-child(1)>section>p:nth-child(1)>a:nth-child(3){
+	padding: 0 1em;
+	height: 2em;
+	line-height: 2em;
+}
+#authentication .part:nth-child(1)>section>p:nth-child(2)>a:nth-child(1){
+	padding: 0 1em;
+	height: 2.4em;
+	line-height:  2.4em;
+	font-size: 2.0rem;
+	padding-left:1.6em;
+	background:url("../img/phone.png") no-repeat 0.5em 0.5em;
+	margin-top: 0.6em;
+}
+#authentication .part:nth-child(2)>section>div{
+	padding: 0 0.5em 0 1em
+}
+#authentication .part:nth-child(2)>section>div:nth-child(1){
+	height: 3em;
+	line-height: 3em;
+}
+#authentication .part:nth-child(2)>section>div:nth-child(1)> *:nth-child(n){
+	display: inline-block;
+	vertical-align: middle;
+}
+#authentication .part:nth-child(2)>section>div:nth-child(1)> span:nth-child(1){
+	width:4.5em;
+}
+#authentication .part:nth-child(2)>section>div:nth-child(1)> div{
+	margin-right:1em;
+	font-size: 2.0rem;
+	width:8em;
+	line-height:  2.4em;
+	height: 2.4em;
+}
+#authentication .part:nth-child(2)>section>div:nth-child(1)> a:nth-child(4){
+	font-size: 6.0rem;
+	background:url("../img/add.png") center center no-repeat;
+	background-size: 100% 100%;
+	height:0.79em;
+	width: 0.79em;
+}
+#authentication .part:nth-child(2)>section>div:nth-child(2)> p:nth-child(1){
+	height:2.6em;
+    line-height:2.6em;
+}
+#authentication .part:nth-child(2)>section>div:nth-child(2)> p:nth-child(1)>span{
+	color: rgb(153,153,153);
+	font-size: 2.0rem;
+	float: right;
+	height: 1em;
+	line-height: 1em;
+	margin-top:1em 
+}
+#authentication .ok_button{
+	display: block;
+	height: 3em;
+	line-height: 3em;
+	color:  rgb(242,109,4);
+	background: white;
+	position: absolute;
+	bottom: 0;
+	font-size: 3rem;
+	width: 100%;
+	text-align: center;
+}
+#authentication .camera_area{
+	background: url("../img/camera.png") no-repeat -1.1em -1em;
+	font-size: 2rem;
+	width: 27.7em;
+	height: 17em;
+}
+#authentication .camera_area p{
+	font-size: 2rem;
+	margin-bottom: 2.5em
+}
+
+#authentication .camera_area p span{
+	font-size:2rem;
+	width: 8.8em;
+	height:6.5em;
+	display: inline-block;
+	background-size: 100% 100%
+}
+#authentication .camera_area p span:not(:last-child){
+	margin-right: 0.3em;
+}

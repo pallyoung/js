@@ -1,0 +1,88 @@
+/*
+*登录页面
+*/
+
+#login input[type="checkbox"] {
+  width: 35px;
+  height: 38px;
+  display: inline-block;
+  -webkit-appearance: none;
+  border: none;
+  margin: 0;
+  background-image: url(../img/check.png);
+  background-repeat: no-repeat;
+}
+
+#login input.checked {
+  background-position: -40px 0;
+}
+
+#login h1.heading {
+  float: none !important;
+  margin: 0 auto;
+}
+
+#login .wrapper{
+	background: url("../img/login_bg.png") no-repeat;
+	background-size:100% 100%;
+}
+
+#login .logo {
+  height: 207px;
+  margin: 70px 0;
+  text-align: center;
+}
+
+#login input[type='text'],
+#login input[type='password'] {
+  display: block;
+  margin: 10px auto;
+  padding: 0 30px;
+  background: #fefdfd;
+  width: 406px;
+  height: 64px;
+}
+
+#login .login-options {
+  width: 400px;
+  height: 60px;
+  line-height: 40px;
+  margin: 15px auto 25px;
+}
+
+#login .login-options span {
+  display: inline-block;
+  line-height: 40px;
+  float: left;
+}
+
+#login .login-options span:nth-of-type(1) {
+  width: 50px;
+}
+#login .login-options span:nth-of-type(2) {
+  width: 100px;
+}
+#login .login-options span:nth-of-type(3) {
+  width: 150px;
+  float: right;
+  text-align: right;
+}
+
+
+#login .button {
+  display: block;
+  width: 432px;
+  height: 70px;
+  margin: 0 auto;
+}
+
+#login .activation-link {
+  display: block;
+  width: 432px;
+  margin: 10px auto;  
+  text-align: right;
+}
+
+#login .activation-link a {
+  text-decoration: underline;
+}

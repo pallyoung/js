@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.types - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/types.html">https://crxdoc-zh.appspot.com/extensions/types.html</a><br>
+<b>Title:</b> chrome.types - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 50360<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.types</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#ChromeSetting"
+         data-list-item
+         >Chrome 浏览器设置</a>
+      <ol>
+        <li >
+          <a href="#ChromeSetting-lifecycle"
+             data-list-item
+             >范围和生命周期</a>
+        </li>
+        <li >
+          <a href="#ChromeSetting-precedence"
+             data-list-item
+             >优先级</a>
+        </li>
+      </ol>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-ChromeSetting"
+             data-list-item
+             >ChromeSetting</a>
+          <ol>
+            <li >
+              <a href="#method-ChromeSetting-get"
+                 data-list-item
+                 >get                  </a>
+            </li>
+            <li >
+              <a href="#method-ChromeSetting-set"
+                 data-list-item
+                 >set                  </a>
+            </li>
+            <li >
+              <a href="#method-ChromeSetting-clear"
+                 data-list-item
+                 >clear                  </a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#event-ChromeSetting-onChange"
+             data-list-item
+             >onChange</a>
+        </li>
+        <li >
+          <a href="#type-ImageDetails"
+             data-list-item
+             >ImageDetails</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        <code>chrome.types</code> API 包含用于 Chrome 浏览器的类型声明。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 13<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="ChromeSetting">Chrome <!--@settings-->浏览器设置</h2>
+
+<p>
+<!--@The--> <code>ChromeSetting</code> <!--@prototype provides a common set of functions
+(<code>get()</code>, <code>set()</code>, and <code>clear()</code>) as
+well as an event publisher (<code>onChange</code>) for settings of the
+Chrome browser. The <a href="https://crxdoc-zh.appspot.com/extensions/proxy.html#overview-examples">proxy settings
+ examples</a> demonstrate how these functions are intended to be used.-->
+原型提供一组常用函数（<code>get()</code>、<code>set()</code> 和
+<code>clear()</code>）以及一个事件发布器（<code>onChange</code>），用于
+Chrome 浏览器设置。<a href="https://crxdoc-zh.appspot.com/extensions/proxy.html#overview-examples"
+>代理设置的例子</a>演示了这些函数应该如何使用。
+</p>
+
+<h3 id="ChromeSetting-lifecycle"><!--@Scope and life cycle-->范围和生命周期</h3>
+
+<p>
+<!--@Chrome distinguishes between three different scopes of browser settings:-->
+Chrome 浏览器区分三种不同范围的浏览器设置：
+<dl>
+  <dt><code>regular</code></dt>
+  <dd><!--@Settings set in the <code>regular</code> scope apply to regular
+  browser windows and are inherited by incognito windows if they are not
+  overwritten. These settings are stored to disk and remain in place until
+  they are cleared by the governing extension, or the governing extension is
+  disabled or uninstalled.-->
+  在 <code>regular</code>
+  范围中的设置应用于普通浏览器窗口，并且在没有覆盖的情况下由隐身窗口继承。这些设置存储在磁盘上，一直保留，除非它们由所属扩展程序清除，或者所属扩展程序禁用或卸载。
+  </dd>
+
+  <dt><code>incognito_persistent</code></dt>
+  <dd><!--@Settings set in the <code>incognito_persistent</code> scope apply only
+  to incognito windows. For these, they override <code>regular</code>
+  settings. These settings are stored to disk and remain in place until
+  they are cleared by the governing extension, or the governing extension is
+  disabled or uninstalled.-->
+  在 <code>incognito_persistent</code>
+  范围中的设置仅应用于隐身窗口，覆盖 <code>regular</code>
+  范围中的设置。这些设置保存在磁盘上，一直保留，直到它们由所属扩展程序清除，或所属扩展程序禁用或卸载。
+  </dd>
+
+  <dt><code>incognito_session_only</code></dt>
+  <dd><!--@Settings set in the <code>incognito_session_only</code> scope apply only
+  to incognito windows. For these, they override <code>regular</code> and
+  <code>incognito_session_only</code> settings. These settings are not
+  stored to disk and are cleared when the last incognito window is closed. They
+  can only be set when at least one incognito window is open.-->
+  在 <code>incognito_session_only</code> 范围中的设置仅应用于隐身窗口，覆盖
+  <code>regular</code> 和 <code>incognito_persistent</code>
+  范围中的设置。这些设置不保存在磁盘上，当最后一个隐身窗口关闭时清除。它们只能在至少一个隐身窗口打开的情况下设置。
+  </dd>
+
+</dl>
+</p>
+
+<h3 id="ChromeSetting-precedence"><!--@Precedence-->优先级</h3>
+
+<p>
+<!--@Chrome manages settings on different layers. The following list describes the
+layers that may influence the effective settings, in increasing order of
+precedence.-->
+Chrome
+浏览器在不同的层面上管理设置。以下列表按照优先级递增的顺序描述了可能影响有效设置的不同层面。
+<ol>
+  <li><!--@System settings provided by the operating system-->由操作系统提供的系统设置</li>
+  <li><!--@Command-line parameters-->命令行参数</li>
+  <li><!--@Settings provided by extensions-->由扩展程序提供的设置</li>
+  <li><!--@Policies-->策略</li>
+</ol>
+</p>
+
+<p>
+<!--@As the list implies, policies might overrule any changes that you specify with
+your extension. You can use the <code>get()</code> function to determine whether
+your extension is capable of providing a setting or whether this setting would
+be overridden.-->
+这一列表暗含着策略可以覆盖您用扩展程序指定的任何更改，您可以使用
+<code>get()</code> 函数来确定您的扩展程序能否提供设置或者设置是否会被覆盖。
+</p>
+
+<p>
+<!--@As discussed above, Chrome allows using different settings for regular
+windows and incognito windows. The following example illustrates the behavior.
+Assume that no policy overrides the settings and that an extension can set
+settings for regular windows <b>(R)</b> and settings for incognito windows
+<b>(I)</b>.-->
+如前面所讨论，Chrome
+浏览器允许普通窗口与隐身窗口使用不同的设置。以下例子演示了这一行为。假设没有策略覆盖设置并且扩展程序可以分别为普通窗口<b>（R）</b>和隐身窗口<b>（I）</b>更改设置。
+</p>
+
+<p>
+<ul>
+  <li><!--@If only <b>(R)</b> is set, these settings are effective for both
+  regular and incognito windows.-->
+  如果只设置了<b>（R）</b>，这些设置对普通窗口和隐身窗口都有效。
+  </li>
+  <li><!--@If only <b>(I)</b> is set, these settings are effective for only
+  incognito windows. Regular windows use the settings determined by the lower
+  layers (command-line options and system settings).-->
+  如果只设置了<b>（I）</b>，这些设置仅对隐身窗口有效。普通窗口使用更低的层面确定的设置（命令行参数和系统设置）。
+  </li>
+  <li><!--@If both <b>(R)</b> and <b>(I)</b> are set, the respective settings are
+  used for regular and incognito windows.-->
+  如果<b>（R）</b>和<b>（I）</b>都设置，将分别为普通窗口与隐身窗口使用相应的设置。
+  </li>
+</ul>
+</p>
+
+<p>
+<!--@If two or more extensions want to set the same setting to different values,
+the extension installed most recently takes precedence over the other
+extensions.  If the most recently installed extension sets only <b>(I)</b>, the
+settings of regular windows can be defined by previously installed extensions.-->
+如果两个或更多的扩展程序需要将同一设置修改为不同的值，最近安装的扩展程序优先于其他扩展程序。如果最近安装的扩展程序只设置了<b>（I）</b>，普通窗口的设置可以由之前安装的扩展程序定义。
+</p>
+
+<p>
+<!--@The <em>effective</em> value of a setting is the one that results from
+considering the precedence rules. It is used by Chrome.-->
+设置的<em>有效</em>值是考虑到以上优先级规则之后的结果，Chrome
+浏览器将会采用它。
+<p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.types <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-ChromeSetting">ChromeSetting</h3>
+        <div>
+          <dd>允许访问 Chrome 浏览器设置的接口，有关例子请参见 <a href="https://crxdoc-zh.appspot.com/extensions/proxy.html#property-settings">proxy.settings</a>。</dd>
+            <h3 id="ChromeSetting-methods" class="capitalize" title="">
+              <a href="#type-ChromeSetting">ChromeSetting</a>
+              的方法
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h4
+                      id="method-ChromeSetting-get"
+                      >get
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>ChromeSetting.get</span>(<span>object details</span>, <span>function callback</span>)
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      获得设置的值。
+                    </p>
+                    <h4 title=""><!--@Parameters-->参数</h4>
+                    <dl>
+                        <div>
+                          <a name="property-get-details"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-get-details" title="">
+                                details
+                                <span class="property">
+                                  (
+                                    object
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              考虑哪一项设置。
+                            </dd>
+                          </dl>
+                          <dd>
+                            <h4 title=""><!--@Properties-->属性</h4>
+                            <dl>
+                              <div>
+                                <a name="property-details-incognito"></a>
+                                <dl>
+                                  <dt>
+                                    <h4 id="property-details-incognito" title="">
+                                      incognito
+                                      <span class="property">
+                                        (
+                                          <span class="optional">optional</span>
+                                          boolean
+                                        )
+                                      </span>
+                                    </h4>
+                                  </dt>
+                                  <dd>
+                                    是否返回应用于隐身会话的值（默认为 false）。
+                                  </dd>
+                                </dl>
+                              </div>
+                            </dl>
+                          </dd>
+                        </div>
+                        <div>
+                          <a name="property-get-callback"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-get-callback" title="">
+                                callback
+                                <span class="property">
+                                  (
+                                    function
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                            </dd>
+                          </dl>
+                        </div>
+                    </dl>
+                      <p>
+                            <!--@The <em>callback</em> parameter should specify a function
+                            that looks like this:-->
+                            <em>callback</em> 参数应该指定一个如下形式的函数：
+                      </p>
+                      <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                      <dl>
+                          <div>
+                            <a name="property-callback-details"></a>
+                            <dl>
+                              <dt>
+                                <h4 id="property-callback-details" title="">
+                                  details
+                                  <span class="property">
+                                    (
+                                      object
+                                    )
+                                  </span>
+                                </h4>
+                              </dt>
+                              <dd>
+                                当前有效值的详情。
+                              </dd>
+                            </dl>
+                            <dd>
+                              <h4 title=""><!--@Properties-->属性</h4>
+                              <dl>
+                                <div>
+                                  <a name="property-details-value"></a>
+                                  <dl>
+                                    <dt>
+                                      <h4 id="property-details-value" title="">
+                                        value
+                                        <span class="property">
+                                          (
+                                            any
+                                          )
+                                        </span>
+                                      </h4>
+                                    </dt>
+                                    <dd>
+                                      设置的值。
+                                    </dd>
+                                  </dl>
+                                </div><div>
+                                  <a name="property-details-levelOfControl"></a>
+                                  <dl>
+                                    <dt>
+                                      <h4 id="property-details-levelOfControl" title="">
+                                        levelOfControl
+                                        <span class="property">
+                                          (
+                                            enum of <code>"not_controllable"</code>, <code>"controlled_by_other_extensions"</code>, <code>"controllable_by_this_extension"</code>, or <code>"controlled_by_this_extension"</code>
+                                          )
+                                        </span>
+                                      </h4>
+                                    </dt>
+                                    <dd>
+                                      以下值之一：<ul><li><var>"not_controllable"</var>：无法由任何扩展程序控制。</li><li><var>"controlled_by_other_extensions"</var>：由优先级更高的扩展程序控制。</li><li><var>"controllable_by_this_extension"</var>：可以由该扩展程序控制。</li><li><var>"controlled_by_this_extension"</var>：由该扩展程序控制。</li></ul>
+                                    </dd>
+                                  </dl>
+                                </div><div>
+                                  <a name="property-details-incognitoSpecific"></a>
+                                  <dl>
+                                    <dt>
+                                      <h4 id="property-details-incognitoSpecific" title="">
+                                        incognitoSpecific
+                                        <span class="property">
+                                          (
+                                            <span class="optional">optional</span>
+                                            boolean
+                                          )
+                                        </span>
+                                      </h4>
+                                    </dt>
+                                    <dd>
+                                      有效值是否只适用于隐身会话。<br><em>只有</em>当 <code>get()</code> 方法的 <var>details</var> 参数中 <var>incognito</var> 属性为 true 时才存在。
+                                    </dd>
+                                  </dl>
+                                </div>
+                              </dl>
+                            </dd>
+                          </div>
+                      </dl>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-ChromeSetting-set"
+                      >set
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>ChromeSetting.set</span>(<span>object details</span>, <span class="optional">function callback</span>)
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      修改设置的值。
+                    </p>
+                    <h4 title=""><!--@Parameters-->参数</h4>
+                    <dl>
+                        <div>
+                          <a name="property-set-details"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-set-details" title="">
+                                details
+                                <span class="property">
+                                  (
+                                    object
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              考虑哪一项设置。
+                            </dd>
+                          </dl>
+                          <dd>
+                            <h4 title=""><!--@Properties-->属性</h4>
+                            <dl>
+                              <div>
+                                <a name="property-details-value"></a>
+                                <dl>
+                                  <dt>
+                                    <h4 id="property-details-value" title="">
+                                      value
+                                      <span class="property">
+                                        (
+                                          any
+                                        )
+                                      </span>
+                                    </h4>
+                                  </dt>
+                                  <dd>
+                                    设置的值。<br>注意每一项设置都有特定的值类型，与该设置一起描述。扩展程序<em>不应该</em>设置不同类型的值。
+                                  </dd>
+                                </dl>
+                              </div><div>
+                                <a name="property-details-scope"></a>
+                                <dl>
+                                  <dt>
+                                    <h4 id="property-details-scope" title="">
+                                      scope
+                                      <span class="property">
+                                        (
+                                          <span class="optional">optional</span>
+                                          enum of <code>"regular"</code>, <code>"regular_only"</code>, <code>"incognito_persistent"</code>, or <code>"incognito_session_only"</code>
+                                        )
+                                      </span>
+                                    </h4>
+                                  </dt>
+                                  <dd>
+                                    修改哪些范围的设置（默认为 "regular"）。以下值之一：<ul><li><var>"regular"</var>：用于普通用户配置文件（如果没有被其他地方的设置覆盖，也将由隐身窗口继承）；</li><li><var>"regular_only"</var>：仅用于普通用户配置文件（不被隐身配置文件继承）；</li><li><var>"incognito_persistent"</var>：用于隐身配置文件的设置，并且在浏览器重启后仍保留（覆盖 "regular" 设置）；</li><li><var>"incognito_session_only"</var>：用于隐身配置文件的设置，并且只能在隐身会话中设置，在隐身会话结束时删除（覆盖 "regular" 和 "incognito_persistent" 设置）。</li></ul>
+                                  </dd>
+                                </dl>
+                              </div>
+                            </dl>
+                          </dd>
+                        </div>
+                        <div>
+                          <a name="property-set-callback"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-set-callback" title="">
+                                callback
+                                <span class="property">
+                                  (
+                                    <span class="optional">optional</span>
+                                    function
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              设置操作完成后调用。
+                            </dd>
+                          </dl>
+                        </div>
+                    </dl>
+                      <p>
+                            <!--@If you specify the <em>callback</em> parameter, it should
+                            specify a function that looks like this:-->
+                            如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+                      </p>
+                      <pre>function() <span class="subdued">{...}</span>;</pre>
+                  </div>
+                </div><div>
+                  <h4
+                      id="method-ChromeSetting-clear"
+                      >clear
+                  </h4>
+                  <div class="summary">
+                  <div class="line">
+                  <span>ChromeSetting.clear</span>(<span>object details</span>, <span class="optional">function callback</span>)
+                  </div>
+                  </div>
+                  <div class="description">
+                    <p>
+                      清除设置，恢复默认值。
+                    </p>
+                    <h4 title=""><!--@Parameters-->参数</h4>
+                    <dl>
+                        <div>
+                          <a name="property-clear-details"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-clear-details" title="">
+                                details
+                                <span class="property">
+                                  (
+                                    object
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              要清除哪一项设置。
+                            </dd>
+                          </dl>
+                          <dd>
+                            <h4 title=""><!--@Properties-->属性</h4>
+                            <dl>
+                              <div>
+                                <a name="property-details-scope"></a>
+                                <dl>
+                                  <dt>
+                                    <h4 id="property-details-scope" title="">
+                                      scope
+                                      <span class="property">
+                                        (
+                                          <span class="optional">optional</span>
+                                          enum of <code>"regular"</code>, <code>"regular_only"</code>, <code>"incognito_persistent"</code>, or <code>"incognito_session_only"</code>
+                                        )
+                                      </span>
+                                    </h4>
+                                  </dt>
+                                  <dd>
+                                    清除哪些范围的设置（默认为 "regular"）。以下值之一：<ul><li><var>"regular"</var>：用于普通用户配置文件（如果没有被其他地方的设置覆盖，也将由隐身窗口继承）；</li><li><var>"regular_only"</var>：仅用于普通用户配置文件（不被隐身配置文件继承）；</li><li><var>"incognito_persistent"</var>：用于隐身配置文件的设置，并且在浏览器重启后仍保留（覆盖 "regular" 设置）；</li><li><var>"incognito_session_only"</var>：用于隐身配置文件的设置，并且只能在隐身会话中设置，在隐身会话结束时删除（覆盖 "regular" 和 "incognito_persistent" 设置）。
+                                  </dd>
+                                </dl>
+                              </div>
+                            </dl>
+                          </dd>
+                        </div>
+                        <div>
+                          <a name="property-clear-callback"></a>
+                          <dl>
+                            <dt>
+                              <h4 id="property-clear-callback" title="">
+                                callback
+                                <span class="property">
+                                  (
+                                    <span class="optional">optional</span>
+                                    function
+                                  )
+                                </span>
+                              </h4>
+                            </dt>
+                            <dd>
+                              清除操作完成后调用。
+                            </dd>
+                          </dl>
+                        </div>
+                    </dl>
+                      <p>
+                            <!--@If you specify the <em>callback</em> parameter, it should
+                            specify a function that looks like this:-->
+                            如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+                      </p>
+                      <pre>function() <span class="subdued">{...}</span>;</pre>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+            <h3 id="ChromeSetting-events" class="capitalize" title="">
+              <a href="#type-ChromeSetting">ChromeSetting</a>
+              的事件
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <h3 id="event-ChromeSetting-onChange">onChange</h3>
+                  <div class="description">
+                <p>
+                      设置更改后产生。
+                    </p>      <div>
+                        <h4
+                            title="">addListener
+                        </h4>
+                        <div class="summary">
+                        <div class="line">
+                        <span>onChange.addListener</span>(<span>function callback</span>)
+                        </div>
+                        </div>
+                        <div class="description">
+                          <h4 title=""><!--@Parameters-->参数</h4>
+                          <dl>
+                              <div>
+                                <a name="property-onChange-callback"></a>
+                                <dl>
+                                  <dt>
+                                    <h4 id="property-onChange-callback" title="">
+                                      callback
+                                      <span class="property">
+                                        (
+                                          function
+                                        )
+                                      </span>
+                                    </h4>
+                                  </dt>
+                                  <dd>
+                                  </dd>
+                                </dl>
+                              </div>
+                          </dl>
+                            <p>
+                                  <!--@The <em>callback</em> parameter should specify a function
+                                  that looks like this:-->
+                                  <em>callback</em> 参数应该指定一个如下形式的函数：
+                            </p>
+                            <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                            <dl>
+                                <div>
+                                  <a name="property-onChange-details"></a>
+                                  <dl>
+                                    <dt>
+                                      <h4 id="property-onChange-details" title="">
+                                        details
+                                        <span class="property">
+                                          (
+                                            object
+                                          )
+                                        </span>
+                                      </h4>
+                                    </dt>
+                                    <dd>
+                                    </dd>
+                                  </dl>
+                                  <dd>
+                                    <h4 title=""><!--@Properties-->属性</h4>
+                                    <dl>
+                                      <div>
+                                        <a name="property-details-value"></a>
+                                        <dl>
+                                          <dt>
+                                            <h4 id="property-details-value" title="">
+                                              value
+                                              <span class="property">
+                                                (
+                                                  any
+                                                )
+                                              </span>
+                                            </h4>
+                                          </dt>
+                                          <dd>
+                                            更改后的设置值。
+                                          </dd>
+                                        </dl>
+                                      </div><div>
+                                        <a name="property-details-levelOfControl"></a>
+                                        <dl>
+                                          <dt>
+                                            <h4 id="property-details-levelOfControl" title="">
+                                              levelOfControl
+                                              <span class="property">
+                                                (
+                                                  enum of <code>"not_controllable"</code>, <code>"controlled_by_other_extensions"</code>, <code>"controllable_by_this_extension"</code>, or <code>"controlled_by_this_extension"</code>
+                                                )
+                                              </span>
+                                            </h4>
+                                          </dt>
+                                          <dd>
+                                            以下值之一：<ul><li><var>"not_controllable"</var>：无法由任何扩展程序控制。</li><li><var>"controlled_by_other_extensions"</var>：由优先级更高的扩展程序控制。</li><li><var>"controllable_by_this_extension"</var>：可以由该扩展程序控制。</li><li><var>"controlled_by_this_extension"</var>：由该扩展程序控制。</li></ul>
+                                          </dd>
+                                        </dl>
+                                      </div><div>
+                                        <a name="property-details-incognitoSpecific"></a>
+                                        <dl>
+                                          <dt>
+                                            <h4 id="property-details-incognitoSpecific" title="">
+                                              incognitoSpecific
+                                              <span class="property">
+                                                (
+                                                  <span class="optional">optional</span>
+                                                  boolean
+                                                )
+                                              </span>
+                                            </h4>
+                                          </dt>
+                                          <dd>
+                                            有效值是否只适用于隐身会话。<br><em>只有</em>当用户允许这一扩展程序在隐身模式中运行时才会存在该属性。
+                                          </dd>
+                                        </dl>
+                                      </div>
+                                    </dl>
+                                  </dd>
+                                </div>
+                            </dl>
+                        </div>
+                      </div>
+                  </div>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ImageDetails">ImageDetails</h3>
+        <div>
+          <dd>图片格式和质量的有关详情。</dd>
+            <h3 id="ImageDetails-properties" class="capitalize" title="">
+              <a href="#type-ImageDetails">ImageDetails</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-ImageDetails-format"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ImageDetails-format" title="">
+                        format
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            enum of <code>"jpeg"</code>, or <code>"png"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      所得图像的格式，默认为 jpeg。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ImageDetails-quality"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ImageDetails-quality" title="">
+                        quality
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      当格式为 <code>"jpeg"</code> 时，控制所得图像的质量。使用 PNG 图像时忽略该参数。随着质量下降，所得图像会更加粗糙，用于储存图像所需的字节数也会下降。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

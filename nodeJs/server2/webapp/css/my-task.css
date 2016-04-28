@@ -1,0 +1,241 @@
+/*
+*状态栏
+*/
+#mytask .status_bar{
+	border:solid 1px rgb(220,220,220);
+	font-size:0;
+	background: white;
+	position: relative;
+}
+#mytask  .select_button{
+	position: absolute;
+	opacity: 0;
+	z-index: 999;
+}
+#mytask  input.select_button.status1{
+	top:0;
+	left:0;
+}
+#mytask  input.select_button.status2{
+	left:33%;
+	top:0;
+}
+#mytask  input.select_button.status3{
+	left:66%;
+	top:0;
+}  
+
+#mytask input.select_button.status1:checked ~ .status_bar .status:nth-child(1){
+	 color: rgb(242,109,4);
+	 border-bottom:solid 0.5rem rgb(242,109,4)
+}
+#mytask  input.select_button.status2:checked ~ .status_bar .status:nth-child(2){
+	 color: rgb(242,109,4);
+	 border-bottom:solid 0.5rem rgb(242,109,4)
+}
+#mytask  input.select_button.status3:checked ~ .status_bar .status:nth-child(3){
+	 color: rgb(242,109,4);
+	 border-bottom:solid 0.5rem rgb(242,109,4)
+}
+#mytask  .not,.have,.finished{
+	display: none;	
+}
+#mytask  input.select_button.status1:checked ~ .not{
+	display: block;
+}
+#mytask  input.select_button.status2:checked ~ .have{
+	display: block;
+}
+#mytask  input.select_button.status3:checked ~ .finished{
+	display: block;
+}
+#mytask  .status_bar .status,input.select_button{
+	width: 33%;
+	text-align: center;
+	color:rgb(180,180,180);
+	display: inline-block;
+	font-size:2.5rem;
+	height: 2.6em;
+	line-height: 2.6em;
+	vertical-align: middle;
+
+}
+#mytask  .status_bar .onactive{
+}  
+
+
+#mytask .info_box{
+	background: white;
+	font-size: 2.8rem;
+	margin-top: 0.5em;
+	margin-bottom: 1em;
+}
+#mytask  .info_box .info_title{
+	background:url("../img/send.png") no-repeat top left;
+	font-size: 2.2rem;
+	height: 3em;
+	line-height: 3em;
+	padding-left: 5em;
+	color:rgb(180,180,180);
+	padding-right: 2em;
+}
+#mytask  .info_box .info_main{
+	margin:0 1em;
+	border-bottom:solid 1px rgb(220,220,220);
+	border-top:solid 1px rgb(220,220,220);
+	background: rgb(255,246,241);
+	font-size: 2rem;
+	padding: 0 1em
+}
+#mytask  .info_box .info_main .service_type,.info_box .info_main section,.info_box .info_main a{
+	display: inline-block;
+	vertical-align: middle;
+}
+#mytask  .info_box .info_main a.arrow{
+	width: 14px;
+	height: 24px;
+	background: url("../img/arrow.png") no-repeat center left;
+}
+#mytask  .info_main section{
+	width:22em;
+	padding:1em 0;
+}
+#mytask  .info_main section p{
+	font-size: 2.4rem;
+	height: 2em;
+	line-height: 2em
+}
+#mytask  .info_main section p span:not(.location){
+	margin-left: 1.4em
+}
+#mytask  .info_main section p span:not(:first-child){
+	margin-left: 0;
+}
+#mytask  .info_main section p span.location::before{
+	content:url("../img/location_green.png");
+	margin-right:0.8em;
+}
+#mytask  .info_box.grabs .info_title{
+	background:url("../img/grabs.png") no-repeat top left;
+} 
+
+#mytask  .info_box .addinfo{
+	height: 2em;
+	line-height: 2em;
+	border-bottom:solid 1px rgb(220,220,220); 
+	padding-right:2.4rem;
+	text-align:right;
+	font-size: 2.2rem;
+	color:rgb(180,180,180);
+}
+#mytask  .info_box .button_group{
+	height: 4em;
+	line-height: 4em;
+	border-bottom:solid 1px rgb(220,220,220); 
+	padding-left:2.4rem;
+	padding-right:2.4rem;
+	text-align: right;	
+}
+#mytask  .have .info_box .button_group a{
+	padding: 0 0.5em;
+}
+#mytask   .info_box .button_group a{
+	display: inline-block;
+	line-height: 2em;
+	height: 2em;
+	padding: 0 1em;
+	border-style:solid;
+	border-width: 1px;
+	text-align: center;
+	border-radius: 5px;
+}
+#mytask  .info_box .button_group a:not(:last-child){
+	margin-right:0.5em
+}
+#mytask  .have .info_box .button_group a:nth-child(1){
+	padding-left:1.6em;
+	background:url("../img/phone.png") no-repeat 0.5em 0.5em;
+	color:rgb(81,183,133);
+    border:solid 1px rgb(81,183,133);
+}
+#mytask  .have .info_box .button_group a:nth-child(2){
+	color: rgb(242,109,4);
+    border:solid 1px rgb(242,109,4);
+}
+#mytask  .have .info_box .button_group a:nth-child(3){
+	color:rgb(231,202,0);
+    border:solid 1px rgb(231,202,0);
+
+}
+#mytask  .info_box .button_group a:not(:last-child){
+	margin-right:0.5em
+}
+#mytask  .info_box .button_group a:nth-of-type(1){
+	color: rgb(242,109,4);
+    border:solid 1px rgb(242,109,4);
+}
+#mytask  .info_box .button_group a:nth-of-type(2){
+	color:rgb(231,202,0);
+    border:solid 1px rgb(231,202,0);
+
+}
+  /*
+*状态栏END
+*/
+/*
+*订单号
+*/
+#mytask .order_number{
+
+}
+#mytask  .order_number::before{
+	content: "订单号："
+}
+  /*
+*订单号END
+*/
+/*
+时间
+*/
+#mytask .time{
+	color: rgb(242,109,4);
+	font-size: 2.2rem;
+}
+#mytask  .not .time::before{
+	content: "您还有";
+	color:rgb(180,180,180);
+	font-size: 2.2rem;
+
+}
+#mytask  .not .time::after{
+	content: "接单时间";
+	color:rgb(180,180,180);
+	font-size: 2.2rem;
+	margin-right: 1em
+}
+#mytask  .not .grabs .time::after{
+	content: "抢单时间";
+	color:rgb(180,180,180);
+	font-size: 2.2rem;
+	margin-right: 1em
+}
+#mytask  .have .time::before{
+	content: "已承诺";
+	color:rgb(180,180,180);
+	font-size: 2.2rem;
+
+}
+#mytask  .have .time::after{
+	content: "内到达";
+	color:rgb(180,180,180);
+	font-size: 2.2rem;
+	margin-right: 1em
+}
+
+/**
+* 按钮操作
+*/
+.myself_popup select, .myself_popup textarea {
+  background-color: inherit;
+  font-size: 1em;
+}

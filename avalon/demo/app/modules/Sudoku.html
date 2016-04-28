@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=640">
+	<title>数独</title>
+	<script src="../vendor/avalon/avalon.min.js"></script>
+	<script src="Sudoku.js"></script>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+		font: 12px/18px arial,sans-serif;
+		box-sizing:border-box;
+	}
+	.shudu{
+		/*height: 640px;*/
+		width: 594px;
+		margin: 23px;
+		background: rgb(240,102,102);
+		border: none;
+		font-size:0px;
+		line-height:0px;
+	}
+	.shudu input[type="text"]{
+		width:66px;
+		height:66px;
+		border: none;
+		margin: 0;
+		font-size:20px;
+		text-align: center;
+	}
+	.shudu input[type="text"]:nth-of-type(2n) {
+		background: rgb(248,200,188);
+	}
+	.shudu input[disabled]:nth-of-type(n){
+		background:rgb(220,220,220);
+	}
+	</style>
+</head> 
+<body>
+	<div class="shudu" ms-controller="sudoku">
+		<input type="text" ms-repeat="template" ms-duplex="el!=0&& !isNaN(parseInt(el))?el:''" ms-on-input="checkAnswer(template)" ms-attr-disabled="el!=0">
+	</div>
+	<script>
+	/* var fill=function(array){
+	 	var children=document.querySelector(".shudu").children;
+	 	for(var i=0;i<array.length;i++){
+	 		if(array[i]!=0){
+	 			children[i].value=array[i];
+	 			children[i].disabled="disabled";
+	 		}
+	 	}
+	 }
+	 var fillAnswer=function(array){
+	 	for(var i=0;i<array.length;i++){
+	 		if(array[i]!=0&&!children[i].value){
+	 			children[i].value=array[i];
+	 		}
+	 	}
+	 }
+	 var checkAnswer=function(array){
+	 	var a=0;
+	 	for(var i=0;i<9;i++){
+	 		for(var l=0;l<9;l++){
+	 			if(""+array[a*9+l]==""+array[i*9+l]&&a!=i){
+	 				console.log("error");
+	 				return;
+	 			}
+	 		}
+	 		
+	 	}
+	 }
+	 var sd=[0,0,4,0,0,0,5,0,0,
+	 		0,3,0,0,0,0,0,7,0,
+	 		7,0,0,4,6,5,0,0,3,
+	 		0,0,8,2,0,1,9,0,0,
+	 		0,0,5,0,0,0,8,0,0,
+	 		0,0,7,5,0,8,3,0,0,
+	 		6,0,0,8,9,3,0,0,1,
+	 		0,5,0,0,0,0,0,3,0,
+	 		0,0,3,0,0,0,2,0,0]
+	 	fill(sd);
+	 document.querySelector(".shudu").addEventListener("input",function(event){
+	 	var children=document.querySelector(".shudu").children;
+	 	var length=children.length;
+	 	for(var i=0;i<length;i++){
+	 		if(children[i]==event.target){
+				sd[i]=children[i].value;
+				localStorage.sd=JSON.stringify(sd);
+				return;
+	 		}
+	 	}
+	 });*/
+	 </script>
+</body>
+</html>

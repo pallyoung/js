@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.privacy - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/privacy.html">https://crxdoc-zh.appspot.com/extensions/privacy.html</a><br>
+<b>Title:</b> chrome.privacy - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 34549<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.privacy</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#usage"
+         data-list-item
+         >用法</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#properties"
+         data-list-item
+         >属性</a>
+      <ol>
+        <li >
+          <a href="#property-network"
+             data-list-item
+             >network</a>
+          <ol>
+            <li >
+              <a href="#property-network-networkPredictionEnabled"
+                 data-list-item
+                 >networkPredictionEnabled</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#property-services"
+             data-list-item
+             >services</a>
+          <ol>
+            <li >
+              <a href="#property-services-alternateErrorPagesEnabled"
+                 data-list-item
+                 >alternateErrorPagesEnabled</a>
+            </li>
+            <li >
+              <a href="#property-services-autofillEnabled"
+                 data-list-item
+                 >autofillEnabled</a>
+            </li>
+            <li >
+              <a href="#property-services-safeBrowsingEnabled"
+                 data-list-item
+                 >safeBrowsingEnabled</a>
+            </li>
+            <li >
+              <a href="#property-services-searchSuggestEnabled"
+                 data-list-item
+                 >searchSuggestEnabled</a>
+            </li>
+            <li >
+              <a href="#property-services-spellingServiceEnabled"
+                 data-list-item
+                 >spellingServiceEnabled</a>
+            </li>
+            <li >
+              <a href="#property-services-translationServiceEnabled"
+                 data-list-item
+                 >translationServiceEnabled</a>
+            </li>
+          </ol>
+        </li>
+        <li >
+          <a href="#property-websites"
+             data-list-item
+             >websites</a>
+          <ol>
+            <li >
+              <a href="#property-websites-thirdPartyCookiesAllowed"
+                 data-list-item
+                 >thirdPartyCookiesAllowed</a>
+            </li>
+            <li >
+              <a href="#property-websites-hyperlinkAuditingEnabled"
+                 data-list-item
+                 >hyperlinkAuditingEnabled</a>
+            </li>
+            <li >
+              <a href="#property-websites-referrersEnabled"
+                 data-list-item
+                 >referrersEnabled</a>
+            </li>
+            <li >
+              <a href="#property-websites-protectedContentEnabled"
+                 data-list-item
+                 >protectedContentEnabled</a>
+            </li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.privacy</code> API 控制 Chrome 浏览器中可能会影响用户隐私的特性。这一模块依赖于<a href='https://crxdoc-zh.appspot.com/extensions/types.html#ChromeSetting'>类型 API 中的 ChromeSettings 原型</a>，用于获取和设置 Chrome 浏览器的配置。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 18<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "privacy"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<p class="note">
+  <!--@The <a href="http://www.google.com/intl/en/landing/chrome/google-chrome-privacy-whitepaper.pdf">Chrome Privacy Whitepaper</a>
+  gives background detail regarding the features which this API can control.-->
+  <a href="https://www.google.com/intl/zh-CN/chrome/browser/privacy/whitepaper.html">Google Chrome 浏览器隐私权白皮书</a>提供了与这一 API 可以控制的特性有关的背景资料。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+<p>
+  <!--@You must declare the "privacy" permission in your extension's
+  <a href="manifest.html">manifest</a> to use the API. For example:-->
+  您必须在您的扩展程序的<a href="manifest.html">清单文件</a>中声明
+  "privacy" 权限才能使用这一 API。例如：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"permissions": [
+    "privacy"
+  ]</b>,
+  ...
+}
+</pre>
+
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<p>
+  <!--@Reading the current value of a Chrome setting is straightforward. You'll first
+  need to find the property you're interested in, then you'll call
+  <code>get()</code> on that object in order to retrieve its current value and
+  your extension's level of control. For example, to determine if Chrome's
+  Autofill feature is enabled, you'd write:-->
+  读取某个 Chrome 浏览器设置的当前值是很直接的。您首先需要找到您感兴趣的属性，然后调用那个对象的
+  <code>get()</code>
+  方法，获得它当前的值以及您的扩展程序对它的控制级别。例如，要确定 Chrome
+  浏览器的自动填充功能是否已启用，您可以编写如下代码：
+</p>
+
+<pre>chrome.privacy.services.autofillEnabled.get({}, function(details) {
+  if (details.value)
+    console.log('自动填充已启用！');
+  else
+    console.log('自动填充已禁用！');
+});</pre>
+
+<p>
+  <!--@Changing the value of a setting is a little bit more complex, simply because
+  you first must verify that your extension can control the setting. The user
+  won't see any change to her settings if your extension toggles a setting that
+  is either locked to a specific value by enterprise policies
+  (<code>levelOfControl</code> will be set to "not_controllable"), or if another
+  extension is controlling the value (<code>levelOfControl</code> will be set to
+  "controlled_by_other_extensions"). The <code>set()</code> call will succeed,
+  but the setting will be immediately overridden. As this might be confusing, it
+  is advisable to warn the user when the settings they've chosen aren't
+  practically applied.-->
+  更改设置的值稍微有点复杂，因为您必须首先确认您的扩展程序可以控制某一项设置。如果扩展程序调整了通过企业策略（<code>levelOfControl</code>
+  将设置为 "not_controllable"）限制为特定值的设置，或者另外一个扩展程序正在控制设置值（<code>levelOfControl</code>
+  将设置为 "controlled_by_other_extensions"），用户将不能看见任何设置的更改。<code>set()</code>
+  调用将会成功，但是设置会立即被覆盖。这可能令人疑惑，如果用户选择的设置实际上无法应用，建议警告用户。
+</p>
+
+<p class="note">
+  <!--@Full details about extensions' ability to control <code>ChromeSetting</code>s
+  can be found under
+  <a href="https://crxdoc-zh.appspot.com/extensions/types.html#ChromeSetting">
+    <code>chrome.types.ChromeSetting</code></a>.-->
+  有关扩展程序控制 <code>ChromeSetting</code> 的能力的完整详情可以在
+  <a href="https://crxdoc-zh.appspot.com/extensions/types.html#ChromeSetting"><code>chrome.types.ChromeSetting</code></a>
+  中找到。
+</p>
+
+<p>
+  <!--@This means that you ought to use the <code>get()</code> method to determine
+  your level of access, and then only call <code>set()</code> if your extension
+  can grab control over the setting (in fact if your extension can't control the
+  setting it's probably a good idea to visually disable the functionality to
+  reduce user confusion):-->
+  这意味着您应该先使用 <code>get()</code>
+  方法确定您的访问级别，只有当您的扩展程序可以控制这一设置时才调用
+  <code>set()</code>（事实上，如果您的扩展程序不能控制这一设置，在用户界面中禁用相应功能可能会更好，减少用户的疑惑）：
+</p>
+
+<pre>chrome.privacy.services.autofillEnabled.get({}, function(details) {
+  if (details.levelOfControl === 'controllable_by_this_extension') {
+    chrome.privacy.services.autofillEnabled.set({ value: true }, function() {
+      if (chrome.runtime.lastError === undefined)
+        console.log("哈哈，成功了！");
+      else
+        console.log("喔唷！", chrome.runtime.lastError);
+    }
+  }
+});</pre>
+
+<p>
+  <!--@If you're interested in changes to a setting's value, add a listener to its
+  <code>onChange</code> event. Among other uses, this will allow you to warn the
+  user if a more recently installed extension grabs control of a setting, or if
+  enterprise policy overrides your control. To listen for changes to Autofill's
+  status, for example, the following code would suffice:-->
+  如果您对设置值的更改有兴趣，请向 <code>onChange</code>
+  事件添加监听器。除了其他用途外，如果最近安装的扩展程序拥有了某一项设置的控制权，或者企业策略覆盖了您的控制，这将允许您警告用户。例如，要监听自动填充状态的更改，如下所示代码就可以了：
+</p>
+
+<pre>chrome.privacy.services.autofillEnabled.onChange.addListener(
+    function (details) {
+      // 新的值存储在 `details.value` 中，新的控制级别在
+      // `details.levelOfControl` 中。另外，如果设置值仅用于
+      // 隐身模式，则 `details.incognitoSpecific` 将为 `true`。
+    });</pre>
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+<p>
+  <!--@For example code, see the
+  <a href="https://crxdoc-zh.appspot.com/extensions/samples.html#privacy">Privacy API samples</a>.-->
+  有关示例代码，请参见<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#privacy">隐私权 API 示例</a>。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.privacy <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="properties"><!--@Properties-->属性</h2>
+      <div>
+        <h3 id="property-network">network</h3>
+        <div class="summary">
+          <div class="line">chrome.privacy.network</div>
+        </div>
+        <div>
+          <dt><span class="property">network</span> <span class="type_name">  (  object  )</span></dt>
+      <dd>
+            总体上影响 Chrome 浏览器对网络连接的处理的设置。
+          </dd>    <h4 id="network-properties" title="">
+            <!--@Properties of --><a href="#property-network">network</a>
+            的属性
+          </h4>
+          <dd><dl>      <div>
+              <a name="property-network-networkPredictionEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-network-networkPredictionEnabled" title="networkPredictionEnabled">
+                    networkPredictionEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器会尝试通过预取 DNS 项、预呈现站点（<code>&lt;link rel="prefetch" ...&gt;</code>），并提前打开向服务器的 TCP 和 SSL 连接。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+      </dl></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="property-services">services</h3>
+        <div class="summary">
+          <div class="line">chrome.privacy.services</div>
+        </div>
+        <div>
+          <dt><span class="property">services</span> <span class="type_name">  (  object  )</span></dt>
+      <dd>
+            启用或禁用需要由 Google 以及您的默认搜索引擎提供的第三方网络服务。
+          </dd>    <h4 id="services-properties" title="">
+            <!--@Properties of --><a href="#property-services">services</a>
+            的属性
+          </h4>
+          <dd><dl>      <div>
+              <a name="property-services-alternateErrorPagesEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-services-alternateErrorPagesEnabled" title="alternateErrorPagesEnabled">
+                    alternateErrorPagesEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器将使用网络服务帮助解决导航错误。这一选项的值是布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-services-autofillEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-services-autofillEnabled" title="autofillEnabled">
+                    autofillEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器会自动填充表单。这一选项的值是布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-services-safeBrowsingEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-services-safeBrowsingEnabled" title="safeBrowsingEnabled">
+                    safeBrowsingEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器会尽可能地保护您，以防网上诱骗和恶意软件。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-services-searchSuggestEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-services-searchSuggestEnabled" title="searchSuggestEnabled">
+                    searchSuggestEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器将会把您在多功能框中输入的文字发送至您的默认搜索引擎，提供网站预测以及对您已输入内容的自动完成。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-services-spellingServiceEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-services-spellingServiceEnabled" title="spellingServiceEnabled">
+                    spellingServiceEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器将使用网络服务帮助您纠正拼写错误。这一选项的值为布尔类型，默认为 <code>false</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-services-translationServiceEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-services-translationServiceEnabled" title="translationServiceEnabled">
+                    translationServiceEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 会对不使用您所用语言撰写的页面进行翻译。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+      </dl></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="property-websites">websites</h3>
+        <div class="summary">
+          <div class="line">chrome.privacy.websites</div>
+        </div>
+        <div>
+          <dt><span class="property">websites</span> <span class="type_name">  (  object  )</span></dt>
+      <dd>
+            决定 Chrome 浏览器使哪些信息对网站可用。
+          </dd>    <h4 id="websites-properties" title="">
+            <!--@Properties of --><a href="#property-websites">websites</a>
+            的属性
+          </h4>
+          <dd><dl>      <div>
+              <a name="property-websites-thirdPartyCookiesAllowed"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-websites-thirdPartyCookiesAllowed" title="thirdPartyCookiesAllowed">
+                    thirdPartyCookiesAllowed
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果禁用的话，Chrome 浏览器会阻止第三方站点设置 Cookie。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-websites-hyperlinkAuditingEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-websites-hyperlinkAuditingEnabled" title="hyperlinkAuditingEnabled">
+                    hyperlinkAuditingEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器在网站请求（<code>&lt;a ping&gt;</code>）时会自动发送审核信息。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-websites-referrersEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-websites-referrersEnabled" title="referrersEnabled">
+                    referrersEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  如果启用的话，Chrome 浏览器发送您的请求时会同时发送 <code>referer</code> 头信息。的确，这一选项的名称与拼写错误的头信息名称不匹配，然而我们不打算更改它。这一选项的值为布尔类型，默认值为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+            <div>
+              <a name="property-websites-protectedContentEnabled"></a>
+              <dl>
+                <dt>
+                  <h4 id="property-websites-protectedContentEnabled" title="protectedContentEnabled">
+                    protectedContentEnabled
+                    <span class="property">
+                      (
+                        <a href="https://crxdoc-zh.appspot.com/extensions/types.html#type-ChromeSetting">types.ChromeSetting</a>
+                      )
+                    </span>
+                  </h4>
+                </dt>
+                <dd>
+                  <strong>仅在 Windows 和 Chrome OS 上可用：</strong>如果启用的话，Chrome 浏览器将会向插件提供唯一标志符来运行受保护的内容。这一选项的值为布尔类型，默认为 <code>true</code>。
+                </dd>
+              </dl>
+            </div>
+      </dl></dd>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

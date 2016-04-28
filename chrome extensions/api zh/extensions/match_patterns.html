@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>匹配表达式 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/match_patterns.html">https://crxdoc-zh.appspot.com/extensions/match_patterns.html</a><br>
+<b>Title:</b> 匹配表达式 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 22984<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+  </ol>
+</div>
+
+<h1><!--@Match Patterns-->匹配表达式</h1>
+
+<p>
+<!--@<a href="declare_permissions.html#host-permissions">Host
+permissions</a> and <a href="content_scripts.html">content
+script</a> matching are based on a set of URLs defined by
+<dfn>match patterns</dfn>.  A match pattern is essentially a
+URL that begins with a permitted scheme (<code>http</code>,
+<code>https</code>, <code>file</code>, <code>ftp</code>, or
+<code>chrome-extension</code>),
+and that can contain '<code>*</code>' characters.
+The special pattern
+<code>&lt;all_urls&gt;</code> matches any URL
+that starts with a permitted scheme.
+Each match pattern has 3 parts:-->
+<a href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#host-permissions">主机权限</a>和<a
+href="content_scripts.html">内容脚本</a>的匹配基于<dfn
+>匹配表达式</dfn>定义的一组 URL。匹配表达式本质上就是以允许的协议（<code
+>http</code>、<code>https</code>、<code>file</code> 或
+<code>ftp</code>）开头，并且可以包含星号（“<code>*</code>”）的
+URL。特殊的表达式 <code>&lt;all_urls&gt;</code>
+匹配以允许的协议开头的任何
+URL。每一个匹配表达式包含三部分：
+</p>
+</p>
+
+<ul>
+  <li> <em><!--@scheme-->协议</em> &mdash;
+    <!--@for example, -->例如，<code>http</code> <!--@or-->或 <code>file</code>
+    or <code>*</code>
+    <p class="note">
+    <b><!--@Note:-->注意：</b><!--@
+    Access to <code>file</code> URLs isn't automatic.
+    The user must visit the extensions management page
+    and opt in to <code>file</code> access for each extension that requests it.-->对
+    <code>file</code> URL
+    的访问不是自动的，用户必须进入扩展程序管理页面，允许需要的扩展程序访问
+    <code>file</code> 协议。
+    </p>
+  </li>
+  <li> <em><!--@host-->主机</em> &mdash;
+    <!--@for example, -->例如，<code>www.google.com</code>
+    <!--@or-->或 <code>*.google.com</code>
+    <!--@or-->或 <code>*</code><!--@;
+    if the scheme is-->。如果协议为 <code>file</code><!--@,
+    there is no <em>host</em> part-->，则没有<em>主机</em>部分
+  </li>
+  <li> <em><!--@path-->路径</em> &mdash;
+    <!--@for example, <code>/*</code>, <code>/foo*</code>,
+    or <code>/foo/bar</code>. The path must be present in a
+    host permission, but is always treated
+    as <code>/*</code>.-->
+    例如，<code>/*</code>、<code>/foo*</code> 或
+    <code>/foo/bar</code>。主机权限中必须包含路径，但是始终视为
+    <code>/*</code>。
+  </li>
+</ul>
+
+<p><!--@Here's the basic syntax:-->如下是基本语法：</p>
+
+<pre>
+<em>&lt;url-pattern&gt;</em> := <em>&lt;scheme&gt;</em>://<em>&lt;host&gt;</em><em>&lt;path&gt;</em>
+<em>&lt;scheme&gt;</em> := '*' | 'http' | 'https' | 'file' | 'ftp' | 'chrome-extension'
+<em>&lt;host&gt;</em> := '*' | '*.' <em>&lt;any char except '/' and '*'&gt;</em>+
+<em>&lt;path&gt;</em> := '/' <em>&lt;any chars&gt;</em>
+</pre>
+
+<p>
+<!--@The meaning of '<code>*</code>' depends on whether
+it's in the <em>scheme</em>, <em>host</em>, or <em>path</em> part.
+If the <em>scheme</em> is <code>*</code>,
+then it matches either <code>http</code> or <code>https</code>,
+and <strong>not</strong> <code>file</code>, <code>ftp</code>,
+or <code>chrome-extension</code>.
+If the <em>host</em> is just <code>*</code>,
+then it matches any host.
+If the <em>host</em> is <code>*.<em>hostname</em></code>,
+then it matches the specified host or any of its subdomains.
+In the <em>path</em> section,
+each '<code>*</code>' matches 0 or more characters.
+The following table shows some valid patterns.-->
+星号（“<code>*</code>”）的意义取决于它在<em>协议</em>、<em
+>主机</em>还是<em>路径</em>中。如果<em>协议</em>为
+<code>*</code>，则可以匹配 <code>http</code> 或
+<code>https</code>，但<strong>不包括</strong>
+<code>file</code>、<code>ftp</code> 或
+<code>chrome-extension</code>。如果<em>主机</em>为
+<code>*</code>，则匹配任何主机。如果<em>主机</em>为
+<code>*.<em>hostname</em></code>，则匹配指定主机或者任何子域名。在<em
+>路径</em>部分，每一个 “<code>*</code>” 匹配 0
+个或多个字符。下表展示了一些有效的表达式。
+</p>
+
+<table class="simple">
+<tbody>
+<tr>
+  <th style="margin-left:0; padding-left:0"><!--@Pattern-->表达式</th>
+  <th style="margin-left:0; padding-left:0"><!--@What it does-->含义</th>
+  <th style="margin-left:0; padding-left:0"><!--@Examples of matching URLs-->匹配 URL 的例子</th>
+</tr>
+
+<tr>
+  <td>
+    <code>http://*/*</code>
+  </td>
+
+  <td><!--@Matches any URL that uses the-->匹配使用 <code>http</code> <!--@scheme-->协议的任意 URL</td>
+
+  <td>
+    http://www.google.com/<br>
+    http://example.org/foo/bar.html
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>http://*/foo*</code>
+  </td>
+
+  <td>
+    <!--@Matches any URL that uses the-->匹配使用 <code>http</code> <!--@scheme, on any host,
+    as long as the path starts with-->协议、任意主机、路径以 <code>/foo</code>
+    开头的任意 URL。
+  </td>
+
+  <td>
+    http://example.com/foo/bar.html<br>
+    http://www.google.com/foo<b></b>
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>https://*.google.com/foo*bar </code>
+  </td>
+
+  <td>
+    <!--@Matches any URL that uses the-->匹配使用 <code>https</code> <!--@scheme,
+    is on a google.com host
+    (such as www.google.com, docs.google.com, or google.com),
+    as long as the path starts with-->协议、在
+    google.com 主机上（例如
+    www.google.com、docs.google.com
+    或 google.com）、并且路径以 <code>/foo</code>
+    <!--@and ends with-->开头、以 <code>bar</code>
+    结尾的任意 URL。
+  </td>
+
+  <td>
+    http://www.google.com/foo/baz/bar<br>
+    http://docs.google.com/foobar
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>http://example.org/foo/bar.html </code>
+  </td>
+
+  <td><!--@Matches the specified URL-->匹配指定 URL。</td>
+
+  <td>
+    http://example.org/foo/bar.html
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>file:///foo*</code>
+  </td>
+
+  <td><!--@Matches any local file whose path starts with-->匹配路径以 <code>/foo</code>
+  开头的所有本地文件。
+  </td>
+
+  <td>
+    file:///foo/bar.html<br>
+    file:///foo
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>http://127.0.0.1/*</code>
+  </td>
+
+  <td>
+    <!--@Matches any URL that uses the-->匹配使用 <code>http</code> <!--@scheme
+    and is on the host 127.0.0.1-->
+    协议、主机为 127.0.0.1 的任意 URL。
+  </td>
+  <td>
+    http://127.0.0.1/<br>
+    http://127.0.0.1/foo/bar.html
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>*://mail.google.com/* </code>
+  </td>
+
+  <td>
+    <!--@Matches any URL that starts with-->
+    匹配以
+    <code>http://mail.google.com</code> <!--@or-->或
+    <code>https://mail.google.com</code><!--@.-->
+    开头的任意 URL。
+  </td>
+
+  <td>
+    http://mail.google.com/foo/baz/bar<br>
+    https://mail.google.com/foobar
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>chrome-extension://*/* </code>
+  </td>
+
+  <td>
+    <!--@Matches any URL pointing to an extension (the first <code>*</code>
+    represents a filter for extension IDs, the second for paths).-->
+    匹配指向扩展程序的任意 URL（第一个 <code>*</code>
+    代表扩展程序标识符的过滤器，第二个用于路径）。
+  </td>
+
+  <td>
+    chrome-extension://askla...asdf/options.html
+  </td>
+</tr>
+
+<tr>
+  <td>
+    <code>&lt;all_urls&gt;</code>
+  </td>
+
+  <td>
+    <!--@Matches any URL that uses a permitted scheme.
+    (See the beginning of this section for the list of permitted
+    schemes.)-->
+    匹配使用允许协议的任何 URL（有关允许的协议列表，请参见这一部分的开头）。
+  </td>
+  <td>
+    http://example.org/foo/bar.html<br>
+    file:///bar/baz.html
+  </td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<!--@Here are some examples of <em>invalid</em> pattern matches:-->
+如下是一些<em>无效的</em>匹配表达式的例子：
+</p>
+
+<table class="simple">
+<tbody>
+<tr>
+  <th style="margin-left:0; padding-left:0"><!--@Bad pattern-->无效的表达式</th>
+  <th style="margin-left:0; padding-left:0"><!--@Why it's bad-->原因</th>
+</tr>
+
+<tr>
+  <td><code>http://www.google.com</code></td>
+  <td><!--@No -->没有<em><!--@path-->路径</em></td>
+</tr>
+
+<tr>
+  <td><code>http://*foo/bar</code></td>
+  <td><!--@'*' in the <em>host</em> can be followed only by a '.' or '/'-->
+    <em>主机</em>部分的“*”必须在“.”或“/”前面
+  </td>
+</tr>
+
+<tr>
+  <td><code>http://foo.*.bar/baz&nbsp; </code></td>
+  <td><!--@If '*' is in the <em>host</em>, it must be the first character-->
+    如果“*”在<em>主机</em>中，它必须是第一个字符
+  </td>
+  </tr>
+
+<tr>
+  <td><code>http:/bar</code></td>
+  <td><!--@Missing <em>scheme</em> separator ("/" should be "//")-->
+    缺少<em>协议</em>分隔符（“/”应该为“//”）
+  </td>
+</tr>
+
+<tr>
+  <td><code>foo://*</code></td>
+  <td><!--@Invalid <em>scheme</em>-->无效的<em>协议</em></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<!--@Some schemes are not supported in all contexts.-->
+某些协议不一定在所有上下文中都支持。
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

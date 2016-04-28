@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>教程：OAuth - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/tut_oauth.html">https://crxdoc-zh.appspot.com/extensions/tut_oauth.html</a><br>
+<b>Title:</b> 教程：OAuth - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 30061<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a  class="level3 selected">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#requirements"
+         data-list-item
+         >要求</a>
+    </li>
+    <li >
+      <a href="#getting-started"
+         data-list-item
+         >入门</a>
+    </li>
+    <li >
+      <a href="#oauth-dance"
+         data-list-item
+         >扩展程序中的 OAuth 认证</a>
+      <ol>
+        <li >
+          <a href="#set-code"
+             data-list-item
+             >设置代码</a>
+        </li>
+        <li >
+          <a href="#request-token"
+             data-list-item
+             >获取和认证请求令牌</a>
+        </li>
+        <li >
+          <a href="#signed-requests"
+             data-list-item
+             >发送已签名的 API 请求</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#sample-code"
+         data-list-item
+         >示例代码</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Tutorial: -->教程：OAuth</h1>
+
+
+<p>
+<a href="http://oauth.net/">OAuth</a> <!--@is an open protocol that aims to standardize the way desktop and web applications access a user's private data. OAuth provides a mechanism for users to grant access to private data without sharing their private credentials (username/password). Many sites have started enabling APIs to use OAuth because of its security and standard set of libraries.-->
+是一种开放的协议，旨在标准化桌面与网上应用程序访问用户个人数据的方式。OAuth
+提供了一种机制，让用户授权访问私有数据，而不用共享它们的私有凭据（用户名/密码）。由于它的安全性以及存在一组标准库，许多网站已经开始启用
+API 使用 OAuth。
+</p>
+<p>
+<!--@This tutorial will walk you through the necessary steps for creating a Google Chrome Extension that uses OAuth to access an API. It leverages a library that you can reuse in your extensions.-->
+这一教程将会引导您了解创建使用 OAuth 访问某个 API 的 Google Chrome
+浏览器扩展程序的必要步骤，它提供了一个您可以在自己的扩展程序中重用的库。
+</p>
+<p>
+<!--@This tutorial uses the <a href="http://code.google.com/apis/documents/">Google Documents List Data API</a> as an example OAuth-enabled API endpoint.-->
+这一教程使用
+<a href="https://developers.google.com/google-apps/documents-list/">Google 文档列表数据 API</a>
+作为支持 OAuth 的 API 端点的例子。
+</p>
+
+<h2 id="requirements"><!--@Requirements-->要求</h2>
+
+<p>
+<!--@This tutorial expects that you have some experience writing extensions for Google Chrome and some familiarity with the <a href="http://code.google.com/apis/accounts/docs/OAuth.html">3-legged OAuth</a> flow. Although you don’t need a background in the <a href="http://code.google.com/apis/documents/">Google Documents List Data API</a> (or the other <a href="http://code.google.com/apis/gdata/">Google Data APIs</a> for that matter), having a understanding of the protocol may be helpful.-->
+这一教程要求您具有编写 Google Chrome
+浏览器扩展程序的一些经验，并且要求您对<a
+href="https://developers.google.com/accounts/docs/OAuth">三方
+OAuth 流程</a>有一定的熟悉。尽管您不需要有
+<a href="https://developers.google.com/google-apps/documents-list/">Google 文档列表数据
+API</a>（或者其他
+<a href="https://developers.google.com/gdata/">Google 数据
+API</a>）的开发背景，但是理解这一协议可能有所帮助。
+</p>
+
+<h2 id="getting-started"><!--@Getting started-->入门</h2>
+
+<p>
+<!--@First, copy the four library files from the Chromium source tree at -->
+首先，从位于
+<a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/oauth_contacts/">.../examples/extensions/oauth_contacts/</a><!--@:-->
+的 Chromium 源代码树中将如下四个库文件复制到您的计算机上：
+</p>
+<ul>
+<li><strong><a href="examples/extensions/oauth_contacts/chrome_ex_oauth.html" download="chrome_ex_oauth.html">chrome_ex_oauth.html</a></strong> - <!--@interstitial page for the oauth_callback URL-->用于重定向至 oauth_callback URL 的中间页面</li>
+<li><strong><a href="examples/extensions/oauth_contacts/chrome_ex_oauth.js" download="chrome_ex_oauth.js">chrome_ex_oauth.js</a></strong> - <!--@core OAuth library-->核心 OAuth 库</li>
+<li><strong><a href="examples/extensions/oauth_contacts/chrome_ex_oauthsimple.js" download="chrome_ex_oauthsimple.js">chrome_ex_oauthsimple.js</a></strong> - <!--@helpful wrapper for chrome_ex_oauth.js-->对 chrome_ex_oauth.js 有用的包装</li>
+<li><strong><a href="examples/extensions/oauth_contacts/onload.js" download="onload.js">onload.js</a></strong> -
+<!--@initializes chrome_ex_oauth.html and redirects the page if needed to start the OAuth flow-->
+初始化 chrome_ex_oauth.html，如果需要开始 OAuth 流程则重定向网页</li>
+</ul>
+
+<p><!--@Place the four library files in the root of your extension directory (or wherever your JavaScript is stored). Then include both .js files in your background page in the following order:-->
+将这四个库文件放在您的扩展程序的根目录中（或者您的
+JavaScript
+代码存放的位置，然后在您的后台网页中按照以下顺序包含那两个
+.js 文件：
+</p>
+
+<pre>
+&lt;script type="text/javascript" src="chrome_ex_oauthsimple.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="chrome_ex_oauth.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="onload.js"&gt;&lt;/script&gt;
+</pre>
+
+<p><!--@Your background page will manage the OAuth flow.-->您的后台网页将会管理 OAuth 流程。</p>
+
+<h2 id="oauth-dance"><!--@The OAuth dance in an extension-->扩展程序中的 OAuth 认证</h2>
+
+<p>
+<!--@If you are familiar with the OAuth protocol, you'll recall that the OAuth dance consists of three steps:-->
+如果您对 OAuth 协议比较熟悉，您能回想起来 OAuth 认证包括三个步骤：
+</p>
+
+<ol>
+<li><!--@fetching an initial request token-->获得初始的请求令牌</li>
+<li><!--@having the user authorize the request token-->让用户为请求令牌授权</li>
+<li><!--@fetching an access token-->获得访问令牌</li>
+</ol>
+
+<p><!--@In the context of an extension, this flow gets a bit tricky. Namely, there is no established consumer key/secret between the service provider and the application. That is, there is no web application URL for the user to be redirected to after the approval process.-->
+在扩展程序的环境中，这一流程遇到了一些问题。在服务提供商和应用之间无法建立使用者密钥/机密，在授权过程之后没有网上应用的 URL 让用户重定向。
+</p>
+
+<p>
+<!--@Luckily, Google and a few other companies have been working on an <a href="http://code.google.com/apis/accounts/docs/OAuthForInstalledApps.html">OAuth for installed applications</a> solution that you can use from an extension environment. In the installed applications OAuth dance, the consumer key/secret are ‘anonymous’/’anonymous’ and you provide an <em>application name</em> for the user to grant access to (instead of an application URL). The end result is the same: your background page requests the initial token, opens a new tab to the approval page, and finally makes the asynchronous call for the access token.-->
+幸运的是，Google 和另外几家公司正在开发<a
+href="https://code.google.com/apis/accounts/docs/OAuthForInstalledApps.html">用于已安装应用的
+OAuth</a>解决方案，这样您就可以从扩展程序的环境中使用。在已安装应用的
+OAuth
+认证过程中，使用者密钥/机密为'anonymous'/'anonymous'，您还可以提供一个<em>应用名称</em>（而不是应用
+URL），使用户授予访问权限。最终结果是一样的：您的后台页面请求初始令牌，打开新标签页进入授权页面，最后发出异步调用请求访问令牌。
+</p>
+
+<h3 id="set-code"><!--@Setup code-->设置代码</h3>
+
+<p><!--@To initialize the library, create a-->
+要初始化库，在后台网页中创建一个
+<code>ChromeExOAuth</code> <!--@object in the background page:-->
+对象：
+</p>
+
+<pre>
+var oauth = ChromeExOAuth.initBackgroundPage({
+  'request_url': &lt;OAuth 请求 URL&gt;,
+  'authorize_url': &lt;OAuth 认证 URL&gt;,
+  'access_url': &lt;OAuth 访问令牌 URL&gt;,
+  'consumer_key': &lt;OAuth 消费者密钥&gt;,
+  'consumer_secret': &lt;OAuth 消费者机密&gt;,
+  'scope': &lt;要访问的数据范围。并不是所有 OAuth 提供商都使用它&gt;,
+  'app_name': &lt;应用名称。并不是所有 OAuth 提供商都使用它&gt;
+});
+</pre>
+
+<p><!--@In the case of the Documents List API and Google’s OAuth endpoints, a possible initialization may be:-->
+如果是文档列表 API 和 Google 的 OAuth
+端点，初始化代码如下所示：
+</p>
+
+<pre>
+var oauth = ChromeExOAuth.initBackgroundPage({
+  'request_url': 'https://www.google.com/accounts/OAuthGetRequestToken',
+  'authorize_url': 'https://www.google.com/accounts/OAuthAuthorizeToken',
+  'access_url': 'https://www.google.com/accounts/OAuthGetAccessToken',
+  'consumer_key': 'anonymous',
+  'consumer_secret': 'anonymous',
+  'scope': 'https://docs.google.com/feeds/',
+  'app_name': '我的 Google 文档扩展程序'
+});
+</pre>
+
+<p>
+<!--@To use the OAuth library,
+you must declare the "tabs" permision in the
+<a href="manifest.html">extension manifest</a>.
+You must also declare the sites you are using
+including the request URL, the authorize URL, access URL,
+and, if necessary, the scope URL.
+For example:-->
+要使用 OAuth 库，您必须在<a href="manifest.html">扩展程序的清单文件</a>中声明
+"tabs" 权限，您还必须声明您正在使用的网站，包括请求
+URL、认证 URL、访问 URL，如果有必要的话还有区域 URL。例如：
+</p>
+
+<pre data-filename="manifest.json">
+"permissions": [ "tabs", "https://docs.google.com/feeds/*",
+  "https://www.google.com/accounts/OAuthGetRequestToken",
+  "https://www.google.com/accounts/OAuthAuthorizeToken",
+  "https://www.google.com/accounts/OAuthGetAccessToken"
+]
+</pre>
+
+<h3 id="request-token"><!--@Fetching and authorizing a request token-->获取和认证请求令牌</h3>
+
+<p>
+<!--@Once you have your background page set up, call the <code>authorize()</code> function to begin the OAuth dance and redirect the user to the OAuth provider. The client library abstracts most of this process, so all you need to do is pass a callback to the <code>authorize()</code> function, and a new tab will open and redirect the user.-->
+一旦您设置好了后台网页后，就能调用
+<code>authorize()</code> 函数，开始 OAuth
+认证，使用户重定向至 OAuth
+提供商。客户端库抽象了这一过程的大部分，所以您需要做的只是向
+<code>authorize()</code>
+函数传递一个回调函数，然后会打开一个新标签页，并重定向。
+</p>
+
+<pre>
+oauth.authorize(function() {
+  // ... 准备获取个人数据...
+});
+</pre>
+
+<p>
+<!--@You don't need to provide any additional logic for storing the token and secret, as this library already stores these values in the browser’s <code>localStorage</code>. If the library already has an access token stored for the current scope, then no tab will be opened. In either case, the callback will be called.-->
+您不需要提供任何额外的逻辑来存储令牌和机密，因为该库已经在浏览器的
+<code>localStorage</code>
+中储存了这些值。如果库已经为当前作用域储存了访问令牌，则不用再打开新标签页。在任何一种情况下，都会调用回调函数。
+</p>
+
+<h3 id="signed-requests"><!--@Sending signed API requests-->发送已签名的 API 请求</h3>
+
+<p>
+<!--@Once your specified callback is executed, call the <code>sendSignedRequest()</code> function to send signed requests to your API endpoint(s). <code>sendSignedRequest()</code> takes three arguments: a URI, a callback function, and an optional parameter object. The callback is passed two arguments: the response text and the <code>XMLHttpRequest</code> object that was used to make the request.-->
+一旦您指定的回调函数开始执行，就能调用
+<code>sendSignedRequest()</code>
+函数，向您的 API 发送已签名的请求。<code>sendSignedRequest()</code>
+有三个参数：URI、回调函数和可选的参数对象。回调函数有两个参数：响应文本以及用来发出请求的
+<code>XMLHttpRequest</code> 对象。
+</p>
+
+<p><!--@This example sends an HTTP <code>GET</code>:-->
+这一例子发送一个 HTTP <code>GET</code> 请求：
+</p>
+
+<pre>
+function callback(resp, xhr) {
+  // ... 处理文本响应 ...
+};
+
+function onAuthorized() {
+  var url = 'https://docs.google.com/feeds/default/private/full';
+  var request = {
+    'method': 'GET',
+    'parameters': {'alt': 'json'}
+  };
+
+  // 发送：GET https://docs.google.com/feeds/default/private/full?alt=json
+  oauth.sendSignedRequest(url, callback, request);
+};
+
+oauth.authorize(onAuthorized);
+</pre>
+
+<p><!--@A more complex example using an HTTP <code>POST</code> might look like this:-->
+一个更复杂的例子使用 HTTP POST 请求，如下列代码所示：
+</p>
+
+<pre>
+function onAuthorized() {
+  var url = 'https://docs.google.com/feeds/default/private/full';
+  var request = {
+    'method': 'POST',
+    'headers': {
+      'GData-Version': '3.0',
+      'Content-Type': 'application/atom+xml'
+    },
+    'parameters': {
+      'alt': 'json'
+    },
+    'body': '要发送的数据'
+  };
+
+  // 发送：POST https://docs.google.com/feeds/default/private/full?alt=json
+  oauth.sendSignedRequest(url, callback, request);
+};
+</pre>
+
+<p>
+<!--@By default, the <code>sendSignedRequest()</code> function sends the <code>oauth_*</code> parameters in the URL (by calling <code>oauth.signURL()</code>). If you prefer to send the <code>oauth_*</code> parameters in the <code>Authorization</code> header (or need direct access to the generated header), use <code>getAuthorizationHeader()</code>. Its arguments are a URI, an HTTP method, and an optional object of URL query parameters as key/value pairs.-->
+默认情况下，<code>sendSignedRequest()</code>
+函数在 URL 中（通过调用
+<code>oauth.signURL()</code>）发送 <code>oauth_*</code>
+参数。如果您希望在 <code>Authorization</code> 头信息中发送
+<code>oauth_*</code>
+参数（或者需要直接访问已生成的头信息），请使用
+<code>getAuthorizationHeader()</code>。它的参数包括
+URL、HTTP 方法以及可选的 URL 查询参数对象，表示为键/值对。
+</p>
+
+<p><!--@Here is the example above using <code>getAuthorizationHeader()</code> and an <code>XMLHttpRequest</code> object:-->
+如下是上面所说内容的一个例子，使用
+<code>getAuthorizationHeader()</code> 和一个
+<code>XMLHttpRequest</code>对象：
+</p>
+
+<pre>
+function stringify(parameters) {
+  var params = [];
+  for(var p in parameters) {
+    params.push(encodeURIComponent(p) + '=' +
+                encodeURIComponent(parameters[p]));
+  }
+  return params.join('&amp;');
+};
+
+function onAuthorized() {
+  var method = 'POST';
+  var url = 'https://docs.google.com/feeds/default/private/full';
+  var params = {'alt': 'json'};
+
+  var xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function(data) {
+    callback(xhr, data);
+  };
+  xhr.open(method, url + '?' + stringify(params), true);
+  xhr.setRequestHeader('GData-Version', '3.0');
+  xhr.setRequestHeader('Content-Type', 'application/atom+xml');
+  xhr.setRequestHeader('Authorization', oauth.getAuthorizationHeader(url, method, params));
+
+  xhr.send('Data to send');
+};
+</pre>
+
+<h2 id="sample-code"><!--@Sample code-->示例代码</h2>
+
+<p>
+<!--@Sample extensions that use these techniques are available in the Chromium source tree:-->
+使用这些技术的示例扩展程序在 Chromium 源代码树的如下位置可用：
+</p>
+
+<ul>
+<li><a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/gdocs/">.../examples/extensions/gdocs/</a></li>
+<li><a href="https://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/extensions/oauth_contacts/">.../examples/extensions/oauth_contacts/</a></li>
+</ul>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

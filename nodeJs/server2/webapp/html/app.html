@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script data-main="../js/util/main" src="../js/util/require.js"></script>
+    <script>
+        function disableScale(){
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+            if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            // andriod 2.3
+            if (version > 2.3) {
+                document.head.innerHTML+=('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            // andriod 2.3以上
+            } else {
+                document.head.innerHTML+=('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+            // 其他系统
+        } else {
+            document.head.innerHTML+=('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    }
+    disableScale();
+   </script>
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/Lottery.css">
+    <link rel="stylesheet" href="../css/map.css">
+    <link rel="stylesheet" href="../css/authentication.css">
+    <link rel="stylesheet" href="../css/identity-authentication.css">
+    <link rel="stylesheet" href="../css/customer_reviews.css">
+    <link rel="stylesheet" href="../css/mission-complete.css">
+    <link rel="stylesheet" href="../css/my-achievement.css">
+    <link rel="stylesheet" href="../css/my-message.css">
+    <link rel="stylesheet" href="../css/my-task.css">
+    <link rel="stylesheet" href="../css/personal-center.css">
+    <link rel="stylesheet" href="../css/pieorderinfo.css">
+    <link rel="stylesheet" href="../css/reset-password.css">
+    <link rel="stylesheet" href="../css/service-content.css">
+    <link rel="stylesheet" href="../css/update-password.css">
+    <link rel="stylesheet" href="../css/feedback.css"></head>
+<body>
+    <div id="allmap" style="display:none"></div>
+    <!-- 登录 -->
+    <div class="page" id="login">
+        <header class="header">
+            <h1 class="heading">登录</h1>>
+        </header>
+
+        <div class="wrapper">
+            <form onsubmit="return false;">
+                <div class="logo">
+                    <img src="../img/logo.png"></div>
+                <input name="userName" type="text" class="border border_color_or br_10 fts24" placeholder="请输入手机号" />
+                <input name="passWord" type="password" class="border border_color_or br_10 fts24" placeholder="请输入密码" />
+                <div class="login-options">
+                    <span>
+                        <input type="checkbox" class="" name="freeLogin"></span>
+                    <span class="color_yellow fts24">自动登录</span>
+                    <span class="color_yellow fts24 fr">
+                        <a href="javascript:void(0)" data-target="resetpassword">忘记密码？</a>
+                    </span>
+                </div>
+                <button name="submit" class="button bg_or color_white br_10 fts30 ftwb">登  陆</button>
+                <span id="loginactivation" class="activation-link" >
+                    <a href="javascript:void(0)" class="color_or fts24">激活账号</a>
+                </span>
+            </form>
+        </div>
+    </div>
+    <!-- 登录 EDN-->
+    <!-- 身份验证 -->
+    <div class="page" id="authentication">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">身份验证</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <article class="part margin_bottom_2">
+                <h5>身份验证</h5>
+                <section class="common_layout">
+                    <p class="border_bottom">
+                        <label for="">验证身份</label>
+                        <input id="ipt-check-auth" type="text" placeholder="请输入验证码">
+                        <a id="btn-check-auth" href="javascript:void(0)" class="button button_or br_5">验证</a>
+                    </p>
+                    <p>
+                        验证失败或无服务资格请联系客服
+                        <a href="javascript:void(0)" id="authentication_contact" class="button button_graygreen br_5 fr">联系客服</a>
+                    </p>
+                </section>
+            </article>
+            <article class="part">
+                <h5>车况检查</h5>
+                <section class="common_layout">
+                    <div class="border_bottom">
+                        <span>检验内容</span>
+                        <div class="select">油表情况</div>
+                        <div class="select">1%</div>
+                        <a href="javascript:void(0)" id="authentication_addone"></a>
+                    </div>
+                    <div>
+                        <p>
+                            检验照片
+                            <span>请根据如下实例进行影像采集</span>
+                        </p>
+                        <div class="camera_area">
+                            <P>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </P>
+                            <P>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </P>
+                        </div>
+                    </div>
+                </section>
+            </article>
+            <a href="javascript:void(0)" class="ok_button">确&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;定</a>
+        </div>
+    </div>
+    <!-- 身份验证 EDN-->
+    <!-- 抽奖 -->
+    <div class="page" id="lottery">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">抽奖</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+
+        <div class="wrapper">
+            <section class="lottery">
+                <img src="../img/Lotterybefer.png"/>
+            </section>
+        </div>
+    </div>
+    <!-- 抽奖 EDN-->
+    <!-- 地图 -->
+    <div class="page" id="map">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">我要接单</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <div class="layer">
+                <section class="service_details dp_none">
+                    <p class="location">救援地址：<span></span></p>
+                    <p>车辆位置：<span></span></p>
+                </section>
+                <section class="service_details dp_none">
+                    <div class="service_details_tips">
+                        <p class="service_details_money">预计金额：<span></span></p>
+                        <p class="service_details_money2">
+                            <span></span>
+                            <span class="color_or"></span>
+                        </p>
+                    </div>
+                    <p class="location">救援地址：<span></span></p>
+                    <p>车辆位置：<span></span></p>
+                </section>
+                <section class="service_details">
+                    <div class="phone"></div>
+                    <p>车&nbsp;主：<span></span></p>
+                    <p>电话号码：<span></span></p>
+                    <p class="location">救援地址：<span></span></p>
+                    <p>救援车辆：<span></span></p>
+                    <p>客户来源：<span></span></p>
+                </section>
+                <footer class="service_content">服务内容：<span></span></footer>
+            </div>
+            <div id="ordermap" class="main"></div>
+            <div class="toolbar dp_none">
+                <a id="grabOrderAll" href="javascript:void(0)" class="toolbar_menu fl">全部</a>
+                <a id="grabOrder" href="javascript:void(0)" class="toolbar_button fl toolbar_button_w1 hastips bg_or">
+                    抢&nbsp;&nbsp;单
+                    <p class="tips">剩余时间：<span class="time">2分30秒</span></p>
+                </a>
+            </div>
+            <div class="toolbar">
+                <a id="receiveOrderAll" href="javascript:void(0)" class="toolbar_menu color_or fl">全部</a>
+                <a id="receiveOrder" href="javascript:void(0)" class="toolbar_button bg_or fl toolbar_button_w2 hastips">
+                    接&nbsp;&nbsp;单
+                    <p class="tips">剩余时间：<span class="time">2分30秒</span></p>
+                </a>
+                <a id="refuseOrder" href="javascript:void(0)" class="toolbar_button bg_yellow fl toolbar_button_w2">拒&nbsp;&nbsp;单</a>
+            </div>
+            <div id="carArrivals" class="toolbar dp_none">
+                <a href="javascript:void(0)" class="fts30 color_or ftwb">车已到达</a>
+            </div>
+        </div>
+    </div>
+    <!-- 地图 EDN-->
+    <!-- 身份验证 激活 -->
+    <div class="page" id="identityauthentication">
+        <header class="header">
+            <a href="javascript:void(0)" data-target="login" class="arrow">&lt;</a>
+            <h1 class="heading">身份验证</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <div class="bg_white padding_bottom_1 margin_bottom_1" >
+                <span class=" margin_left_2 fts24 line_row3">服务商信息</span>
+                <section class="common_layout fts24 ">
+                    <p class="border_bottom padding_left_1 padding_right_1 line_row3" >
+                        <span class="spantext_right_1 " >公司调度电话号码&nbsp;&nbsp;</span>
+                        <span id="companyDispatchPhone">1512151515</span>
+                    </p>
+                    <p class="padding_left_1 padding_right_1 line_row3" >
+                        <span class="spantext_right_1">服务商公司名称&nbsp;&nbsp;</span>
+                        <span id="serviceCompanyName">安又畅救援服务</span>
+                    </p>
+                </section>
+            </div>
+            <div class="bg_white padding_bottom_1 margin_bottom_1">
+                <span class=" margin_left_2 fts24 line_row3">司机信息</span>
+                <section class="common_layout  fts24">
+                    <p class="row1 border_bottom padding_left_1 padding_right_1 line_row3" >
+                        <span class="spantext_right_2" >姓名&nbsp;&nbsp;</span>
+                        <span class="" id="driverName">李世民</span>
+                    </p>
+                    <p class="row1 border_bottom padding_left_1 padding_right_1 line_row3">
+                        <span class="spantext_right_2">手机号码&nbsp;&nbsp;</span>
+                        <span class="" id="driverPhone">15215730782</span>
+                    </p>
+                    <div class="row4 border_bottom padding_left_1 padding_right_1 line_row1"  >
+                        <span  class=" fl spantext_right_3">上传头像</span>
+                        <img class = "bg_gray img_border fl" src="../img/persontx.png" />
+                        <div class="fr">
+                            <p class="line_row2">
+                                <a href="javascript:void(0)" id="localupload" class="button small br_5 margin_right_1  row1 button_or fts20">本地上传</a>
+                            </p>
+                            <p>
+                                <a  href="javascript:void(0)" id="phonePhotograph" class="button small br_5 margin_right_1  row1 button_yellow fts20">手机拍照</a>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="bg_white position_bottom" id="activation"  >
+                <section  class = "tac">
+                    <span class="fts28 color_or line_row2" >激活</span>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- 身份验证 激活 EDN-->
+    <!-- 客户评价 -->
+    <div class="page" id="customerreviews">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">客户评价</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <section class="orderinfo">
+                <div class="fts28 ">
+                    <p class="padding_left_2">
+                        <span>
+                            <img src="../img/customer_reviews/orders_sources.png"/>
+                        </span>
+                        <span>订单来源</span>
+                        <span>：</span>
+                        <span></span>
+                    </p>
+                    <p class="padding_left_2">
+                        <span>
+                            <img src="../img/customer_reviews/rescue_address.png"/>
+                        </span>
+                        <span>救援地址</span>
+                        <span>：</span>
+                        <span></span>
+                    </p>
+                    <p class="padding_left_2">
+                        <span>
+                            <img src="../img/customer_reviews/vehicle_location.png"/>
+                        </span>
+                        <span>车辆位置</span>
+                        <span>：</span>
+                        <span></span>
+                    </p>
+                    <p class="padding_left_2">
+                        <span>
+                            <img src="../img/customer_reviews/services.png"/>
+                        </span>
+                        <span>服务内容</span>
+                        <span>：</span>
+                        <span></span>
+                    </p>
+                </div>
+            </section>
+            <section class="customerreviews fts28 color100">
+                <p class="padding_left_1 color180">评价</p>
+                <section>
+                    <div>
+                        <div id="good" class="border border_color_or br_5">
+                            <span>好评</span>
+                        </div>
+                        <div id="general" class="border border_color_220 br_5">
+                            <span>中评</span>
+                        </div>
+                        <div id="difference" class="border border_color_220 br_5">
+                            <span>差评</span>
+                        </div>
+                    </div>
+                    <p>
+                        <textarea id="remark"  cols="45" rows="4" class=" border border_color_220 br_10 fts28" placeholder="师傅很积极，解决问题非常到位！"></textarea>
+                    </p>
+                    <p class="padding_left_3">
+                        <span>服务态度：</span>
+                        <img id="attitude1" src="../img/customer_reviews/star.png"/>
+                        <img id="attitude2" src="../img/customer_reviews/star.png"/>
+                        <img id="attitude3" src="../img/customer_reviews/star.png"/>
+                        <img id="attitude4" src="../img/customer_reviews/star.png"/>
+                        <img id="attitude5" src="../img/customer_reviews/star.png"/>
+                    </p>
+                    <p class="padding_left_3">
+                        <span>救援速度：</span>
+                        <img id="rescueSpeed1" src="../img/customer_reviews/star.png"/>
+                        <img id="rescueSpeed2" src="../img/customer_reviews/star.png"/>
+                        <img id="rescueSpeed3" src="../img/customer_reviews/star.png"/>
+                        <img id="rescueSpeed4" src="../img/customer_reviews/star.png"/>
+                        <img id="rescueSpeed5" src="../img/customer_reviews/star.png"/>
+                    </p>
+                    <p class="padding_left_3">
+                        <span>服务质量：</span>
+                        <img id="serviceQuality1" src="../img/customer_reviews/star.png"/>
+                        <img id="serviceQuality2" src="../img/customer_reviews/star.png"/>
+                        <img id="serviceQuality3" src="../img/customer_reviews/star.png"/>
+                        <img id="serviceQuality4" src="../img/customer_reviews/star.png"/>
+                        <img id="serviceQuality5" src="../img/customer_reviews/star.png"/>
+                    </p>
+                </section>
+
+                <p class="padding_left_3 jf">
+                    本次服务积分：
+                    <span id="serviceIntegration" class="color_or">15分</span>
+                </p>
+            </section>
+            <section id="submitCustomerReviews" class="option">
+                <input type="button" class="button color_or1 fts30 ftwb " value="确&nbsp;&nbsp;定" />
+            </section>
+        </div>
+    </div>
+    <!-- 客户评价 EDN-->
+    <!-- 任务完成 -->
+    <div class="page" id="missioncomplete">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">任务完成</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <article class="part_a margin_bottom_2">
+                <h5>
+                    服务笔记
+                    <span class="pencil_icon"></span>
+                </h5>
+                <div id="missioncomplete_note">
+                    <p class="trlike">
+                        <span class="col7">
+                            工单号 <i>SH27823782</i>
+                        </span>
+                        <span class="col5">
+                            行驶里程 <i>22.33KM</i>
+                        </span>
+                    </p>
+                    <p class="trlike">
+                        <span class="col7">
+                            物料消耗
+                            <i>188元</i>
+                        </span>
+                        <span class="col5">
+                            其他费用
+                            <i>88元</i>
+                        </span>
+                    </p>
+                </div>
+                <div>
+                    <p class="trlike row1">
+                        <span  class="col7"></span>
+                        <span class="col5">
+                            折扣/促销
+                            <i class="ini1">-188元</i>
+                        </span>
+                    </p>
+                    <p class="trlike">
+                        <span  class="col7"></span>
+                        <span class="col5">
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实收
+                            <i class="ini2">88元</i>
+                        </span>
+                    </p>
+                </div>
+            </article>
+            <article class="part_a margin_bottom_2">
+                <h5>车况报告</h5>
+                <div id="missioncomplete_report">
+                    <p class="trlike">
+                        <span class="col7">
+                            油表情况
+                            <i>1%</i>
+                        </span>
+                        <span>
+                            车身玻璃
+                            <i>破碎</i>
+                        </span>
+                    </p>
+                </div>
+                <div class="polaroid" id="missioncomplete_polaroid"></div>
+            </article>
+            <article class="part_a padding_bottom_1">
+                <h5>备注</h5>
+                <div>
+                    <textarea cols="30" rows="4" placeholder="请输入备注信息" class="edit"></textarea>
+                </div>
+            </article>
+            <a href="javascript:void(0)" class="ok_button" id="missioncomplete_sign">验证签收</a>
+        </div>
+    </div>
+    <!-- 任务完成 EDN-->
+    <!-- 我的任务 -->
+    <div class="page" id="myachievement">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">我的任务</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <aside class="tips">今日在线6小时</aside>
+            <section class="achievement">
+                <canvas height="460" width="640"></canvas>
+                <div class="achievement_info">
+                    <p>
+                        <span>
+                            <i>本月抢单：</i>
+                            <i>8单</i>
+                        </span>
+                        <span>
+                            <i>本月排名：</i>
+                            <i>15/23</i>
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <i>累计抢单：</i>
+                            <i>125单</i>
+                        </span>
+                        <span>
+                            <i>客户投诉率：</i>
+                            <i>5%</i>
+                        </span>
+                    </p>
+                    <p>
+                        <span>
+                            <i>好评率:</i>
+                            <i>89%</i>
+                        </span>
+                        <span></span>
+                    </p>
+                </div>
+            </section>
+            <p class="user_evaluation">
+                <span>用户评价</span>
+                <span>获得用户评价，立得一次抽奖机会</span>
+                <a href="javascript:void(0)" class="arrow_right"></a>
+            </p>
+        </div>
+    </div>
+    <!-- 我的任务 EDN-->
+    <!-- 我的消息 -->
+    <div class="page" id="mymessage">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">我的消息</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <ul class="list-view list-message">
+                <li>
+                    <div class="message-header">
+                        <span class="message-from message-from-1">官方</span>
+                        <span class="message-title">承诺时间超时</span>
+                        <span class="message-time">2015-02-09 11:00</span>
+                    </div>
+                    <div class="message-body">
+                        <p>订单号：SHY000100000的任务，您已超出承诺到达时间，请尽快到达！</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="message-header">
+                        <span class="message-from message-from-1">客户</span>
+                        <span class="message-title">客户催单</span>
+                        <span class="message-time">2015-02-09 11:00</span>
+                    </div>
+                    <div class="message-body">
+                        <p>订单号：SHY000100002的客户已经催单2次。</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="message-header">
+                        <span class="message-from message-from-1">官方</span>
+                        <span class="message-title">公司活动通知</span>
+                        <span class="message-time">2015-02-09 11:00</span>
+                    </div>
+                    <div class="message-body">
+                        <p>在2015年2月18日至2015年2月24日期间，救援一次公司奖励50元。</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 我的消息 EDN-->
+    <!-- 我的任务 -->
+    <div class="page" id="mytask">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">我的任务</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <input type="radio" name="status" data-status="not" checked class="select_button status1">
+            <input type="radio" name="status" data-status="have" class="select_button status2">
+            <input type="radio" name="status" data-status="finished" class="select_button status3">
+            <section class="status_bar">
+                <a href="javascript:void(0)" class="status">未接收</a>
+                <a href="javascript:void(0)" class="status">已接收</a>
+                <a href="javascript:void(0)" class="status">已结束</a>
+            </section>
+            <!-- 未接收 -->
+            <section class="not">
+            </section>
+            <!-- 未接收END -->
+            <!-- 已接收 -->
+            <section class="have">
+            </section>
+            <!-- 已接收END -->
+            <!-- 已完成 -->
+            <section class="finished">
+            </section>
+            <!-- 已完成END --> 
+      </div>
+    </div>
+    <!-- 我的任务 EDN-->
+    <!-- 个人中心 -->
+    <div class="page" id="personalcenter">
+        <header class="header">
+            <a href="javascript:void(0)" data-target="mytask" class="arrow">&lt;</a>
+            <h1 class="heading">个人中心</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper" class="bg_white">
+            <div class="backimage fts28">
+                <section>
+                    <img class = "bg_gray img_border " src="../img/persontx.png" />
+                    <p class="color_white" >
+                        <span>1521515132</span>
+                    </p>
+                    <p class="color_white" >
+                        <span>上海路华救援有限公司</span>
+                    </p>
+                </section>
+            </div>
+            <div class="fts24">
+                <p class=" row1_5 margin_right_1 margin_left_2 tr fts20 color180" >
+                    <span id="onlineinfo">您目前的登录状态为空闲，准备接单吧</span>
+                </p>
+                <section class="row1_5 margin_right_1 margin_left_2 tr border_bottom " >
+                    <p class=" margin_left_2 margin_right_1" >
+                        <span class="fl">状态</span>
+                        <span class="span_display_inline" id="toggleuserstatusbutton" touch-prevent="prevent"></span>
+                    </p>
+                </section>
+                <section class="row1_5 margin_right_1 margin_left_2 border_bottom " >
+                    <p class="margin_left_2" >
+                        <a href="javascript:void(0)" data-target="mymessage">我的消息</a>
+                        <span class="color_or msg_num" >12</span>
+                        <span class="arrow_right margin_right_1 dp_inline_block fr"></span>
+                    </p>
+                </section>
+                <section class="row1_5 margin_right_1 margin_left_2 tr border_bottom " >
+                    <p class=" margin_left_2" >
+
+                        <span class="fl">
+                            <a href="javascript:void(0)" data-target="servicecontent">服务内容</a>
+                        </span>
+
+                        <span class="arrow_right margin_right_1 dp_inline_block"></span>
+                    </p>
+                </section>
+                <section class="row1_5 margin_right_1 margin_left_2 tr border_bottom " >
+                    <p class=" margin_left_2" >
+
+                        <span class="fl">
+                            <a href="javascript:void(0)" data-target="updatepassword">密码修改</a>
+                        </span>
+
+                        <span class="arrow_right margin_right_1 dp_inline_block"></span>
+                    </p>
+                </section>
+                <section class="row1_5 margin_right_1 margin_left_2 tr border_bottom " >
+                    <p class=" margin_left_2" >
+
+                        <span class="fl">
+                            <a href="javascript:void(0)" data-target="feedback">意见与反馈</a>
+                        </span>
+
+                        <span class="arrow_right margin_right_1 dp_inline_block"></span>
+                    </p>
+                </section>
+                <section class="row1_5 margin_right_1 margin_left_2 tr border_bottom " >
+                    <p class=" margin_left_2" >
+                        <span class="fl">关于壹路通</span>
+                        <span class="arrow_right margin_right_1 dp_inline_block"></span>
+                    </p>
+                </section>
+                <section class="row1_5 margin_right_1 margin_left_2 tr border_bottom " >
+                    <p class=" margin_left_2" >
+                        <span class="fl color_or">
+                            <a href="javascript:void(0)" data-target="logout">退出登录</a>
+                        </span>
+                    </p>
+                </section>
+            </div>
+        </div>
+    </div>
+    <!-- 个人中心 EDN-->
+    <!-- 派单消息页 -->
+    <div class="page" id="pieorderinfo">
+        <section class="pieorderinfo">
+            <div class="infoarea">
+                <header class="part_a">
+                    <span class="distance">据您1.5公里</span>
+                </header>
+                <header class="part_a grabs  dp_none">
+                    <span class="distance">据您1.5公里</span>
+                </header>
+                <section class="part_b">
+                    <div class="content">
+                        <div class="fill">
+                            <div>
+                                <div>
+                                    <p class="">服务内容：紧急拖车</p>
+                                    <p class="location">救援地址：永康路132号</p>
+                                    <p class="">预计金额：315元</p>
+                                    <p class="">高峰补贴20元</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="time">2分30秒</p>
+                </section>
+                <footer class="part_c"></footer>
+            </div>
+            <div class="buttonarea">
+                <a href="javascript:void(0)" class="button bg_or margin_right width_1 fts32">接单</a>
+                <a href="javascript:void(0)" class="button bg_yellow width_1 fts32">拒单</a>
+            </div>
+            <div class="buttonarea dp_none">
+                <a href="javascript:void(0)" class="button bg_or width_2 fts40">抢单</a>
+            </div>
+        </section>
+    </div>
+    <!-- 派单消息页 EDN-->
+    <!-- 找回密码 -->
+    <div class="page" id="resetpassword">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">找回密码</h1>
+        </header>
+        <div class="wrapper">
+            <form onsubmit="return false;">
+                <div class="form-block security-qa-block padding_bottom_1 margin_bottom_1">
+                    <div class="illustration">
+                        <img src="../img/graph_froget_password.jpg"></div>
+                    <h2 class="margin_left_2 fts24">请认真填写密保答案以方便找回密码：</h2>
+                    <section class="common_layout margin_top_1 fts20">
+                        <div class="border_bottom padding_left_1 padding_right_1 row1_5">
+                            <label class="fl" for="id">帐号</label>
+                            <input name="userName" type="text" id="id" value=""></div>
+                        <div class="border_bottom padding_left_1 padding_right_1 row1_5">
+                            <label class="fl" for="question">问题</label>
+                            <input name="question" type="text" disabled id="question" value="请先填写用户名"></div>
+                        <div class="padding_left_1 padding_right_1 row1_5">
+                            <label for="answer">答案</label>
+                            <input type="text" name="answer" id="answer"></div>
+                    </section>
+                </div>
+                <button name="submit" class="button">确定</button>
+            </form>
+        </div>
+    </div>
+    <!-- 找回密码 EDN-->
+    <!-- 服务内容 -->
+    <div class="page" id="servicecontent">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">服务内容</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <section class="choose_car fts24">
+                <p class="padding_left_1 color153">选择车辆</p>
+                <div class="select select_service"></div>
+            </section>
+            <section class="con_service fts24">
+                <p class="padding_left_1 color153">服务内容</p>
+                <ul>
+                    <li class="qx">
+                        <a class="" data-type="qx"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">抢修</label>
+                        </div>
+                    </li>
+                    <li class="kjtc">
+                        <a data-value="" data-type="kjtc"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">困境拖车</label>
+                        </div>
+                    </li>
+                    <li class="psqy">
+                        <a data-value="" data-type="psqy"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">派送汽油</label>
+                        </div>
+                    </li>
+                    <li class="ghlt">
+                        <a data-value="" data-type="ghlt"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">更换轮胎</label>
+                        </div>
+                    </li>
+                    <li class="psjy">
+                        <a data-value="" data-type="psjy"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">派送机油</label>
+                        </div>
+                    </li>
+                    <li class="kjqx">
+                        <a data-value="" data-type="kjqx"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">困境抢修</label>
+                        </div>
+                    </li>
+                    <li class="dpdd">
+                        <a data-value="" data-type="dpdd"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">电瓶搭电</label>
+                        </div>
+                    </li>
+                    <li class="jjjw">
+                        <a data-value="" data-type="jjjw"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">紧急降温</label>
+                        </div>
+                    </li>
+                    <li class="ss">
+                        <a data-value="" data-type="ss"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">送水</label>
+                        </div>
+                    </li>
+                    <li class="ks">
+                        <a data-value="" data-type="ks"></a>
+                        <div>
+                            <s class="service_type"></s>
+                            <label class="fts20">开锁</label>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+            <section class="option">
+                <input type="button" class="button color_or1 fts30 ftwb " id="savebutton" touch-prevent="prevent" value="保&nbsp;&nbsp;存" />
+            </section>
+
+        </div>
+    </div>
+    <!-- 服务内容 EDN-->
+
+    <!-- 密码修改 -->
+    <div class="page" id="updatepassword">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">密码修改</h1>
+        </header>
+        <div class="wrapper">
+            <form onsubmit="return false;">
+                <div class="form-block password-block padding_bottom_1 margin_bottom_1">
+                    <h2 class="margin_left_2 fts24">修改密码</h2>
+                    <section class="common_layout margin_top_1 fts20">
+                        <div class="border_bottom padding_left_1 padding_right_1 row1_5">
+                            <label class="fl" for="origin_pwd">旧密码</label>
+                            <input class="fl" type="password" name="oldPassWord" id="origin_pwd">
+                            <span class="fl">
+                                <i class="icon"></i>
+                            </span>
+                        </div>
+                        <div class="border_bottom padding_left_1 padding_right_1 row1_5">
+                            <label class="fl" for="new_pwd">新密码</label>
+                            <input class="fl" type="password" name="passWord" id="new_pwd">
+                            <span class="fl">
+                                <i class="icon"></i>
+                            </span>
+                        </div>
+                        <div class="padding_left_1 padding_right_1 row1_5">
+                            <label class="fl" for="confirm_new_pwd">确认新密码</label>
+                            <input class="fl" type="password" name="confirm" id="confirm_new_pwd">
+                            <span class="fl">
+                                <i class="icon"></i>
+                            </span>
+                        </div>
+                    </section>
+                </div>
+                <div class="form-block security-qa-block padding_bottom_1 margin_bottom_1">
+                    <h2 class="margin_left_2 fts24">为了避免遗忘，请认真填写以下密保问题：</h2>
+                    <section class="common_layout margin_top_1 fts20">
+                        <div class="border_bottom padding_left_1 padding_right_1 row1_5">
+                            <label class="fl" for="question">问题</label>
+                            <div class="fl select" id="select-security-question"></div>
+                        </div>
+                        <div class="padding_left_1 padding_right_1 row1_5">
+                            <label for="answer">答案</label>
+                            <input type="text" name="answer" id="answer"></div>
+                    </section>
+                </div>
+                <button id="submit" class="button">保存</button>
+            </form>
+        </div>
+    </div>
+    <!-- 密码修改 EDN-->
+    <!-- 欢迎 -->
+    <div class="page" id="welcome"></div>
+    <!-- 欢迎 EDN-->
+
+    <!-- 我的意见与反馈 -->
+    <div class="page" id="feedback">
+        <header class="header">
+            <a href="javascript:void(0)" class="arrow">&lt;</a>
+            <h1 class="heading">意见与反馈</h1>
+            <a href="javascript:void(0)" class="menu_button">···</a>
+            <input type="checkbox" class="menu_button">
+            <ul class="menu">
+                <li  data-target="personalcenter">个人中心</li>
+                <li>联系客服</li>
+            </ul>
+        </header>
+        <div class="wrapper">
+            <img width="100%" src="../img/graph_feedback.jpg">
+            <form onsubmit="return false;">
+                <div class="feedback-block">
+                    <h2 class="margin-left-2 fts24">请提出您的宝贵意见：</h2>
+                    <textarea class="fts20" name="opinionContext"></textarea>
+                </div>
+                <button name="submit" class="feedback-button">提交</button>
+            </form>
+        </div>
+    </div>
+    <!-- 我的意见与反馈 END -->   
+     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=iARCnpNt7qzdTqDQ4SmpA063"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GCM 服务的 API 参考 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/gcm_server.html">https://crxdoc-zh.appspot.com/extensions/gcm_server.html</a><br>
+<b>Title:</b> GCM 服务的 API 参考 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 21766<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#libraries"
+         data-list-item
+         >Google APIs 客户端库</a>
+    </li>
+    <li >
+      <a href="#insert"
+         data-list-item
+         >insert 方法</a>
+    </li>
+    <li >
+      <a href="#authorization"
+         data-list-item
+         >认证</a>
+      <ol>
+        <li >
+          <a href="#url"
+             data-list-item
+             >URL</a>
+        </li>
+        <li >
+          <a href="#parameters"
+             data-list-item
+             >必选参数</a>
+        </li>
+        <li >
+          <a href="#response"
+             data-list-item
+             >响应</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#request"
+         data-list-item
+         >消息请求</a>
+      <ol>
+        <li >
+          <a href="#http"
+             data-list-item
+             >HTTP 请求</a>
+        </li>
+        <li >
+          <a href="#body"
+             data-list-item
+             >请求正文</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<meta name="doc-family" content="apps">
+<h1><!--@API Reference for GCM service-->GCM 服务的 API 参考</h1>
+
+<p>
+<!--@The <a href="cloudMessaging.html">Google Cloud Messaging for Chrome</a> service
+sends messages to users of a Chrome App.
+The service handles all aspects of queueing and delivering messages.
+To use the service,
+you must agree to the
+<a href="https://crxdoc-zh.appspot.com/extensions/gcm_tos.html">Google Cloud Messaging for Chrome API Terms of Service</a>.-->
+<a href="cloudMessaging.html">用于 Chrome 浏览器的 Google 云消息服务</a>向
+Chrome
+应用的用户发送消息，该服务处理了消息队列以及传递消息的各个方面。要使用这一服务，您必须同意
+<a href="https://crxdoc-zh.appspot.com/extensions/gcm_tos.html">Google Cloud Messaging for Chrome API 服务条款</a>。
+</p>
+
+<p><!--@Messages must conform to these constraints:-->消息必须遵守这些约束：</p>
+
+<ul>
+	<li><strong><!--@Maximum payload length:-->最大内容长度：</strong> 256 <!--@bytes-->字节</li>
+	<li><strong><!--@Maximum subchannels:-->最大子通道数：</strong> 4</li>
+	<li><strong><!--@Maximum API requests per day:-->每天最大 API 请求数：</strong> 10,000</li>
+</ul>
+
+<h2 id="libraries"><!--@Google API client libraries-->Google APIs 客户端库</h2>
+
+<p>
+<!--@You may use the REST interface defined here
+to access Google Cloud Messaging for Chrome from your application.
+We also offer Google API client libraries for a number
+of popular programming languages that can be used to access the API.
+For more information, see-->
+您可以使用这里定义的 REST 接口在您的应用程序中访问 Chrome 浏览器的 Google
+云消息服务，我们还为几种可以用来访问该 API 的流行语言提供了 Google API
+客户端库。有关更多信息，请参见
+<a href="https://developers.google.com/api-client-library">Google APIs <!--@Client Libraries-->客户端库</a><!--@.-->。
+</p>
+
+<h2 id="insert"><!--@Insert method-->insert 方法</h2>
+
+<p>
+<!--@The--> <code>gcm_for_chrome.messages.insert</code>
+<!--@method sends a message to your app or extension user.-->
+方法向您的应用程序或扩展程序用户发送消息。
+</p>
+
+<h2 id="authorization"><!--@Authentication-->认证</h2>
+
+<p>
+<!--@Authentication is required to send messages to users.
+<a href="https://developers.google.com/accounts/docs/OAuth2WebServer">Using OAuth 2.0 for Web Server Applications</a>
+describes this in greater detail.-->
+向用户发送消息之前首先需要认证。<a href="https://developers.google.com/accounts/docs/OAuth2WebServer">在
+Web 服务器应用程序中使用 OAuth 2.0</a> 详细描述了这一步。
+</p>
+
+<h3 id="url">URL</h3>
+
+<p>
+<!--@The URL used to obtain access to the GCM for Chrome service:-->
+用来获取对 GCM 服务的访问的 URL 为：<code
+>https://accounts.google.com/o/auth2/auth</code><!--@.-->。
+</p>
+
+<h3 id="parameters"><!--@Required parameters-->必选参数</h3>
+<p>
+<!--@The required set of query string parameters are:-->
+查询字符串的必选参数为：
+</p>
+
+<table>
+  <tr>
+    <th scope="col"><!--@Parameter-->参数</th>
+    <th scope="col"><!--@Description-->描述</th>
+  </tr>
+  <tr>
+    <td><code>client_id</code></td>
+    <td><!--@Indicates the app or extension client that is making the request.
+    Obtained from the-->
+    表示发送请求的应用程序或扩展程序，可以从
+    <a href="https://code.google.com/apis/console/">Google APIs <!--@Console-->控制台</a><!--@;
+    the parameter value must exactly match the client ID shown
+    in the console.-->获取，参数值必须完全匹配控制台中显示的客户端标识符。
+    </td>
+  </tr>
+  <tr>
+    <td><code>client_secret</code></td>
+    <td><!--@The client secret obtained during registration in-->
+    在
+    	<a href="https://code.google.com/apis/console/">Google APIs <!--@Console-->控制台</a><!--@.-->注册的过程中获取的客户端密钥。</td>
+  </tr>
+  <tr>
+    <td><code>refresh_token</code></td>
+    <td><!--@Token associated with app or extension used to obtain new access token.-->
+    与应用或扩展程序相关联的令牌，用于获取新的访问令牌。
+    </td>
+  </tr>
+  <tr>
+    <td><code>grant_type</code></td>
+    <td><!--@The <code>authorization_code</code> value of <code>refresh_token</code>.-->
+    <code>refresh_token</code> 的 <code>authorization_code</code> 值。
+    </td>
+  </tr>
+</table>
+
+<h3 id="response"><!--@Response-->响应</h3>
+
+<p>
+<!--@The authorization response includes:-->
+认证响应包括：
+</p>
+
+<table>
+  <tr>
+    <th scope="col"><!--@Field-->字段</th>
+    <th scope="col"><!--@Description-->描述</th>
+  </tr>
+  <tr>
+    <td><code>access_token</code></td>
+    <td><!--@Valid token required to access the GCM for Chrome service.-->
+    访问用于 Chrome 浏览器的 GCM 服务所需的有效令牌。
+    </td>
+  </tr>
+  <tr>
+    <td><code>expires_in</code></td>
+    <td><!--@Time until access token expires in seconds.-->
+    访问令牌过期的时间，以秒为单位。
+    </td>
+  </tr>
+  <tr>
+    <td><code>token_type</code></td>
+    <td><!--@The returned token type, <code>Bearer</code>.-->
+    返回的令牌类型：<code>Bearer</code>。
+    </td>
+  </tr>
+</table>
+
+<h2 id="request"><!--@Message request-->消息请求</h2>
+
+<h3 id="http">HTTP <!--@request-->请求</h3>
+
+<p><code>POST https://www.googleapis.com/gcm_for_chrome/v1/messages</code></p>
+
+<h3 id="body"><!--@Request body-->请求正文</h3>
+
+<p>
+<!--@In the request body, supply:-->
+请在请求正文中提供：
+</p>
+
+<table>
+  <tr>
+    <th scope="col"><!--@Parameter-->参数</th>
+    <th scope="col"><!--@Description-->描述</th>
+  </tr>
+  <tr>
+    <td><code>Content-Type</code></td>
+    <td><!--@The request body content type, -->
+    请求正文的内容类型：
+    <code>application/json</code><!--@.-->。</td>
+  </tr>
+  <tr>
+    <td><code>Authorization</code></td>
+    <td><code>Bearer</code> HTTP <!--@header including access token, for example,-->
+    头信息包含访问令牌，例如：
+    <code>Bearer 1/fFBGRNJru1FQd44AzqT3Zg</code><!--@.-->。</td>
+  </tr>
+  <tr>
+    <td><code>channelId</code></td>
+    <td><!--@The app or extension channel ID required to push messages back to the app or extension.-->
+    应用或扩展程序的通道标识符，用来将消息推送回应用或扩展程序。
+    </td>
+  </tr>
+  <tr>
+    <td><code>subchannelId</code></td>
+    <td><!--@The subchannel to send the message on; only values 0-3 are valid.-->
+    发送消息的子通道，只有 0～3 之间的值才有效。
+    </td>
+  </tr>
+  <tr>
+    <td><code>paylooad</code></td>
+    <td><!--@The message body (up to 256 bytes). This should not include any
+      personally identifiable information.-->
+      消息正文（最多 256 字节），不能包含个人识别信息。
+    </td>
+  </tr>
+</table>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>教程：Google Analytics（分析） - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/tut_analytics.html">https://crxdoc-zh.appspot.com/extensions/tut_analytics.html</a><br>
+<b>Title:</b> 教程：Google Analytics（分析） - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 25777<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a  class="level3 selected">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#toc-requirements"
+         data-list-item
+         >要求</a>
+    </li>
+    <li >
+      <a href="#toc-installing"
+         data-list-item
+         >设置跟踪代码</a>
+    </li>
+    <li >
+      <a href="#toc-tracking-pageviews"
+         data-list-item
+         >跟踪浏览</a>
+    </li>
+    <li >
+      <a href="#toc-debugging"
+         data-list-item
+         >监视分析请求</a>
+    </li>
+    <li >
+      <a href="#toc-tracking-events"
+         data-list-item
+         >跟踪事件</a>
+    </li>
+    <li >
+      <a href="#toc-samplecode"
+         data-list-item
+         >示例代码</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Tutorial: Google Analytics-->教程：Google Analytics（分析）</h1>
+
+
+<p>
+  <!--@This tutorial demonstrates using Google Analytics to track the usage of your
+  extension. If you are developing a platform app, see <a
+  href="../apps/analytics.html">Analytics for Apps</a> since apps have different
+  restrictions from extensions.-->
+这一教程演示如何使用 Google Analytics（分析）来追踪您的扩展程序的使用情况。如果您正在开发
+Chrome 应用，请参见<a href="../apps/analytics.html">用于应用的
+Analytics（分析）</a>，应用和扩展程序相比有不同的限制。
+</p>
+
+<h2 id="toc-requirements"><!--@Requirements-->要求</h2>
+<p>
+  <!--@This tutorial expects that you have some familiarity writing extensions for
+  Google Chrome.  If you need information on how to write an extension, please
+  read the <a href="getstarted.html">Getting Started tutorial</a>.-->
+  这一教程要求您对编写 Google Chrome
+  浏览器的扩展程序有一定的了解。如果您需要有关如何编写扩展程序的信息，请阅读<a href="getstarted.html">入门教程</a>。
+</p>
+
+<p>
+  <!--@You will also need a <a href="http://www.google.com/analytics">Google
+  Analytics account</a> set up to track your extension. Note that when setting
+  up the account, you can use any value in the Website's URL field, as your
+  extension will not have an URL of its own.-->
+  您还需要设置一个 <a href="http://www.google.com/analytics">Google
+  Analytics（分析）帐户</a>来追踪您的扩展程序。注意，在设置账户时，您在网站
+  URL 域中可以使用任何值，因为您的扩展程序没有自己的 URL。
+</p>
+
+<p style="text-align: center">
+  <img src="../../developer.chrome.com/static/images/tut_analytics/screenshot01.png"
+       style="width:400px;height:82px;"
+       alt="The analytics setup with info for a chrome extension filled out." />
+</p>
+
+<h2 id="toc-installing"><!--@Installing the tracking code-->设置跟踪代码</h2>
+
+<p>
+  <!--@The standard Google Analytics tracking code snippet fetches a file named
+  <code>ga.js</code> from an SSL protected URL if the current page
+  was loaded using the <code>https://</code> protocol.  <strong>Chrome
+  extensions and applications may <em>only</em> use the SSL-protected version of
+  <code>ga.js</code></strong>. Loading <code>ga.js</code> over insecure HTTP is
+  disallowed by Chrome's default <a href="contentSecurityPolicy.html">Content
+  Security Policy</a>. This, plus the fact that Chrome extensions are hosted
+  under the <code>chrome-extension://</code> schema, requires a slight
+  modification to the usual tracking snippet to pull <code>ga.js</code> directly
+  from <code>https://ssl.google-analytics.com/ga.js</code> instead of the
+  default location.-->
+  如果当前页面使用 <code>https://</code> 协议加载，标准的
+  Google Analytics（分析）代码片段通过受 SSL 保护的 URL
+  获取名为 <code>ga.js</code> 的文件。<strong>Chrome
+  浏览器的扩展程序和应用<em>只能</em>使用受 SSL
+  保护的 <code>ga.js</code></strong>。Chrome 浏览器默认的<a
+  href="contentSecurityPolicy.html">内容安全策略</a>禁止通过不安全的
+  HTTP 加载 <code>ga.js</code>，再加上 Chrome 扩展程序托管在
+  <code>chrome-extension://</code>
+  协议下，所以需要稍微修改一下通常的跟踪代码，直接从
+  <code>https://ssl.google-analytics.com/ga.js</code>
+  而不是默认位置获取 <code>ga.js</code>。
+</p>
+
+<p>
+  <!--@Below is a modified snippet for the
+  -->如下是<a href="http://code.google.com/apis/analytics/docs/tracking/asyncTracking.html"><!--@asynchronous
+  tracking-->异步跟踪 API</a> <!--@(the modified line is bolded):-->修改后的片段（修改的那一行加粗）：
+</p>
+
+<pre data-filename="asyncTracking.js">
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  <strong>ga.src = 'https://ssl.google-analytics.com/ga.js';</strong>
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</pre>
+
+<p>
+  <!--@You'll also need to ensure that your extension has access to load the resource
+  by relaxing the default content security policy. The policy definition in your-->
+  您还需要放宽默认的内容安全策略，确保您的扩展程序能够访问资源。您的
+  <a href="manifest.html"><code>manifest.json</code></a> <!--@might look like:-->
+  中的策略定义可以像下面这样：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  ...,
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
+  ...
+}
+</pre>
+
+<p>
+  <!--@Here is a popup page (<code>popup.html</code>) which loads the asynchronous
+  tracking code via an external JavaScript file (<code>popup.js</code>) and
+  tracks a single page view:-->
+  如下是一个弹出内容的网页（<code>popup.html</code>），通过外部的
+  JavaScript 文件（<code>popup.js</code>）加载异步跟踪代码，并跟踪一次浏览：
+</p>
+
+<pre data-filename="popup.html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+   ...
+  &lt;script src="popup.js"&gt;&lt;/script&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+   ...
+ &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+
+<pre data-filename="popup.js">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-X']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = 'https://ssl.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</pre>
+
+<p>
+  <!--@Keep in mind that the string-->一定记得 <code>UA-XXXXXXXX-X</code> <!--@should be replaced
+  with your own Google Analytics account number.-->
+  字符串应该替换为您自己的 Google Analytics（分析）帐号。
+</p>
+
+<h2 id="toc-tracking-pageviews"><!--@Tracking page views-->跟踪浏览</h2>
+
+<p>
+  <!--@The--> <code>_gaq.push(['_trackPageview']);</code> <!--@code will track a single
+  page view.  This code may be used on any page in your extension.  When
+  placed on a background page, it will register a view once per browser
+  session.  When placed on a popup, it will register a view once every time
+  the popup is opened.-->
+  代码将跟踪一次浏览，这一代码可以用在您的扩展程序中的任何一个页面中。放在后台网页中，则每一次浏览器会话记录一次访问。放在弹出内容中，则每一次打开弹出内容记录一次访问。
+</p>
+
+<p>
+  <!--@By looking at the page view data for each page in your extension, you can
+  get an idea of how many times your users interact with your extension per
+  browser session:-->
+  通过查看您的扩展程序中的每一个页面的浏览数据，您可以了解用户每一次浏览器会话与您的扩展程序有多少次交互。
+</p>
+
+<p style="text-align: center">
+  <img src="../../developer.chrome.com/static/images/tut_analytics/screenshot02.png"
+       style="width:300px;height:119px;"
+       alt="Analytics view of the top content for a site." />
+</p>
+
+<h2 id="toc-debugging"><!--@Monitoring analytics requests-->监视分析请求</h2>
+
+<p>
+  <!--@To ensure that tracking data from your extension is being sent to Google
+  Analytics, you can inspect the pages of your extension in the
+  Developer Tools window (see the
+  -->要确保来自您的扩展程序的跟踪数据发送到了
+  Google Analytics（分析），您可以在开发者工具窗口中审查您的扩展程序页面（有关更多信息请参见<a
+  href="tut_debugging.html"><!--@debugging tutorial-->调试教程</a><!--@ for more information).
+  As the following figure shows, you should see requests for a file named-->）。如下图所示，如果一切设置妥当，您应该看到文件名为
+  <strong>__utm.gif</strong> <!--@if everything is set up correctly.-->
+  的请求。
+</p>
+
+<p style="text-align: center">
+  <img src="../../developer.chrome.com/static/images/tut_analytics/screenshot04.png"
+       style="width:683px;height:418px;"
+       alt="Developer Tools window showing the __utm.gif request" />
+</p>
+
+<h2 id="toc-tracking-events"><!--@Tracking events-->跟踪事件</h2>
+
+<p>
+  <!--@By configuring event tracking, you can determine which parts of your
+  extension your users interact with the most.  For example, if you have
+  three buttons users may click:-->
+  通过配置事件跟踪，您可以确定您的用户与您的扩展程序的哪一部分交互最多。例如，如果您有三个按钮供用户单击：
+</p>
+
+<pre>
+  &lt;button id='button1'&gt;Button 1&lt;/button&gt;
+  &lt;button id='button2'&gt;Button 2&lt;/button&gt;
+  &lt;button id='button3'&gt;Button 3&lt;/button&gt;
+</pre>
+
+<p>
+  <!--@Write a function that sends click events to Google Analytics:-->
+  编写一个函数，向 Google Analytics（分析）发送单击事件：
+</p>
+
+<pre>
+  function trackButton(e) {
+    _gaq.push(['_trackEvent', e.target.id, 'clicked']);
+  };
+</pre>
+
+<p>
+  <!--@And use it as an event handler for each button's click:-->
+  并使用它作为每一个按钮单击的事件处理函数：
+</p>
+
+<pre>
+  var buttons = document.querySelectorAll('button');
+  for (var i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', trackButtonClick);
+  }
+</pre>
+
+<p>
+  <!--@The Google Analytics event tracking overview page will give you metrics
+  regarding how many times each individual button is clicked:-->
+  Google Analytics（分析）事件跟踪概览页面将为您提供每一个按钮单击次数的度量：
+</p>
+
+<p style="text-align: center">
+  <img src="../../developer.chrome.com/static/images/tut_analytics/screenshot03.png"
+       style="width:300px;height:482px;"
+       alt="Analytics view of the event tracking data for a site." />
+</p>
+
+<p>
+  <!--@By using this approach, you can see which parts of your extension are
+  under-or-overutilized.  This information can help guide decisions about UI
+  redesigns or additional functionality to implement.-->
+  使用这种方法，您可以看到您的扩展程序的哪些部分利用太多或太少，这一信息可以帮助您指导有关重新设计用户界面或者实现额外功能的决定。
+</p>
+
+<p>
+  <!--@For more information about using event tracking, see the
+  Google Analytics
+  <a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide">developer
+  documentation</a>.-->
+  有关使用事件跟踪的更多信息，请参见 Google Analytics（分析）的<a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide">开发者文档</a>。
+</p>
+
+<h2 id="toc-samplecode"><!--@Sample code-->示例代码</h2>
+
+<p>
+  <!--@A sample extension that uses these techniques is
+  available in the Chromium source tree:-->
+  使用这些技术的示例扩展程序在 Chromium 源代码树中的以下位置可用：
+</p>
+
+<blockquote>
+  <a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/tutorials/analytics/">.../examples/tutorials/analytics/</a>
+</blockquote>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

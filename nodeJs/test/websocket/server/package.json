@@ -1,0 +1,17 @@
+{
+	"name": "webchat",
+	"version": "1.0.0",
+	"description": "webchat",
+	"main": "webchat.js",
+	"author": {
+		"name": "ihandy",
+		"email": "yeshaopeng@ihandy.cn"
+	},
+	"dependencies": {
+		"ws": ">= 0.0.0"
+	},
+	"keywords": [
+		"webchat"
+	],
+	"readmeFilename": "README.md"
+}

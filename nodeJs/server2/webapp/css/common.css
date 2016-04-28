@@ -1,0 +1,605 @@
+﻿/**
+*通用样式，存放公共组件，按钮，文本框等自定义样式
+**/
+
+/*文字排版*/
+.toe{
+    text-overflow:ellipsis;
+}
+.tl{
+    text-align: left;
+}
+.tac{
+    text-align: center;
+}
+.tr{
+    text-align: right;
+}
+.ti2{
+    text-indent: 2em;
+}
+/*字体大小*/
+.fts16{
+    font-size:1.6rem;
+}
+.fts18{
+    font-size:1.8rem;
+}
+
+.fts20{
+    font-size:2.0rem;
+}
+.fts24{
+    font-size:2.4rem;
+}
+.fts26{
+    font-size:2.6rem;
+}
+.fts28{
+    font-size:2.8rem;
+}
+.fts30{
+    font-size:3.0rem;
+}
+.fts32{
+    font-size:3.2rem;
+}
+.fts36{
+    font-size:3.6rem
+}
+.fts38{
+    font-size:3.8rem
+}
+.fts40{
+    font-size: 4.0rem
+}
+.fts48{
+    font-size: 4.8rem
+}
+.ftwb{
+    font-weight: bold;
+}
+/*
+*布局
+*/
+.va_top{
+    vertical-align: top
+}
+/*垂直居中*/
+.va_middle{
+    vertical-align: middle
+}
+.va_bottom{
+    vertical-align:bottom
+}
+
+.dp_none{
+   display: none; 
+}
+.dp_block{
+    display: block;
+}
+.dp_inline_block{
+    display: inline-block;
+}
+.dp_table_cell{
+    display:table-cell;
+}
+/*用在固定宽度的块级元素居中*/
+.center{
+    margin-left:auto;
+    margin-right:auto;
+}
+/*
+*外边距
+*/
+.margin_bottom_1{
+    margin-bottom: 1.2rem;
+}
+.margin_bottom_2{
+    margin-bottom: 2.4rem;
+}
+.margin_right_1{
+    margin-right:2.4rem;
+}
+.margin_right_2{
+    margin-right:4.8rem;
+}
+.margin_left_2{
+    margin-left: 2.4rem;
+}
+.margin_top_1{
+    margin-top: 1.2rem;
+}
+.margin_left_1{
+    margin-left: 1.2rem;
+}
+/*
+*内边距
+*/
+.padding_right_1{
+    padding-right:2.4rem;
+}
+.padding_right_2{
+    
+}
+.padding_right_3{
+    
+}
+.padding_left_1{
+    padding-left:2.4rem;
+}
+.padding_left_2{
+    padding-left:5.2rem;
+}
+.padding_left_3{
+     padding-left:4rem;
+}
+.padding_bottom_1{
+    padding-bottom: 1.2rem;
+}
+
+/*浮动*/
+.fl{
+    float: left;
+}
+.fr{
+    float: right;
+}
+.cb{
+    clear: both;
+}
+.clearfix:after { 
+    content: "."; 
+    visibility: hidden; 
+    display: block; 
+    height: 0;
+    clear: both;
+ }
+  
+
+/*分栏,整个页面分为12栏/
+/*每栏之间的标准间隔为2%*/
+.col1{width:6.5%;}
+.col2{width: 15%;}
+.col3{width: 23.5%;}
+.col4{width: 32%;}
+.col5{width: 40.5%;}
+.col6{width: 49%;}
+.col7{width: 57.5%;}
+.col8{width: 66%;}
+.col9{width: 74.5%;}
+.col10{width: 83%;}
+.col11{width: 91.5%;}
+.col12{width: 100%;}
+.colMR { margin-right:2%}
+/*
+*行数，一行固定高度为1倍em
+*/
+.row1{
+    height: 2em;
+    line-height: 2em;
+}
+.row1_5{
+    height: 3em;
+    line-height: 3em;
+}
+.row2{
+    height: 4em;
+    line-height: 2em;
+}
+.row3{
+    height: 6em;
+    line-height: 2em;
+}
+.row4{
+    height: 8em;
+    line-height: 2em;
+}
+.row5{
+    height: 10em;
+    line-height: 2em;
+}
+.row6{
+    height: 12em;
+    line-height: 2em;
+}
+/*
+*重新定义box-sizing
+*/
+*{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+/**
+*背景颜色
+*/
+.bg_lightgrey{
+    background: rgb(240,240,240);
+}
+.bg_gray{
+    background: rgb(231,231,231);
+}
+.bg_blue{
+    background: rgb(0,114,232);
+}
+.bg_or{
+    background: rgb(242,109,4);
+}
+.bg_yellow{
+    background: rgb(231,202,0)
+}
+.bg_green{
+    background: rgb(144,195,30);
+}
+.bg_white{
+    background: white;
+}
+/**
+*字体颜色
+*/
+.color60{
+    color: rgb(60,60,60)
+}
+.color100{
+    color: rgb(100,100,100)
+}
+.color180{
+    color: rgb(180,180,180)
+}
+.color_yellow{
+    color:rgb(231,202,0)
+}
+.color_white{
+    color: white
+}
+.color_green{
+    color:  rgb(144,195,30);
+}
+.color_graygreen{
+    color:rgb(81,183,133);
+}
+
+.color_or{
+    color: rgb(242,109,4);
+}
+.color_or1{
+    color: rgb(251,102,0);
+}
+.color_blue{
+    color:  rgb(0,114,232);
+}
+.color_6{
+    color: rgb(60,60,60)
+}
+/*
+*公共组件样式
+*/
+.page{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top:0;
+    transform:translate(0,-100%); 
+    -webkit-transform:translate(0,-100%); 
+    left:0;
+    opacity:0;
+    background-color: rgb(231,231,231);
+}
+.header{
+    font-size: 4rem;
+    height: 2em;
+    line-height: 2em;
+    padding-left: 0.5em;
+    background: rgb(242,109,4);
+    color: white;
+    position: relative;
+}
+.header .arrow{
+    float: left;
+    text-align: left;
+    width: 2.5em;
+}
+.header .heading{
+    text-align: center;
+    width: 10em;
+    float: left;
+}
+.header .menu_button{
+    float: right;
+    text-align: right;
+    width: 2em;
+    margin-right: 0.5em
+}
+/*
+*wrapper
+*/
+.wrapper{
+    position: absolute;
+    top:4em;
+    font-size: 2rem;
+    bottom: 0px;
+    overflow-x:hidden;
+    overflow-y:auto;
+    width: 100%;
+    transition:top 0.2s linear 0;
+}
+/*
+*按钮样式
+*/
+.button{
+    text-align: center;
+    display: inline-block;
+}
+.button_graygreen{
+    color:rgb(81,183,133);
+    border:solid 1px rgb(81,183,133);
+}
+.button_yellow{
+    color:rgb(231,202,0);
+    border:solid 1px rgb(231,202,0);
+}
+.button_green{
+    color:  rgb(144,195,30);
+    border:solid 1px rgb(144,195,30);
+}
+.button_or{
+    color: rgb(242,109,4);
+    border:solid 1px rgb(242,109,4);
+}
+.button_blue{
+    color:  rgb(0,114,232);
+    border:solid 1px rgb(0,114,232);
+}
+   
+/*
+*按钮大小
+*/
+.small{
+    width: 10rem;
+}
+.middle{
+    width: 12.5rem;
+}
+.big{
+    width: 31.5rem;
+}
+.biger{
+    width: 39rem;
+}
+
+/*
+*常用布局
+*/
+.common_layout{
+    margin-right:2.4rem;
+    margin-left:2.4rem;
+    border-radius: 5px;
+    border:solid 1px rgb(220,220,220);
+    background: white;
+
+}
+/*
+*常用边框线
+*/
+.border{
+    border:solid 1px rgb(220,220,220);
+}
+.border_top{
+    border-top:solid 1px rgb(220,220,220);
+}
+.border_bottom{
+     border-bottom:solid 1px rgb(220,220,220);
+}
+.border_right{
+     border-right:solid 1px rgb(220,220,220);
+}
+.border_top{
+     border-top:solid 1px rgb(220,220,220);
+}
+/*
+*边框颜色
+*/
+
+.border_color_220{/*灰色*/
+     border-color:rgb(220,220,220);
+}
+.border_color_yellow{
+    border-color:rgb(231,202,0);
+}
+.border_color_green{
+    border-color:  rgb(144,195,30);
+}
+.border_color_or{/*橘红色*/
+    border-color: rgb(242,109,4);
+}
+.border_color_blue{
+    border-color:  rgb(0,114,232);
+}
+/*
+*边框圆角
+*/
+
+.br_5{
+    border-radius:5px;
+}
+
+.br_10{
+    border-radius:10px;
+}
+
+.border_5p{
+    border-radius:5%;
+}
+.border_10p{
+     border-radius:10%;
+}
+
+/**
+*下拉列表 宽度具体到各个页面自己指定  给最上层的div加宽度即可
+*html:<div class="select"></div> 即可 要结合js
+**/
+.select{
+   
+   
+}
+.select .select_content{ 
+    border-radius:10px; 
+    border:solid 1px rgb(220,220,220); 
+    padding-left:1em;
+    height: 2em;
+    line-height: 2em;
+    background: white;
+
+}
+.select .select_content::after{
+    content: url(../img/arrow_down.png);
+    height:100%;
+    float: right;
+    vertical-align: middle;
+    padding-right:1em; 
+}
+.select ul.select_list{
+    position: absolute;
+    z-index:999;
+    background: white;
+    width: 100%;
+    text-align: left;
+    line-height: 2em;
+    display: none
+}
+.select ul.select_list li{
+    width: 100%;
+    text-align: left;
+    line-height: 2em;
+    height: 2em;
+    padding-left:1em;
+}
+
+/*
+*左上角菜单
+*/
+input[type='checkbox'].menu_button{
+    font-size: inherit;
+    display: block;
+    position: absolute;
+    z-index: 99;
+    right: 0;
+    top: 0;
+    height: 100%;
+    opacity: 0;
+}
+ul.menu{
+    display: none;
+    width: 33%;
+    position: absolute;
+    top:100%;
+    background: white;
+    right: 0;
+    z-index: 9999;
+}
+ul.menu li{
+     background: rgb(242,109,4);
+     margin-top: 2px;
+     height: 3em;
+     line-height: 3em;
+     font-size: 2.2rem;
+     text-align: center;
+}
+input[type='checkbox'].menu_button:checked ~ ul.menu{
+    display: block;
+}
+/*
+*服务类型logo
+*/
+.service_type{
+    background: url("../img/service_logo.png") no-repeat;
+    font-size: 2rem;
+    width: 4.5em;
+    height: 4.5em;
+}
+.service_type_1{
+    
+} 
+.service_type_2{
+    background-position: top right
+}
+.service_type_3{
+    background-position: 0px -140px
+}
+.service_type_4{
+    background-position: -210px -140px
+}
+.service_type_5{
+    background-position: 0px -280px
+}
+
+.service_type_6{
+    background-position: -210px -280px
+}
+.service_type_7{
+   background-position: 0px -420px 
+}
+.service_type_8{
+    background-position: -210px -420px
+}
+.service_type_9{
+    background-position: bottom left
+}
+.service_type_10{
+    background-position: bottom right
+}
+
+/*
+*右箭头
+*/
+.arrow_right{
+    display: inline-block;
+    width: 14px;
+    height: 24px;
+    background: url("../img/arrow.png") no-repeat center left;
+}
+
+.part_a{
+    background: white;
+    font-size: 2.4rem;
+    padding-bottom: 1.5em
+}
+
+.part_a>h5{
+    color: rgb(153,153,153);
+    font-weight: normal;
+    padding:0 1em;
+    line-height: 2.6em;
+    height:2.6em;
+}
+
+.part_a>section>p{
+    line-height: 3em;
+    padding: 0 0.5em 0 1em;
+}
+/*
+*页面最下方的大按钮
+*/
+.ok_button{
+    display: block;
+    height: 3em;
+    line-height: 3em;
+    color:  rgb(242,109,4);
+    background: white;
+    position: absolute;
+    bottom: 0;
+    font-size: 3rem;
+    width: 100%;
+    text-align: center;
+}
+
+/*
+*地标
+*/
+.location::before{
+    content: url("../img/location_green.png");
+    margin-left: -1em;
+    margin-right: 0.3em
+}

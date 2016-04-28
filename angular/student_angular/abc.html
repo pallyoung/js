@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<script src="angular.js"></script>
+<script src="jQuery_1_10_2.js"></script>
+<script src="student.js" charset="utf-8"></script>
+<script src="abc.js" charset="utf-8"></script>
+<script src="studentController.js" charset="utf-8"></script>
+<style type="text/css">
+.abc_name{color: red;}
+</style>
+  <title>JS Bin</title>
+</head>
+<body ng-app="docsBindExample">
+
+    <div ng-controller="getStuInfo">
+  name <input ng-model='stu.name' class="abc_name"> <br/>
+  sex <input ng-model='stu.sex' class="abc_sex"> <br/>
+  birthday <input ng-model='stu.birthday' class="abc_birthday"> <br/>
+  {{stu.getInfo()}}<br/>
+  {{getStuInfo()}}<br/>
+  1<span ng-bind="stu.name"></span> <br/>
+  2<span ng:bind="stu.name"></span> <br/>
+  3<span ng_bind="stu.name"></span> <br/>
+  4<span data-ng-bind="stu.name"></span> <br/>
+  5<span x-ng-bind="stu.name"></span> <br/>
+  6{{stu.name}}
+  
+</div>
+</body>
+12{{stu.getInfo()}}3<br/>
+<button onclick="next()">next</button>
+</html>

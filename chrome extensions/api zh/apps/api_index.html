@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Chrome 平台 API - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/api_index.html">https://crxdoc-zh.appspot.com/apps/api_index.html</a><br>
+<b>Title:</b> Chrome 平台 API - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 31656<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a  class="level3 selected">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#stable_apis"
+         data-list-item
+         >稳定的 API</a>
+    </li>
+    <li >
+      <a href="#beta_apis"
+         data-list-item
+         >Beta 测试的 API</a>
+    </li>
+    <li >
+      <a href="#dev_apis"
+         data-list-item
+         >开发中的 API</a>
+    </li>
+    <li >
+      <a href="#experimental"
+         data-list-item
+         >实验性 API</a>
+    </li>
+    <li >
+      <a href="#conventions"
+         data-list-item
+         >API 规范</a>
+    </li>
+  </ol>
+</div>
+
+<h1 class="page_title">Chrome <!--@Platform APIs-->平台 API</h1>
+<p class="doc-family apps">
+<!--@Chrome provides apps with many special-purpose APIs like
+<code>chrome.runtime</code> and <code>chrome.alarms</code>.-->
+Chrome 浏览器为应用提供了许多专用 API，例如
+<code>chrome.runtime</code> 与 <code>chrome.alarms</code>。
+</p>
+
+<h2 id="stable_apis"><!--@Stable APIs-->稳定的 API</h2>
+<p>
+<table>
+  <tr><th><!--@Name-->名称</th><th><!--@Description-->描述</th><th style="white-space:nowrap;"><!--@Since-->最低版本</th></tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/alarms.html">alarms</a></td>
+     <td> <!--@Use the <code>chrome.alarms</code> API to schedule code to run periodically or at a specified time in the future.--> 使用 <code>chrome.alarms</code> API 安排代码周期性地或者在将来的指定时间运行。</td>
+     <td style="text-align:center;">22</td>
+   </tr>
+   <tr>
+     <td><a href="app.runtime.html">app.runtime</a></td>
+     <td> <!--@Use the <code>chrome.app.runtime</code> API to manage the app lifecycle. The app runtime manages app installation, controls the event page, and can shut down the app at anytime.--> 使用 <code>chrome.app.runtime</code> API 管理应用的生命周期。应用运行时环境管理应用的安装，控制事件页面，并且可以在任何时候关闭应用。</td>
+     <td style="text-align:center;">23</td>
+   </tr>
+   <tr>
+     <td><a href="app.window.html">app.window</a></td>
+     <td> <!--@Use the <code>chrome.app.window</code> API to create windows. Windows have an optional frame with title bar and size controls. They are not associated with any Chrome browser windows.--> 使用 <code>chrome.app.window</code> API 创建窗口。窗口可以有框架，包含标题栏和大小控件，它们不和任何 Chrome 浏览器窗口关联。</td>
+     <td style="text-align:center;">23</td>
+   </tr>
+   <tr>
+     <td><a href="contextMenus.html">contextMenus</a></td>
+     <td>使用 <code>chrome.contextMenus</code> API 向 Google Chrome 浏览器的右键菜单添加项目。您可以选择您在右键菜单中添加的项目应用于哪些类型的对象，例如图片、超链接和页面。</td>
+     <td style="text-align:center;">6</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/events.html">events</a></td>
+     <td>使用 <code>chrome.events</code> API 使您在感兴趣的事情发生时得到通知。</td>
+     <td style="text-align:center;">21</td>
+   </tr>
+   <tr>
+     <td><a href="fileSystem.html">fileSystem</a></td>
+     <td> <!--@Use the <code>chrome.fileSystem</code> API to create, read, navigate, and write to a sandboxed section of the user's local file system. With this API, Chrome Apps can read and write to a user-selected location. For example, a text editor app can use the API to read and write local documents. All failures are notified via chrome.runtime.lastError.--> 使用 <code>chrome.fileSystem</code> API 创建、读取、浏览与写入用户本地文件系统中经过沙盒屏蔽的一个区域。使用该 API，Chrome 应用可以读取和写入用户选定的位置，例如文本编辑应用可以使用该 API 读取和写入本地文档。所有失败信息都通过 $ref:runtime.lastError 通知。</td>
+     <td style="text-align:center;">23</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/i18n.html">i18n</a></td>
+     <td>使用 <code>chrome.i18n</code> 架构为您的整个应用或扩展程序实现国际化支持。</td>
+     <td style="text-align:center;">5</td>
+   </tr>
+   <tr>
+     <td><a href="identity.html">identity</a></td>
+     <td> <!--@Use the <code>chrome.identity</code> API to get OAuth2 access tokens.--> 使用 <code>chrome.identity</code> API 获取 OAuth2 访问令牌。</td>
+     <td style="text-align:center;">29</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/idle.html">idle</a></td>
+     <td>使用 <code>chrome.idle</code> API 检测计算机空闲状态的更改。</td>
+     <td style="text-align:center;">6</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/mediaGalleries.html">mediaGalleries</a></td>
+     <td> <!--@Use the <code>chrome.mediaGalleries</code> API to access media files (images, video, audio) from the user's local disks (with the user's consent).--> 使用 <code>chrome.mediaGalleries</code> API 从用户的本地磁盘（包含用户内容）中访问媒体文件（图片、视频、音频）。</td>
+     <td style="text-align:center;">23</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/notifications.html">notifications</a></td>
+     <td> <!--@Use the <code>chrome.notifications</code> API to create rich notifications using templates and show these notifications to users in the system tray.--> 使用 <code>chrome.notifications</code> API 通过模板创建丰富通知，并在系统托盘中向用户显示这些通知。</td>
+     <td style="text-align:center;">28</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/permissions.html">permissions</a></td>
+     <td>使用 <code>chrome.permissions</code> API 在运行时而不是安装时请求<a href="#manifest">声明的可选权限</a>，这样用户可以理解为什么需要这些权限，并且仅在必要时授予这些权限。</td>
+     <td style="text-align:center;">16</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/power.html">power</a></td>
+     <td> <!--@Use the <code>chrome.power</code> API to override the system's power management features.--> 使用 <code>chrome.power</code> API 修改系统的电源管理特性。</td>
+     <td style="text-align:center;">27</td>
+   </tr>
+   <tr>
+     <td><a href="pushMessaging.html">pushMessaging</a></td>
+     <td> <!--@Use <code>chrome.pushMessaging</code> to enable apps and extensions to receive message data sent through <a href="cloudMessaging.html">Google Cloud Messaging</a>.--> 使用 <code>chrome.pushMessaging</code> 使应用或扩展程序能够接收通过 <a href="cloudMessaging.html">Google 云消息服务</a>发送的消息数据。</td>
+     <td style="text-align:center;">24</td>
+   </tr>
+   <tr>
+     <td><a href="runtime.html">runtime</a></td>
+     <td>使用 <code>chrome.runtime</code> API 获取后台页面、返回清单文件的详情、监听并响应应用或扩展程序生命周期内的事件，您还可以使用该 API 将相对路径的 URL 转换为完全限定的 URL。</td>
+     <td style="text-align:center;">22</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/serial.html">serial</a></td>
+     <td> <!--@Use the <code>chrome.serial</code> API to read from and write to a device connected to a serial port.--> 使用 <code>chrome.serial</code> API 读取和写入连接到串行端口的设备。</td>
+     <td style="text-align:center;">23</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/socket.html">socket</a></td>
+     <td> <!--@Use the <code>chrome.socket</code> API to send and receive data over the network using TCP and UDP connections.--> 使用 <code>chrome.socket</code> API 使用 TCP 和 UDP 连接通过网络发送和接收数据。</td>
+     <td style="text-align:center;">24</td>
+   </tr>
+   <tr>
+     <td><a href="storage.html">storage</a></td>
+     <td>使用 <code>chrome.storage</code> API 存储、获取用户数据，追踪用户数据的更改。</td>
+     <td style="text-align:center;">20</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/syncFileSystem.html">syncFileSystem</a></td>
+     <td> <!--@Use the <code>chrome.syncFileSystem</code> API to save and synchronize data on Google Drive. This API is NOT for accessing arbitrary user docs stored in Google Drive. It provides app-specific syncable storage for offline and caching usage so that the same data can be available across different clients. Read <a href="app_storage.html">Manage Data</a> for more on using this API.--> 使用 <code>chrome.syncFileSystem</code> API 在 Google 云端硬盘上保存和同步数据。该 API <em>并不是</em>用来访问存储在 Google 云端硬盘上的任何用户文档的，它提供了应用专用的可同步存储，用于离线和缓存用途，这样同样的数据就可以在不同的客户端间使用。有关使用该 API 的更多信息，请阅读<a href="app_storage.html">管理数据</a>。</td>
+     <td style="text-align:center;">27</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/system.display.html">system.display</a></td>
+     <td> <!--@Use the-->使用 <code>system.display</code> API <!--@to query display metadata.-->查询显示器的元数据。</td>
+     <td style="text-align:center;">30</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/system.storage.html">system.storage</a></td>
+     <td> <!--@Use the <code>chrome.system.storage</code> API to query storage device information and be notified when a removable storage device is attached and detached.--> 使用 <code>chrome.system.storage</code> API 查询存储设备信息，并在连接或移除可移动存储设备时得到通知。</td>
+     <td style="text-align:center;">30</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/tts.html">tts</a></td>
+     <td>使用 <code>chrome.tts</code> API 播放合成的文字语音转换（TTS），同时请您参见相关的 <a href='../extensions/ttsEngine.html'>ttsEngine</a> API，允许扩展程序实现语音引擎。</td>
+     <td style="text-align:center;">14</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/types.html">types</a></td>
+     <td><code>chrome.types</code> API 包含用于 Chrome 浏览器的类型声明。</td>
+     <td style="text-align:center;">13</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/usb.html">usb</a></td>
+     <td> <!--@Use the <code>chrome.usb</code> API to interact with connected USB devices. This API provides access to USB operations from within the context of an app. Using this API, apps can function as drivers for hardware devices.--> 使用 <code>chrome.usb</code> API 与已连接的 USB 设备交互。该 API 提供了在应用的环境中进行 USB 操作的能力，通过该 API 应用可以作为硬件设备的驱动程序使用。</td>
+     <td style="text-align:center;">26</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/webstore.html">webstore</a></td>
+     <td>使用 <code>chrome.webstore</code> API 从您的站点上“内嵌”安装应用程序与扩展程序。</td>
+     <td style="text-align:center;">15</td>
+   </tr>
+</table>
+</p>
+
+<h2 id="beta_apis"><!--@Beta APIs-->Beta 测试的 API</h2>
+<p><!--@These APIs are only available in the Chrome Beta and Dev channels:-->
+这些 API 仅在 Beta 与 Dev 分支的 Chrome 浏览器中可用：
+<table>
+  <tr><th><!--@Name-->名称</th><th><!--@Description-->描述</th></tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/system.cpu.html">system.cpu</a></td>
+     <td> <!--@Use the <code>system.cpu</code> API to query CPU metadata.--> 使用 <code>systemInfo.cpu</code> API 查询 CPU 元数据。</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/system.memory.html">system.memory</a></td>
+     <td> <!--@The--> <code>chrome.system.memory</code> API<!--@.-->。</td>
+   </tr>
+</table>
+</p>
+
+<h2 id="dev_apis"><!--@Dev APIs-->开发中的 API</h2>
+<p><!--@These APIs are only available in the Chrome Dev channel:-->
+这些 API 仅在 Dev 分支的 Chrome 浏览器中可用：
+<table>
+  <tr><th><!--@Name-->名称</th><th><!--@Description-->描述</th></tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/audio.html">audio</a></td>
+     <td> <!--@The <code>chrome.audio</code> API is provided to allow users to get information about and control the audio devices attached to the system. This API is currently only implemented for ChromeOS.--> <code>chrome.audio</code> API 允许用户获取连接到系统的音频设备信息，并控制它们。目前该 API 仅在 Chrome OS 上实现。</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/bluetooth.html">bluetooth</a></td>
+     <td> <!--@Use the <code>chrome.bluetooth</code> API to connect to a Bluetooth device.--> 使用 <code>chrome.bluetooth</code> API 连接到蓝牙设备。</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/gcm.html">gcm</a></td>
+     <td>使用 <code>chrome.gcm</code> 通过 <a href='https://developer.android.com/google/gcm/index.html'>Google Cloud Messaging for Android</a> 在应用和扩展程序中发送和接收消息。</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/location.html">location</a></td>
+     <td> <!--@Use the-->使用 <code>chrome.location</code> API <!--@to retrieve the geographic location of the host machine. This API is a version of the <a href="http://dev.w3.org/geo/api/spec-source.html">HTML Geolocation API</a> that is compatible with event pages.--> 获取计算机的地理位置。该 API 是 <a href="http://dev.w3.org/geo/api/spec-source.html">HTML 地理定位 API</a> 的另一种版本，与事件页面兼容。</td>
+   </tr>
+   <tr>
+     <td><a href="https://crxdoc-zh.appspot.com/apps/wallpaper.html">wallpaper</a></td>
+     <td>使用 <code>chrome.wallpaper</code> API 更改 ChromeOS 壁纸。</td>
+   </tr>
+</table>
+</p>
+
+<h2 id="experimental"><!--@Experimental APIs-->实验性 API</h2>
+<p>
+<!--@Chrome also has
+<a href="https://crxdoc-zh.appspot.com/apps/experimental.html">experimental APIs</a>,
+some of which will become supported APIs
+in future releases of Chrome.-->
+Chrome 浏览器还有<a href="https://crxdoc-zh.appspot.com/apps/experimental.html">实验性
+API</a>，其中一部分可能会在将来版本的 Chrome 浏览器中支持。
+</p>
+
+<h2 id="conventions"><!--@API conventions-->API 规范</h2>
+
+<p>
+<!--@Unless the doc says otherwise,
+methods in the chrome.* APIs are <b>asynchronous</b>:
+they return immediately,
+without waiting for the operation to finish.
+If you need to know the outcome of an operation,
+then you pass a callback function into the method.
+For more information, watch this video:-->
+除非文档中另外提到，chrome.* API
+中的方法通常是<b>异步</b>的：它们不等待操作完成就立即返回。如果您需要知道某个操作的结果，您应该向方法传递一个回调函数。有关更多信息，请观看如下视频（英文）：
+</p>
+
+<p class="doc-family extensions">
+<iframe title="YouTube video player" width="640" height="390" src="https://www.youtube.com/embed/bmxr75CV36A?rel=0" frameborder="0" allowfullscreen></iframe>
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

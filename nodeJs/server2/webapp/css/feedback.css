@@ -1,0 +1,33 @@
+#feedback .feedback-button {
+  bottom: 0;
+  color: #f60;
+  font-size: 30px;
+  width: 100%;
+  background: #fdfefc;
+  height: 72px;
+  line-height: 72px;
+  text-align: center;
+  border-top: 1px solid #dbdbdb;
+}
+
+#feedback .feedback-block {
+  background: #fefdfd;
+  padding: 1em;
+}
+
+#feedback .feedback-block h2 {
+  color: #999;
+  line-height: 1em;
+  margin: 1em 0;
+}
+
+#feedback .feedback-block textarea {
+  display: block;
+  width: 90%;
+  height: 10em;
+  padding: 5%;
+  margin: 0;
+  background: #fdfdfe;
+  border: 1px solid #c9c7c7;
+  border-radius: 1em;
+}

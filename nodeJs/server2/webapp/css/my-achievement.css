@@ -1,0 +1,67 @@
+﻿#myachievement .tips{
+    position: absolute;
+    top:2px;
+    right: 2px;
+    background: url("../img/ribbon.png") no-repeat;
+    width: 5.818182em;
+    height:4.2em;
+    font-size: 2.2rem;
+    padding: 0 0.8em;
+    text-align: center;
+    color: white;
+    word-break:break-all;
+    line-height: 1.5em;
+}
+
+#myachievement .achievement{
+    width: 100%;
+    background: white;
+    font-size: 2.4rem;
+    padding-bottom: 1em;
+}
+#myachievement .achievement_info{
+    margin:0.5em 1em 0 1em;
+    border: solid 1px rgb(242,109,4);
+    padding:0.5em 0 ;
+}
+#myachievement .achievement_info p{
+    font-size: 0;
+}
+#myachievement .achievement_info p span{
+    width: 50%;
+    padding: 0 5%;
+    text-align:left; 
+    display: inline-block;
+    font-size: 2.4rem;
+    height:2em;
+    line-height: 2em;
+    font-weight:650;
+    vertical-align: middle;
+}
+#myachievement .achievement_info p i{
+    font-style:normal;
+}
+/*
+*用户评价
+*/
+
+#myachievement .user_evaluation{
+    margin-top: 1em;
+    font-size: 2.4rem;
+    line-height: 3em;
+    height: 3em;
+    background: white;
+    padding: 0 2em;
+}
+#myachievement .user_evaluation span ,.user_evaluation a{
+    display: inline-block;
+    vertical-align: middle;
+}
+#myachievement .user_evaluation span:nth-child(2){
+    text-align: right;
+    color: rgb(196,196,196);
+    font-size: 2.2rem;
+    width: 18em;
+    margin-right: 1em
+
+}

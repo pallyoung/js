@@ -1,0 +1,4114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.webRequest - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/webRequest.html">https://crxdoc-zh.appspot.com/extensions/webRequest.html</a><br>
+<b>Title:</b> chrome.webRequest - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 193673<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.webRequest</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#life_cycle"
+         data-list-item
+         >请求的生命周期</a>
+    </li>
+    <li >
+      <a href="#concepts"
+         data-list-item
+         >概念</a>
+      <ol>
+        <li >
+          <a href="#Request IDs"
+             data-list-item
+             >请求标识符</a>
+        </li>
+        <li >
+          <a href="#subscription"
+             data-list-item
+             >注册事件监听器</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#implementation"
+         data-list-item
+         >实现细节</a>
+      <ol>
+        <li >
+          <a href="#conflict_resolution"
+             data-list-item
+             >冲突的解决</a>
+        </li>
+        <li >
+          <a href="#caching"
+             data-list-item
+             >缓存</a>
+        </li>
+        <li >
+          <a href="#timestamps"
+             data-list-item
+             >时间戳</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-RequestFilter"
+             data-list-item
+             >RequestFilter</a>
+        </li>
+        <li >
+          <a href="#type-HttpHeaders"
+             data-list-item
+             >HttpHeaders</a>
+        </li>
+        <li >
+          <a href="#type-BlockingResponse"
+             data-list-item
+             >BlockingResponse</a>
+        </li>
+        <li >
+          <a href="#type-UploadData"
+             data-list-item
+             >UploadData</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#properties"
+         data-list-item
+         >属性</a>
+      <ol>
+        <li >
+          <a href="#property-MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES"
+             data-list-item
+             >MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-handlerBehaviorChanged"
+             data-list-item
+             >handlerBehaviorChanged        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onBeforeRequest"
+             data-list-item
+             >onBeforeRequest</a>
+        </li>
+        <li >
+          <a href="#event-onBeforeSendHeaders"
+             data-list-item
+             >onBeforeSendHeaders</a>
+        </li>
+        <li >
+          <a href="#event-onSendHeaders"
+             data-list-item
+             >onSendHeaders</a>
+        </li>
+        <li >
+          <a href="#event-onHeadersReceived"
+             data-list-item
+             >onHeadersReceived</a>
+        </li>
+        <li >
+          <a href="#event-onAuthRequired"
+             data-list-item
+             >onAuthRequired</a>
+        </li>
+        <li >
+          <a href="#event-onResponseStarted"
+             data-list-item
+             >onResponseStarted</a>
+        </li>
+        <li >
+          <a href="#event-onBeforeRedirect"
+             data-list-item
+             >onBeforeRedirect</a>
+        </li>
+        <li >
+          <a href="#event-onCompleted"
+             data-list-item
+             >onCompleted</a>
+        </li>
+        <li >
+          <a href="#event-onErrorOccurred"
+             data-list-item
+             >onErrorOccurred</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.webRequest</code> API 监控与分析流量，还可以实时地拦截、阻止或者修改请求。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 17<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "webRequest"
+                </span>
+        <br>
+        <a href="https://crxdoc-zh.appspot.com/extensions/declare_permissions.html#host-permissions">
+        主机权限
+                </a>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+<p><!--@You must declare the "webRequest" permission in the <a
+  href="manifest.html">extension manifest</a> to use the web request
+API, along with <a href="declare_permissions.html">host permissions</a>
+for any hosts whose network requests you want to access. If you want to
+use the web request API in a blocking fashion, you need to request
+the "webRequestBlocking" permission in addition.
+For example:-->
+要使用网络请求 API，您必须在<a
+ href="manifest.html">扩展程序的清单文件</a>中声明 "webRequest"
+ 权限，以及您需要访问网络请求的所有主机的主机权限。如果您需要以阻塞方式使用网络请求
+ API，您还需要另外请求 "webRequestBlocking" 权限。例如：
+</p>
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"permissions": [
+    "webRequest",
+    "*://*.google.com/"
+  ]</b>,
+  ...
+}
+</pre>
+
+<h2 id="life_cycle"><!--@Life cycle of requests-->请求的生命周期</h2>
+
+<p>
+<!--@The web request API defines a set of events that follow the life cycle of a web
+request. You can use these events to observe and analyze traffic. Certain
+synchronous events will allow you to intercept, block, or modify a request.-->
+网络请求 API
+定义了一系列事件，在一次网络请求的生命周期内产生，您可以使用这些事件监控和分析流量。某些同步事件还允许您截获、阻止或者修改请求。
+</p>
+
+<p>
+<!--@The event life cycle for successful requests is illustrated here, followed by
+event definitions:-->
+对于成功请求的事件生命周期如下图所示，接下来是事件的定义：
+<br/>
+<img src="../../developer.chrome.com/static/images/webrequestapi.png"
+  width="385" height="503"
+  alt="Life cycle of a web request from the perspective of the webrequest API"
+  style="margin-left: auto; margin-right: auto; display: block"/>
+</p>
+
+<p>
+<dl>
+  <dt><code>onBeforeRequest</code><!--@ (optionally synchronous)-->（可以为同步）</dt>
+  <dd><!--@Fires when a request is about to occur. This event is sent before any TCP
+  connection is made and can be used to cancel or redirect requests.-->
+  当请求即将发出时产生。这一事件在 TCP
+  连接建立前发送，可以用来取消或重定向请求。
+  </dd>
+  <dt><code>onBeforeSendHeaders</code><!--@ (optionally synchronous)-->（可以为同步）</dt>
+  <dd><!--@Fires when a request is about to occur and the initial headers have been
+  prepared. The event is intended to allow extensions to add, modify, and delete
+  request headers <a href="#life_cycle_footnote">(*)</a>. The
+  <code>onBeforeSendHeaders</code> event is passed to all subscribers, so
+  different subscribers may attempt to modify the request; see the <a
+    href="#implementation">Implementation details</a> section for how this is
+  handled. This event can be used to cancel the request.-->
+  当请求即将发出并且初始头信息已经准备好时产生。这一事件是为了使扩展程序能够添加、修改和删除请求头信息<a
+  href="#life_cycle_footnote">（*）</a>。<code>onBeforeSendHeaders</code>
+  事件将传递给所有订阅者，所以不同的订阅者都可以尝试修改请求。有关具体如何处理的细节，请参见<a
+  href="#implementation">实现细节</a>部分。这一事件可以用来取消请求。
+  </dd>
+  <dt><code>onSendHeaders</code></dt>
+  <dd><!--@Fires after all extensions have had a chance to modify the request
+  headers, and presents the final <a href="#life_cycle_footnote">(*)</a>
+  version. The event is triggered before the headers are sent to the network.
+  This event is informational and handled asynchronously. It does not allow
+  modifying or cancelling the request.-->
+  当所有扩展程序已经修改完请求头信息并且展现最终<a
+  href="#life_cycle_footnote">（*）</a>版本时产生。这一事件在头信息发送至网络前触发，仅用于提供信息，并且以异步方式处理，不允许修改或取消请求。
+  </dd>
+  <dt><code>onHeadersReceived</code><!--@ (optionally synchronous)-->（可以为同步）</dt>
+  <dd><!--@Fires each time that an HTTP(S) response header is received. Due
+  to redirects and authentication requests this can happen multiple times per
+  request. This event is intended to allow extensions to add, modify, and delete
+  response headers, such as incoming Set-Cookie headers.-->
+  每当接收到 HTTP(S)
+  响应头信息时产生。由于重定向以及认证请求，对于每次请求这一事件可以多次产生。这一事件是为了使扩展程序能够添加、修改和删除响应头信息，例如传入的
+  Set-Cookie 头信息。
+  </dd>
+  <dt><code>onAuthRequired</code><!--@ (optionally synchronous)-->（可以为同步）</dt>
+  <dd><!--@Fires when a request requires authentication of the user. This event can
+  be handled synchronously to provide authentication credentials. Note that
+  extensions may provide invalid credentials. Take care not to enter an infinite
+  loop by repeatedly providing invalid credentials.-->
+  当请求需要用户认证时产生。这一事件可以同步处理，提供认证凭据。注意，扩展程序提供的凭据可能无效，注意不要重复提供无效凭据，陷入无限循环。
+  </dd>
+  <dt><code>onBeforeRedirect</code></dt>
+  <dd><!--@Fires when a redirect is about to be executed. A redirection can be
+  triggered by an HTTP response code or by an extension. This event is
+  informational and handled asynchronously. It does not allow you to modify or
+  cancel the request. -->
+  当重定向即将执行时产生，重定向可以由 HTTP
+  响应代码或扩展程序触发。这一事件仅用于提供信息，并以异步方式处理，不允许修改或取消请求。
+  </dd>
+  <dt><code>onResponseStarted</code></dt>
+  <dd><!--@Fires when the first byte of the response body is received. For HTTP
+  requests, this means that the status line and response headers are
+  available. This event is informational and handled asynchronously. It does not
+  allow modifying or cancelling the request.-->
+  当接收到响应正文的第一个字节时产生。对于 HTTP
+  请求，这意味着状态行和响应头信息已经可用。这一事件仅用于提供信息，并以异步方式处理，不允许修改或取消请求。
+  </dd>
+  <dt><code>onCompleted</code></dt>
+  <dd><!--@Fires when a request has been processed successfully.-->
+  当请求成功处理后产生。
+  </dd>
+  <dt><code>onErrorOccurred</code></dt>
+  <dd><!--@Fires when a request could not be processed successfully.-->
+  当请求不能成功处理时产生。
+  </dd>
+</dl>
+<!--@The web request API guarantees that for each request either
+<code>onCompleted</code> or <code>onErrorOccurred</code> is fired as the final
+event with one exception: If a request is redirected to a <code>data://</code>
+URL, <code>onBeforeRedirect</code> is the last reported event.-->
+网络请求 API 保证对于每一个请求，<code>onCompleted</code> 或
+<code>onErrorOccurred</code>
+是最终产生的事件，除了如下例外：如果请求重定向至
+<code>data://</code> URL，<code>onBeforeRedirect</code>
+将是最后报告的事件。
+</p>
+
+<p id="life_cycle_footnote"><!--@(*) Note that the web request API presents an
+abstraction of the network stack to the extension. Internally, one URL request
+can be split into several HTTP requests (for example to fetch individual byte
+ranges from a large file) or can be handled by the network stack without
+communicating with the network. For this reason, the API does not provide the
+final HTTP headers that are sent to the network. For example, all headers that
+are related to caching are invisible to the extension.-->
+（*）注意网络请求 API 向扩展程序展现的是网络栈的一种抽象。单个 URL
+请求在内部可以分割为几个 HTTP 
+请求（例如从一个大文件获取单独的字节范围）或者可以不与网络通信就由网络栈处理。由于这一原因，这一
+API 不会提供最终发送至网络的的 HTTP 
+头信息。例如，所有与缓存相关的头信息对扩展程序都是不可见的。
+</p>
+
+<p><!--The following headers are currently <b>not provided</b> to the
+<code>onBeforeSendHeaders</code> event. This list is not guaranteed to be
+complete nor stable.-->
+如下是当前<b>不提供</b>给 onBeforeSendHeaders
+事件的头信息列表，这一列表不保证是完整的或者不会变化：
+<ul>
+  <li>Authorization</li>
+  <li>Cache-Control</li>
+  <li>Connection</li>
+  <li>Content-Length</li>
+  <li>Host</li>
+  <li>If-Modified-Since</li>
+  <li>If-None-Match</li>
+  <li>If-Range</li>
+  <li>Partial-Data</li>
+  <li>Pragma</li>
+  <li>Proxy-Authorization</li>
+  <li>Proxy-Connection</li>
+  <li>Transfer-Encoding</li>
+</ul>
+</p>
+
+<p>
+<!--@The webRequest API only exposes requests that the extension has
+permission to see, given its
+<a href="declare_permissions.html">host permissions</a>.
+Moreover, only the following schemes are accessible:-->
+只有扩展程序具有相应的主机权限时，网络请求 API
+才会暴露相关的请求。此外，只能访问下列协议的请求：<!--@
+<code>http://</code>,
+<code>https://</code>,
+<code>ftp://</code>,
+<code>file://</code>, or
+<code>chrome-extension://</code>.--><code>http://</code>、<code
+>https://</code>、<code>ftp://</code>、<code>file://</code> 或
+<code>chrome-extension://</code>。
+<!--@In addition, even certain requests with URLs using one of the above schemes
+are hidden, e.g.,
+<code>chrome-extension://other_extension_id</code> where
+<code>other_extension_id</code> is not the ID of the extension to handle
+the request,
+<code>https://www.google.com/chrome</code>,
+and others (this list is not complete). Also synchronous XMLHttpRequests from
+your extension are hidden from blocking event handlers in order to prevent
+deadlocks.
+Note that for some of the supported schemes the set of available events might be
+limited due to the nature of the corresponding protocol.
+For example, for the <q>file:</q> scheme, only <code>onBeforeRequest</code>,
+<code>onResponseStarted</code>, <code>onCompleted</code>, and
+<code>onErrorOccurred</code> may be dispatched.-->
+此外，某些请求的 URL 即使使用了以上某种协议也会被隐藏。例如，<code
+>chrome-extension://other_extension_id</code>，其中
+<code>other_extension_id</code>不是处理该请求的扩展程序标识符；还有
+<code>https://www.google.com/chrome</code>
+及其他（该列表并不完整）。此外来自您的扩展程序的同步 XMLHttpRequest
+将对阻塞的事件处理函数隐藏，以免产生死锁。注意，对于一些支持的协议，由于对应协议本身的性质，可以产生的事件会受到限制。例如，对于
+<q>file:</q> 协议，只会产生 <code>onBeforeRequest</code>、<code
+>onResponseStarted</code>、<code>onCompleted</code> 和
+<code>onErrorOccurred</code> 事件。
+</p>
+
+<h2 id="concepts"><!--@Concepts-->概念</h2>
+
+<p><!--@As the following sections explain, events in the web request API use request
+IDs, and you can optionally specify filters and extra information when you
+register event listeners.-->
+如以下几节所述，网络请求 API
+的事件使用请求标识符，当您注册事件监听器时您还可以指定过滤器以及可选的额外信息。
+</p>
+
+<h3 id="Request IDs"><!--@Request IDs-->请求标识符</h3>
+
+<p><!--@Each request is identified by a request ID. This ID is unique within a
+browser session and the context of an extension. It remains constant during the
+the life cycle of a request and can be used to match events for the same
+request. Note that several HTTP requests are mapped to one web request in case
+of HTTP redirection or HTTP authentication.-->
+每一个请求由请求标识符标识，这一标识符在浏览器会话以及扩展程序的上下文中保证唯一，在请求的生命周期内保持不变，可以用来匹配同一请求的其他事件。注意在
+HTTP 重定向或 HTTP 认证时，多个 HTTP
+请求将映射至同一个网络请求。
+</p>
+
+<h3 id="subscription"><!--@Registering event listeners-->注册事件监听器</h3>
+
+<p><!--@To register an event listener for a web request, you use a variation on the
+<a href="events.html">usual <code>addListener()</code> function</a>.
+In addition to specifying a callback function,
+you have to specify a filter argument and you may specify an optional extra info
+argument.-->
+要为网络请求注册事件处理函数，您使用通常
+<code>addListener()</code>
+函数的一种变形。除了指定回调函数，您还必须指定过滤器参数，另外您还可以指定一个可选的额外信息参数。
+</p>
+
+<p><!--@The three arguments to the web request API's <code>addListener()</code> have
+the following definitions:-->
+网络请求API的 <code>addListener()</code> 三个参数定义如下：
+</p>
+<pre>
+var callback = function(details) {...};
+var filter = {...};
+var opt_extraInfoSpec = [...];
+</pre>
+
+<p><!--@Here's an example of listening for the <code>onBeforeRequest</code>
+event:-->
+如下是监听 <code>onBeforeRequest</code> 事件的一个例子：
+</p>
+<pre>
+chrome.webRequest.onBeforeRequest.addListener(
+  callback, filter, opt_extraInfoSpec);
+</pre>
+
+<p><!--@Each <code>addListener()</code> call takes a mandatory callback function as
+the first parameter. This callback function is passed a dictionary containing
+information about the current URL request. The information in this dictionary
+depends on the specific event type as well as the content of
+<code>opt_extraInfoSpec</code>.-->
+每一个 <code>addListener()</code>
+调用必须传递回调函数，作为第一个参数。将向这一回调函数传递包含当前
+URL 请求详情的词典，词典中的信息取决于具体事件类型以及
+<code>opt_extraInfoSpec</code> 的内容。
+</p>
+
+<p><!--@If the optional <code>opt_extraInfoSpec</code> array contains the string
+<code>'blocking'</code> (only allowed for specific events), the callback
+function is handled synchronously. That means that the request is blocked until
+the callback function returns. In this case, the callback can return a 
+  <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-BlockingResponse">BlockingResponse</a> that determines the further
+life cycle of the request. Depending on the context, this response allows
+cancelling or redirecting a request (<code>onBeforeRequest</code>), cancelling a
+request or modifying headers (<code>onBeforeSendHeaders</code>,
+<code>onHeadersReceived</code>), or providing authentication credentials
+(<code>onAuthRequired</code>).-->
+如果可选的 <code>opt_extraInfoSpec</code> 数组包含 <code>'blocking'</code>
+字符串（仅允许用于特定事件），回调函数将以同步方式处理。这意味着请求将阻塞，直到回调函数返回。在这一种情况下，回调函数可以返回
+<a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-BlockingResponse">BlockingResponse</a>
+对象，确定这一请求进一步的生命周期。取决于当前上下文，这一响应允许取消或重定向某个请求（<code
+>OnBeforeRequest</code>），取消请求或修改头信息（<code
+>onBeforeSendHeaders</code>），或者提供认证凭据（<code
+>onAuthRequired</code>）。
+</p>
+
+<p><!--@The <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+<code>filter</code> allows limiting the requests for which events are
+triggered in various dimensions:-->
+<a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> 类型的 <code>filter</code>
+参数允许通过不同的方式限制为哪些请求产生事件：
+<dl>
+  <dt>URLs</dt>
+  <dd><a href="match_patterns.html">URL
+  <!--@ patterns-->匹配表达式</a><!--@ such as
+  <code>*://www.google.com/foo*bar</code>.
+  -->，例如 <code>*://www.google.com/foo*bar</code>。</dd>
+  <dt><!--@Types-->类型</dt>
+  <dd><!--@Request types such as <code>main_frame</code> (a document that is loaded
+  for a top-level frame), <code>sub_frame</code> (a document that is loaded for
+  an embedded frame), and <code>image</code> (an image on a web site).
+  See <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>.-->
+  请求类型，例如 <code>"main_frame"</code>（为顶层框架加载的文档）、<code
+  >"sub_frame"</code>（为内嵌框架加载的文档）和
+  <code>"image"</code>（网站上的图片）。请参见
+  <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>。
+  </dd>
+  <dt><!--@Tab ID-->标签页标识符</dt>
+  <dd><!--@The identifier for one tab.-->某个标签页的标识符。</dd>
+  <dt><!--@Window ID-->窗口标识符</dt>
+  <dd><!--@The identifier for a window.-->某个窗口的标识符。</dd>
+</p>
+
+<p><!--Depending on the event type, you can specify strings in
+<code>opt_extraInfoSpec</code> to ask for additional information about the
+request. This is used to provide detailed information on request's data only
+if explicitly requested.-->
+取决于事件类型，您可以在 <code>opt_extraInfoSpec</code>
+中指定字符串，获取有关请求的附加信息。这样是为了仅在明确请求时才提供请求数据的有关详情。
+</p>
+
+<h2 id="implementation"><!--@Implementation details-->实现细节</h2>
+
+<p><!--@Several implementation details can be important to understand when developing
+an extension that uses the web request API:-->
+在开发使用网络请求API的扩展程序时，理解如下几个实现细节是很重要的：
+</p>
+
+<h3 id="conflict_resolution"><!--@Conflict resolution-->冲突的解决</h3>
+<p><!--@In the current implementation of the web request API, a request is considered
+as cancelled if at least one extension instructs to cancel the request. If
+an extension cancels a request, all extensions are notified by an
+<code>onErrorOccurred</code> event. Only one extension is allowed to redirect a
+request or modify a header at a time. If more than one extension attempts to
+modify the request, the most recently installed extension wins and all others
+are ignored. An extension is not notified if its instruction to modify or
+redirect has been ignored.-->
+在网络请求 API
+的当前实现中，如果至少一个扩展程序要求取消请求，则请求将被取消。如果一个扩展程序取消了一个请求，所有扩展程序都会收到
+<code>onErrorOccurred</code>
+事件的通知。一次只有一个扩展程序允许重定向请求或者修改头信息。如果多于一个扩展程序尝试修改请求，最近安装的扩展程序具有优先级，而忽略所有其他扩展程序。如果扩展程序修改或重定向的要求被忽略，也不会收到通知。
+</p>
+
+<h3 id="caching"><!--@Caching-->缓存</h3>
+<p>
+<!--@Chrome employs two caches &mdash; an on-disk cache and a very fast in-memory
+cache.  The lifetime of an in-memory cache is attached to the lifetime of a
+render process, which roughly corresponds to a tab. Requests that are answered
+from the in-memory cache are invisible to the web request API. If a request
+handler changes its behavior (for example, the behavior according to which
+requests are blocked), a simple page refresh might not respect this changed
+behavior.  To make sure the behavior change goes through, call
+<code>handlerBehaviorChanged()</code> to flush the in-memory cache. But don't do
+it often; flushing the cache is a very expensive operation. You don't need to
+call <code>handlerBehaviorChanged()</code> after registering or unregistering an
+event listener.-->
+Chrome
+浏览器使用两种缓存：磁盘缓存和十分快速的内存缓存。内存缓存的生命周期与渲染器进程（大致与每个标签页对应）的生命周期相关，通过内存缓存响应的请求对网络请求API不可见。如果请求处理函数更改了它的行为（例如根据哪些请求被阻止而作出的行为），简单的页面刷新不一定能够体现这一更改的行为。要确保行为更改生效，请调用
+<code>handlerBehaviorChanged()</code>
+来清洗内存缓存。然而不要经常调用，清洗缓存是一项十分昂贵的操作。您不需要在注册或取消注册事件处理函数后调用
+<code>handlerBehaviorChanged()</code>。
+</p>
+
+<h3 id="timestamps"><!--@Timestamps-->时间戳</h3>
+<p>
+<!--@The <code>timestamp</code> property of web request events is only guaranteed to
+be <i>internally</i> consistent. Comparing one event to another event will give
+you the correct offset between them, but comparing them to the current time
+inside the extension (via <code>(new Date()).getTime()</code>, for instance)
+might give unexpected results.-->
+网络请求事件的 <code>timeStamp</code>
+属性仅保证<i>内部的</i>一致性，将两个事件的时间相比较会得到它们之间正确的时间差，但是与扩展程序内的当前时间（例如通过
+<code>(new Date()).getTime()</code>）比较则可能会导致不可预料的结果。
+</p>
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p><!--@The following example illustrates how to block all requests to
+<code>www.evil.com</code>:-->
+如下例子演示如何阻止所有发送至 <code>www.evil.com</code> 的请求：
+</p>
+<pre>
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) {
+    return {cancel: details.url.indexOf("://www.evil.com/") != -1};
+  },
+  {urls: ["&lt;all_urls&gt;"]},
+  ["blocking"]);
+</pre>
+
+<p><!--@As this function uses a blocking event handler, it requires the "webRequest"
+as well as the "webRequestBlocking" permission in the manifest file.-->
+由于这一函数使用了阻塞事件处理函数，您将需要在清单文件中声明
+"webRequest" 以及 "webRequestBlocking" 权限。
+</p>
+
+<p><!--@The following example achieves the same goal in a more efficient way because
+requests that are not targeted to <code>www.evil.com</code> do not need to be
+passed to the extension:-->
+以下例子通过另一种更高效的方式达到相同目的，因为不发送至 <code>www.evil.com</code> 的请求不必传递给扩展程序：
+</p>
+<pre>
+chrome.webRequest.onBeforeRequest.addListener(
+  function(details) { return {cancel: true}; },
+  {urls: ["*://www.evil.com/*"]},
+  ["blocking"]);
+</pre>
+
+<p><!--@The following example illustrates how to delete the User-Agent header from
+all requests:-->
+以下例子演示如何将所有请求中的 User-Agent 头信息删除：
+</p>
+<pre>
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function(details) {
+    for (var i = 0; i < details.requestHeaders.length; ++i) {
+      if (details.requestHeaders[i].name === 'User-Agent') {
+        details.requestHeaders.splice(i, 1);
+        break;
+      }
+    }
+    return {requestHeaders: details.requestHeaders};
+  },
+  {urls: ["&lt;all_urls&gt;"]},
+  ["blocking", "requestHeaders"]);
+</pre>
+
+<p><!--@ For more example code, see the -->有关更多示例代码，请参见<a
+href="https://crxdoc-zh.appspot.com/extensions/samples.html#webrequest"><!--@web request
+samples-->网络请求示例</a><!--@.-->。</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.webRequest <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-RequestFilter">RequestFilter</h3>
+        <div>
+          <dd>描述应用于网络请求事件的过滤器对象。</dd>
+            <h3 id="RequestFilter-properties" class="capitalize" title="">
+              <a href="#type-RequestFilter">RequestFilter</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-RequestFilter-urls"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-RequestFilter-urls" title="">
+                        urls
+                        <span class="property">
+                          (
+                            array of string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      URL 或 URL 匹配表达式列表，不匹配任何 URL 的请求会被过滤出去。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-RequestFilter-types"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-RequestFilter-types" title="">
+                        types
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            array of enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      请求类型的列表，不匹配任何一种类型的请求会被过滤出去。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-RequestFilter-tabId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-RequestFilter-tabId" title="">
+                        tabId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-RequestFilter-windowId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-RequestFilter-windowId" title="">
+                        windowId
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-HttpHeaders">HttpHeaders</h3>
+        <div>
+          <dd>
+            array of object
+          </dd>
+          <dd>包含 HTTP 头信息的数组，每一项头信息都通过词典表示，包含 <code>name</code> 属性，以及 <code>value</code> 或 <code>binaryValue</code> 中的某一属性。</dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-BlockingResponse">BlockingResponse</h3>
+        <div>
+          <dd>用于在 extraInfoSpec 参数中指定 "blocking" 的事件处理函数的返回值，允许事件处理函数修改网络请求。</dd>
+            <h3 id="BlockingResponse-properties" class="capitalize" title="">
+              <a href="#type-BlockingResponse">BlockingResponse</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-BlockingResponse-cancel"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-BlockingResponse-cancel" title="">
+                        cancel
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果为 true，则取消请求。在 onBeforeRequest 事件中使用，用来阻止请求的发送。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-BlockingResponse-redirectUrl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-BlockingResponse-redirectUrl" title="">
+                        redirectUrl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      仅用于 onBeforeRequest 事件的返回值。如果设置了这一属性，将阻止原始请求的发送，并重定向至指定的 URL。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-BlockingResponse-requestHeaders"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-BlockingResponse-requestHeaders" title="">
+                        requestHeaders
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      仅用于 onBeforeSendHeaders 事件的返回值。如果设置了这一属性，请求将改用这些头信息发出。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-BlockingResponse-responseHeaders"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-BlockingResponse-responseHeaders" title="">
+                        responseHeaders
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      仅用于 onHeadersReceived 事件的返回值。如果设置了这一属性，则假定服务器返回了这些响应头信息。为了限制冲突数目（对于每一个请求，只有一个扩展程序可以修改 <code>responseHeaders</code>），只有有当您确实需要修改头信息时才应该返回 <code>responseHeaders</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-BlockingResponse-authCredentials"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-BlockingResponse-authCredentials" title="">
+                        authCredentials
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      仅用于 onAuthRequired 事件的返回值。如果设置了这一属性，发出的请求将使用提供的凭据。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-authCredentials-username"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-authCredentials-username" title="">
+                              username
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-authCredentials-password"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-authCredentials-password" title="">
+                              password
+                              <span class="property">
+                                (
+                                  string
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-UploadData">UploadData</h3>
+        <div>
+          <dd>包含 URL 请求中上传的数据。</dd>
+            <h3 id="UploadData-properties" class="capitalize" title="">
+              <a href="#type-UploadData">UploadData</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-UploadData-bytes"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-UploadData-bytes" title="">
+                        bytes
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            any
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含数据的一份拷贝的 ArrayBuffer。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-UploadData-file"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-UploadData-file" title="">
+                        file
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含文件路径与名称的字符串。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="properties"><!--@Properties-->属性</h2>
+      <div>
+        <h3 id="property-MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES">MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES</h3>
+        <div class="summary">
+          <div class="line">chrome.webRequest.MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES</div>
+        </div>
+        <div>
+          <dt><span class="property">MAX_HANDLER_BEHAVIOR_CHANGED_CALLS_PER_10_MINUTES</span> <span class="type_name">  (  <code>20</code>  )</span></dt>
+      <dd>
+            10 分钟内 <code>handlerBehaviorChanged</code> 能够被调用的次数。<code>handlerBehaviorChanged</code> 是一个昂贵的函数，不应该经常调用。
+          </dd>  </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-handlerBehaviorChanged"
+            >handlerBehaviorChanged
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.webRequest.handlerBehaviorChanged</span>(<span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            当网络请求处理函数的行为发生更改时，为了避免缓存导致的不正确处理，需要调用这一函数。这一函数调用比较昂贵，不要经常调用。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-handlerBehaviorChanged-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-handlerBehaviorChanged-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onBeforeRequest">onBeforeRequest</h3>
+        <div class="description">
+      <p>
+            当请求即将发生时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onBeforeRequest.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"blocking"</code>, or <code>"requestBody"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onBeforeRequest-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeRequest-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onBeforeRequest-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeRequest-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onBeforeRequest-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeRequest-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"blocking"</code>, or <code>"requestBody"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onBeforeRequest-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onBeforeRequest-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-requestBody"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestBody" title="">
+                                    requestBody
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        object
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含 HTTP 请求正文数据，仅在 extraInfoSpec 包含 "requestBody" 时才会提供。
+                                </dd>
+                              </dl>
+                              <dd>
+                                <h4 title=""><!--@Properties-->属性</h4>
+                                <dl>
+                                  <div>
+                                    <a name="property-requestBody-error"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-requestBody-error" title="">
+                                          error
+                                          <span class="property">
+                                            (
+                                              <span class="optional">optional</span>
+                                              string
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        获取请求正文数据时发生的错误。
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-requestBody-formData"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-requestBody-formData" title="">
+                                          formData
+                                          <span class="property">
+                                            (
+                                              <span class="optional">optional</span>
+                                              object
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        如果请求方法为 POST，并且正文为经过 UTF-8 编码的键/值对序列，或者是以 multipart/form-data 或 application/x-www-form-urlencoded 的形式编码，该词典存在，每一个键包含了对应键的所有值的列表。如果数据为另一种媒体类型或者是以错误的形式存在，该词典就不存在。该词典的值的一个例子为：{'key': ['value1', 'value2']}。
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-requestBody-raw"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-requestBody-raw" title="">
+                                          raw
+                                          <span class="property">
+                                            (
+                                              <span class="optional">optional</span>
+                                              array of <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-UploadData">UploadData</a>
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        如果请求方法为 PUT 或 POST，并且正文没有经过分析后放在 formData 中，那么未分析的请求正文元素将包含在该数组中。
+                                      </dd>
+                                    </dl>
+                                  </div>
+                                </dl>
+                              </dd>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+              <h4 title="">监听器返回值</h4>
+              <dl>
+                <dt><span class="property">
+                  ( <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-BlockingResponse">BlockingResponse</a> )
+                </span></dt>
+                <dd>
+                如果“extraInfoSpec”参数指定了 "blocking"，事件监听器应该返回该类型的对象。
+                </dd>
+              </dl>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onBeforeSendHeaders">onBeforeSendHeaders</h3>
+        <div class="description">
+      <p>
+            在发送 HTTP 请求前，一旦请求头信息可用就产生这一事件。这一事件可能在与服务器的 TCP 连接建立后产生，但是确保在发送任何 HTTP 数据前产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onBeforeSendHeaders.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"requestHeaders"</code>, or <code>"blocking"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onBeforeSendHeaders-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeSendHeaders-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onBeforeSendHeaders-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeSendHeaders-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onBeforeSendHeaders-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeSendHeaders-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"requestHeaders"</code>, or <code>"blocking"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onBeforeSendHeaders-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onBeforeSendHeaders-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-requestHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestHeaders" title="">
+                                    requestHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  将要与这一请求一同发送的 HTTP 请求头信息。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+              <h4 title="">监听器返回值</h4>
+              <dl>
+                <dt><span class="property">
+                  ( <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-BlockingResponse">BlockingResponse</a> )
+                </span></dt>
+                <dd>
+                如果“extraInfoSpec”参数指定了 "blocking"，事件监听器应该返回该类型的对象。
+                </dd>
+              </dl>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onSendHeaders">onSendHeaders</h3>
+        <div class="description">
+      <p>
+            当请求即将发送至服务器的前一刻产生（前面 onBeforeSendHeaders 事件处理函数作出的修改可以在这一事件产生时体现）。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onSendHeaders.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"requestHeaders"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onSendHeaders-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onSendHeaders-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onSendHeaders-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onSendHeaders-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onSendHeaders-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onSendHeaders-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"requestHeaders"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onSendHeaders-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onSendHeaders-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-requestHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestHeaders" title="">
+                                    requestHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  已经与这一请求一起发送的HTTP请求头信息。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onHeadersReceived">onHeadersReceived</h3>
+        <div class="description">
+      <p>
+            当接收到 HTTP 响应头信息时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onHeadersReceived.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"blocking"</code>, or <code>"responseHeaders"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onHeadersReceived-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onHeadersReceived-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onHeadersReceived-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onHeadersReceived-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onHeadersReceived-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onHeadersReceived-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"blocking"</code>, or <code>"responseHeaders"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onHeadersReceived-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onHeadersReceived-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusLine"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusLine" title="">
+                                    statusLine
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-responseHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-responseHeaders" title="">
+                                    responseHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  与响应一起接收到的 HTTP 响应头信息。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+              <h4 title="">监听器返回值</h4>
+              <dl>
+                <dt><span class="property">
+                  ( <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-BlockingResponse">BlockingResponse</a> )
+                </span></dt>
+                <dd>
+                如果“extraInfoSpec”参数指定了 "blocking"，事件监听器应该返回该类型的对象。
+                </dd>
+              </dl>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onAuthRequired">onAuthRequired</h3>
+        <div class="description">
+      <p>
+            当接收到认证失败时产生。事件处理函数有三种选择：提供认证凭据，取消请求并显示错误页面，或者不采取任何行动。如果提供了错误的用户凭据，可能会为同一请求重复调用事件处理函数。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onAuthRequired.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"responseHeaders"</code>, <code>"blocking"</code>, or <code>"asyncBlocking"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onAuthRequired-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onAuthRequired-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onAuthRequired-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onAuthRequired-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onAuthRequired-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onAuthRequired-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"responseHeaders"</code>, <code>"blocking"</code>, or <code>"asyncBlocking"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details, function callback) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onAuthRequired-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onAuthRequired-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-scheme"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-scheme" title="">
+                                    scheme
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  认证方式，例如基本（"basic"）或摘要式（"digest"）。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-realm"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-realm" title="">
+                                    realm
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器提供的认证域（如果有的话）。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-challenger"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-challenger" title="">
+                                    challenger
+                                    <span class="property">
+                                      (
+                                        object
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求认证的服务器。
+                                </dd>
+                              </dl>
+                              <dd>
+                                <h4 title=""><!--@Properties-->属性</h4>
+                                <dl>
+                                  <div>
+                                    <a name="property-challenger-host"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-challenger-host" title="">
+                                          host
+                                          <span class="property">
+                                            (
+                                              string
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                      </dd>
+                                    </dl>
+                                  </div><div>
+                                    <a name="property-challenger-port"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-challenger-port" title="">
+                                          port
+                                          <span class="property">
+                                            (
+                                              integer
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                      </dd>
+                                    </dl>
+                                  </div>
+                                </dl>
+                              </dd>
+                            </div><div>
+                              <a name="property-details-isProxy"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-isProxy" title="">
+                                    isProxy
+                                    <span class="property">
+                                      (
+                                        boolean
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  如果为 Proxy-Authenticate（代理服务器认证）则为 true，否则如果为 WWW-Authenticate 则为 false。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-responseHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-responseHeaders" title="">
+                                    responseHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  与响应一起接收到的 HTTP 响应头信息。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusLine"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusLine" title="">
+                                    statusLine
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                      <div>
+                        <a name="property-onAuthRequired-callback"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onAuthRequired-callback" title="">
+                              callback
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  function
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            如果“extraInfoSpec”参数指定了 "asyncBlocking"，事件监听器应该调用该函数，提供处理事件的结果。
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+              <h4 title="">监听器返回值</h4>
+              <dl>
+                <dt><span class="property">
+                  ( <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-BlockingResponse">BlockingResponse</a> )
+                </span></dt>
+                <dd>
+                如果“extraInfoSpec”参数指定了 "blocking"，事件监听器应该返回该类型的对象。
+                </dd>
+              </dl>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onResponseStarted">onResponseStarted</h3>
+        <div class="description">
+      <p>
+            当响应正文的第一个字节接收到时产生。对于 HTTP 请求，这意味着状态行及请求头信息已经可用。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onResponseStarted.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"responseHeaders"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onResponseStarted-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onResponseStarted-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onResponseStarted-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onResponseStarted-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onResponseStarted-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onResponseStarted-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"responseHeaders"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onResponseStarted-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onResponseStarted-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-ip"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-ip" title="">
+                                    ip
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器 IP 地址，注意这可能是一个字面的 IPv6 地址。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-fromCache"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-fromCache" title="">
+                                    fromCache
+                                    <span class="property">
+                                      (
+                                        boolean
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  表示响应是否从磁盘缓存中获取。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusCode"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusCode" title="">
+                                    statusCode
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器返回的标准 HTTP 状态代码。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-responseHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-responseHeaders" title="">
+                                    responseHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  与响应一起接收到的 HTTP 响应头信息。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusLine"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusLine" title="">
+                                    statusLine
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onBeforeRedirect">onBeforeRedirect</h3>
+        <div class="description">
+      <p>
+            当服务器产生的重定向即将进行时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onBeforeRedirect.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"responseHeaders"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onBeforeRedirect-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeRedirect-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onBeforeRedirect-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeRedirect-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onBeforeRedirect-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBeforeRedirect-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"responseHeaders"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onBeforeRedirect-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onBeforeRedirect-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-ip"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-ip" title="">
+                                    ip
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器 IP 地址，注意这可能是一个字面的 IPv6 地址。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-fromCache"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-fromCache" title="">
+                                    fromCache
+                                    <span class="property">
+                                      (
+                                        boolean
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  表示响应是否从磁盘缓存中获取。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusCode"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusCode" title="">
+                                    statusCode
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器返回的标准 HTTP 状态代码。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-redirectUrl"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-redirectUrl" title="">
+                                    redirectUrl
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  新的 URL。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-responseHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-responseHeaders" title="">
+                                    responseHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  与响应一起接收到的 HTTP 响应头信息。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusLine"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusLine" title="">
+                                    statusLine
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onCompleted">onCompleted</h3>
+        <div class="description">
+      <p>
+            当请求完成时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onCompleted.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>, <span class="optional">array of enum of <code>"responseHeaders"</code> extraInfoSpec</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onCompleted-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onCompleted-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onCompleted-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onCompleted-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onCompleted-extraInfoSpec"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onCompleted-extraInfoSpec" title="">
+                            extraInfoSpec
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                array of enum of <code>"responseHeaders"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          包含应该传递给监听器的附加信息的数组。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onCompleted-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onCompleted-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-ip"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-ip" title="">
+                                    ip
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器 IP 地址，注意这可能是一个字面的 IPv6 地址。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-fromCache"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-fromCache" title="">
+                                    fromCache
+                                    <span class="property">
+                                      (
+                                        boolean
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  表示响应是否从磁盘缓存中获取。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusCode"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusCode" title="">
+                                    statusCode
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器返回的标准 HTTP 状态代码。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-responseHeaders"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-responseHeaders" title="">
+                                    responseHeaders
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-HttpHeaders">HttpHeaders</a>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  与响应一起接收到的 HTTP 响应头信息。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-statusLine"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-statusLine" title="">
+                                    statusLine
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  响应的 HTTP 状态行，如果是 HTTP/0.9 响应（即没有状态行的响应）则为 'HTTP/0.9 200 OK' 字符串。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onErrorOccurred">onErrorOccurred</h3>
+        <div class="description">
+      <p>
+            当错误发生时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.webRequest.onErrorOccurred.addListener</span>(<span>function callback</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a> filter</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onErrorOccurred-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onErrorOccurred-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                    <div>
+                      <a name="property-onErrorOccurred-filter"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onErrorOccurred-filter" title="">
+                            filter
+                            <span class="property">
+                              (
+                                <a href="https://crxdoc-zh.appspot.com/extensions/webRequest.html#type-RequestFilter">RequestFilter</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          一组过滤器，限制发送至这一监听器的事件。
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object details) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onErrorOccurred-details"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onErrorOccurred-details" title="">
+                              details
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-details-requestId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-requestId" title="">
+                                    requestId
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求标识符。请求标识符在浏览器会话中保证唯一，所以，它们可以用来联系同一请求的不同事件。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-url"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-url" title="">
+                                    url
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-method"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-method" title="">
+                                    method
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  标准 HTTP 方法。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-frameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-frameId" title="">
+                                    frameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  0 表示请求发生在主框架中，正数表示发出请求的子框架标识符。如果加载了（子）框架的文档（<code>type</code> 为 <code>"main_frame"</code> 或 <code>"sub_frame"</code>），<code>frameId</code> 指定该框架的标识符，而不是外层框架的标识符。框架标识符在标签页中保证唯一。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-parentFrameId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-parentFrameId" title="">
+                                    parentFrameId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  包含发送请求框架的框架（即父框架）标识符，如果不存在父框架则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-tabId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-tabId" title="">
+                                    tabId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  产生请求的标签页标识符。如果请求与标签页无关则为 -1。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-type"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-type" title="">
+                                    type
+                                    <span class="property">
+                                      (
+                                        enum of <code>"main_frame"</code>, <code>"sub_frame"</code>, <code>"stylesheet"</code>, <code>"script"</code>, <code>"image"</code>, <code>"object"</code>, <code>"xmlhttprequest"</code>, or <code>"other"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  请求的资源将如何使用。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-timeStamp"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-timeStamp" title="">
+                                    timeStamp
+                                    <span class="property">
+                                      (
+                                        double
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  该信号触发的时间，以 1970 年 1 月 1 日午夜开始所经过的毫秒数表示。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-ip"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-ip" title="">
+                                    ip
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  服务器 IP 地址，注意这可能是一个字面的 IPv6 地址。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-fromCache"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-fromCache" title="">
+                                    fromCache
+                                    <span class="property">
+                                      (
+                                        boolean
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  表示响应是否从磁盘缓存中获取。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-details-error"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-details-error" title="">
+                                    error
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  错误描述。这一字符串<em>不保证</em>在不同的版本间保持向后兼容，您决不能分析它的内容并由此作出处理。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

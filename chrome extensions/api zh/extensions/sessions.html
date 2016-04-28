@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.sessions - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/sessions.html">https://crxdoc-zh.appspot.com/extensions/sessions.html</a><br>
+<b>Title:</b> chrome.sessions - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 32075<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<p class="warning">
+  <!--@This API is experimental. It is only available to Chrome users on the-->
+  该 API 还是实验性的，仅对
+  <a href="http://www.chromium.org/getting-involved/dev-channel">dev <!--@channel-->分支</a><!--@.-->的
+  Chrome 用户可用。
+</p>
+<h1>chrome.sessions</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-Filter"
+             data-list-item
+             >Filter</a>
+        </li>
+        <li >
+          <a href="#type-Session"
+             data-list-item
+             >Session</a>
+        </li>
+        <li >
+          <a href="#type-Device"
+             data-list-item
+             >Device</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#properties"
+         data-list-item
+         >属性</a>
+      <ol>
+        <li >
+          <a href="#property-MAX_SESSION_RESULTS"
+             data-list-item
+             >MAX_SESSION_RESULTS</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-getRecentlyClosed"
+             data-list-item
+             >getRecentlyClosed        </a>
+        </li>
+        <li >
+          <a href="#method-getDevices"
+             data-list-item
+             >getDevices        </a>
+        </li>
+        <li >
+          <a href="#method-restore"
+             data-list-item
+             >restore        </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.sessions</code> API 查询和恢复浏览器会话中的标签页和窗口。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        仅用于 <a href="http://www.chromium.org/getting-involved/dev-channel">Dev</a> <!--@channel only.-->分支。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "sessions"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.sessions <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-Filter">Filter</h3>
+        <div>
+            <h3 id="Filter-properties" class="capitalize" title="">
+              <a href="#type-Filter">Filter</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-Filter-maxResults"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Filter-maxResults" title="">
+                        maxResults
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      在请求的列表中获取项目的最大数目，省略该参数获取最大数目的项目（<a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#property-MAX_SESSION_RESULTS">MAX_SESSION_RESULTS</a>）。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-Session">Session</h3>
+        <div>
+            <h3 id="Session-properties" class="capitalize" title="">
+              <a href="#type-Session">Session</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-Session-lastModified"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Session-lastModified" title="">
+                        lastModified
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      窗口或标签页关闭或修改的时间，表示为 1970 年 1 月 1 日以来经过的毫秒数。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Session-tab"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Session-tab" title="">
+                        tab
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果该项目描述标签页的话则为 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象。该属性或 <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#property-Session-window">Session.window</a> 中的某一个将会设置。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Session-window"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Session-window" title="">
+                        window
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">windows.Window</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      如果该项目描述窗口的话则为 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">windows.Window</a> 对象。该属性或 <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#property-Session-tab">Session.tab</a> 中的某一个将会设置。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-Device">Device</h3>
+        <div>
+            <h3 id="Device-properties" class="capitalize" title="">
+              <a href="#type-Device">Device</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-Device-info"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Device-info" title="">
+                        info
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      表示外来设备的所有信息。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Device-sessions"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Device-sessions" title="">
+                        sessions
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      外来设备打开的窗口会话列表，会话按照最近修改到最早修改的顺序排列。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="properties"><!--@Properties-->属性</h2>
+      <div>
+        <h3 id="property-MAX_SESSION_RESULTS">MAX_SESSION_RESULTS</h3>
+        <div class="summary">
+          <div class="line">chrome.sessions.MAX_SESSION_RESULTS</div>
+        </div>
+        <div>
+          <dt><span class="property">MAX_SESSION_RESULTS</span> <span class="type_name">  (  <code>25</code>  )</span></dt>
+      <dd>
+            在请求的列表中获取项目的最大数目，省略该参数获取最大数目的项目（<a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#property-MAX_SESSION_RESULTS">MAX_SESSION_RESULTS</a>）。
+          </dd>  </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-getRecentlyClosed"
+            >getRecentlyClosed
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.sessions.getRecentlyClosed</span>(<span class="optional"><a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Filter">Filter</a> filter</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取最近关闭的标签页和/或窗口列表。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getRecentlyClosed-filter"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getRecentlyClosed-filter" title="">
+                      filter
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Filter">Filter</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getRecentlyClosed-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getRecentlyClosed-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a> sessions) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-sessions"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-sessions" title="">
+                        sessions
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      关闭的项目列表，按照与关闭相反的顺序排列（最近关闭的标签页或窗口位于索引 <code>0</code>）。项目既可能包含标签页，也可能包含窗口。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getDevices"
+            >getDevices
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.sessions.getDevices</span>(<span class="optional"><a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Filter">Filter</a> filter</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取包含已同步会话的所有设备。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getDevices-filter"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getDevices-filter" title="">
+                      filter
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Filter">Filter</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getDevices-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getDevices-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Device">Device</a> devices) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-devices"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-devices" title="">
+                        devices
+                        <span class="property">
+                          (
+                            array of <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Device">Device</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      每一个同步会话的 <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Device">Device</a> 对象列表，具有最近修改的会话的设备在前，具有最早修改的会话的设备在后，依次排列。<a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a> 对象的 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">windows.Window</a> 中，<a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象按照最近修改时间排列。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-restore"
+            >restore
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.sessions.restore</span>(<span class="optional">string sessionId</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            重新打开 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">windows.Window</a>（窗口）或 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a>（标签页），可以传递一个可选的回调函数，在项目恢复后调用。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-restore-sessionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-restore-sessionId" title="">
+                      sessionId
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要恢复的 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#property-Window-sessionId">windows.Window.sessionId</a> 或 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#property-Tab-sessionId">tabs.Tab.sessionId</a>。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-restore-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-restore-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a> restoredSession) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-restoredSession"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-restoredSession" title="">
+                        restoredSession
+                        <span class="property">
+                          (
+                            <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      包含恢复后的 <a href="https://crxdoc-zh.appspot.com/extensions/windows.html#type-Window">windows.Window</a> 或 <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> 对象的 <a href="https://crxdoc-zh.appspot.com/extensions/sessions.html#type-Session">Session</a>（会话）。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

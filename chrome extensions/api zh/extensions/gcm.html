@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.gcm - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/gcm.html">https://crxdoc-zh.appspot.com/extensions/gcm.html</a><br>
+<b>Title:</b> chrome.gcm - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 36677<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<p class="warning">
+  <!--@This API is experimental. It is only available to Chrome users on the-->
+  该 API 还是实验性的，仅对
+  <a href="http://www.chromium.org/getting-involved/dev-channel">dev <!--@channel-->分支</a><!--@.-->的
+  Chrome 用户可用。
+</p>
+<h1>chrome.gcm</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#properties"
+         data-list-item
+         >属性</a>
+      <ol>
+        <li >
+          <a href="#property-MAX_MESSAGE_SIZE"
+             data-list-item
+             >MAX_MESSAGE_SIZE</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-register"
+             data-list-item
+             >register        </a>
+        </li>
+        <li >
+          <a href="#method-send"
+             data-list-item
+             >send        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onMessage"
+             data-list-item
+             >onMessage</a>
+        </li>
+        <li >
+          <a href="#event-onMessagesDeleted"
+             data-list-item
+             >onMessagesDeleted</a>
+        </li>
+        <li >
+          <a href="#event-onSendError"
+             data-list-item
+             >onSendError</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.gcm</code> 通过 <a href='https://developer.android.com/google/gcm/index.html'>Google Cloud Messaging for Android</a> 在应用和扩展程序中发送和接收消息。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        仅用于 <a href="http://www.chromium.org/getting-involved/dev-channel">Dev</a> <!--@channel only.-->分支。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "gcm"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.gcm <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="properties"><!--@Properties-->属性</h2>
+      <div>
+        <h3 id="property-MAX_MESSAGE_SIZE">MAX_MESSAGE_SIZE</h3>
+        <div class="summary">
+          <div class="line">chrome.gcm.MAX_MESSAGE_SIZE</div>
+        </div>
+        <div>
+          <dt><span class="property">MAX_MESSAGE_SIZE</span> <span class="type_name">  (  <code>4,096</code>  )</span></dt>
+      <dd>
+            消息中所有键/值对的最大大小（以字节为单位）。
+          </dd>  </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-register"
+            >register
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.gcm.register</span>(<span>array of string senderIds</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            在 GCM 中注册应用，注册标识符由 <code>callback</code> 返回。如果以相同的 <code>senderIds</code> 再次调用 <code>register</code>，则会返回相同的注册标识符。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-register-senderIds"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-register-senderIds" title="">
+                      senderIds
+                      <span class="property">
+                        (
+                          array of string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    允许向应用发送消息的服务器标识符列表，至少包含一个，不能超过 100 个发送者标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-register-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-register-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    注册完成时调用的函数，如果 <code>registrationId</code> 为空，它应该检查 <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a> 中的错误信息。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(string registrationId) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-registrationId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-registrationId" title="">
+                        registrationId
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      GCM 分配给应用的注册标识符。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-send"
+            >send
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.gcm.send</span>(<span>object message</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            发送指定内容的消息。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-send-message"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-send-message" title="">
+                      message
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    通过 GCM 发送给另一方的消息。
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-message-destinationId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-message-destinationId" title="">
+                            destinationId
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          发送消息的目标服务器标识符，在 <a href='https://code.google.com/apis/console'>Google API 控制台</a>中指定。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-message-messageId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-message-messageId" title="">
+                            messageId
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          消息标识符，对每一条消息都必须唯一。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-message-timeToLive"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-message-timeToLive" title="">
+                            timeToLive
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          消息保留的最长时间，以秒为单位。如果无法在指定时间内发送消息则会产生错误。0 表示应该立即发送消息，如果无法做到则失败。默认及最大值为 2419200 秒（4 星期）。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-message-data"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-message-data" title="">
+                            data
+                            <span class="property">
+                              (
+                                object
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          发送到服务器的消息数据，不允许使用 <code>goo.</code> 和 <code>google</code> 作为键的前缀。所有键/值对的大小不应该超过 <a href="https://crxdoc-zh.appspot.com/extensions/gcm.html#property-MAX_MESSAGE_SIZE">MAX_MESSAGE_SIZE</a>。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-send-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-send-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    消息成功放入队列等待发送后调用的函数，您应该检查 <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#property-lastError">runtime.lastError</a>，确保消息已经发送，没有遇到问题。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(string messageId) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-messageId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-messageId" title="">
+                        messageId
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      调用回调函数时对应的消息标识符。
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onMessage">onMessage</h3>
+        <div class="description">
+      <p>
+            通过 GCM 收到消息时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.gcm.onMessage.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onMessage-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onMessage-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object message) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onMessage-message"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onMessage-message" title="">
+                              message
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            通过 GCM 从另一方收到的消息。
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-message-data"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-message-data" title="">
+                                    data
+                                    <span class="property">
+                                      (
+                                        object
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  消息数据。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onMessagesDeleted">onMessagesDeleted</h3>
+        <div class="description">
+      <p>
+            GCM 服务器为了管理大小而不得不从队列中删除发送给应用的消息时产生，应用应该妥善处理这一情况，例如与服务器进行一次完整的同步。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.gcm.onMessagesDeleted.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onMessagesDeleted-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onMessagesDeleted-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onSendError">onSendError</h3>
+        <div class="description">
+      <p>
+            无法向 GCM 服务器发送消息时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.gcm.onSendError.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onSendError-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onSendError-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object error) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onSendError-error"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onSendError-error" title="">
+                              error
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            尝试发送消息时在 Chrome 浏览器或 GCM 服务器中发生的错误。应用可以等待合适的时间或者延长消息的生存期重新发送该消息。
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-error-errorMessage"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-error-errorMessage" title="">
+                                    errorMessage
+                                    <span class="property">
+                                      (
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  描述问题的错误消息。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-error-messageId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-error-messageId" title="">
+                                    messageId
+                                    <span class="property">
+                                      (
+                                        <span class="optional">optional</span>
+                                        string
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  如果错误与特定消息相关的话，则为产生该错误的消息标识符。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-error-details"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-error-details" title="">
+                                    details
+                                    <span class="property">
+                                      (
+                                        object
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  如果可用，则为与错误相关的其他详情。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

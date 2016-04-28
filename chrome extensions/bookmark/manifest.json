@@ -1,0 +1,21 @@
+{
+	"browser_action": {
+		"default_icon": { // optional
+			"38": "icon.png" ,
+			"128":"icon.png" // optional
+		},
+		"default_title": "bookmark", // optional; shown in tooltip
+		"default_popup": "app/window.html"
+	},
+	"background": {
+      "page": "app/window.html"
+   },
+	"permissions": ["bookmarks"],
+	"description": "a bookmark appp for spencer ",
+	"icons": {
+		"128": "icon.png"
+	},
+	"name": "bookmark",
+	"version": "1.0",
+	"manifest_version": 2
+}

@@ -1,0 +1,1921 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.browsingData - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/browsingData.html">https://crxdoc-zh.appspot.com/extensions/browsingData.html</a><br>
+<b>Title:</b> chrome.browsingData - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 73673<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.browsingData</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#usage"
+         data-list-item
+         >用法</a>
+    </li>
+    <li >
+      <a href="#origin_types"
+         data-list-item
+         >来源类型</a>
+    </li>
+    <li >
+      <a href="#samples"
+         data-list-item
+         >例子</a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-RemovalOptions"
+             data-list-item
+             >RemovalOptions</a>
+        </li>
+        <li >
+          <a href="#type-DataTypeSet"
+             data-list-item
+             >DataTypeSet</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-settings"
+             data-list-item
+             >settings        </a>
+        </li>
+        <li >
+          <a href="#method-remove"
+             data-list-item
+             >remove        </a>
+        </li>
+        <li >
+          <a href="#method-removeAppcache"
+             data-list-item
+             >removeAppcache        </a>
+        </li>
+        <li >
+          <a href="#method-removeCache"
+             data-list-item
+             >removeCache        </a>
+        </li>
+        <li >
+          <a href="#method-removeCookies"
+             data-list-item
+             >removeCookies        </a>
+        </li>
+        <li >
+          <a href="#method-removeDownloads"
+             data-list-item
+             >removeDownloads        </a>
+        </li>
+        <li >
+          <a href="#method-removeFileSystems"
+             data-list-item
+             >removeFileSystems        </a>
+        </li>
+        <li >
+          <a href="#method-removeFormData"
+             data-list-item
+             >removeFormData        </a>
+        </li>
+        <li >
+          <a href="#method-removeHistory"
+             data-list-item
+             >removeHistory        </a>
+        </li>
+        <li >
+          <a href="#method-removeIndexedDB"
+             data-list-item
+             >removeIndexedDB        </a>
+        </li>
+        <li >
+          <a href="#method-removeLocalStorage"
+             data-list-item
+             >removeLocalStorage        </a>
+        </li>
+        <li >
+          <a href="#method-removePluginData"
+             data-list-item
+             >removePluginData        </a>
+        </li>
+        <li >
+          <a href="#method-removePasswords"
+             data-list-item
+             >removePasswords        </a>
+        </li>
+        <li >
+          <a href="#method-removeWebSQL"
+             data-list-item
+             >removeWebSQL        </a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.browsingData</code> API 从用户的本地配置文件删除浏览数据。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 19<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "browsingData"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p>
+  <!--@You must declare the "browsingData" permission in the
+  <a href="manifest.html">extension manifest</a> to use this API.-->
+  您必须在<a href="manifest.html">扩展程序的清单文件</a>中声明
+  "browsingData" 权限才能使用这一 API。
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"permissions": [
+    "browsingData",
+  ]</b>,
+  ...
+}
+</pre>
+
+<h2 id="usage"><!--@Usage-->用法</h2>
+
+<p>
+  <!--@The simplest use-case for this API is a a time-based mechanism for clearing a
+  user's browsing data. Your code should provide a timestamp which indicates the
+  historical date after which the user's browsing data should be removed. This
+  timestamp is formatted as the number of milliseconds since the Unix epoch
+  (which can be retrieved from a JavaScript <code>Date</code> object via the
+  <code>getTime</code> method).-->
+  这一 API 最简单的用法就是基于时间清理用户浏览数据。您的代码应该提供时间戳，指定应该删除的是在这一历史时刻之后的用户浏览数据。这一时间戳的格式为自 1970 年 1 月 1 日以来所经过的毫秒数（可以通过 JavaScript 中 <code>Date</code> 对象的 <code>getTime</code> 方法获得）。
+</p>
+
+<p>
+  <!--@For example, to clear all of a user's browsing data from the last week, you
+  might write code as follows:-->
+  例如，要清除上一周的用户浏览数据，您可以编写如下代码：
+</p>
+
+<pre>var callback = function () {
+  // 数据清除后可以在这里进行一些处理。
+};
+
+var millisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+var oneWeekAgo = (new Date()).getTime() - millisecondsPerWeek;
+chrome.browsingData.remove({
+  "since": oneWeekAgo
+}, {
+  "appcache": true,
+  "cache": true,
+  "cookies": true,
+  "downloads": true,
+  "fileSystems": true,
+  "formData": true,
+  "history": true,
+  "indexedDB": true,
+  "localStorage": true,
+  "pluginData": true,
+  "passwords": true,
+  "webSQL": true
+}, callback);</pre>
+
+<p>
+  <!--@The--> <code>chrome.browsingData.remove</code> <!--@method allows you to remove
+  various types of browsing data with a single call, and will be much faster
+  than calling multiple more specific methods. If, however, you only want to
+  clear one specific type of browsing data (cookies, for example), the more
+  granular methods offer a readable alternative to a call filled with JSON.-->
+  方法允许您通过一次调用删除多种类型的浏览数据，并且比多次调用更具体的方法要快得多。然而，如果您只需要清除某种具体类型的浏览数据（例如 Cookie），粒度更细的方法要比包含 JSON 的调用更具可读性。
+</p>
+
+<pre>var callback = function () {
+  // 数据清除后可以在这里进行一些处理。
+};
+
+var millisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+var oneWeekAgo = (new Date()).getTime() - millisecondsPerWeek;
+chrome.browsingData.removeCookies({
+  "since": oneWeekAgo
+}, callback);</pre>
+
+<p class="caution">
+  <strong><!--@Important-->重要：</strong><!--@: Removing browsing data involves a good deal of
+  heavy lifting in the background, and can take <em>tens of seconds</em> to
+  complete, depending on a user's profile. You should use the callback mechanism
+  to keep your users up to date on the removal's status.-->
+  清除浏览数据涉及到后台大量的负荷，取决于用户配置文件，可能需要<em>几十秒</em>来完成。您应该使用回调机制通知用户清除状态。
+</p>
+
+<h2 id="origin_types"><!--@Origin Types-->来源类型</h2>
+
+<p>
+  <!--@Adding an <code>originTypes</code> property to the API's options object allows
+  you to specify which types of origins ought to be effected. Currently, origins
+  are divided into three categories:-->
+  向该 API 的选项对象添加一个 <code>originTypes</code>
+  属性允许您指定哪些类型的来源应该受到影响。目前来源分为三类：
+</p>
+<ul>
+  <li>
+    <code>unprotectedWeb</code> <!--@covers the general case of websites that users
+    visit without taking any special action. If you don't specify an
+    <code>originTypes</code>, the API defaults to removing data from unprotected
+    web origins.-->
+    包括了用户访问网站、不进行特殊操作的一般情况。如果您没有指定
+    <code>originTypes</code>，该 API 默认情况下删除来自不受保护的网络来源的数据。
+  </li>
+  <li>
+    <code>protectedWeb</code> <!--@covers those web origins that have been installed
+    as hosted applications. Installing-->
+    包括了安装为托管应用的网络来源。例如，安装
+    <a href="https://chrome.google.com/webstore/detail/aknpkdffaafgjchaibgeefbgmgeghloj">
+    Angry Birds</a><!--@, for example, protects the origin-->
+    后来源
+    <code>http://chrome.angrybirds.com</code><!--@, and removes it from the-->
+    将受到保护，并将从
+    <code>unprotectedWeb</code> <!--@category. Please do be careful when triggering
+    deletion of data for these origins: make sure your users know what they're
+    getting, as this will irrevocably remove their game data. No one wants to
+    knock tiny pig houses over more often than necessary.-->
+    分类中移除。在执行这些来源内的删除操作时请格外小心：确保您的用户知道这样做的结果，因为这可能会彻底删除他们的游戏数据。没有人愿意一次又一次地推倒小猪的屋子。
+  </li>
+  <li>
+    <code>extension</code> <!--@covers origins under the-->包括了
+    <code>chrome-extensions:</code> <!--@scheme. Removing extension data is, again,
+    something you should be very careful about.-->
+    协议下的来源。删除扩展程序数据同样是您应该格外小心的事情。
+  </li>
+</ul>
+<p>
+  <!--@We could adjust the previous example to remove only data from protected
+  websites as follows:-->
+  我们可以调整前一个例子，只删除来自受保护的网络来源的数据，如下所示：
+</p>
+<pre>var callback = function () {
+  // 数据清除后可以在这里进行一些处理。
+};
+
+var millisecondsPerWeek = 1000 * 60 * 60 * 24 * 7;
+var oneWeekAgo = (new Date()).getTime() - millisecondsPerWeek;
+chrome.browsingData.remove({
+  "since": oneWeekAgo,
+  <b>"originTypes": {
+    "protectedWeb": true
+  }</b>
+}, {
+  "appcache": true,
+  "cache": true,
+  "cookies": true,
+  "downloads": true,
+  "fileSystems": true,
+  "formData": true,
+  "history": true,
+  "indexedDB": true,
+  "localStorage": true,
+  "serverBoundCertificates": true,
+  "pluginData": true,
+  "passwords": true,
+  "webSQL": true
+}, callback);</pre>
+
+<p class="caution">
+  <strong><!--@Seriously-->特别重要：</strong><!--@: Be careful with-->使用 <code>protectedWeb</code> <!--@and-->与
+  <code>extension</code><!--@. These are destructive operations that your users
+  will write angry email about if they're not well-informed about what to
+  expect when your extension removes data on their behalf.-->
+  时必须格外小心，这些是毁灭性的操作，如果没有很好地告知用户您的扩展程序代表他们删除数据的后果，您会收到用户写来的愤怒的邮件。
+</p>
+
+<h2 id="samples"><!--@Examples-->例子</h2>
+<p>
+  <!--@Samples for the--> <code>browsingData</code> API <!--@are available-->
+  的例子在<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#browsingData"><!--@on the samples page-->示例页面</a>中可用。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.browsingData <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-RemovalOptions">RemovalOptions</h3>
+        <div>
+          <dd>确定删除哪些数据的选项。</dd>
+            <h3 id="RemovalOptions-properties" class="capitalize" title="">
+              <a href="#type-RemovalOptions">RemovalOptions</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-RemovalOptions-since"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-RemovalOptions-since" title="">
+                        since
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            double
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      删除从指定日期开始积累的所有数据，表示为从 1970 年 1 月 1 日午夜开始所经过的毫秒数（可通过 JavaScript <code>Date</code> 对象的 <code>getTime</code> 方法访问）。如果没有指定，则默认为 0（删除所有内容）。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-RemovalOptions-originTypes"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-RemovalOptions-originTypes" title="">
+                        originTypes
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      一个对象，属性指定哪些来源类型的数据应该被清除。如果没有指定该对象，默认情况下只清除“unprotected”来源。添加 protectedWeb 或 extensions 前请确保您<em>真的</em>需要删除应用数据。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-originTypes-unprotectedWeb"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-originTypes-unprotectedWeb" title="">
+                              unprotectedWeb
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            普通网站。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-originTypes-protectedWeb"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-originTypes-protectedWeb" title="">
+                              protectedWeb
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            安装为托管应用的网站（小心！）。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-originTypes-extension"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-originTypes-extension" title="">
+                              extension
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            用户安装的扩展程序与 Chrome 应用（<em>格外</em>小心！）。
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-DataTypeSet">DataTypeSet</h3>
+        <div>
+          <dd>数据类型的集合，未指定的数据类型认为是 <code>false</code>。</dd>
+            <h3 id="DataTypeSet-properties" class="capitalize" title="">
+              <a href="#type-DataTypeSet">DataTypeSet</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-DataTypeSet-appcache"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-appcache" title="">
+                        appcache
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的应用程序缓存。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-cache"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-cache" title="">
+                        cache
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器缓存。注意：删除数据时将清除<em>所有</em>缓存内容，并不仅限于您指定的范围。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-cookies"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-cookies" title="">
+                        cookies
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器的 Cookie。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-downloads"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-downloads" title="">
+                        downloads
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器的下载历史记录。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-fileSystems"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-fileSystems" title="">
+                        fileSystems
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的文件系统数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-formData"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-formData" title="">
+                        formData
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器保存的表单数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-history"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-history" title="">
+                        history
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      浏览器的历史记录。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-indexedDB"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-indexedDB" title="">
+                        indexedDB
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的 IndexedDB 数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-localStorage"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-localStorage" title="">
+                        localStorage
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的本地存储数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-serverBoundCertificates"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-serverBoundCertificates" title="">
+                        serverBoundCertificates
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      服务器绑定的证书。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-pluginData"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-pluginData" title="">
+                        pluginData
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      插件数据。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-passwords"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-passwords" title="">
+                        passwords
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      保存的密码。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-DataTypeSet-webSQL"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-DataTypeSet-webSQL" title="">
+                        webSQL
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      网站的 WebSQL 数据。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-settings"
+            >settings
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.settings</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            报告“清除浏览数据”用户界面中哪些类型的数据当前以选中。注意：该 API 中包含的某些数据类型不能在设置用户界面中访问，而某些用户界面设置控制这里列出的几种数据类型。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-settings-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-settings-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-result-options"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-options" title="">
+                              options
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-dataToRemove"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-dataToRemove" title="">
+                              dataToRemove
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-DataTypeSet">DataTypeSet</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            所有类型都会在结果中存在，已选中并且允许删除的类型值为 <code>true</code>，否则为 <code>false</code>。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-result-dataRemovalPermitted"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-result-dataRemovalPermitted" title="">
+                              dataRemovalPermitted
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-DataTypeSet">DataTypeSet</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            所有类型都会在结果中存在，如果允许删除（例如由企业策略控制）则值为 <code>true</code>，不允许则为 <code>false</code>。
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-remove"
+            >remove
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.remove</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-DataTypeSet">DataTypeSet</a> dataToRemove</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除储存在用户配置文件中的各种浏览数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-remove-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-remove-dataToRemove"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-dataToRemove" title="">
+                      dataToRemove
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-DataTypeSet">DataTypeSet</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    要删除的数据类型的集合。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-remove-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-remove-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    删除完成时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeAppcache"
+            >removeAppcache
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeAppcache</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除网站的应用程序缓存数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeAppcache-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeAppcache-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeAppcache-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeAppcache-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    网站的应用程序缓存数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeCache"
+            >removeCache
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeCache</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除浏览器缓存。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeCache-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeCache-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeCache-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeCache-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    浏览器缓存清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeCookies"
+            >removeCookies
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeCookies</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除特定时间段内的浏览器 Cookie 与修改过的服务器绑定证书。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeCookies-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeCookies-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeCookies-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeCookies-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    浏览器 Cookie 与服务器绑定证书清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeDownloads"
+            >removeDownloads
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeDownloads</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除浏览器中已下载的文件列表（<em>不是</em>已下载的文件本身）。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeDownloads-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeDownloads-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeDownloads-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeDownloads-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    浏览器已下载文件列表清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeFileSystems"
+            >removeFileSystems
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeFileSystems</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除网站的文件系统数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeFileSystems-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeFileSystems-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeFileSystems-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeFileSystems-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    网站的文件系统数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeFormData"
+            >removeFormData
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeFormData</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清理浏览器保存的表单数据（自动填充）。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeFormData-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeFormData-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeFormData-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeFormData-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    浏览器保存的表单数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeHistory"
+            >removeHistory
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeHistory</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除浏览历史记录。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeHistory-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeHistory-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeHistory-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeHistory-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    浏览历史记录清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeIndexedDB"
+            >removeIndexedDB
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeIndexedDB</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除网站的 IndexedDB 数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeIndexedDB-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeIndexedDB-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeIndexedDB-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeIndexedDB-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    网站的 IndexedDB 数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeLocalStorage"
+            >removeLocalStorage
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeLocalStorage</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清理网站的本地存储数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeLocalStorage-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeLocalStorage-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeLocalStorage-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeLocalStorage-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    网站的本地存储数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removePluginData"
+            >removePluginData
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removePluginData</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除插件数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removePluginData-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removePluginData-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removePluginData-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removePluginData-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    插件数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removePasswords"
+            >removePasswords
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removePasswords</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除浏览器保存的密码。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removePasswords-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removePasswords-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removePasswords-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removePasswords-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    浏览器保存的密码清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-removeWebSQL"
+            >removeWebSQL
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.browsingData.removeWebSQL</span>(<span><a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a> options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            清除网站的 WebSQL 数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-removeWebSQL-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeWebSQL-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="https://crxdoc-zh.appspot.com/extensions/browsingData.html#type-RemovalOptions">RemovalOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-removeWebSQL-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-removeWebSQL-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    网站的 WebSQL 数据清除后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

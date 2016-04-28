@@ -1,0 +1,110 @@
+/*map.css*/
+#map .layer,#map .toolbar,#map .main{
+	position: absolute;
+	font-size: 2rem;
+
+}
+#map .layer{
+	top:1em;
+	z-index: 2;
+	background: rgba(255,255,255,0.8);
+	width: 92%;
+	margin: 0 4%
+}
+#map .toolbar{
+	bottom:0;
+	height: 4.5em;
+	text-align: center;
+	line-height: 4.5em;
+	width: 100%
+}
+#map .toolbar:nth-of-type(5){
+	background-color:white;
+}
+
+#map .main{
+	bottom: 4.5em;
+	top:0;
+	z-index: 1;
+	width: 100%
+}
+
+#map .toolbar_button {
+	color: white;
+}
+#map .toolbar_button,#map .toolbar_menu{
+	font-size: 3rem;
+	display: inline-block;
+	height: 3em;
+	line-height: 3em;
+	text-align: center;
+}
+
+#map .toolbar_menu{
+	background: url("../img/view_list.png") no-repeat;
+	width: 24.375%;
+	padding-left: 4%
+}
+#map .toolbar_button_w1{
+	width: 75.625%
+}
+#map .toolbar_button_w2{
+	width: 37.8%
+}
+#map .hastips{
+	line-height: 2em
+}
+#map .tips{
+	width: 100%;
+	font-size: 1.8rem;
+	color: white;
+	height: 1em;
+	line-height: 1em
+}
+
+#map .service_content{
+	font-size: 2.4rem;
+	height: 2.4em;
+	line-height: 2.4em;
+	color: white;
+	background:rgb(250,127,24);
+	padding-left: 2em
+}
+
+#map .service_details{
+	padding: 0.5em 1em;
+	font-size: 2.2rem;
+	position: relative;
+
+}
+#map .service_details>p{
+	height: 2em;
+	line-height: 2em;
+	padding:0 1em
+}
+#map .service_details_tips{
+	border: solid 1px rgb(242,109,4);
+	height: 4em;
+}
+#map .service_details_tips>P{
+	width: 49%;
+	text-align: left;
+	display: inline-block;
+	vertical-align: middle;
+	height: 1.5em;
+	line-height:1.5em;
+}
+#map .service_details_money{
+	color: rgb(242,109,4);
+	font-size: 3rem;
+	padding-left: 1em
+}
+#map .phone{
+	position: absolute;
+	right: 1em;
+	height: 5em;
+	width: 5em;
+	top: 50%;
+	margin-top: -2.5em;
+	background:url("../img/phone_yellow.png") no-repeat;
+}

@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.pageAction - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/pageAction.html">https://crxdoc-zh.appspot.com/extensions/pageAction.html</a><br>
+<b>Title:</b> chrome.pageAction - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 44888<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a href="devtools.html" class="level4 ">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.pageAction</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#manifest"
+         data-list-item
+         >清单文件</a>
+    </li>
+    <li >
+      <a href="#ui"
+         data-list-item
+         >用户界面的几个部分</a>
+    </li>
+    <li >
+      <a href="#tips"
+         data-list-item
+         >提示</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         > 例子 </a>
+    </li>
+    <li class="separator">
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-ImageDataType"
+             data-list-item
+             >ImageDataType</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-show"
+             data-list-item
+             >show        </a>
+        </li>
+        <li >
+          <a href="#method-hide"
+             data-list-item
+             >hide        </a>
+        </li>
+        <li >
+          <a href="#method-setTitle"
+             data-list-item
+             >setTitle        </a>
+        </li>
+        <li >
+          <a href="#method-getTitle"
+             data-list-item
+             >getTitle        </a>
+        </li>
+        <li >
+          <a href="#method-setIcon"
+             data-list-item
+             >setIcon        </a>
+        </li>
+        <li >
+          <a href="#method-setPopup"
+             data-list-item
+             >setPopup        </a>
+        </li>
+        <li >
+          <a href="#method-getPopup"
+             data-list-item
+             >getPopup        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onClicked"
+             data-list-item
+             >onClicked</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+        使用 <code>chrome.pageAction</code> API 在地址栏中添加图标。页面按钮代表用于当前页面的操作，但是不适用于所有页面。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 5<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">清单文件<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "page_action": {...}
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<p>
+<!--@Some examples:-->
+例如：
+</p>
+<ul>
+  <li> <!--@Subscribe to this page's RSS feed-->订阅当前页面的 RSS 供稿 </li>
+  <li> <!--@Make a slideshow out of this page's photos-->以幻灯片的方式显示此页面的照片 </li>
+</ul>
+
+<p>
+<!--@The RSS icon in the following screenshot
+represents a page action
+that lets you subscribe to
+the RSS feed for the current page.-->
+以下屏幕截图中的 RSS
+图标是一个页面按钮，让您为当前页面订阅 RSS 供稿。
+</p>
+
+<img src="../../developer.chrome.com/static/images/page-action.png"
+  width="361" height="79" />
+
+<p>
+<!--@If you want the extension's icon to always be visible,
+use a <a href="browserAction.html">browser action</a> instead.-->
+如果您希望扩展程序的图标一直可见，请改用<a href="browserAction.html
+">浏览器按钮</a>。
+</p>
+
+<h2 id="manifest"><!--@Manifest-->清单文件</h2>
+
+<p>
+<!--@Register your page action in the
+<a href="manifest.html">extension manifest</a>
+like this:-->
+在<a href="manifest.html">扩展程序的清单文件</a>中注册您的页面按钮，如下所示：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"page_action": {
+    "default_icon": {                    <em>// 可选</em>
+      "19": "images/icon19.png",           <em>// 可选</em>
+      "38": "images/icon38.png"            <em>// 可选</em>
+    },
+    "default_title": "Google Mail",      <em>// 可选，在工具提示中显示</em>
+    "default_popup": "popup.html"        <em>// 可选</em>
+  }</b>,
+  ...
+}</pre>
+
+<p>
+<!--@If you only provide one of the 19px or 38px icon size, the extension system will
+scale the icon you provide to the pixel density of the user's display, which
+can lose detail or make it look fuzzy. The old syntax for registering the
+default icon is still supported:-->
+如果您只提供 19px 或 38px 图标大小中的一个，扩展程序系统将会缩放您提供的图标，以适应用户显示器的像素密度，这有可能会丢失细节或使它看上去很模糊。注册默认图标的旧语法仍然支持：
+</p>
+
+<pre data-filename="manifest.json">
+{
+  "name": "我的扩展程序",
+  ...
+  <b>"page_action": {
+    ...
+    "default_icon": "images/icon19.png"  <em>// 可选</em>
+    <em>// 与 "default_icon": { "19": "images/icon19.png" } 等价</em>
+  }</b>,
+  ...
+}</pre>
+
+<h2 id="ui"><!--@Parts of the UI-->用户界面的几个部分</h2>
+
+<p>
+<!--@Like browser actions,
+page actions can have an icon,
+a tooltip, and popup;
+they can't have badges, however.
+In addition, page actions can appear and disappear.
+You can find information about icons, tooltips, and popups
+by reading about the
+<a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#ui">browser action UI</a>.-->
+与浏览器按钮类似，页面按钮也可以有图标、工具提示和弹出内容，不过没有徽章。此外，页面按钮可以显示和隐藏。您可以阅读<a href="https://crxdoc-zh.appspot.com/extensions/browserAction.html#ui">浏览器按钮的用户界面</a>了解有关图标、工具提示和弹出内容的信息。
+</p>
+
+<p>
+<!--@You make a page action appear and disappear using the-->
+您可以分别通过
+<a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-show">show</a> <!--@and-->和
+<a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#method-hide">hide</a> <!--@methods, respectively.
+By default, a page action is hidden.
+When you show it, you specify the tab
+in which the icon should appear.
+The icon remains visible
+until the tab is closed
+or starts displaying a different URL
+(because the user clicks a link, for example).-->
+方法使页面按钮显示和隐藏。默认情况下，页面按钮是隐藏的。当您显示它时，您需要指定要显示图标的标签页。图标将一直显示着，直到标签页关闭或者开始显示另一个
+URL（例如用户单击链接后）。
+</p>
+
+
+
+
+<h2 id="tips"><!--@Tips-->提示</h2>
+
+<p><!--@For the best visual impact,
+follow these guidelines:-->为了达到最好的视觉效果，请遵循下面的指导：</p>
+
+<ul>
+  <li><!--@<b>Do</b> use page actions
+    for features that make sense
+    for only a few pages.-->对于仅对少数页面有意义的功能<b>请使用</b>页面按钮。
+  <li><!--@<b>Don't</b> use page actions
+    for features that make sense
+    for most pages.
+    Use <a href="browserAction.html">browser actions</a> instead.-->
+    对于适用于大多数页面的功能<b>请不要</b>使用页面按钮，而应该使用<a href="browserAction.html">浏览器按钮</a>。
+  <li><!--@<b>Don't</b> constantly animate your icon.
+    That's just annoying.--><b>请不要</b>一直使用动画图标，那样只会显得很烦人。
+</ul>
+
+
+<h2 id="examples"> <!--@Examples-->例子 </h2>
+
+<p>
+<!--@You can find simple examples of using page actions in the-->
+您可以在
+<a href="http://src.chromium.org/viewvc/chrome/trunk/src/chrome/common/extensions/docs/examples/api/pageAction/">examples/api/pageAction</a>
+<!--@directory.
+For other examples and for help in viewing the source code, see
+<a href="samples.html">Samples</a>.-->
+目录中找到使用页面按钮的简单例子。有关其他例子以及查看源代码的帮助，请参见<a href="samples.html">示例</a>。
+</p>
+</section>
+<section>
+<h2 id="api-reference-header" title="">chrome.pageAction <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-ImageDataType">ImageDataType</h3>
+        <div>
+          <dd>图片的像素数据，必须为 ImageData 对象（例如来自 <code>canvas</code> 元素）。</dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-show"
+            >show
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.show</span>(<span>integer tabId</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            显示页面按钮，页面按钮在指定的标签页选定时显示。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-show-tabId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-show-tabId" title="">
+                      tabId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    您需要修改的页面按钮所在标签页的标识符。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-hide"
+            >hide
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.hide</span>(<span>integer tabId</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            隐藏页面按钮。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-hide-tabId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-hide-tabId" title="">
+                      tabId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    您需要修改的页面按钮所在标签页的标识符。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setTitle"
+            >setTitle
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.setTitle</span>(<span>object details</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            设置页面按钮的标题，显示在页面按钮下的工具提示中。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setTitle-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setTitle-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-tabId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-tabId" title="">
+                            tabId
+                            <span class="property">
+                              (
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          您需要修改的页面按钮所在标签页的标识符。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-details-title"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-title" title="">
+                            title
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          工具提示字符串。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getTitle"
+            >getTitle
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.getTitle</span>(<span>object details</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取页面按钮的标题。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getTitle-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getTitle-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-tabId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-tabId" title="">
+                            tabId
+                            <span class="property">
+                              (
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          指定要获取标题的标签页。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-getTitle-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getTitle-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(string result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setIcon"
+            >setIcon
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.setIcon</span>(<span>object details</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            设置页面按钮的图标。图标既可以指定为图片文件的路径，也可以指定来自 canvas 元素的像素数据，或者这两者中任意一个的词典。<b>path</b> 或 <b>imageData</b> 属性中有且只有一个必须指定。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setIcon-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setIcon-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-tabId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-tabId" title="">
+                            tabId
+                            <span class="property">
+                              (
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          您需要修改的页面按钮所在标签页的标识符。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-details-imageData"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-imageData" title="">
+                            imageData
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                <a href="https://crxdoc-zh.appspot.com/extensions/pageAction.html#type-ImageDataType">ImageDataType</a> or 
+                                object
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          ImageData 对象或一个词典（大小 -&gt; ImageData），表示要设置的图标。如果图标以词典的形式指定，实际使用的图标取决于屏幕的像素密度。如果单位屏幕空间容纳的图片的像素数等于 <code>scale</code>，则会选择大小为 <code>scale</code> * 19的图片。目前只支持缩放比例 1 和 2。至少要指定一个图片。注意“details.imageData = foo”等价于“details.imageData = {'19': foo}”。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-details-path"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-path" title="">
+                            path
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string or 
+                                object
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          图片的相对路径或一个词典（大小 -&gt; 图片的相对路径），指向要设置的图标。如果图标以词典的形式指定，实际使用的图标取决于屏幕的像素密度。如果单位屏幕空间容纳的图片的像素数等于 <code>scale</code>，则会选择大小为 <code>scale </code>* 19的图片。目前只支持缩放比例 1 和 2。至少要指定一个图片。注意“details.path = foo”等价于“details.path = {'19': foo}”。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-details-iconIndex"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-iconIndex" title="">
+                            iconIndex
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <b>已弃用。</b>该参数将忽略。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-setIcon-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setIcon-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setPopup"
+            >setPopup
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.setPopup</span>(<span>object details</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            设置当用户单击页面按钮的图标时显示为弹出内容的 HTML 文档。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setPopup-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setPopup-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-tabId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-tabId" title="">
+                            tabId
+                            <span class="property">
+                              (
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          您需要修改的页面按钮所在标签页的标识符。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-details-popup"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-popup" title="">
+                            popup
+                            <span class="property">
+                              (
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          显示在弹出内容中的 HTML 文件。如果设为空字符串（""），则不显示弹出内容。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+          </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getPopup"
+            >getPopup
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.pageAction.getPopup</span>(<span>object details</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            获取设置为该页面按钮弹出内容的 HTML 文档。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getPopup-details"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getPopup-details" title="">
+                      details
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-details-tabId"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-details-tabId" title="">
+                            tabId
+                            <span class="property">
+                              (
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          指定要获取弹出内容的标签页。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-getPopup-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getPopup-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(string result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onClicked">onClicked</h3>
+        <div class="description">
+      <p>
+            页面按钮的图标单击时产生，如果页面按钮有弹出内容则不会触发该事件。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.pageAction.onClicked.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onClicked-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onClicked-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(<a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a> tab) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onClicked-tab"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onClicked-tab" title="">
+                              tab
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#type-Tab">tabs.Tab</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

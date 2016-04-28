@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.app.window - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:37.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/app.window.html">https://crxdoc-zh.appspot.com/apps/app.window.html</a><br>
+<b>Title:</b> chrome.app.window - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 86803<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="apps.html" title="Google Chrome 应用" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.app.window</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-Bounds"
+             data-list-item
+             >Bounds</a>
+        </li>
+        <li >
+          <a href="#type-AppWindow"
+             data-list-item
+             >AppWindow</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-create"
+             data-list-item
+             >create        </a>
+        </li>
+        <li >
+          <a href="#method-current"
+             data-list-item
+             >current        </a>
+        </li>
+        <li >
+          <a href="#method-getAll"
+             data-list-item
+             >getAll        </a>
+        </li>
+        <li >
+          <a href="#method-get"
+             data-list-item
+             >get        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onBoundsChanged"
+             data-list-item
+             >onBoundsChanged</a>
+        </li>
+        <li >
+          <a href="#event-onClosed"
+             data-list-item
+             >onClosed</a>
+        </li>
+        <li >
+          <a href="#event-onFullscreened"
+             data-list-item
+             >onFullscreened</a>
+        </li>
+        <li >
+          <a href="#event-onMaximized"
+             data-list-item
+             >onMaximized</a>
+        </li>
+        <li >
+          <a href="#event-onMinimized"
+             data-list-item
+             >onMinimized</a>
+        </li>
+        <li >
+          <a href="#event-onRestored"
+             data-list-item
+             >onRestored</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+         <!--@Use the <code>chrome.app.window</code> API to create windows. Windows
+         have an optional frame with title bar and size controls. They are not
+         associated with any Chrome browser windows.-->
+         使用 <code>chrome.app.window</code> API
+         创建窗口。窗口可以有框架，包含标题栏和大小控件，它们不和任何
+         Chrome 浏览器窗口关联。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 23<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "app.window"
+                </span>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.app.window <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-Bounds">Bounds</h3>
+        <div>
+            <h3 id="Bounds-properties" class="capitalize" title="">
+              <a href="#type-Bounds">Bounds</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-Bounds-left"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Bounds-left" title="">
+                        left
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Bounds-top"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Bounds-top" title="">
+                        top
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Bounds-width"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Bounds-width" title="">
+                        width
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-Bounds-height"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-Bounds-height" title="">
+                        height
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-AppWindow">AppWindow</h3>
+        <div>
+            <h3 id="AppWindow-properties" class="capitalize" title="">
+              <a href="#type-AppWindow">AppWindow</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-AppWindow-focus"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-focus" title="">
+                        focus
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Focus the window.--> 使窗口拥有焦点。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-fullscreen"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-fullscreen" title="">
+                        fullscreen
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Fullscreens the window.--> 使窗口进入全屏状态。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-isFullscreen"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-isFullscreen" title="">
+                        isFullscreen
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Is the window fullscreen?--> 窗口是否处于全屏状态。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        boolean
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-minimize"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-minimize" title="">
+                        minimize
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Minimize the window.--> 最小化窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-isMinimized"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-isMinimized" title="">
+                        isMinimized
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Is the window minimized?--> 窗口是否最小化。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        boolean
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-maximize"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-maximize" title="">
+                        maximize
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Maximize the window.--> 最大化窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-isMaximized"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-isMaximized" title="">
+                        isMaximized
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Is the window maximized?--> 窗口是否最大化。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        boolean
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-restore"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-restore" title="">
+                        restore
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Restore the window, exiting a maximized, minimized, or fullscreen state.--> 从最大化、最小化或全屏状态恢复窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-moveTo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-moveTo" title="">
+                        moveTo
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Move the window to the position (|left|, |top|).--> 将窗口移到指定位置（<code>left</code>、<code>top</code>）。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-moveTo-left"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-moveTo-left" title="">
+                              left
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-moveTo-top"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-moveTo-top" title="">
+                              top
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-resizeTo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-resizeTo" title="">
+                        resizeTo
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Resize the window to |width|x|height| pixels in size.--> 将窗口大小调整为 <code>width</code> × <code>height</code> 像素。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-resizeTo-width"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-resizeTo-width" title="">
+                              width
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-resizeTo-height"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-resizeTo-height" title="">
+                              height
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-drawAttention"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-drawAttention" title="">
+                        drawAttention
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Draw attention to the window.--> 吸引用户注意该窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-clearAttention"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-clearAttention" title="">
+                        clearAttention
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Clear attention to the window.--> 取消对窗口的吸引。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-close"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-close" title="">
+                        close
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Close the window.--> 关闭窗口。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-show"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-show" title="">
+                        show
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Show the window. Does nothing if the window is already visible. Focus the window if |focused| is set to true or omitted.--> 显示窗口，如果窗口已经可见则什么都不做。如果 <code>focused</code> 设置为 true 或省略则使窗口获得焦点。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-show-focused"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-show-focused" title="">
+                              focused
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-hide"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-hide" title="">
+                        hide
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Hide the window. Does nothing if the window is already hidden.--> 隐藏窗口，如果窗口已经可见则什么都不做。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-getBounds"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-getBounds" title="">
+                        getBounds
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Get the window's bounds as a <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-Bounds">Bounds</a> object.--> 获取窗口的大小与位置，以 <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-Bounds">Bounds</a> 对象表示。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-Bounds">Bounds</a>
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-setBounds"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-setBounds" title="">
+                        setBounds
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Set the window's bounds.--> 设置窗口的大小与位置。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-setBounds-bounds"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-setBounds-bounds" title="">
+                              bounds
+                              <span class="property">
+                                (
+                                  <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-Bounds">Bounds</a>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-getMinWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-getMinWidth" title="">
+                        getMinWidth
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Get the current minimum width of the window. Returns |undefined| if there is no minimum.--> 获取窗口当前的最小宽度，如果没有最小值则返回 <code>undefined</code>。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        integer
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-getMinHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-getMinHeight" title="">
+                        getMinHeight
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Get the current minimum height of the window. Returns |undefined| if there is no minimum.--> 获取窗口当前的最小高度，如果没有最小值则返回 <code>undefined</code>。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        integer
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-getMaxWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-getMaxWidth" title="">
+                        getMaxWidth
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Get the current maximum width of the window. Returns |undefined| if there is no maximum.--> 获取窗口当前的最大宽度，如果没有最小值则返回 <code>undefined</code>。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        integer
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-getMaxHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-getMaxHeight" title="">
+                        getMaxHeight
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Get the current maximum height of the window. Returns |undefined| if there is no maximum.--> 获取窗口当前的最大高度，如果没有最小值则返回 <code>undefined</code>。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        integer
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-setMinWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-setMinWidth" title="">
+                        setMinWidth
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Set the current minimum width of the window. Set to |null| to remove the constraint.--> 设置窗口当前的最小宽度，设置为 <code>null</code> 取消这一约束。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-setMinWidth-minWidth"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-setMinWidth-minWidth" title="">
+                              minWidth
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-setMinHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-setMinHeight" title="">
+                        setMinHeight
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Set the current minimum height of the window. Set to |null| to remove the constraint.--> 设置窗口当前的最小高度，设置为 <code>null</code> 取消这一约束。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-setMinHeight-minHeight"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-setMinHeight-minHeight" title="">
+                              minHeight
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-setMaxWidth"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-setMaxWidth" title="">
+                        setMaxWidth
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Set the current maximum width of the window. Set to |null| to remove the constraint.--> 设置窗口当前的最大宽度，设置为 <code>null</code> 取消这一约束。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-setMaxWidth-maxWidth"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-setMaxWidth-maxWidth" title="">
+                              maxWidth
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-setMaxHeight"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-setMaxHeight" title="">
+                        setMaxHeight
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Set the current maximum height of the window. Set to |null| to remove the constraint.--> 设置窗口当前的最大高度，设置为 <code>null</code> 取消这一约束。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-setMaxHeight-maxHeight"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-setMaxHeight-maxHeight" title="">
+                              maxHeight
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-isAlwaysOnTop"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-isAlwaysOnTop" title="">
+                        isAlwaysOnTop
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Is the window always on top?--> 窗口是否前端显示。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <dt><!--@Returns-->返回值<span class="property">
+                        boolean
+                      </span></dt>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-setAlwaysOnTop"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-setAlwaysOnTop" title="">
+                        setAlwaysOnTop
+                        <span class="property">
+                          (
+                            function
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Set whether the window should stay above most other windows. Requires the <code>"alwaysOnTopWindows"</code> permission. Currently only available on Dev channel.--> 设置窗口是否应该前端显示。需要 <code>"alwaysOnTopWindows"</code> 权限，当前仅在 Dev 分支可用。
+                    </dd>
+                  </dl>
+                  <dd>
+                    <dl>
+                      <h4 title=""><!--@Parameters-->参数</h4>
+                      <div>
+                        <a name="property-setAlwaysOnTop-alwaysOnTop"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-setAlwaysOnTop-alwaysOnTop" title="">
+                              alwaysOnTop
+                              <span class="property">
+                                (
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div><div>
+                  <a name="property-AppWindow-contentWindow"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-contentWindow" title="">
+                        contentWindow
+                        <span class="property">
+                          (
+                            window
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The JavaScript 'window' object for the created child.--> 已创建子窗口的 JavaScript window 对象。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-AppWindow-id"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-AppWindow-id" title="">
+                        id
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The id the window was created with.--> 创建窗口时指定的标识符。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-create"
+            >create
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.app.window.create</span>(<span>string url</span>, <span class="optional">object options</span>, <span class="optional">function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@The size and position of a window can be specified in a number of different ways. The most simple option is not specifying anything at all, in which case a default size and platform dependent position will be used.--> 窗口的大小与位置可以以几种不同的方式指定。最简单的选择是什么都不指定，这种情况下会使用默认大小与平台相关的位置。<br/><br/> <!--@Another option is to use the bounds property, which will put the window at the specified coordinates with the specified size. If the window has a frame, it's total size will be the size given plus the size of the frame; that is, the size in bounds is the content size, not the window size.--> 另一种选择是使用 bounds 属性，这样窗口总是会放在指定位置并且具有指定大小。如果窗口有边框，它的总大小是指定大小加上边框的大小。也就是说，bounds 中的大小是内容大小，而不是窗口大小。<br/><br/> <!--@To automatically remember the positions of windows you can give them ids. If a window has an id, This id is used to remember the size and position of the window whenever it is moved or resized. This size and position is then used instead of the specified bounds on subsequent opening of a window with the same id. If you need to open a window with an id at a location other than the remembered default, you can create it hidden, move it to the desired location, then show it.--> 如果要自动记录窗口的位置，您可以为它们提供标识符。如果窗口有标识符，该标识符将在窗口移动或调整大小时用于记录它的大小和位置。以后打开具有同样标识符的窗口时使用这一大小和位置，而不是指定的大小和位置。如果您需要打开一个具有标识符的窗口，并且使用不同于记录的默认位置，您可以使它创建时隐藏，将它移动到期望的位置，然后显示它。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-create-url"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-url" title="">
+                      url
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-create-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-options-id"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-id" title="">
+                            id
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Id to identify the window. This will be used to remember the size and position of the window and restore that geometry when a window with the same id is later opened. If a window with a given id is created while another window with the same id already exists, the currently opened window will be focused instead of creating a new window.--> 用于标识窗口的标识符，会用来记住窗口的大小与位置，当同一标识符的窗口再次打开时恢复原来的尺寸。如果创建窗口时另一个具有同样标识符的窗口已经存在，当前打开的窗口将获得焦点，而不会创建新窗口。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-minWidth"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-minWidth" title="">
+                            minWidth
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Minimum width of the window.--> 窗口的最小宽度。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-minHeight"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-minHeight" title="">
+                            minHeight
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Minimum height of the window.--> 窗口的最小高度。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-maxWidth"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-maxWidth" title="">
+                            maxWidth
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Maximum width of the window.--> 窗口的最大宽度。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-maxHeight"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-maxHeight" title="">
+                            maxHeight
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                integer
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Maximum height of the window.--> 窗口的最大高度。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-frame"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-frame" title="">
+                            frame
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                string
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Frame type: <code>none</code> or <code>chrome</code> (defaults to <code>chrome</code>). For <code>none</code>, the <code>-webkit-app-region</code> CSS property can be used to apply draggability to the app's window. <code>-webkit-app-region: drag</code> can be used to mark regions draggable. <code>no-drag</code> can be used to disable this style on nested elements.--> 框架类型：'none' 或 'chrome'（默认为 'chrome'）。如果使用 'none'，可以通过 CSS 属性 <code>-webkit-app-region</code> 设置应用窗口的拖放特性。<code>-webkit-app-region: drag</code> 可以将区域标志为可拖放的，而 <code>no-drag</code> 可以用来在嵌套元素上禁用该样式。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-bounds"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-bounds" title="">
+                            bounds
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-Bounds">Bounds</a>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Size and position of the content in the window (excluding the titlebar). If an id is also specified and a window with a matching id has been shown before, the remembered bounds of the window will be used instead.--> 窗口中内容的大小与位置（不包括标题栏）。如果同时指定了 id，并且以前显示过匹配标识符的窗口，则会使用记录下来的窗口大小与位置。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-transparentBackground"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-transparentBackground" title="">
+                            transparentBackground
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@Enable window background transparency. Only supported in ash. Requires experimental API permission.--> 启用窗口背景透明，仅在 ash 中支持，需要实验性 API 权限。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-state"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-state" title="">
+                            state
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                enum of <code>"normal"</code>, <code>"fullscreen"</code>, <code>"maximized"</code>, or <code>"minimized"</code>
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@The initial state of the window, allowing it to be created already fullscreen, maximized, or minimized. Defaults to 'normal'.--> 窗口的初始状态，允许使它在创建时就全屏、最大化或最小化。默认为 'normal'（正常）。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-hidden"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-hidden" title="">
+                            hidden
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@If true, the window will be created in a hidden state. Call show() on the window to show it once it has been created. Defaults to false.--> 如果为 true，该窗口创建后将处于隐藏状态，创建之后在该窗口上调用 show() 可以显示它。默认为 false。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-resizable"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-resizable" title="">
+                            resizable
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@If true, the window will be resizable by the user. Defaults to true.--> 如果为 true 的话，用户可以调整窗口的大小。默认为 true。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-alwaysOnTop"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-alwaysOnTop" title="">
+                            alwaysOnTop
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@If true, the window will stay above most other windows. If there are multiple windows of this kind, the currently focused window will be in the foreground. Requires the <code>"alwaysOnTopWindows"</code> permission. Defaults to false.<br> Call <code>setAlwaysOnTop()</code> on the window to change this property after creation.<br> Currently only available on Dev channel.--> 如果为 true，窗口会保持在其他大部分窗口之上。如果有多个这样的窗口，当前具有焦点的窗口会在前台。需要 <code>"alwaysOnTopWindows"</code> 权限，默认为 false。创建窗口后调用 <code>setAlwaysOnTop</code> 修改该属性。当前仅在 Dev 分支可用。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-options-focused"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-options-focused" title="">
+                            focused
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@If true, the window will be focused when created. Defaults to true.--> 如果为 true，窗口创建时具有焦点。默认为 true。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-create-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-create-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called in the creating window (parent) before the load event is called in the created window (child). The parent can set fields or functions on the child usable from onload. E.g. background.js:<br> <code>function(createdWindow) { createdWindow.contentWindow.foo = function () { }; };</code> <br>window.js:<br> <code>window.onload = function () { foo(); }</code>--> 在已创建窗口（子窗口）的 load 事件产生前在父窗口中调用，父窗口可以设置子窗口中的字段或函数，以便在 onload 中使用。例如：background.js：<br> <code>function(createdWindow) { createdWindow.contentWindow.foo = function () { }; };</code> <br>window.js：<br> <code>window.onload = function () { foo(); }</code>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@If you specify the <em>callback</em> parameter, it should
+                  specify a function that looks like this:-->
+                  如果您指定了 <em>callback</em> 参数，它应该指定一个如下形式的函数：
+            </p>
+            <pre>function(appwindow createdWindow) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-createdWindow"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-createdWindow" title="">
+                        createdWindow
+                        <span class="property">
+                          (
+                            appwindow
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-current"
+            >current
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span><a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> chrome.app.window.current</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns an <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> object for the current script context (ie JavaScript 'window' object). This can also be called on a handle to a script context for another page, for example: otherWindow.chrome.app.window.current().--> 返回当前脚本上下文（即 JavaScript window 对象）的 <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> 对象。这也可以在另一个页面的脚本上下文句柄上调用，例如 otherWindow.chrome.app.window.current()。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getAll"
+            >getAll
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span>array of <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> chrome.app.window.getAll</span>()
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Gets an array of all currently created app windows. This method is new in Chrome 33.--> 获取所有当前创建的应用窗口数组。该方法在 Chrome 33 中新增。
+          </p>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-get"
+            >get
+        </h3>
+        <div class="summary">
+        <div class="line">
+        <span><a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> chrome.app.window.get</span>(<span>string id</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Gets an <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> with the given id. If no window with the given id exists null is returned. This method is new in Chrome 33.--> 获取指定标识符的 <a href="https://crxdoc-zh.appspot.com/apps/app.window.html#type-AppWindow">AppWindow</a> 对象，如果没有指定标识符的窗口则返回 null。该方法在 Chrome 33 中新增。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-get-id"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-get-id" title="">
+                      id
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onBoundsChanged">onBoundsChanged</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when the window is resized.--> 当窗口改变大小时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.app.window.onBoundsChanged.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onBoundsChanged-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onBoundsChanged-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onClosed">onClosed</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when the window is closed.--> 当窗口关闭时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.app.window.onClosed.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onClosed-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onClosed-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onFullscreened">onFullscreened</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when the window is fullscreened.--> 窗口全屏时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.app.window.onFullscreened.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onFullscreened-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onFullscreened-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onMaximized">onMaximized</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when the window is maximized.--> 当窗口最大化时产生。 Fired when the window is maximized.
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.app.window.onMaximized.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onMaximized-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onMaximized-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onMinimized">onMinimized</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when the window is minimized.--> 当窗口最小化时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.app.window.onMinimized.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onMinimized-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onMinimized-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onRestored">onRestored</h3>
+        <div class="description">
+      <p>
+            <!--@Fired when the window is restored from being minimized or maximized.--> 当窗口从最小化或最大化的状态恢复时产生。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.app.window.onRestored.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onRestored-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onRestored-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function() <span class="subdued">{...}</span>;</pre>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

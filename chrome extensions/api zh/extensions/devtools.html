@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>扩展开发者工具 - Google Chrome 扩展程序开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="../../developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="../../developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:36.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/extensions/devtools.html">https://crxdoc-zh.appspot.com/extensions/devtools.html</a><br>
+<b>Title:</b> 扩展开发者工具 - Google Chrome 扩展程序开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 42540<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="extensions.html" title="Google Chrome 扩展程序" id="view-original">
+          <img src="../../developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            扩展程序 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="samples.html"
+               title="示例 扩展程序（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-extensions"
+               title="Google Chrome 扩展程序开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-extension/info"
+               title="Stack Overflow 上的 [google-chrome-extension] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <a href="getstarted.html" class="level2 ">入门</a>
+        </li><li class="level2">
+              <a href="overview.html" class="level2 ">概述</a>
+        </li><li class="level2">
+              <a href="whats_new.html" class="level2 ">新增功能</a>
+        </li><li class="level2">
+              <a href="devguide.html" class="level2 ">开发者指南</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器用户界面</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="browserAction.html" class="level4 ">浏览器按钮</a>
+            </li><li class="level4">
+                  <a href="contextMenus.html" class="level4 ">右键菜单</a>
+            </li><li class="level4">
+                  <a href="desktop_notifications.html" class="level4 ">桌面通知</a>
+            </li><li class="level4">
+                  <a href="omnibox.html" class="level4 ">多功能框</a>
+            </li><li class="level4">
+                  <a href="options.html" class="level4 ">选项页面</a>
+            </li><li class="level4">
+                  <a href="override.html" class="level4 ">替代页面</a>
+            </li><li class="level4">
+                  <a href="pageAction.html" class="level4 ">页面按钮</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">浏览器交互</span>
+                <div class="toggleIndicator level3 toggled"></div>
+              </a>
+            <ul toggleable
+                class="level3 ">
+            <li class="level4">
+                  <a href="bookmarks.html" class="level4 ">书签</a>
+            </li><li class="level4">
+                  <a href="cookies.html" class="level4 ">Cookie</a>
+            </li><li class="level4">
+                  <a  class="level4 selected">扩展开发者工具</a>
+            </li><li class="level4">
+                  <a href="events.html" class="level4 ">事件</a>
+            </li><li class="level4">
+                  <a href="history.html" class="level4 ">历史记录</a>
+            </li><li class="level4">
+                  <a href="management.html" class="level4 ">管理</a>
+            </li><li class="level4">
+                  <a href="tabs.html" class="level4 ">标签页</a>
+            </li><li class="level4">
+                  <a href="windows.html" class="level4 ">窗口</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">实现</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="a11y.html" class="level4 ">辅助功能</a>
+            </li><li class="level4">
+                  <a href="event_pages.html" class="level4 ">事件页面</a>
+            </li><li class="level4">
+                  <a href="contentSecurityPolicy.html" class="level4 ">内容安全策略</a>
+            </li><li class="level4">
+                  <a href="content_scripts.html" class="level4 ">内容脚本</a>
+            </li><li class="level4">
+                  <a href="xhr.html" class="level4 ">跨站 XHR</a>
+            </li><li class="level4">
+                  <a href="i18n.html" class="level4 ">国际化支持</a>
+            </li><li class="level4">
+                  <a href="messaging.html" class="level4 ">消息传递</a>
+            </li><li class="level4">
+                  <a href="permissions.html" class="level4 ">可选权限</a>
+            </li><li class="level4">
+                  <a href="npapi.html" class="level4 ">NPAPI 插件</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">完成</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="hosting.html" class="level4 ">托管</a>
+            </li><li class="level4">
+                  <a href="external_extensions.html" class="level4 ">其他发布选项</a>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <a href="tutorials.html" class="level2 ">教程</a>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="tut_migration_to_manifest_v2.html" class="level3 ">清单文件版本 2</a>
+          </li><li class="level3">
+                <a href="tut_debugging.html" class="level3 ">调试</a>
+          </li><li class="level3">
+                <a href="tut_analytics.html" class="level3 ">Google Analytics（分析）</a>
+          </li><li class="level3">
+                <a href="tut_oauth.html" class="level3 ">OAuth</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+              <a class="button level3">
+                <span class="level3">格式</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="manifest.html" class="level4 ">清单文件</a>
+            </li><li class="level4">
+                  <a href="match_patterns.html" class="level4 ">匹配表达式</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="permission_warnings.html" class="level3 ">权限警告</a>
+          </li><li class="level3">
+                <a href="api_index.html" class="level3 ">chrome.* API</a>
+          </li><li class="level3">
+                <a href="api_other.html" class="level3 ">其他 API</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">更多</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/webstore/docs/index.html" class="level3 ">Chrome 网上应用店</a>
+          </li><li class="level3">
+                <a href="http://code.google.com/chrome/apps/docs/developers_guide.html" class="level3 ">托管应用</a>
+          </li><li class="level3">
+                <a href="themes.html" class="level3 ">主题背景</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#overview"
+         data-list-item
+         >概述</a>
+    </li>
+    <li >
+      <a href="#devtools-page"
+         data-list-item
+         >开发者工具网页</a>
+    </li>
+    <li >
+      <a href="#creating"
+         data-list-item
+         >创建开发者工具扩展程序</a>
+    </li>
+    <li >
+      <a href="#devtools-ui"
+         data-list-item
+         >开发者工具用户界面元素：面板和侧边栏窗格</a>
+    </li>
+    <li >
+      <a href="#solutions"
+         data-list-item
+         >在扩展程序的不同部件之间通信</a>
+      <ol>
+        <li >
+          <a href="#injecting"
+             data-list-item
+             >插入内容脚本</a>
+        </li>
+        <li >
+          <a href="#evaluating-js"
+             data-list-item
+             >在审查的窗口中执行 JavaScript</a>
+        </li>
+        <li >
+          <a href="#selected-element"
+             data-list-item
+             >将选定元素传递给内容脚本</a>
+        </li>
+        <li >
+          <a href="#content-script-to-devtools"
+             data-list-item
+             >内容脚本与开发者工具网页间的消息传递</a>
+        </li>
+        <li >
+          <a href="#detecting-open-close"
+             data-list-item
+             >检测开发者工具何时打开何时关闭</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#more"
+         data-list-item
+         >更多信息</a>
+    </li>
+    <li >
+      <a href="#examples"
+         data-list-item
+         >例子</a>
+    </li>
+  </ol>
+</div>
+
+<h1><!--@Extending DevTools-->扩展开发者工具</h1>
+
+<h2 id="overview"><!--@Overview-->概述</h2>
+
+<p><!--@A DevTools extension adds functionality to the Chrome DevTools. It can add new
+UI panels and sidebars, interact with the inspected page, get information about
+network requests, and more. DevTools extensions have access to an additional set
+of DevTools-specific extension APIs:-->
+开发者工具扩展程序为 Chrome
+浏览器的开发者工具增加新功能，可以在用户界面中添加新的面板和侧边栏、与审查的网页交互、获取网络请求的有关信息等。开发者工具扩展程序可以访问专门的开发者工具扩展程序
+API：</p>
+
+<ul>
+<li><code><a href="devtools.inspectedWindow.html">devtools.inspectedWindow</a></code></li>
+<li><code><a href="devtools.network.html">devtools.network</a></code></a></li>
+<li><code><a href="devtools.panels.html">devtools.panels</a></code></a></li>
+</ul>
+
+<p><!--@A DevTools extension is structured like any other extension: it can have a
+background page, content scripts, and other items. In addition, each DevTools
+extension has a DevTools page, which has access to the DevTools APIs.-->
+开发者工具扩展程序与其他扩展程序的结构类似：可以拥有后台网页、内容脚本等。此外，每一个开发者工具扩展程序都有一个开发者工具网页，它能够访问开发者工具
+API。
+</p>
+
+<!--@<p><img src="../../developer.chrome.com/static/images/devtools-extension.png" alt="Architecture diagram
+showing DevTools page communicating with the inspected window and the background
+page. The background page is shown communicating with the content scripts and
+accessing extension APIs. The DevTools page has access to the DevTools APIs, for
+example, creating panels."/></p>-->
+<p><img src="../../developer.chrome.com/static/images/devtools-extension.png" alt="该架构示意图表示开发者工具网页与审查的窗口以及后台网页之间的通信，其中，后台网页正在与内容脚本以及访问的扩展程序 API 通信，开发者工具网页能够访问开发者工具 API，例如创建面板。"/></p>
+
+<h2 id="devtools-page"><!--@The DevTools Page-->开发者工具网页</h2>
+
+<p><!--@An instance of the extension's DevTools page is created each time a DevTools
+window opens. The DevTools page exists for the lifetime of the DevTools window.
+The DevTools page has access to the DevTools APIs and a limited set of extension
+APIs. Specifically, the DevTools page can:-->
+每次打开开发者工具窗口时，都会创建扩展程序的开发者工具网页。开发者工具网页的生命周期与开发者工具窗口相同，它可以访问开发者工具
+API 以及有限的扩展程序 API。具体说来，开发者工具网页可以：
+</p>
+
+<ul>
+
+<li><!--@Create and interact with panels using the <code><a href="devtools.panels.html">devtools.panels</a></code>
+APIs.-->
+使用 <code><a href="devtools.panels.html">devtools.panels</a></code> API 创建面板并与之交互。
+</li>
+
+<li><!--@Get information about the inspected window and evaluate code in the inspected
+window using the <code><a href="devtools.inspectedWindow.html">devtools.inspectedWindow</a></code> APIs.-->
+使用 <code><a href="devtools.inspectedWindow.html">devtools.inspectedWindow</a></code> API
+获取审查窗口的有关信息，并在审查的窗口中执行代码。
+</li>
+
+<li><!--@Get information about network requests using the <code><a href="devtools.network.html">devtools.network</a></code>
+APIs.-->
+使用 <code><a href="devtools.network.html">devtools.network</a></code> API 获取网络请求的有关信息。
+</li>
+
+</ul>
+
+<p><!--@The DevTools page cannot use most of the extensions APIs directly.  It has
+access to the same subset of the <code><a href="extension.html">extension</a></code> 
+and <code><a href="runtime.html">runtime</a></code>
+APIs that a content script has access to. Like a content script, a DevTools page
+can communicate with the background page using <a href="messaging.html">Message Passing</a>.
+For an example, see <a href="#injecting">Injecting a Content Script</a>.-->
+开发者工具网页不能直接使用大部分扩展程序 API，和内容脚本一样只能访问部分
+<code><a href="extension.html">extension</a></code> 和 <code><a href="runtime.html">runtime</a></code>
+API。与内容脚本类似，开发者工具网页可以使用<a href="messaging.html"
+>消息传递</a>与后台网页通信，有关例子请参见<a href="#injecting"
+>插入内容脚本</a>。
+</p>
+
+<h2 id="creating"><!--@Creating a DevTools Extension-->创建开发者工具扩展程序</h2>
+
+<p><!--@To create a DevTools page for your extension, add the <code>devtools_page</code>
+field in the extension manifest:-->
+要为您的扩展程序创建一个开发者工具网页，请在扩展程序的清单文件中添加
+<code>devtools_page</code> 字段。
+</p>
+
+<pre>
+{
+  "name": ...
+  "version": "1.0",
+  "minimum_chrome_version": "10.0",
+  "devtools_page": "devtools.html",
+  ...
+}
+</pre>
+
+<p><!--@An instance of the <code>devtools_page</code> specified in your extension's
+manifest is created for every DevTools window opened. The page may add other
+extension pages as panels and sidebars to the DevTools window using the
+<code><a href="devtools.panels.html">devtools.panels</a></code> API.-->
+每打开一个开发者工具窗口，都会创建一个您的扩展程序清单文件中指定的
+<code>devtools_page</code>。该网页可以使用 <code><a href="devtools.panels.html">devtools.panels</a></code>
+API 添加其他扩展程序网页，作为开发者工具窗口中的面板和侧边栏。
+</p>
+
+<p class="note"><!--@The <code>devtools_page</code> field must point to an HTML page.
+This differs from the <code>background</code> field, used for specifying a background page, 
+which lets you specify JavaScript files directly.-->
+<code>devtools_page</code> 字段必须指向 HTML 网页，这一点与
+指定后台网页的 <code>background</code> 字段不同，它允许您直接指定 JavaScript
+文件。
+</p>
+
+<p><!--@The <code>chrome.devtools.*</code> API modules are available only to the pages
+loaded within the DevTools window. Content scripts and other extension pages do not
+have these APIs. Thus, the APIs are available only through the lifetime of the
+DevTools window.-->
+<code>chrome.devtools.*</code> API
+模块仅对扩展程序窗口中加载的网页可用，内容脚本以及其他扩展程序网页不能访问这些
+API，因此这些 API 仅在开发者工具窗口的生命周期内可用。
+</p>
+
+<p>
+<!--@There are also some DevTools APIs that are still experimental.
+Refer to <a href="http://developer.chrome.com/extensions/experimental.html">chrome.experimental.*
+APIs</a> for the list of
+experimental APIs and guidelines on how to use them.-->
+有一些开发者工具 API 还是实验性的，有关实验性 API 以及如何使用它们请参见
+<a href="experimental.html">chrome.experimental.* API</a>。
+</p>
+
+<h2 id="devtools-ui"><!--@DevTools UI Elements: Panels and Sidebar Panes-->开发者工具用户界面元素：面板和侧边栏窗格</h2>
+
+<p>
+<!--@In addition to the usual extension UI elements, such as browser actions, context
+menus and popups, a DevTools extension can add UI elements to the DevTools window:-->
+除了通常的扩展程序用户界面元素，如浏览器按钮、右键菜单和弹出菜单，开发者工具扩展程序还可以向开发者工具窗口添加用户界面元素：
+</p>
+
+<ul>
+
+<li><!--@A <em>panel</em> is a top-level tab, like the Elements, Sources, and Network
+panels.-->
+<em>面板</em>是顶层标签页，如 Elements（元素）、Sources（源代码）和
+Network（网络）面板。
+</li>
+
+<li><!--@A <em>sidebar pane</em> presents supplementary UI related to a panel. The
+Styles, Computed Styles, and Event Listeners panes on the Elements panel are
+examples of sidebar panes. Currently your extension can only add sidebar panes to
+the Elements panel. (Note that the appearance of sidebar panes may not match the
+image, depending on the version of Chrome you're using, and where the DevTools
+window is docked.)-->
+<em>侧边栏窗格</em>显示与面板相关的辅助用户界面，例如 Elements（元素）面板中的
+Styles（样式）、Computed Styles（计算后的样式）和 Event
+Listeners（事件监听器）侧边栏窗格。目前，您的扩展程序只能在
+Elements（元素）面板添加侧边栏窗格。（注意，侧边栏窗格的外观可能与图片中不匹配，这取决于您正在使用的 Chrome 浏览器版本以及开发者工具窗口固定的位置。）
+</li>
+
+</ul>
+
+<!--@<img src="https://developer.chrome.com/static/images/devtools-extension-ui.png"
+    alt="DevTools window showing Elements panel and Styles sidebar pane." />-->
+<img src="../../developer.chrome.com/static/images/devtools-extension-ui.png"
+    alt="显示 Elements（元素）面板及 Styles（样式）侧边栏窗格的开发者工具窗口。" />
+<p>
+<!--@Each panel is its own HTML file, which can include other resources (JavaScript, CSS,
+images, and so on). Creating a basic panel looks like this:-->
+每一个面板都是一个独立的 HTML
+文件，可以包含其他资源（JavaScript、CSS、图片等等）。创建一个基本面板的代码如下所示：
+</p>
+<pre>
+chrome.devtools.panels.create("我的面板",
+    "MyPanelIcon.png",
+    "Panel.html",
+    function(panel) {
+      // 面板创建时调用的代码
+    }
+);
+</pre>
+
+<p><!--@JavaScript executed in a panel or sidebar pane has access to the the same APIs
+as the DevTools page.-->
+面板或侧边栏窗格中执行的 JavaScript 能够访问的 API 与开发者工具网页一样。
+</p>
+
+<p><!--@Creating a basic sidebar pane for the Elements panel looks like this:-->
+为 Elements（元素）面板创建一个基本侧边栏窗格的代码如下所示：</p>
+<pre>
+chrome.devtools.panels.elements.createSidebarPane("我的侧边栏",  
+    function(sidebar) {
+        // 这里是侧边栏的初始化代码
+        sidebar.setObject({ some_data: "要显示的某些数据" });
+});</pre>
+<p><!--@There are several ways to display content in a sidebar pane:-->
+您可以用各种方式在侧边栏窗格中显示内容：
+</p>
+
+<ul>
+
+<li><p><!--@HTML content. Call
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.panels.html#method-ExtensionSidebarPane-setPage">setPage</a></code> to specify
+an HTML page to display in the pane.-->
+HTML 内容：调用
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.panels.html#method-ExtensionSidebarPane-setPage">setPage</a></code>
+指定窗格中显示的 HTML 网页。
+</p></li>
+
+
+<li><p><!--@JSON data. Pass a JSON object to
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.panels.html#method-ExtensionSidebarPane-setObject">setObject</a></code>.-->
+JSON 数据：向
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.panels.html#method-ExtensionSidebarPane-setObject">setObject</a></code>
+传递一个 JSON 对象。
+</p></li>
+
+<li><p><!--@JavaScript expression.  Pass an expression to
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.panels.html#method-ExtensionSidebarPane-setExpression">setExpression</a></code>.
+DevTools evaluates the expression in the context of the inspected page, and
+displays the return value.-->
+JavaScript 表达式：向
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.panels.html#method-ExtensionSidebarPane-setExpression">setExpression</a></code>
+传递一个表达式，开发者工具会在审查的网页上下文中对表达式进行求值，然后显示返回值。
+</p></li>
+
+</ul>
+
+<p><!--@For both <code>setObject</code> and <code>setExpression</code>,
+the pane displays the value as it would appear in the DevTools console.
+However, <code>setExpression</code> lets you display DOM elements and arbitrary
+JavaScript objects, while <code>setObject</code> only supports JSON objects.-->
+对于 <code>setObject</code> 和 <code>setExpression</code>
+来说，窗格中显示值的方式与开发者工具的控制台类似。<code>setExpression</code>允许您显示 DOM 元素和任意 JavaScript 对象，但是 <code>setObject</code>
+只支持 JSON 对象。
+</p>
+
+<h2 id="solutions"><!--@Communicating Between Extension Components-->在扩展程序的不同部件之间通信</h2>
+<p><!--@The following sections describe some typical scenarios for communicating between
+the different components of a DevTools extension.-->
+这一部分描述了开发者工具扩展程序不同部件之间通信的典型情况：
+</p>
+
+<h3 id="injecting"><!--@Injecting a Content Script-->插入内容脚本</h3>
+
+<p><!--@The DevTools page can't call <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code> directly.
+To inject a content script from the DevTools page, you must retrieve the ID
+of the inspected window's tab using the <code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#property-tabId">inspectedWindow.tabId</a></code>
+property and send a message to the background page. From the background page,
+call <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code> to inject the script.-->
+开发者工具网页不能直接调用
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code>。如果要从开发者工具网页中插入内容脚本，您必须先使用
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#property-tabId">inspectedWindow.tabId</a></code>
+获取审查窗口的标签页标识符，然后向后台网页发送消息。在后台网页中，调用
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code> 插入脚本。
+</p>
+
+<p class="note"><!--@If a content script has already been injected, you can add
+additional context scripts using the <code>eval</code> method. See
+<a href="#selected-element">Passing the Selected Element to a Content Script</a>
+for more information.-->
+如果内容脚本已经插入，您可以使用 <code>eval</code>
+方法添加其他内容脚本，有关更多信息请参见<a href="#selected-element"
+>将选定元素传递给内容脚本</a>。
+</p>
+
+<p><!--@The following code snippets show how to inject a content script using
+<code>executeScript</code>.-->
+如下代码片段演示如何使用 <code>executeScript</code> 插入内容脚本。
+</p>
+
+<pre>
+// 开发者工具网页——devtools.js
+// 连接到后台网页
+var backgroundPageConnection = chrome.runtime.connect({
+    name: "devtools-page"
+});
+
+backgroundPageConnection.onMessage.addListener(function (message) {
+    // 处理后台网页的响应（如果有的话）。
+});
+
+// 将标签页标识符发送至后台网页
+chrome.runtime.sendMessage({
+    tabId: chrome.devtools.inspectedWindow.tabId,
+    scriptToInject: "content_script.js"
+});
+</pre>
+
+<p><!--@Code for the background page:-->后台网页的代码：</p>
+
+<pre>
+// 后台网页——background.js
+chrome.runtime.onConnect.addListener(function(devToolsConnection) {
+    // 将监听器函数赋给某个变量，以便之后移除
+    var devToolsListener = function(message, sender, sendResponse) {
+        // 向指定标签页插入内容脚本
+        chrome.tabs.executeScript(message.tabId,
+            { file: message.scriptToInject });
+    }
+    // 添加监听器
+    devToolsConnection.onMessage.addListener(devToolsListener);
+
+    devToolsConnection.onDisconnect(function() {
+         devToolsConnection.onMessage.removeListener(devToolsListener);
+    });
+}
+</pre>
+
+<h3 id="evaluating-js"><!--@Evaluating JavaScript in the Inspected Window-->在审查的窗口中执行 JavaScript</h3>
+
+<p><!--@You can use the <code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#method-eval">inspectedWindow.eval</a></code> method to execute
+JavaScript code in the context of the inspected page. You can invoke the
+<code>eval</code> method from a DevTools page, panel or sidebar pane.-->
+您可以使用 <code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#method-eval">inspectedWindow.eval</a></code> 方法在审查的网页上下文中执行
+JavaScript 代码，您可以在开发者工具网页、面板或侧边栏网页中调用
+<code>eval</code> 方法。
+</p>
+
+<p><!--@By default, the expression is evaluated in the context of the main frame of the
+page. Use the <code>useContentScriptContext: true</code> option to evaluate the
+expression in the same context as the content scripts.-->
+默认情况下，表达式在网页的主框架上下文中求值，使用
+<code>useContentScriptContext: true</code> 选项在内容脚本的上下文中对表达式求值。
+</p>
+
+<p><!--@Calling <code>eval</code> with <code>useContentScriptContext: true</code> does
+not <em>create</em> a content script context, so you must load a context script
+before calling <code>eval</code>, either by calling <code>executeScript</code> or
+by specifying a content script in the <code>manifest.json</code> file.-->
+调用 <code>eval</code> 时指定 <code>useContentScriptContext: true</code>
+并不会<em>创建</em>内容脚本上下文，所以调用 <code>eval</code>
+前您必须先加载一个内容脚本，可以调用 <code>executeScript</code>，也可以在
+<code>manifest.json</code> 文件中指定内容脚本。
+</p>
+
+<p><!--@Once the context script context exists, you can use this option to inject
+additional content scripts.-->
+内容脚本上下文存在后，您就可以使用该选项插入其他内容脚本。
+</p>
+
+<p class="warning"><!--@The <code>eval</code> method is powerful when used in the right
+context and dangerous when used inappropriately. Use the
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code> method if you don't need access to the
+JavaScript context of the inspected page. For detailed cautions and a comparison
+of the two methods, see <code><a href="devtools.inspectedWindow.html">devtools.inspectedWindow</a></code>.-->
+如果在正确的情况下使用，<code>eval</code>
+方法是很有用的，但是不恰当的使用也是很危险的。如果您不需要访问审查网页的
+JavaScript 上下文，请使用 <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-executeScript">tabs.executeScript</a></code>
+方法。有关详细的注意事项以及两种方法的比较，请参见
+<code><a href="devtools.inspectedWindow.html">devtools.inspectedWindow</a></code>。
+</p>
+
+<h3 id="selected-element"><!--@Passing the Selected Element to a Content Script-->将选定元素传递给内容脚本</h3>
+
+<p><!--@The content script doesn't have direct access to the current selected element.
+However, any code you execute using <code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#method-eval">inspectedWindow.eval</a></code> has
+access to the DevTools console and command-line APIs. For example, in evaluated code 
+you can use <code>$0</code> to access the selected element.-->
+内容脚本并不能直接访问当前选定元素，但是您使用
+<code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#method-eval">inspectedWindow.eval</a></code>
+执行的代码能够使用开发者工具的控制台与命令行
+API。例如，在求值的代码中您可以使用 <code>$0</code> 访问选定元素。
+</p>
+
+<p><!--@To pass the selected element to a content script:-->如果要将选定元素传递给内容脚本：</p>
+
+<ul>
+
+<li><!--@Create a method in the content script that takes the selected element as
+an argument.-->
+在内容脚本中创建一个方法，以选定元素为参数。
+</li>
+
+<li><!--@Call the method from the DevTools page using <code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#method-eval">inspectedWindow.eval</a></code>
+with the <code>useContentScriptContext: true</code> option. -->
+使用 <code><a href="https://crxdoc-zh.appspot.com/extensions/devtools.inspectedWindow.html#method-eval">inspectedWindow.eval</a></code>，指定
+<code>useContentScriptContext: true</code>
+选项，从开发者工具网页中调用该方法。
+</li>
+
+</ul>
+
+<p><!--@The code in your content script might look something like this:-->您的内容脚本中的代码如下所示：</p>
+
+<pre>
+function setSelectedElement(el) {
+    // 对选定元素进行某些操作
+}
+</pre>
+
+<p><!--@Invoke the method from the DevTools page like this:-->在开发者工具网页中如下所示调用该方法：</p>
+
+<pre>
+chrome.devtools.inspectedWindow.eval("setSelectedElement($0)",
+    { useContentScriptContext: true });
+</pre>
+
+<p><!--@The <code>useContentScriptContext: true</code> option specifies that the
+expression must be evaluated in the same context as the content scripts, so it can
+access the <code>setSelectedElement</code> method.-->
+<code>useContentScriptContext: true</code>
+选项指定表达式必须在内容脚本的上下文中求值，这样就能访问
+<code>setSelectedElement</code> 方法。
+</p>
+
+
+<h3 id="content-script-to-devtools"><!--@Messaging from Content Scripts to the DevTools Page-->内容脚本与开发者工具网页间的消息传递</h3>
+
+<p><!--@Messaging between the DevTools page and content scripts is indirect, by way of
+the background page. -->
+开发者工具网页与内容脚本间的消息传递是间接的，通过后台网页进行。
+</p>
+
+<p><!--@When sending a message <em>to</em> a content script, the background page can use
+the <code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-sendMessage">tabs.sendMessage</a></code> method, which directs a message to the
+content scripts in a specific tab, as shown in
+<a href="#injecting">Injecting a Content Script</a>.-->
+<em>向</em>内容脚本发送消息时，后台网页可以使用
+<code><a href="https://crxdoc-zh.appspot.com/extensions/tabs.html#method-sendMessage">tabs.sendMessage</a></code>
+方法，将消息发送至指定标签页中的内容脚本，如<a href="#injecting"
+>插入内容脚本</a>部分所述。
+</p>
+
+<p><!--@When sending a message <em>from</em> a content script, there is no ready-made
+method to deliver a message to the correct DevTools page instance associated with
+the current tab.  As a workaround, you can have the DevTools page establish a
+long-lived connection with the background page, and have the background page keep a
+map of tab IDs to connections, so it can route each message to the correct
+connection.-->
+<em>从</em>内容脚本发送消息时，没有现有的方法可以将消息投递至与当前标签页对应的开发者工具网页。一种变通的方法是，您可以在开发者工具网页与后台网页间建立长时间的连接，并且让后台网页维护标签页与连接之间的对应关系，这样它就能将每一条消息转发至正确的连接。
+</p>
+
+<pre data-filename="background.js">
+var connections = {};
+
+chrome.runtime.onConnect.addListener(function (port) {
+
+    var extensionListener = function (message, sender, sendResponse) {
+
+        // 原始的连接事件不包含开发者工具网页的标签页标识符，
+        // 所以我们需要显式发送它。
+        if (message.name == "init") {
+          connections[message.tabId] = port;
+          return;
+        }
+	
+	// 其他消息的处理
+    }
+
+    // 监听开发者工具网页发来的消息
+    port.onMessage.addListener(extensionListener);
+
+    port.onDisconnect.addListener(function(port) {
+        port.onMessage.removeListener(extensionListener);
+
+        var tabs = Object.keys(connections);
+        for (var i=0, len=tabs.length; i &lt; len; i++) {
+          if (connections[tabs[i]] == port) {
+            delete connections[tabs[i]]
+            break;
+          }
+        }
+    });
+});
+
+// 从内容脚本接收消息，并转发至当前
+// 标签页对应的开发者工具网页
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    // 来自内容脚本的消息应该已经设置 sender.tab
+    if (sender.tab) {
+      var tabId = sender.tab.id;
+      if (tabId in connections) {
+        connections[tabId].postMessage(request);
+      } else {
+        console.log("连接列表中找不到该标签页。");
+      }
+    } else {
+      console.log("sender.tab 未定义。");
+    }
+    return true;
+});
+</pre>
+
+<p><!--@The DevTools page (or panel or sidebar pane) establishes the connection like
+this:-->
+开发者工具网页（或面板或侧边栏窗格）如下所示建立连接：
+</p>
+
+<pre>
+// 创建连接至后台网页
+var backgroundPageConnection = chrome.runtime.connect({
+    name: "panel"
+});
+
+backgroundPageConnection.postMessage({
+    name: 'init',
+    tabId: chrome.devtools.inspectedWindow.tabId
+});
+</pre>
+
+<h3 id="detecting-open-close"><!--@Detecting When DevTools Opens and Closes-->检测开发者工具何时打开何时关闭</h3>
+
+<p><!--@If your extension needs to track whether the DevTools window is open, you can
+add an <a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#event-onConnect">onConnect</a> listener to the background page, and call
+<a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#method-connect">connect</a> from the DevTools page. Since each tab can have its
+own DevTools window open, you may receive multiple connect events. To track whether
+any DevTools window is open, you need to count the connect and disconnect events as
+shown below:-->
+如果您的扩展程序需要跟踪开发者工具窗口是否打开，您可以在后台网页中添加
+<a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#event-onConnect">onConnect</a> 监听器，并在开发者工具网页中调用
+<a href="https://crxdoc-zh.appspot.com/extensions/runtime.html#method-connect">connect</a>。由于每一个标签页都可以打开各自的开发者工具窗口，您可能会收到多个连接事件。要跟踪是否有打开的开发者工具窗口，您需要统计连接与断开连接事件的次数，如下所示：
+</p>
+
+<pre data-filename="background.js">
+var openCount = 0;
+chrome.runtime.onConnect.addListener(function (port) {
+    if (port.name == "devtools-page") {
+      if (openCount == 0) {
+        alert("开发者工具窗口打开。");
+      }
+      openCount++;
+   
+      port.onDisconnect.addListener(function(port) {
+          openCount--;
+          if (openCount == 0) {
+            alert("最后一个开发者工具窗口关闭。");
+          }
+      });
+    }
+});</pre>
+
+<p><!--@The DevTools page creates a connection like this:-->
+开发者工具网页如下所示创建连接：</p>
+
+<pre data-filename="devtools.js">
+// 创建连接至后台网页
+var backgroundPageConnection = chrome.runtime.connect({
+    name: "devtools-page"
+});
+</pre>
+
+<h2 id="more"><!--@More information-->更多信息</h2>
+
+<p><!--@For information on the standard APIs that extensions can use, see
+<a href="http://developer.chrome.com/extensions/api_index.html">chrome.* APIs</a>
+and <a href="http://developer.chrome.com/extensions/api_other.html">Other APIs</a>.-->
+有关扩展程序可以使用的标准 API，请参见
+<a href="api_index.html">chrome.* APIs</a>
+和<a href="api_other.html">其他 API</a>。
+</p>
+
+<p>
+<a href="https://groups.google.com/group/google-chrome-developer-tools/topics"><!--@Give
+us feedback!-->给我们反馈！</a><!--@
+Your comments and suggestions help us improve the APIs.
+-->您的评论与建议可以帮助我们改进这些 API。</p>
+
+<h2 id="examples"><!--@Examples-->例子</h2>
+
+<p><!--@You can find examples that use DevTools APIs in
+<a href="http://developer.chrome.com/extensions/samples.html#devtools">Samples</a>.-->
+您可以在<a href="https://crxdoc-zh.appspot.com/extensions/samples.html#devtools">示例</a>中找到使用开发者工具 API
+的例子。
+</p>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="../../developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="../../developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

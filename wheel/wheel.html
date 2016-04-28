@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>functionalJsLab</title>
+	<script type="text/javascript" src="wheel.js"></script>
+	<script>
+	//window.addEventListener("load",function(){console.log("load"),false});
+	//window.addEventListener("DOMContentLoaded",function(){console.log("dload"),false});
+	//document.addEventListener("readystatechange",function(e){console.log(e.target.readyState),false});
+	$.ready(function(){
+		document.body.innerHTML+="<div>hello world！</div>"
+	})
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script>
+	var a=Date.now();
+	while(Date.now()-a<1000){
+
+	}
+	document.body.innerHTML+="<div>too bad！</div>";
+	</script>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

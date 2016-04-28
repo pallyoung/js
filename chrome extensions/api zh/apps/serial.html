@@ -1,0 +1,2356 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chrome.serial - Google Chrome 应用开发文档（非官方中文版）</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="/static/css/site.css" rel="stylesheet" type="text/css">
+    <link href="https://developer.chrome.com/static/css/print.css" rel="stylesheet" type="text/css" media="print">
+    <link href="https://developer.chrome.com/static/css/prettify.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  </head>
+
+  <body>
+
+
+<!-- Copyright � 2005. Spidersoft Ltd -->
+<style>
+A.applink:hover {border: 2px dotted #DCE6F4;padding:2px;background-color:#ffff00;color:green;text-decoration:none}
+A.applink       {border: 2px dotted #DCE6F4;padding:2px;color:#2F5BFF;background:transparent;text-decoration:none}
+A.info          {color:#2F5BFF;background:transparent;text-decoration:none}
+A.info:hover    {color:green;background:transparent;text-decoration:underline}
+</style>
+<div style='BORDER: 1px solid #DCE6F4; MARGIN-TOP: 20px; MARGIN-BOTTOM: 20px; MARGIN-LEFT: 5px; MARGIN-RIGHT: 5px; PADDING: 5px; BACKGROUND-COLOR: #eef8ff;line-height:180%; COLOR: #000000; font-family: Arial; font-size: 8pt; width=100%; FILTER: progid:DXImageTransform.Microsoft.Gradient(GradientType=0, StartColorStr="#FFFFFFFF", EndColorStr="#F2F5FAFF");'>
+This page was saved using <a class="applink" href="http://www.spidersoft.com"><b>WebZIP 7.0.3.1030</b></a> <a class="applink" href="http://www.spidersoft.com"><b>offline browser</b></a>  on  12/24/13 11:31:38.<br>
+<b>Address:</b> <a class="info" href="https://crxdoc-zh.appspot.com/apps/serial.html">https://crxdoc-zh.appspot.com/apps/serial.html</a><br>
+<b>Title:</b> chrome.serial - Google Chrome 应用开发文档（非官方中文版） &nbsp;&bull;&nbsp; <b>Size:</b> 94152<br></div>
+<!-- /Copyright � 2005. Spidersoft Ltd -->
+
+
+    <div id="gc-topnav">
+      <table><tr>
+      <td id="chrome-logo">
+        <a href="/apps/" title="Google Chrome 应用" id="view-original">
+          <img src="https://developer.chrome.com/static/images/chrome-logo.png" alt=""> chrome
+        </a>
+        <script type="text/javascript">
+          document.getElementById('view-original').href = "https://developer.chrome.com" + location.pathname;
+        </script>
+        <div id="platform-chooser">
+          <button id="platform-chooser-toggle" data-menu="platform-chooser-popup">
+            应用 &#x25be;&#x202F;
+          </button>
+          <div id="platform-chooser-popup">
+            <button class="apps" data-href="/apps/about_apps.html"><!--@apps-->应用</button>
+            <button class="extensions" data-href="/extensions"><!--@extensions-->扩展程序</button>
+          </div>
+        </div>（非官方中文版）
+      </td>
+      <td>
+        <ul>
+          <li>
+            <a href="/apps/samples.html"
+               title="示例 应用（包含源代码）"><!--@Samples-->示例</a>
+          </li>
+          <li>
+            <a href="http://groups.google.com/a/chromium.org/group/chromium-apps"
+               title="Google Chrome 应用开发者论坛"
+               target="_blank"><!--@Group-->论坛（英文）</a>
+          </li>
+          <li>
+            <a href="http://stackoverflow.com/tags/google-chrome-app/info"
+               title="Stack Overflow 上的 [google-chrome-app] 标签"
+               target="_blank">Stack overflow</a>
+          </li>
+        </ul>
+      </td>
+      </tr></table>
+    </div>
+    <div id="gc-topnav-space"></div>
+    <div id="gc-container">
+      <div id="gc-sidebar">
+        <g:plusone></g:plusone>
+        <ul 
+            class="level1 ">
+        <li class="level2">
+              <span class="level2">发现</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/about_apps.html" class="level3 ">什么是 Chrome 应用？</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">开发</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/first_app.html" class="level3 ">创建您的第一个应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">教程</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">通过代码实验室学习</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_codelab.html" class="level5 ">关于代码实验室</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab1_setup.html" class="level5 ">1、设置开发环境</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab2_basic.html" class="level5 ">2、创建基本的应用</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab3_mvc.html" class="level5 ">3、创建 MVC</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab5_data.html" class="level5 ">4、保存和获取数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab6_lifecycle.html" class="level5 ">5、管理应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab7_useridentification.html" class="level5 ">6、访问用户数据</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab8_webresources.html" class="level5 ">7、访问网络资源</a>
+              </li><li class="level5">
+                    <a href="/apps/app_codelab_10_publishing.html" class="level5 ">8、发布应用</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">MVC 架构与框架</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_frameworks.html" class="level5 ">关于 MVC 架构</a>
+              </li><li class="level5">
+                    <a href="/apps/angular_framework.html" class="level5 ">用 AngularJS 建立应用</a>
+              </li><li class="level5">
+                    <a href="/apps/sencha_framework.html" class="level5 ">用 Sencha Ext JS 建立应用</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">Chrome 应用的概念</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                <a class="button level4">
+                  <span class="level4">基础知识</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_architecture.html" class="level5 ">应用的架构</a>
+              </li><li class="level5">
+                    <a href="/apps/app_lifecycle.html" class="level5 ">应用的生命周期</a>
+              </li><li class="level5">
+                    <a href="/apps/offline_apps.html" class="level5 ">首先考虑离线</a>
+              </li><li class="level5">
+                    <a href="/apps/app_external.html" class="level5 ">外部内容</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">安全性</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/contentSecurityPolicy.html" class="level5 ">内容安全策略</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">将您的应用与云端结合</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云消息服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/cloudMessaging.html" class="level6 ">关于云消息服务</a>
+                </li><li class="level6">
+                      <a href="/apps/pushMessaging.html" class="level6 ">客户端参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_server.html" class="level6 ">服务参考</a>
+                </li><li class="level6">
+                      <a href="/apps/gcm_tos.html" class="level6 ">服务条款</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                  <a class="button level5">
+                    <span class="level5">云存储服务</span>
+                    <div class="toggleIndicator level5"></div>
+                  </a>
+                <ul toggleable
+                    class="level5 hidden">
+                <li class="level6">
+                      <a href="/apps/storage.html" class="level6 ">chrome.storage</a>
+                </li>
+                </ul>
+              </li><li class="level5">
+                    <a href="/apps/app_identity.html" class="level5 ">用户认证</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">存储与获取数据</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_storage.html" class="level5 ">存储 API</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">使用低级系统服务</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/app_usb.html" class="level5 ">USB</a>
+              </li><li class="level5">
+                    <a href="/apps/app_serial.html" class="level5 ">串行端口</a>
+              </li><li class="level5">
+                    <a href="/apps/app_network.html" class="level5 ">网络通信</a>
+              </li>
+              </ul>
+            </li><li class="level4">
+                <a class="button level4">
+                  <span class="level4">与主机平台交互</span>
+                  <div class="toggleIndicator level4"></div>
+                </a>
+              <ul toggleable
+                  class="level4 hidden">
+              <li class="level5">
+                    <a href="/apps/desktop_notifications.html" class="level5 ">丰富的通知</a>
+              </li>
+              </ul>
+            </li>
+            </ul>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">发布</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/publish_app.html" class="level3 ">发布您的应用</a>
+          </li><li class="level3">
+              <a class="button level3">
+                <span class="level3">通过您的应用获利</span>
+                <div class="toggleIndicator level3"></div>
+              </a>
+            <ul toggleable
+                class="level3 hidden">
+            <li class="level4">
+                  <a href="/apps/google_wallet.html" class="level4 ">用于数字商品的 Google 电子钱包</a>
+            </li>
+            </ul>
+          </li><li class="level3">
+                <a href="/apps/analytics.html" class="level3 ">Analytics（分析）</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">参考</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/api_index.html" class="level3 ">Chrome 平台 API</a>
+          </li><li class="level3">
+                <a href="/apps/tags/webview.html" class="level3 ">Webview 标签</a>
+          </li><li class="level3">
+                <a href="/apps/api_other.html" class="level3 ">网页 API</a>
+          </li><li class="level3">
+                <a href="/apps/manifest.html" class="level3 ">清单文件格式</a>
+          </li><li class="level3">
+                <a href="/apps/app_deprecated.html" class="level3 ">禁用的网页特性</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">示例</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/samples.html" class="level3 ">示例应用</a>
+          </li>
+          </ul>
+        </li><li class="level2">
+              <span class="level2">帮助</span>
+          <ul 
+              class="level2 ">
+          <li class="level3">
+                <a href="/apps/faq.html" class="level3 ">常见问题</a>
+          </li><li class="level3">
+                <a href="https://groups.google.com/a/chromium.org/forum/#!forum/chromium-apps" class="level3 ">Google 网上论坛</a>
+          </li><li class="level3">
+                <a href="http://stackoverflow.com/questions/tagged/google-chrome-app" class="level3 ">Stack Overflow</a>
+          </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+      <div id="gc-pagecontent">
+
+<h1>chrome.serial</h1>
+<div id="toc">
+  <ol>
+    <li >
+      <a href="#types"
+         data-list-item
+         >类型</a>
+      <ol>
+        <li >
+          <a href="#type-DataBits"
+             data-list-item
+             >DataBits</a>
+        </li>
+        <li >
+          <a href="#type-ParityBit"
+             data-list-item
+             >ParityBit</a>
+        </li>
+        <li >
+          <a href="#type-StopBits"
+             data-list-item
+             >StopBits</a>
+        </li>
+        <li >
+          <a href="#type-ConnectionOptions"
+             data-list-item
+             >ConnectionOptions</a>
+        </li>
+        <li >
+          <a href="#type-ConnectionInfo"
+             data-list-item
+             >ConnectionInfo</a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#methods"
+         data-list-item
+         >方法</a>
+      <ol>
+        <li >
+          <a href="#method-getDevices"
+             data-list-item
+             >getDevices        </a>
+        </li>
+        <li >
+          <a href="#method-connect"
+             data-list-item
+             >connect        </a>
+        </li>
+        <li >
+          <a href="#method-update"
+             data-list-item
+             >update        </a>
+        </li>
+        <li >
+          <a href="#method-disconnect"
+             data-list-item
+             >disconnect        </a>
+        </li>
+        <li >
+          <a href="#method-setPaused"
+             data-list-item
+             >setPaused        </a>
+        </li>
+        <li >
+          <a href="#method-getInfo"
+             data-list-item
+             >getInfo        </a>
+        </li>
+        <li >
+          <a href="#method-getConnections"
+             data-list-item
+             >getConnections        </a>
+        </li>
+        <li >
+          <a href="#method-send"
+             data-list-item
+             >send        </a>
+        </li>
+        <li >
+          <a href="#method-flush"
+             data-list-item
+             >flush        </a>
+        </li>
+        <li >
+          <a href="#method-getControlSignals"
+             data-list-item
+             >getControlSignals        </a>
+        </li>
+        <li >
+          <a href="#method-setControlSignals"
+             data-list-item
+             >setControlSignals        </a>
+        </li>
+      </ol>
+    </li>
+    <li >
+      <a href="#events"
+         data-list-item
+         >事件</a>
+      <ol>
+        <li >
+          <a href="#event-onReceive"
+             data-list-item
+             >onReceive</a>
+        </li>
+        <li >
+          <a href="#event-onReceiveError"
+             data-list-item
+             >onReceiveError</a>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</div>
+
+<table class="intro" id="intro">
+  <tr>
+    <td class="title">描述<!--@:-->：</td>
+    <td>
+         <!--@Use the <code>chrome.serial</code> API to read from and write to a device
+         connected to a serial port.-->
+         使用 <code>chrome.serial</code> API 读取和写入连接到串行端口的设备。
+                <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">可用版本<!--@:-->：</td>
+    <td>
+        <!--@Stable since-->从 Chrome 23<!--@.--> 开始稳定支持。
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">权限<!--@:-->：</td>
+    <td>
+        <span class="code">
+        "serial"
+                </span>
+        <br>
+    </td>
+  </tr>
+  <tr>
+    <td class="title">了解更多<!--@:-->：</td>
+    <td>
+        <a href="app_usb.html">
+        访问硬件设备
+                </a>
+        <br>
+    </td>
+  </tr>
+</table>
+<section>
+<h2 id="api-reference-header" title="">chrome.serial <!--@reference-->参考</h2>
+<div class="api_reference">
+    <h2 id="types"><!--@Types-->类型</h2>
+      <div>
+        <h3 id="type-DataBits">DataBits</h3>
+        <div>
+          <dd>enum of
+            <code>"seven"</code>, 
+            or <code>"eight"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ParityBit">ParityBit</h3>
+        <div>
+          <dd>enum of
+            <code>"no"</code>, 
+            <code>"odd"</code>, 
+            or <code>"even"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-StopBits">StopBits</h3>
+        <div>
+          <dd>enum of
+            <code>"one"</code>, 
+            or <code>"two"</code>
+          </dd>
+          <dd></dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ConnectionOptions">ConnectionOptions</h3>
+        <div>
+            <h3 id="ConnectionOptions-properties" class="capitalize" title="">
+              <a href="#type-ConnectionOptions">ConnectionOptions</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-ConnectionOptions-persistent"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-persistent" title="">
+                        persistent
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Flag indicating whether or not the connection should be left open when the application is suspended (see <a href="http://developer.chrome.com/apps/app_lifecycle.html">Manage App Lifecycle</a>). The default value is "false." When the application is loaded, any serial connections previously opened with persistent=true can be fetched with <code>getConnections</code>.--> 应用关闭时连接是否应该保持打开状态（参见<a href="app_lifecycle.html">Chrome 应用的生命周期</a>），默认值为 <code>false</code>。应用加载时，之前使用 <code>persistent: true</code> 打开的串口连接可以通过 <code>getConnections</code> 获取。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-name"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-name" title="">
+                        name
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@An application-defined string to associate with the connection.--> 与连接相关联的字符串，由应用定义。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-bufferSize"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-bufferSize" title="">
+                        bufferSize
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The size of the buffer used to receive data. The default value is 4096.--> 用于接收数据的缓冲区大小，默认值为 4096。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-bitrate"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-bitrate" title="">
+                        bitrate
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The requested bitrate of the connection to be opened. For compatibility with the widest range of hardware, this number should match one of commonly-available bitrates, such as 110, 300, 1200, 2400, 4800, 9600, 14400, 19200, 38400, 57600, 115200. There is no guarantee, of course, that the device connected to the serial port will support the requested bitrate, even if the port itself supports that bitrate. <code>9600</code> will be passed by default.--> 打开连接时请求的比特率。为了尽可能地与各种硬件兼容，该数值应该匹配常用的比特率，例如 110、300、1200、2400、4800、9600、14400、19200、38400、57600、115200。当然，不能保证连接到串行端口的设备能支持请求的比特率，即使端口本身支持该比特率。默认为 <code>9600</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-dataBits"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-dataBits" title="">
+                        dataBits
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="serial.html#type-DataBits">DataBits</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@<code>"eight"</code> will be passed by default.--> 默认为 <code>"eight"</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-parityBit"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-parityBit" title="">
+                        parityBit
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="serial.html#type-ParityBit">ParityBit</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@<code>"no"</code> will be passed by default.--> 默认为 <code>"no"</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-stopBits"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-stopBits" title="">
+                        stopBits
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="serial.html#type-StopBits">StopBits</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@<code>"one"</code> will be passed by default.--> 默认为 <code>"one"</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-ctsFlowControl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-ctsFlowControl" title="">
+                        ctsFlowControl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Flag indicating whether or not to enable RTS/CTS hardware flow control. Defaults to false.--> 是否启用 RTS/CTS 硬件流控制，默认为 false。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-receiveTimeout"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-receiveTimeout" title="">
+                        receiveTimeout
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The maximum amount of time (in milliseconds) to wait for new data before raising an <code>onReceiveError</code> event with a "timeout" error. If zero, receive timeout errors will not be raised for the connection. Defaults to 0.--> 产生 "timeout"（超时）错误的 <code>onReceiveError</code> 事件前等待新数据的最长时间（以毫秒为单位）。如果为零，该连接不会产生接收超时错误。默认为 0。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionOptions-sendTimeout"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionOptions-sendTimeout" title="">
+                        sendTimeout
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The maximum amount of time (in milliseconds) to wait for a <code>send</code> operation to complete before calling the callback with a "timeout" error. If zero, send timeout errors will not be triggered. Defaults to 0.--> 调用回调函数产生 "timeout"（超时）错误前等待 <code>send</code>（发送）操作完成的最长时间（以毫秒为单位）。如果为零，不会产生发送超时错误。默认为 0。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+      <div>
+        <h3 id="type-ConnectionInfo">ConnectionInfo</h3>
+        <div>
+            <h3 id="ConnectionInfo-properties" class="capitalize" title="">
+              <a href="#type-ConnectionInfo">ConnectionInfo</a>
+              的属性
+            </h3>
+            <dd>
+              <dl>
+                <div>
+                  <a name="property-ConnectionInfo-connectionId"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-connectionId" title="">
+                        connectionId
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@The id of the serial port connection.--> 串行端口连接标识符。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-paused"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-paused" title="">
+                        paused
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@Flag indicating whether the connection is blocked from firing onReceive events.--> 是否阻止连接产生 onReceive 事件。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-persistent"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-persistent" title="">
+                        persistent
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.persistent</code>--> 参见 <code>ConnectionOptions.persistent</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-name"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-name" title="">
+                        name
+                        <span class="property">
+                          (
+                            string
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.name</code>--> 参见 <code>ConnectionOptions.name</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-bufferSize"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-bufferSize" title="">
+                        bufferSize
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.bufferSize</code>--> 参见 <code>ConnectionOptions.bufferSize</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-receiveTimeout"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-receiveTimeout" title="">
+                        receiveTimeout
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.receiveTimeout</code>--> 参见 <code>ConnectionOptions.receiveTimeout</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-sendTimeout"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-sendTimeout" title="">
+                        sendTimeout
+                        <span class="property">
+                          (
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.sendTimeout</code>--> 参见 <code>ConnectionOptions.sendTimeout</code>。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-bitrate"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-bitrate" title="">
+                        bitrate
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            integer
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.bitrate</code>. This field may be omitted or inaccurate if a non-standard bitrate is in use, or if an error occurred while querying the underlying device.--> 参见 <code>ConnectionOptions.bitrate</code>。如果使用了非标准的比特率或者查询下层设备时产生错误，该字段可能不精确或省略。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-dataBits"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-dataBits" title="">
+                        dataBits
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="serial.html#type-DataBits">DataBits</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.dataBits</code>. This field may be omitted if an error occurred while querying the underlying device.--> 参见 <code>ConnectionOptions.dataBits</code>，如果查询下层设备时产生错误，该字段可能会省略。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-parityBit"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-parityBit" title="">
+                        parityBit
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="serial.html#type-ParityBit">ParityBit</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.parityBit</code>. This field may be omitted if an error occurred while querying the underlying device.--> 参见 <code>ConnectionOptions.parityBit</code>，如果查询下层设备时产生错误，该字段可能会省略。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-stopBits"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-stopBits" title="">
+                        stopBits
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            <a href="serial.html#type-StopBits">StopBits</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.stopBits</code>. This field may be omitted if an error occurred while querying the underlying device.--> 参见 <code>ConnectionOptions.stopBits</code>，如果查询下层设备时产生错误，该字段可能会省略。
+                    </dd>
+                  </dl>
+                </div><div>
+                  <a name="property-ConnectionInfo-ctsFlowControl"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-ConnectionInfo-ctsFlowControl" title="">
+                        ctsFlowControl
+                        <span class="property">
+                          (
+                            <span class="optional">optional</span>
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <!--@See <code>ConnectionOptions.ctsFlowControl</code>. This field may be omitted if an error occurred while querying the underlying device.--> 参见 <code>ConnectionOptions.ctsFlowControl</code>，如果查询下层设备时产生错误，该字段可能会省略。
+                    </dd>
+                  </dl>
+                </div>
+              </dl>
+            </dd>
+        </div>
+      </div>
+    <h2 id="methods"><!--@Methods-->方法</h2>
+      <div>
+        <h3
+            id="method-getDevices"
+            >getDevices
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.getDevices</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Returns information about available serial devices on the system. The list is regenerated each time this method is called.--> 返回系统中可用串行设备的有关信息，每次调用该方法时都会重新生成该列表。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getDevices-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getDevices-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called with the list of <code>DeviceInfo</code> objects.--> 调用时传递 <code>DeviceInfo</code> 对象列表。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of object ports) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-ports"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-ports" title="">
+                        ports
+                        <span class="property">
+                          (
+                            array of object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                      <h4 title=""><!--@Properties of each object-->每一个对象的属性</h4>
+                      <dl>
+                        <div>
+                          <div>
+                              <dd>
+                                <dl>
+                                  <div>
+                                    <a name="property-portsType-path"></a>
+                                    <dl>
+                                      <dt>
+                                        <h4 id="property-portsType-path" title="">
+                                          path
+                                          <span class="property">
+                                            (
+                                              string
+                                            )
+                                          </span>
+                                        </h4>
+                                      </dt>
+                                      <dd>
+                                        <!--@The device's system path. This should be passed as the <code>path</code> argument to <code>chrome.serial.connect</code> in order to connect to this device.--> 设备的系统路径，应该传递给 <code>chrome.serial.connect</code> 的 <code>path</code> 参数，以便连接到该设备。
+                                      </dd>
+                                    </dl>
+                                  </div>
+                                </dl>
+                              </dd>
+                          </div>
+                        </div>
+                      </dl>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-connect"
+            >connect
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.connect</span>(<span>string path</span>, <span class="optional"><a href="serial.html#type-ConnectionOptions">ConnectionOptions</a> options</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Connects to a given serial port.--> 连接到指定的串行端口。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-connect-path"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-path" title="">
+                      path
+                      <span class="property">
+                        (
+                          string
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The system path of the serial port to open.--> 要打开的串行端口的系统路径。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-connect-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <span class="optional">optional</span>
+                          <a href="serial.html#type-ConnectionOptions">ConnectionOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Port configuration options.--> 端口配置选项。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-connect-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-connect-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the connection has been opened.--> 连接打开后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="serial.html#type-ConnectionInfo">ConnectionInfo</a> connectionInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-connectionInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-connectionInfo" title="">
+                        connectionInfo
+                        <span class="property">
+                          (
+                            <a href="serial.html#type-ConnectionInfo">ConnectionInfo</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-update"
+            >update
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.update</span>(<span>integer connectionId</span>, <span><a href="serial.html#type-ConnectionOptions">ConnectionOptions</a> options</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Update the option settings on an open serial port connection.--> 更新打开的串行端口连接的选项设置。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-update-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the opened connection.--> 打开的连接的标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-update-options"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-options" title="">
+                      options
+                      <span class="property">
+                        (
+                          <a href="serial.html#type-ConnectionOptions">ConnectionOptions</a>
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Port configuration options.--> 端口配置选项。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-update-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-update-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the configuation has completed.--> 配置完成后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-disconnect"
+            >disconnect
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.disconnect</span>(<span>integer connectionId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Disconnects from a serial port.--> 断开串行端口连接。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-disconnect-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-disconnect-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the opened connection.--> 打开的连接的标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-disconnect-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-disconnect-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the connection has been closed.--> 连接关闭后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setPaused"
+            >setPaused
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.setPaused</span>(<span>integer connectionId</span>, <span>boolean paused</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Pauses or unpauses an open connection.--> 暂停打开的连接，或取消暂停。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setPaused-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setPaused-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the opened connection.--> 打开的连接的标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setPaused-paused"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setPaused-paused" title="">
+                      paused
+                      <span class="property">
+                        (
+                          boolean
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Flag to indicate whether to pause or unpause.--> 暂停还是取消暂停。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setPaused-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setPaused-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the connection has been successfully paused or              unpaused.--> 连接暂停或取消暂停成功后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function() <span class="subdued">{...}</span>;</pre>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getInfo"
+            >getInfo
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.getInfo</span>(<span>integer connectionId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Retrieves the state of a given connection.--> 获取指定连接的状态。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getInfo-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getInfo-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the opened connection.--> 打开的连接的标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getInfo-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getInfo-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called with connection state information when available.--> 连接状态信息可用时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(<a href="serial.html#type-ConnectionInfo">ConnectionInfo</a> connectionInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-connectionInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-connectionInfo" title="">
+                        connectionInfo
+                        <span class="property">
+                          (
+                            <a href="serial.html#type-ConnectionInfo">ConnectionInfo</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getConnections"
+            >getConnections
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.getConnections</span>(<span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Retrieves the list of currently opened serial port connections owned by the application.--> 获取当前应用拥有并打开的串行端口连接列表。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getConnections-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getConnections-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called with the list of connections when available.--> 连接列表可用时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(array of <a href="serial.html#type-ConnectionInfo">ConnectionInfo</a> connectionInfos) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-connectionInfos"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-connectionInfos" title="">
+                        connectionInfos
+                        <span class="property">
+                          (
+                            array of <a href="serial.html#type-ConnectionInfo">ConnectionInfo</a>
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-send"
+            >send
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.send</span>(<span>integer connectionId</span>, <span>arraybuffer data</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Writes data to the given connection.--> 向指定连接写入数据。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-send-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-send-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the connection.--> 连接标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-send-data"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-send-data" title="">
+                      data
+                      <span class="property">
+                        (
+                          arraybuffer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The data to send.--> 要发送的数据。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-send-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-send-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the operation has completed.--> 操作完成时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object sendInfo) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-sendInfo"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-sendInfo" title="">
+                        sendInfo
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-sendInfo-bytesSent"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-sendInfo-bytesSent" title="">
+                              bytesSent
+                              <span class="property">
+                                (
+                                  integer
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@The number of bytes sent.--> 发送的字节数。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-sendInfo-error"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-sendInfo-error" title="">
+                              error
+                              <span class="property">
+                                (
+                                  <span class="optional">optional</span>
+                                  enum of <code>"disconnected"</code>, <code>"pending"</code>, <code>"timeout"</code>, or <code>"system_error"</code>
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@An error code if an error occurred.--> 如果发生错误则为错误代码。
+                              <dl>
+                                <dt>disconnected</dt>
+                                <dd>
+                                  <!--@The connection was disconnected.--> 连接已断开。
+                                </dd>
+                              </dl>
+                              <dl>
+                                <dt>pending</dt>
+                                <dd>
+                                  <!--@A send was already pending.--> 发送操作正在进行。
+                                </dd>
+                              </dl>
+                              <dl>
+                                <dt>timeout</dt>
+                                <dd>
+                                  <!--@The send timed out.--> 发送操作超时。
+                                </dd>
+                              </dl>
+                              <dl>
+                                <dt>system_error</dt>
+                                <dd>
+                                  <!--@A system error occurred and the connection may be unrecoverable.--> 发生系统错误，连接可能无法恢复。
+                                </dd>
+                              </dl>
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-flush"
+            >flush
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.flush</span>(<span>integer connectionId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Flushes all bytes in the given connection's input and output buffers.--> 清洗指定连接输入输出缓存中的所有内容。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-flush-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-flush-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-flush-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-flush-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-getControlSignals"
+            >getControlSignals
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.getControlSignals</span>(<span>integer connectionId</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Retrieves the state of control signals on a given connection.--> 获取指定连接上控制信号的状态。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-getControlSignals-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getControlSignals-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the connection.--> 连接标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-getControlSignals-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-getControlSignals-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called when the control signals are available.--> 控制信号可用时调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(object signals) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-signals"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-signals" title="">
+                        signals
+                        <span class="property">
+                          (
+                            object
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                  <dd>
+                    <h4 title=""><!--@Properties-->属性</h4>
+                    <dl>
+                      <div>
+                        <a name="property-signals-dcd"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-signals-dcd" title="">
+                              dcd
+                              <span class="property">
+                                (
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@DCD (Data Carrier Detect) or RLSD (Receive Line Signal/ Detect).--> DCD（数据载波检测）或 RLSD（接收线信号检出）。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-signals-cts"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-signals-cts" title="">
+                              cts
+                              <span class="property">
+                                (
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@CTS (Clear To Send).--> 清除发送。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-signals-ri"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-signals-ri" title="">
+                              ri
+                              <span class="property">
+                                (
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@RI (Ring Indicator).--> 振铃指示。
+                          </dd>
+                        </dl>
+                      </div><div>
+                        <a name="property-signals-dsr"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-signals-dsr" title="">
+                              dsr
+                              <span class="property">
+                                (
+                                  boolean
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@DSR (Data Set Ready).--> 数据装置就绪。
+                          </dd>
+                        </dl>
+                      </div>
+                    </dl>
+                  </dd>
+                </div>
+            </dl>
+        </div>
+      </div>
+      <div>
+        <h3
+            id="method-setControlSignals"
+            >setControlSignals
+        </h3>
+        <div class="summary uncapitalize">
+        <div class="line">
+        <span>chrome.serial.setControlSignals</span>(<span>integer connectionId</span>, <span>object signals</span>, <span>function callback</span>)
+        </div>
+        </div>
+        <div class="description">
+          <p>
+            <!--@Sets the state of control signals on a given connection.--> 设置指定连接上控制信号的状态。
+          </p>
+          <h4 title=""><!--@Parameters-->参数</h4>
+          <dl>
+              <div>
+                <a name="property-setControlSignals-connectionId"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setControlSignals-connectionId" title="">
+                      connectionId
+                      <span class="property">
+                        (
+                          integer
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The id of the connection.--> 连接标识符。
+                  </dd>
+                </dl>
+              </div>
+              <div>
+                <a name="property-setControlSignals-signals"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setControlSignals-signals" title="">
+                      signals
+                      <span class="property">
+                        (
+                          object
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@The set of signal changes to send to the device.--> 要向设备发送的信号变化。
+                  </dd>
+                </dl>
+                <dd>
+                  <h4 title=""><!--@Properties-->属性</h4>
+                  <dl>
+                    <div>
+                      <a name="property-signals-dtr"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-signals-dtr" title="">
+                            dtr
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@DTR (Data Terminal Ready).--> DTR（数据终端就绪）。
+                        </dd>
+                      </dl>
+                    </div><div>
+                      <a name="property-signals-rts"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-signals-rts" title="">
+                            rts
+                            <span class="property">
+                              (
+                                <span class="optional">optional</span>
+                                boolean
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                          <!--@RTS (Request To Send).--> RTS（请求发送）。
+                        </dd>
+                      </dl>
+                    </div>
+                  </dl>
+                </dd>
+              </div>
+              <div>
+                <a name="property-setControlSignals-callback"></a>
+                <dl>
+                  <dt>
+                    <h4 id="property-setControlSignals-callback" title="">
+                      callback
+                      <span class="property">
+                        (
+                          function
+                        )
+                      </span>
+                    </h4>
+                  </dt>
+                  <dd>
+                    <!--@Called once the control signals have been set.--> 控制信号设置后调用。
+                  </dd>
+                </dl>
+              </div>
+          </dl>
+            <p>
+                  <!--@The <em>callback</em> parameter should specify a function
+                  that looks like this:-->
+                  <em>callback</em> 参数应该指定一个如下形式的函数：
+            </p>
+            <pre>function(boolean result) <span class="subdued">{...}</span>;</pre>
+            <dl>
+                <div>
+                  <a name="property-callback-result"></a>
+                  <dl>
+                    <dt>
+                      <h4 id="property-callback-result" title="">
+                        result
+                        <span class="property">
+                          (
+                            boolean
+                          )
+                        </span>
+                      </h4>
+                    </dt>
+                    <dd>
+                    </dd>
+                  </dl>
+                </div>
+            </dl>
+        </div>
+      </div>
+    <h2 id="events"><!--@Events-->事件</h2>
+      <div>
+        <h3 id="event-onReceive">onReceive</h3>
+        <div class="description">
+      <p>
+            <!--@Event raised when data has been read from the connection.--> 数据从连接读取时产生该事件。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.serial.onReceive.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onReceive-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onReceive-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object info) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onReceive-info"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onReceive-info" title="">
+                              info
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                            <!--@Event data.--> 事件数据。
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-info-connectionId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-info-connectionId" title="">
+                                    connectionId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@The connection identifier.--> 连接标识符。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-info-data"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-info-data" title="">
+                                    data
+                                    <span class="property">
+                                      (
+                                        arraybuffer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@The data received.--> 接收的数据。
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div>
+        <h3 id="event-onReceiveError">onReceiveError</h3>
+        <div class="description">
+      <p>
+            <!--@Event raised when an error occurred while the runtime was waiting for data on the serial port. Once this event is raised, the connection may be set to <code>paused</code>. A <code>"timeout"</code> error does not pause the connection.--> 运行时等待串行端口上的数据时如果发生错误，则产生该事件。产生该事件后，连接状态将设置为 <code>paused</code>（暂停）。<code>"timeout"</code>（超时）错误不会暂停连接。
+          </p>      <div>
+              <h4
+                  title="">addListener
+              </h4>
+              <div class="summary uncapitalize">
+              <div class="line">
+              <span>chrome.serial.onReceiveError.addListener</span>(<span>function callback</span>)
+              </div>
+              </div>
+              <div class="description">
+                <h4 title=""><!--@Parameters-->参数</h4>
+                <dl>
+                    <div>
+                      <a name="property-onReceiveError-callback"></a>
+                      <dl>
+                        <dt>
+                          <h4 id="property-onReceiveError-callback" title="">
+                            callback
+                            <span class="property">
+                              (
+                                function
+                              )
+                            </span>
+                          </h4>
+                        </dt>
+                        <dd>
+                        </dd>
+                      </dl>
+                    </div>
+                </dl>
+                  <p>
+                        <!--@The <em>callback</em> parameter should specify a function
+                        that looks like this:-->
+                        <em>callback</em> 参数应该指定一个如下形式的函数：
+                  </p>
+                  <pre>function(object info) <span class="subdued">{...}</span>;</pre>
+                  <dl>
+                      <div>
+                        <a name="property-onReceiveError-info"></a>
+                        <dl>
+                          <dt>
+                            <h4 id="property-onReceiveError-info" title="">
+                              info
+                              <span class="property">
+                                (
+                                  object
+                                )
+                              </span>
+                            </h4>
+                          </dt>
+                          <dd>
+                          </dd>
+                        </dl>
+                        <dd>
+                          <h4 title=""><!--@Properties-->属性</h4>
+                          <dl>
+                            <div>
+                              <a name="property-info-connectionId"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-info-connectionId" title="">
+                                    connectionId
+                                    <span class="property">
+                                      (
+                                        integer
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@The connection identifier.--> 连接标识符。
+                                </dd>
+                              </dl>
+                            </div><div>
+                              <a name="property-info-error"></a>
+                              <dl>
+                                <dt>
+                                  <h4 id="property-info-error" title="">
+                                    error
+                                    <span class="property">
+                                      (
+                                        enum of <code>"disconnected"</code>, <code>"timeout"</code>, <code>"device_lost"</code>, or <code>"system_error"</code>
+                                      )
+                                    </span>
+                                  </h4>
+                                </dt>
+                                <dd>
+                                  <!--@An error code indicating what went wrong.--> 表示错误信息的错误代码。
+                                    <dl>
+                                      <dt>disconnected</dt>
+                                      <dd>
+                                        <!--@The connection was disconnected.--> 连接已断开。
+                                      </dd>
+                                    </dl>
+                                    <dl>
+                                      <dt>timeout</dt>
+                                      <dd>
+                                        <!--@No data has been received for <code>receiveTimeout</code> milliseconds.--> 经过 <code>receiveTimeout</code> 毫秒后仍然未接收到数据。
+                                      </dd>
+                                    </dl>
+                                    <dl>
+                                      <dt>device_lost</dt>
+                                      <dd>
+                                        <!--@The device was most likely disconnected from the host.--> 设备可能已经从主机断开。
+                                      </dd>
+                                    </dl>
+                                    <dl>
+                                      <dt>system_error</dt>
+                                      <dd>
+                                        <!--@A system error occurred and the connection may be unrecoverable.--> 发生系统错误，连接可能无法恢复。
+                                      </dd>
+                                    </dl>
+                                </dd>
+                              </dl>
+                            </div>
+                          </dl>
+                        </dd>
+                      </div>
+                  </dl>
+              </div>
+            </div>
+        </div>
+      </div>
+</div>
+</section>
+      </div>
+    </div>
+  </body>
+
+  <div id="gc-footer">
+    <button class="google-button" id="scroll-to-top">↑</button>
+    <button class="google-button" id="send-feedback" style="display:none">Send Feedback</button>
+    <div class="text">
+      <p>
+        <!--@Except as otherwise <a href="http://code.google.com/policies.html#restrictions">noted</a>,
+        the content of this page is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons
+        Attribution 3.0 License</a>, and code samples are licensed under the
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>.-->
+        该页面翻译自
+        <a href="https://developer.chrome.com/extensions/">Google Chrome Extensions</a>
+        与
+        <a href="https://developer.chrome.com/apps/">Google Chrome Apps</a>。除非特别<a href="https://code.google.com/policies.html#restrictions">说明</a>，该页面的内容遵循
+        <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0
+        License</a>，代码示例遵循
+        <a rel="license" href="http://code.google.com/google_bsd_license.html">BSD License</a>。
+      </p>
+      <p class="crxdoczh-footer">
+        <a href="https://code.google.com/p/crxdoczh/">crxdoczh 项目主页</a>
+        <a href="https://code.google.com/p/crxdoczh/issues/entry?template=%E7%BD%91%E7%AB%99%E5%8F%8D%E9%A6%88">发送反馈</a>
+        <a href="https:////plus.google.com/112419687097816423998?prsrc=3" rel="publisher">
+          Google+ 页面
+        </a>
+        <a href="https://plus.google.com/communities/105384952265487436177">Google+ 社群</a>
+      </p>
+      <script src="https://developer.chrome.com/static/js/platform_chooser.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/popup.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/prettify.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/scroll.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/sidebar.js" type="text/javascript"></script>
+      <script src="https://developer.chrome.com/static/js/tabs.js" type="text/javascript"></script>
+      <script>
+        (function() {
+          // Auto syntax highlight all pre tags.
+          var preElements = document.getElementsByTagName('pre');
+          for (var i = 0; i < preElements.length; i++) {
+            var preElement = preElements[i];
+            preElement.classList.add('prettyprint');
+            var datasetFilename = preElement.getAttribute('data-filename');
+            if (datasetFilename) {
+              var filename = document.createElement('div');
+              filename.className = 'filename nocode';
+              filename.textContent = datasetFilename;
+              preElement.insertBefore(filename, preElement.firstChild);
+            }
+          }
+          prettyPrint();
+        })();
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-25062424-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = 'https://ssl.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+        window.___gcfg = {
+          lang: 'zh-CN'
+        };
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+    </div>
+  </div>
+</html>

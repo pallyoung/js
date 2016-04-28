@@ -1,0 +1,55 @@
+/*pay.css*/
+body{
+	background: rgb(245,245,245);
+}
+.price{
+	height: 6rem;
+	padding: 0 32px;
+	line-height:3rem;
+	background: white;
+	margin-bottom: 2rem
+}
+.price p:nth-child(1){
+	color: rgb(66,66,66);
+	font-size: 2rem
+}
+.price p:nth-child(2) span:nth-child(1){
+	color: rgb(130,130,130);
+	font-size: 1.4rem
+}
+.price p:nth-child(2) span:nth-child(2){
+	font-size: 2rem;
+	color: rgb(255,66,0);
+}
+.price p:nth-child(2) span:nth-child(2)::before{
+	content: "￥";
+	font-size: 1.4rem
+}
+.price p:nth-child(2) span:nth-child(3){
+	color: rgb(255,66,0);
+	font-size: 1.4rem
+}
+.paymethod{
+	line-height:6rem;
+	background: white;
+}
+.paymethod p{
+	line-height:5rem;
+	height: 5rem;
+	padding: 0.5rem 18px;
+	border-bottom:  solid 0.1rem rgb(235,235,235);
+}
+.paymethod p:last-child{
+	border-bottom:none
+}
+.paymethod p img,.paymethod p span{
+	padding: 0 18px;
+	vertical-align: middle;
+}
+.paymethod p img{
+	width: 5rem;
+	height:5rem;
+}
+.paymethod p span{
+	font-size: 2.0rem
+}
